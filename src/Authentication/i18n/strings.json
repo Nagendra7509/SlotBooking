@@ -16,7 +16,9 @@
         "password": "PASSWORD",
         "login": "LOGIN",
         "usernameAlreadyExits": "username already exits",
-        "incorrectPassword": "Incorrect password"
+        "incorrectPassword": "Incorrect password",
+        "donotHaveAnAccount": "Don’t have an account?",
+        "signUp": "Signup"
     },
     "profile": {
         "changePhoto": "Change photo",

@@ -27,15 +27,30 @@ const SignInBtn = styled.button `
     ${tw `flex justify-center   text-white focus:outline-none cursor-pointer`}
     width: 320px;
   height: 40px;
-  margin:33px 108px 0px 108px;
+  margin:25px 108px 0px 108px;
   border-radius: 4px;
   background-color:${colors.brightBlue}`;
+const DontHaveAccount = styled.span `
+    width: 200px;
+  height: 24px;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  margin:24px 168px 30px 168px;
+  color:${colors.darkBlueGrey}`
 
-
+const SignupLink = styled.a `
+    ${tw ``}
+    color:${colors.brightBlue}`;
 
 export {
     LoginPageContainer,
     LoginForm,
     SigInText,
-    SignInBtn
+    SignInBtn,
+    DontHaveAccount,
+    SignupLink
 };

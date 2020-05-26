@@ -30,7 +30,10 @@ class SignUpRoute extends React.Component {
 
     @action.bound
     onClickSignUpBtn() {
-        <Redirect to={{pathname:"/slot-booking/login/"}}/>;
+        const { history } = this.props;
+        console.log(history);
+        history.push('/slot-booking/login/');
+        //<Redirect to={{pathname:"/slot-booking/login/"}}/>;
         console.log('hello');
 
     }

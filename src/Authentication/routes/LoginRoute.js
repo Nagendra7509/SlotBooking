@@ -34,8 +34,8 @@ class SignUpRoute extends React.Component {
         return <LoginPage
                 userName={this.userName}
                 password={this.password}
-                onChangePasswordSignUp={this.onChangePasswordSignUp}
-                onChangeUserNameSignUp={this.onChangeUserNameSignUp}
+                onChangeUserNameLogin={this.onChangeUserNameLogin}
+                onChangePasswordLogin={this.onChangePasswordLogin}
                 onClickLogin={this.onClickLogin}
         />;
     }

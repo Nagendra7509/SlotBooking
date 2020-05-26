@@ -10,8 +10,6 @@ class AuthenticationStore {
     @action.bound
     onClickSignUp(userName, password, confirmPassword) {
         console.log('hello');
-
-
     }
 
     @action.bound

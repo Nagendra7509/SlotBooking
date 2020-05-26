@@ -7,7 +7,10 @@ import {
     LoginPageContainer,
     LoginForm,
     SigInText,
-    SignInBtn
+    SignInBtn,
+
+    DontHaveAccount,
+    SignupLink
 }
 from "./styledComponent";
 
@@ -48,6 +51,11 @@ class LoginPage extends React.Component {
                             data-testid='sign-up-button'
                         >{Strings.login.login}
                         </SignInBtn>
+                            <DontHaveAccount>
+                                {Strings.login.donotHaveAnAccount} 
+                                <SignupLink href={"https://a2ae96eb5eb34fdda2eb65989640e7b0.vfs.cloud9.ap-southeast-1.amazonaws.com/slot-booking/sign-up/"}> {Strings.login.signUp}</SignupLink>
+                            </DontHaveAccount>
+                            
                     </LoginForm>
                     
                 </LoginPageContainer>;
