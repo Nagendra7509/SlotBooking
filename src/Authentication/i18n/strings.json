@@ -1,0 +1,40 @@
+{
+    "signUp": {
+        "hiTherePleaseSignUp": "Hi there, please sign up",
+        "userName": "USER NAME",
+        "password": "PASSWORD",
+        "weak": "Weak",
+        "strong": "Strong",
+        "confirmPassword": "CONFIRM PASSWORD",
+        "signUp": "SIGNUP",
+        "usernameAlreadyExits": "username already exits"
+
+    },
+    "login": {
+        "hiTherePleaseSignIn": "Hi there, please sign in",
+        "userName": "USER NAME",
+        "password": "PASSWORD",
+        "login": "LOGIN",
+        "usernameAlreadyExits": "username already exits",
+        "incorrectPassword": "Incorrect password"
+    },
+    "profile": {
+        "changePhoto": "Change photo",
+        "email": "EMAIL",
+        "gender": "GENDER",
+        "update": "Update",
+        "changePassword": "Change password",
+        "jobRole": "JOB ROLE",
+        "department": "DEPARTMENT",
+        "logOut": "LOGOUT"
+
+    },
+    "changePassword": {
+        "newPassword": "NEW PASSWORD",
+        "confirmPassword": "CONFIRM PASSWORD",
+        "weak": "Weak",
+        "strong": "Strong",
+        "changePassword": "Change password"
+    }
+
+}

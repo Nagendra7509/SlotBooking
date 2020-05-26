@@ -19,6 +19,8 @@ function App() {
           Learn React
         </a>
         <Link to="/page-1">Page 1</Link>
+        <Link to="/slot-booking/sign-up/">Slots Booking SignUp</Link>
+        <Link to="/slot-booking/login/">Slots Booking SignIn</Link>
       </header>
     </div>
   );

@@ -1,0 +1,32 @@
+{
+    "navigationBar": {
+        "home": "Home",
+        "requests": "Requests",
+        "reportAnIssue": "Report an Issue",
+        "previousSlots": "Previous Slots",
+        "profile": "Profile",
+        "numberOfSlotsMissed": "Number of slots missed"
+
+    },
+
+    "upComingSlots": {
+        "washingMachineiD": "Washing Machine ID     : "
+        "timeSlot": "Time Slot  ",
+        "cancel": "Cancel",
+        "noBookingsYet": "No bookings yet"
+    },
+
+    "reportAnIssue": {
+        "reportIssue": "Report Issue",
+        "description": "DESCRIPTION",
+        "placeHolderOfReportAnIssue": "Create a new conversation by writing your message here...nested loops",
+        "report": "REPORT",
+    },
+    "previousSlots": {
+        "date": "DATE",
+        "time": "TIME",
+        "washingMachineiD": "WASHING MACHINE id "
+
+    }
+
+}
