@@ -8,8 +8,8 @@ import Page1 from "./components/Page1";
 import "./App.css";
 import Stores from "./Common/stores/index";
 const App = () => {
-  return (
-    <Provider {...Stores}>
+    return (
+        <Provider {...Stores}>
     <Router basename={process.env.PUBLIC_URL}>
       <Switch>
       
@@ -24,7 +24,7 @@ const App = () => {
       </Switch>
     </Router>
     </Provider>
-  );
+    );
 };
 
-export default App;
+export default App
