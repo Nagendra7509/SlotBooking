@@ -15,7 +15,7 @@
         "userName": "USER NAME",
         "password": "PASSWORD",
         "login": "LOGIN",
-        "usernameAlreadyExits": "username already exits",
+        "usernameInavalid": "Incorrect userName",
         "incorrectPassword": "Incorrect password",
         "donotHaveAnAccount": "Don’t have an account?",
         "signUp": "Signup"

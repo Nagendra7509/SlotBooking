@@ -26,17 +26,17 @@ class SignUpPage extends React.Component {
             onChangeUserNameSignUp,
             onClickSignUpBtn
         } = this.props;
-        console.log();
         return <SignUpPageContainer>
                     
                     <SignUpForm>
-                        <IbHubsLogo src={ibhubsLogo.logoAdress}/>
+                        <IbHubsLogo src={ibhubsLogo.logoAdress} alt="ibhubsLogo"/>
                         <SignUpText>{Strings.signUp.hiTherePleaseSignUp}</SignUpText>
                         <Label>{Strings.signUp.userName}</Label>
                         <InputTag 
                             onChange={onChangeUserNameSignUp} 
                             value={username} 
                             type="text" 
+                            placeholder="username"
                             
                         />
                         {/*<ErrorMessage>{}</ErrorMessage>*/}
@@ -46,6 +46,7 @@ class SignUpPage extends React.Component {
                             onChange={onChangePasswordSignUp} 
                             value={password} 
                             type="password" 
+                            placeholder="password"
                             
                         />
                         <Label>{Strings.signUp.confirmPassword}</Label>
@@ -53,6 +54,7 @@ class SignUpPage extends React.Component {
                             onChange={onChangeConfirmPasswordSignUp}
                             value={confirmPassword}
                             type="password"
+                            placeholder="confirm password"
                             
                         />
                         {/*<ConfirmPassWordError></ConfirmPassWordError>*/}

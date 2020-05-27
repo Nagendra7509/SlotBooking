@@ -1,26 +1,28 @@
+// import { EnvironmentConstants } from "../../../../Common/constants/environmentConstants";
 import { networkCallWithApisauce } from "../../utils/APIUtils";
 import { apiMethods } from "../../constants/APIConstants";
 import { create } from "apisauce";
 import { endPoints } from "../endPoints";
 
 
-class SignUpService {
+class LoginService {
 
     api
 
     constructor() {
         this.api = create({
-            baseURL: "sg"
+            baseURL: "dgs"
         });
     }
 
-    signUpAPI = (requestObj) => {
+    LoginAPI = (requestObj) => {
         return networkCallWithApisauce(
             this.api,
-            endPoints.SignUp, requestObj,
-            apiMethods.post
+            endPoints.Login, requestObj,
+            apiMethods.get
         );
     }
+
 }
 
-export default SignUpService;
+export default LoginService;

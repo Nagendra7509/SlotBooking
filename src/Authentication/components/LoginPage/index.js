@@ -1,5 +1,5 @@
 import React from "react";
-import { InputTag, Label, IbHubsLogo } from "../../common/components";
+import { InputTag, Label, IbHubsLogo, ErrorMessage } from "../../common/components";
 import { ibhubsLogo } from "../../assets";
 import Strings from "../../i18n/strings.json";
 import { observer } from "mobx-react";
@@ -23,28 +23,33 @@ class LoginPage extends React.Component {
             password,
             onChangeUserNameLogin,
             onChangePasswordLogin,
-            onClickLogin
+            onClickLogin,
+            errroMessageUserName,
+            errorMessagePassword
         } = this.props;
+        //alert(this.errroMessageUserName == "");
         return <LoginPageContainer>
                     
                     <LoginForm>
-                        <IbHubsLogo src={ibhubsLogo.logoAdress}/>
+                        <IbHubsLogo src={ibhubsLogo.logoAdress} alt="ibhubsLogo"/>
                         <SigInText>{Strings.login.hiTherePleaseSignIn}</SigInText>
                         <Label>{Strings.signUp.userName}</Label>
                         <InputTag 
                             onChange={onChangeUserNameLogin} 
                             value={username} 
                             type="text" 
+                            placeholder="username"
                             
                         />
-                        {/*<ErrorMessage>{}</ErrorMessage>*/}
+                        {errroMessageUserName!="" && <ErrorMessage>{errroMessageUserName}</ErrorMessage>}
                         <Label>{Strings.login.password}</Label>
                         <InputTag 
                             onChange={onChangePasswordLogin} 
                             value={password} 
                             type="password"
+                            placeholder="password"
                         />
-                        {/*<ErrorMessage>{}</ErrorMessage>*/}
+                        {errorMessagePassword!="" && <ErrorMessage>{errorMessagePassword}</ErrorMessage>}
                         <SignInBtn 
                             type="button" 
                             onClick={onClickLogin} 
