@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
-
 import { colors } from '../../themes/Colors'
 
 
@@ -19,8 +18,8 @@ width: 170px;
   height: 44px;
   border-radius: 6px;
   border: solid 2px ${colors.brightBlue};
-  background-color: #ffffff;
-    `;
+  background-color: #ffffff;`;
+
 const Time = styled.span `
 width: 159px;
   height: 24px;
@@ -30,8 +29,7 @@ width: 159px;
   font-style: normal;
   line-height: 1.5;
   letter-spacing: normal;
-  color:${colors.darkBlueGrey};
-    `;
+  color:${colors.darkBlueGrey};`;
 
 const Heading = styled.span `
   font-size: 12px;
@@ -41,6 +39,8 @@ const Heading = styled.span `
   line-height: 1.33;
   letter-spacing: 0.12px;
   color:${colors.brightBlue}`;
+
+
 export {
   NavItem,
   TimeBtn,

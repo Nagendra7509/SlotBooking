@@ -2,11 +2,12 @@ import React from 'react'
 import { observable, action } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import SignUpPage from '../components/SignUpPage'
-import { Redirect } from 'react-router-dom'
 import { clearUserSession } from "../utils/StorageUtils";
+
 @inject('authenticationStore')
 @observer
 class SignUpRoute extends React.Component {
+
    @observable userName = ''
    @observable password = ''
    @observable confirmPassword = ''
@@ -34,15 +35,25 @@ class SignUpRoute extends React.Component {
    }
 
    render() {
+      const {
+         userName,
+         password,
+         confirmPassword,
+         onChangePasswordSignUp,
+         onChangeConfirmPasswordSignUp,
+         onChangeUserNameSignUp,
+         onClickSignUpBtn
+      } = this;
+
       return (
          <SignUpPage
-            userName={this.userName}
-            password={this.password}
-            confirmPassword={this.confirmPassword}
-            onChangePasswordSignUp={this.onChangePasswordSignUp}
-            onChangeConfirmPasswordSignUp={this.onChangeConfirmPasswordSignUp}
-            onChangeUserNameSignUp={this.onChangeUserNameSignUp}
-            onClickSignUpBtn={this.onClickSignUpBtn}
+            userName={userName}
+            password={password}
+            confirmPassword={confirmPassword}
+            onChangePasswordSignUp={onChangePasswordSignUp}
+            onChangeConfirmPasswordSignUp={onChangeConfirmPasswordSignUp}
+            onChangeUserNameSignUp={onChangeUserNameSignUp}
+            onClickSignUpBtn={onClickSignUpBtn}
          />
       )
    }

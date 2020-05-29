@@ -26,6 +26,7 @@ from "./styledComponent";
 class SlotsBookingHomePage extends React.Component {
 
     render() {
+
         const {
             currentPage,
             onClickHome,
@@ -35,55 +36,69 @@ class SlotsBookingHomePage extends React.Component {
             onClickProfile,
             previousSlots
         } = this.props;
-        //console.log(previousSlots, "f");
+
 
 
         return <SlotsBookingHomePageContainer>
-            <NavBar>
-                <TopPart>
-                    <Logo>
-                        <IbHubsLogo src={ibhubsLogo.logoAdress}/>
-                    </Logo>
-                    <NavItems>
-                        <NavBarItem 
-                            onClickPage={onClickHome} 
-                            colorValue={currentPage=="Home"}
-                            >{Strings.navigationBar.home}
-                        </NavBarItem>
-                        <NavBarItem 
-                            onClickPage={onClickRequests} 
-                            colorValue={currentPage=="Requests"}
-                            >{Strings.navigationBar.requests}
-                        </NavBarItem>
-                        <NavBarItem 
-                            onClickPage={onClickReportAnIssue}
-                            colorValue={currentPage=="ReportAnIssue"}
-                            >{Strings.navigationBar.reportAnIssue}
-                        </NavBarItem>
-                        <NavBarItem 
-                            onClickPage={onClickPreviousSlots} 
-                            colorValue={currentPage=="PreviousSlots"}
-                            >{Strings.navigationBar.previousSlots}
-                        </NavBarItem>
-                        <NavBarItem 
-                            onClickPage={onClickProfile} 
-                            colorValue={currentPage=="Profile"}
-                            >{Strings.navigationBar.profile}
-                        </NavBarItem>
-                        <ProfileImg src={profile.profileAdress}/>
-                    </NavItems>
-                </TopPart>
-                <BottomPart>
-                    <NavBarItem>{Strings.navigationBar.numberOfSlotsMissed}:{0}</NavBarItem>
-                </BottomPart>
-            </NavBar>
-            {currentPage=="Home" && <SlotBookingDashBoard/>}
-            {currentPage=="Requests" && <Requests/>}
-            {currentPage=="ReportAnIssue" && <ReportAnIssue/>}
-            {currentPage=="PreviousSlots" && <PreviousSlots previousSlots={previousSlots}/>}
-            {currentPage=="Profile" && <Profile/>}
-            
         
+                <NavBar>
+                
+                    <TopPart>
+                    
+                        <Logo>
+                            <IbHubsLogo src={ibhubsLogo.logoAdress}/>
+                        </Logo>
+                        
+                        <NavItems>
+                        
+                            <NavBarItem 
+                                onClickPage={onClickHome} 
+                                colorValue={currentPage=="Home"}
+                                >{Strings.navigationBar.home}
+                            </NavBarItem>
+                            
+                            <NavBarItem 
+                                onClickPage={onClickRequests} 
+                                colorValue={currentPage=="Requests"}
+                                >{Strings.navigationBar.requests}
+                            </NavBarItem>
+                            
+                            <NavBarItem 
+                                onClickPage={onClickReportAnIssue}
+                                colorValue={currentPage=="ReportAnIssue"}
+                                >{Strings.navigationBar.reportAnIssue}
+                            </NavBarItem>
+                            
+                            <NavBarItem 
+                                onClickPage={onClickPreviousSlots} 
+                                colorValue={currentPage=="PreviousSlots"}
+                                >{Strings.navigationBar.previousSlots}
+                            </NavBarItem>
+                            
+                            <NavBarItem 
+                                onClickPage={onClickProfile} 
+                                colorValue={currentPage=="Profile"}
+                                >{Strings.navigationBar.profile}
+                            </NavBarItem>
+                            
+                            <ProfileImg src={profile.profileAdress}/>
+                            
+                        </NavItems>
+                        
+                    </TopPart>
+                    
+                    <BottomPart>
+                        <NavBarItem>{Strings.navigationBar.numberOfSlotsMissed}:{0}</NavBarItem>
+                    </BottomPart>
+                    
+                </NavBar>
+                
+                {currentPage=="Home" && <SlotBookingDashBoard/>}
+                {currentPage=="Requests" && <Requests/>}
+                {currentPage=="ReportAnIssue" && <ReportAnIssue/>}
+                {currentPage=="PreviousSlots" && <PreviousSlots previousSlots={previousSlots}/>}
+                {currentPage=="Profile" && <Profile/>}
+            
         </SlotsBookingHomePageContainer>;
 
     }

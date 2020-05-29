@@ -3,7 +3,8 @@ import { Redirect, withRouter } from "react-router-dom";
 import { observer } from "mobx-react";
 import { LOGIN_PATH } from "../../../../Authentication/constants/routeConstants/RouteConstants";
 import { clearUserSession } from "../../../../Authentication/utils/StorageUtils";
-import { LogoutBtn } from "./styledComponent";
+import { LogoutBtn, ProfileViewContainer } from "./styledComponent";
+
 @observer
 class Profile extends React.Component {
 
@@ -16,7 +17,9 @@ class Profile extends React.Component {
     }
 
     render() {
-        return <LogoutBtn onClick={this.onClickLogout}>Logout</LogoutBtn>;
+        return <ProfileViewContainer>
+                    <LogoutBtn onClick={this.onClickLogout}>Logout</LogoutBtn>
+                </ProfileViewContainer>;
     }
 }
 

@@ -17,17 +17,18 @@ ${tw `w-1/3 mt-10`}
   letter-spacing: normal;
   color:${colors.darkBlueGrey};`;
 
-const Dates = styled.div `
-    `;
+const Dates = styled.div ``;
+
 const DateBtn = styled.button `  
 ${tw `rounded m-2 p-2 focus:outline-none`}
     border-radius: 4px;
     box-shadow: 0 8px 16px 0 rgba(23, 31, 70, 0.08);
-  background-color: ${props=>props.click?colors.coolGrey:colors.white}`;
+    background-color: ${props=>props.click?colors.coolGrey:colors.white}`;
+
 
 const SlotTimings = styled.div `
     ${tw `w-4/5 p-4 border `}
-background-color:${colors.paleGrey}`;
+    background-color:${colors.paleGrey}`;
 
 const TimeBtn = styled.button `
     ${tw `m-2 p-2 rounded hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:shadow-outline focus:border-gray-300`}
@@ -43,8 +44,7 @@ const TimeBtn = styled.button `
   color: ${colors.darkBlueGrey};`;
 
 const SlotsDateAndTime = styled.div `
-    ${tw `flex flex-col m-6`}
-    `;
+    ${tw `flex flex-col  m-6`}`;
 
 const Legend = styled.div `
     ${tw `flex justify-end flex-wrap `}`;
@@ -56,14 +56,21 @@ const ConfirmBtn = styled.button `
   background-color: ${colors.greenishTeal};`;
 
 const TimeBtns = styled.div `
-    ${tw `p-10`}
-    `;
+    ${tw `p-10`}`;
 
 const AvailableSlots = styled.div `
     ${tw `flex mt-10`}`;
 
 const ConfirmBtnContainer = styled.div ` 
-${tw `text-right mx-10`}`;
+${tw `flex flex-between items-baseline mx-10`}`;
+
+const SlotsUnAvailable = styled.div `${tw `m-auto`}
+  visibility:${props=>props.visibilityValue?"visible":"hidden"};
+  font-size: 24px;
+  font-weight: 600;
+  color: ${colors.darkBlueGrey};`;
+
+
 export {
     DashBoardContainer,
     AvailableSlotsText,
@@ -76,5 +83,6 @@ export {
     ConfirmBtn,
     TimeBtns,
     ConfirmBtnContainer,
+    SlotsUnAvailable,
     AvailableSlots
 };

@@ -14,7 +14,9 @@ from './styledComponent'
 
 @observer
 class SignUpPage extends React.Component {
+
    render() {
+
       const {
          username,
          password,
@@ -23,23 +25,31 @@ class SignUpPage extends React.Component {
          onChangeConfirmPasswordSignUp,
          onChangeUserNameSignUp,
          onClickSignUpBtn
-      } = this.props
+      } = this.props;
+
       return (
          <SignUpPageContainer>
+         
             <SignUpForm>
-               <IbHubsLogo src={ibhubsLogo.logoAdress} alt='ibhubsLogo' />
+            
+               <IbHubsLogo 
+                  src={ibhubsLogo.logoAdress} 
+                  alt='ibhubsLogo' 
+               />
+               
                <SignUpText>{Strings.signUp.hiTherePleaseSignUp}</SignUpText>
                
                <Typo12HKGroteskSemiBoldSteel>{Strings.signUp.userName}</Typo12HKGroteskSemiBoldSteel>
+               
                <InputTag
                   onChange={onChangeUserNameSignUp}
                   value={ username }
                   type='text'
                   placeholder='username'
                />
-
                
                <Typo12HKGroteskSemiBoldSteel>{Strings.signUp.password}</Typo12HKGroteskSemiBoldSteel>
+               
                <InputTag
                   onChange={onChangePasswordSignUp}
                   value={password}
@@ -48,6 +58,7 @@ class SignUpPage extends React.Component {
                />
                
                <Typo12HKGroteskSemiBoldSteel>{Strings.signUp.confirmPassword}</Typo12HKGroteskSemiBoldSteel>
+               
                <InputTag
                   onChange={onChangeConfirmPasswordSignUp}
                   value={confirmPassword}
@@ -59,10 +70,11 @@ class SignUpPage extends React.Component {
                   type='button'
                   onClick={onClickSignUpBtn}
                   data-testid='sign-up-button'
-               >
-                  {Strings.signUp.signUp}
+                  >{Strings.signUp.signUp}
                </SignUpBtn>
+               
             </SignUpForm>
+            
          </SignUpPageContainer>
       )
    }

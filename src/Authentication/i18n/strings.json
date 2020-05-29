@@ -19,7 +19,8 @@
         "incorrectPassword": "Incorrect password",
         "donotHaveAnAccount": "Don’t have an account?",
         "serverError": "server Error",
-        "signUp": "Signup"
+        "signUp": "Signup",
+        "loginLoading": "Login...."
     },
     "profile": {
         "changePhoto": "Change photo",

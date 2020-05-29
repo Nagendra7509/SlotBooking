@@ -8,13 +8,9 @@ import {
 from '@ib/api-constants'
 import { observable, action } from 'mobx'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { Redirect } from 'react-router-dom'
-
-import { setAccessToken, clearUserSession } from '../../utils/StorageUtils'
+import { setAccessToken } from '../../utils/StorageUtils'
 
 class AuthenticationStore {
-
-
 
    @observable getUserLoginStatus
    @observable getUserLoginError
@@ -23,6 +19,7 @@ class AuthenticationStore {
    @observable getUserSignUpError
    @observable signUpAPIService
    @observable isUser
+   @observable loginCredentialsError = " ";
 
    constructor(loginAPIService, signUpAPIService) {
       this.init()
@@ -44,7 +41,7 @@ class AuthenticationStore {
          username: userName,
          password: password
       }
-      const userPromise = this.loginAPIService.loginAPI();
+      const userPromise = this.loginAPIService.loginAPI(requestObj);
 
       return bindPromiseWithOnSuccess(userPromise)
          .to(this.setGetUserLoginAPIStatus, this.setUserLoginAPIResponse)
@@ -95,6 +92,42 @@ class AuthenticationStore {
    setGetUserSignUpAPIError(error) {
       this.getUserSignUpError = error;
    }
+
+
+   @action.bound
+   postCredentialsOfLogin(userName, password) {
+      //alert('called');
+      this.loginCredentialsError = " ";
+      const requestObj = {
+         username: userName,
+         password: password
+      }
+      const userPromise = this.loginAPIService.postCredentials(requestObj);
+
+      return bindPromiseWithOnSuccess(userPromise)
+         .to(this.setGetUserLoginCredentialsAPIStatus, this.setUserLoginCredentialsAPIResponse)
+         .catch(this.setGetUserLoginCredentialAPIError)
+
+   }
+
+   @action.bound
+   setGetUserLoginCredentialsAPIStatus(status) {
+      //console.log()
+   }
+
+   @action.bound
+   setUserLoginCredentialsAPIResponse(response) {
+      //alert('posted credentials');
+   }
+
+   @action.bound
+   setGetUserLoginCredentialAPIError(error) {
+      this.loginCredentialsError = error;
+      //alert(this.loginCredentialsError);
+   }
+
+
+
 }
 
 export default AuthenticationStore;

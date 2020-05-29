@@ -5,11 +5,12 @@ import { colors } from '../../themes/Colors'
 const LoginPageContainer = styled.div `
     ${tw`flex justify-center items-center h-screen `}
     background-color:${colors.iceBlue}`
+
 const LoginForm = styled.form `
    ${tw`flex flex-col p-10 bg-white`}
    border-radius: 8px;
-   background-color: ${colors.white};
-`
+   background-color: ${colors.white};`
+
 const SigInText = styled.h2 `
    ${tw``}
    width: 214px;
@@ -42,8 +43,7 @@ const DontHaveAccount = styled.span `
    line-height: 1.71;
    letter-spacing: normal;
    margin: 24px 168px 30px 168px;
-   color: ${colors.darkBlueGrey};
-`
+   color: ${colors.darkBlueGrey};`
 
 const SignupLink = styled.a `
     ${tw``}

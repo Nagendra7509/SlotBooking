@@ -88,9 +88,12 @@ describe("LoginRoute Tests", () => {
         fireEvent.change(passwordField, { target: { value: password } });
         fireEvent.keyPress(loginButton, { key: "Enter", code: "Enter" });
 
-        waitFor(() => getByRole("button", { name: "LOGIN" }));
+        waitFor(() => getByRole("button", { name: "Login...." }));
 
     });
+
+
+
 
 
     it("should render signInRoute success state", async() => {
@@ -176,4 +179,8 @@ describe("LoginRoute Tests", () => {
             getByText('server Error'); //need to add server error when it failure
         });
     });
+
+
+
+
 });

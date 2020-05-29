@@ -1,10 +1,10 @@
-// import { EnvironmentConstants } from "../../../../Common/constants/environmentConstants";
+import { create } from 'apisauce'
 import { networkCallWithApisauce } from '../../utils/APIUtils'
 import { apiMethods } from '../../constants/APIConstants'
-import { create } from 'apisauce'
 import { endPoints } from '../endPoints'
 
 class LoginService {
+
    api
 
    constructor() {
@@ -21,6 +21,15 @@ class LoginService {
          apiMethods.get
       )
    }
+
+   postCredentials = requestObj => {
+      return networkCallWithApisauce(
+         this.api,
+         endPoints.Login,
+         requestObj,
+         apiMethods.post
+      )
+   }
 }
 
-export default LoginService
+export default LoginService;

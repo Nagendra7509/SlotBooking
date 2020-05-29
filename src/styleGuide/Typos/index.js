@@ -72,17 +72,17 @@ const Typo12HKGroteskRegular = styled.span `
   margin: 0px 304px 0px 108px;
   line-height: 1.33;
   letter-spacing: normal;
-  visibility:${props=>props.visibility?"visible":"hidden"};
+  visibility:${props=>props.visibilityValue?"visible":"hidden"};
   color: #ff0b37;
    `;
 
 
 
 export {
-   Typo32DarkBlueGreyRubikRegular,
-   Typo12SteelHKGroteskSemiBold,
-   Typo12NeonRedHKGroteskRegular,
-   Typo14DarkBlueGreyHKGroteskRegular,
-   Typo12HKGroteskSemiBoldSteel,
-   Typo12HKGroteskRegular
+    Typo32DarkBlueGreyRubikRegular,
+    Typo12SteelHKGroteskSemiBold,
+    Typo12NeonRedHKGroteskRegular,
+    Typo14DarkBlueGreyHKGroteskRegular,
+    Typo12HKGroteskSemiBoldSteel,
+    Typo12HKGroteskRegular
 };

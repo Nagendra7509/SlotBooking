@@ -3,8 +3,7 @@ import { observable, action } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import LoginPage from '../components/LoginPage';
 import Strings from '../i18n/strings.json';
-
-import { getAccessToken, clearUserSession } from '../utils/StorageUtils';
+import { getAccessToken } from '../utils/StorageUtils';
 
 @inject('authenticationStore')
 @observer
@@ -30,14 +29,17 @@ class LoginRoute extends React.Component {
     onClickLogin = async() => {
 
         if (this.userName != '' && this.password != '') {
+
             this.errroMessageUserName = 'noError';
             this.errorMessagePassword = 'noError';
-            const { userLogin } = this.props.authenticationStore;
+            const { userLogin, postCredentialsOfLogin } = this.props.authenticationStore;
+            await postCredentialsOfLogin(this.userName, this.password);
             await userLogin(this.userName, this.password);
-            if (getAccessToken()) {
+            const { loginCredentialsError } = this.props.authenticationStore;
 
+            if (getAccessToken() && loginCredentialsError == "") {
                 const { history } = this.props;
-                setTimeout(() => history.push('/slot-booking/DashBoard/'), 1000);
+                history.push('/slot-booking/DashBoard/');
             }
             else {
 
@@ -47,6 +49,7 @@ class LoginRoute extends React.Component {
 
         }
         else if (this.userName == '' && this.password == '') {
+
             this.errroMessageUserName = Strings.login.usernameInavalid;
             this.errorMessagePassword = Strings.login.incorrectPassword;
             this.errorMessageLoginButton = "noError";
@@ -64,17 +67,33 @@ class LoginRoute extends React.Component {
     }
 
     render() {
+
+        const {
+            userName,
+            password,
+            onChangeUserNameLogin,
+            onChangePasswordLogin,
+            onClickLogin,
+            errroMessageUserName,
+            errorMessagePassword,
+            errorMessageLoginButton
+
+        } = this;
+
+        const { getUserLoginStatus } = this.props.authenticationStore;
+
         return (
             <LoginPage
-            userName={this.userName}
-            password={this.password}
-            onChangeUserNameLogin={this.onChangeUserNameLogin}
-            onChangePasswordLogin={this.onChangePasswordLogin}
-            onClickLogin={this.onClickLogin}
-            errroMessageUserName={this.errroMessageUserName}
-            errorMessagePassword={this.errorMessagePassword}
-            errorMessageLoginButton={this.errorMessageLoginButton}
-         />
+                userName={userName}
+                password={password}
+                onChangeUserNameLogin={onChangeUserNameLogin}
+                onChangePasswordLogin={onChangePasswordLogin}
+                onClickLogin={onClickLogin}
+                errroMessageUserName={errroMessageUserName}
+                errorMessagePassword={errorMessagePassword}
+                errorMessageLoginButton={errorMessageLoginButton}
+                getUserLoginStatus={getUserLoginStatus}
+            />
         );
     }
 }

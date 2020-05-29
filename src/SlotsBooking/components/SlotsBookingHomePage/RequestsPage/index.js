@@ -1,8 +1,5 @@
 import React from "react";
-
 import { observer } from "mobx-react";
-
-
 
 @observer
 class Requests extends React.Component {

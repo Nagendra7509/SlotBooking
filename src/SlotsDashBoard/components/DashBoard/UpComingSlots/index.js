@@ -1,7 +1,7 @@
 import React from "react";
-
 import { observer } from "mobx-react";
 
+import Strings from "../../../i18n/strings.json";
 import { noBookingImg, notSymbol } from "../../../assets/";
 import {
     UpComingSlotsContainer,
@@ -21,7 +21,6 @@ import {
     TimeSlot
 }
 from "./styledComponent";
-import Strings from "../../../i18n/strings.json";
 
 @observer
 class UpComomingSlots extends React.Component {
@@ -42,8 +41,7 @@ class UpComomingSlots extends React.Component {
         const {
             upComingSlotsDates,
             upComingSlotsCurrentDate,
-            upComingSlotsDetails,
-
+            upComingSlotsDetails
         } = this.props;
 
         const {
@@ -56,41 +54,41 @@ class UpComomingSlots extends React.Component {
 
         return <UpComingSlotsContainer>
                     
-                    
                     <UpComomingSlotText>
-                    {upComingSlots}
+                        {upComingSlots}
                     </UpComomingSlotText>
                     <DatesAndSlotsDetails>
-                    {upComingSlotsDetails.washing_machine_id!="" && 
-                        <DateAndSlots>
-                        <Dates>
-                         {upComingSlotsDates.map(obj=><DateBtn 
-                                                        id={obj}
-                                                        onClick={this.onClickDateUpComingSlots} 
-                                                        click={obj==upComingSlotsCurrentDate} 
-                                                        key={obj}>{obj}
-                                                        </DateBtn>)}
-                        </Dates>
-                        <SlotsDetails>
-                            <WashingMachineId>{washingMachineId}{upComingSlotsDetails.washing_machine_id}</WashingMachineId>
-                            <TimeSlot>{timeSlot}{upComingSlotsDetails.time_slot}</TimeSlot>
-                        </SlotsDetails>
-                        <CancelBtnContainer>
-                            <CancelBtn onClick={this.onClickCancelSlot}>{cancel}</CancelBtn>
-                        </CancelBtnContainer>
-                        </DateAndSlots>}
+                        {upComingSlotsDetails.washing_machine_id!="" && 
+                            <DateAndSlots>
+                      
+                                <Dates>
+                                 {upComingSlotsDates.map(obj=><DateBtn 
+                                                                id={obj}
+                                                                onClick={this.onClickDateUpComingSlots} 
+                                                                click={obj==upComingSlotsCurrentDate} 
+                                                                key={obj}>{obj}
+                                                            </DateBtn>)}
+                                </Dates>
+                                
+                                <SlotsDetails>
+                                    <WashingMachineId>
+                                        {washingMachineId}{upComingSlotsDetails.washing_machine_id}
+                                    </WashingMachineId>
+                                    <TimeSlot>{timeSlot}{upComingSlotsDetails.time_slot}</TimeSlot>
+                                </SlotsDetails>
+                                
+                                <CancelBtnContainer>
+                                    <CancelBtn onClick={this.onClickCancelSlot}>{cancel}</CancelBtn>
+                                </CancelBtnContainer>
+                        
+                            </DateAndSlots>}
                         {upComingSlotsDetails.washing_machine_id=="" && 
                         <NoBookingsContainer>
                             <NoBookingImg src={noBookingImg.noBookingAdress}/>
                             <NoBookingsYetText>{noBookingsYet}<NotSymbolImg src={notSymbol.notSymbolAdress}/></NoBookingsYetText>
-                        </NoBookingsContainer>
-                        
-                                    }
+                        </NoBookingsContainer>}
                     
                     </DatesAndSlotsDetails>
-                    
-                    
-                    
                 
                 </UpComingSlotsContainer>;
 

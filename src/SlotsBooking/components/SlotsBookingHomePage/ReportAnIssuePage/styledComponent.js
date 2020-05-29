@@ -3,15 +3,13 @@ import tw from 'tailwind.macro';
 import { colors } from '../../../themes/Colors';
 
 const RequestsContainer = styled.div `
-${tw `flex justify-center items-center h-screen`}
-
-    `;
+${tw `flex justify-center items-center h-screen`}`;
 
 const RequestBox = styled.div `
-${tw `w-2/5 h-2/3 rounded flex flex-col`}
-height:500px;
-border:1px solid ${colors.lightBlueGrey};
-box-shadow: 0 8px 16px 0 rgba(23, 31, 70, 0.08);`;
+  ${tw `w-2/5 h-2/3 rounded flex flex-col`}
+  height:500px;
+  border:1px solid ${colors.lightBlueGrey};
+  box-shadow: 0 8px 16px 0 rgba(23, 31, 70, 0.08);`;
 
 const ReportIssueText = styled.span `
   font-size: 16px;
@@ -21,8 +19,7 @@ const ReportIssueText = styled.span `
   line-height: 1.5;
   margin:30px 0px 50px 30px;
   letter-spacing: normal;
-  color:${colors.darkBlueGrey};
-}`;
+  color:${colors.darkBlueGrey};`;
 
 const DescriptionText = styled.span `
   font-size: 12px;
@@ -39,8 +36,7 @@ const ReportInputBox = styled.textarea `
   height:200px;
   border-radius: 4px;
   border: solid 1px ${colors.lightBlueGrey};
-  background-color: #ffffff;
-    `;
+  background-color: #ffffff;`;
 
 const ReportBtn = styled.button `
   ${tw `px-4 py-4 m-auto text-white`}

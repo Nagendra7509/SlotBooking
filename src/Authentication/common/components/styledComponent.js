@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
-import { colors } from '../../themes/Colors'
 
 const InputField = styled.input `
    ${tw`focus:outline-none`}

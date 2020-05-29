@@ -1,12 +1,12 @@
 import React from "react";
 import { observable } from "mobx";
 import { observer, inject } from "mobx-react";
+import LoadingWrapperWithFailure from "../../../Common/LoadingWrapper/LoadingWrapperWithFailure/index";
+import NoDataView from "../../../Common/LoadingWrapper/NoDataView/index";
 import Strings from "../../i18n/strings.json";
-
 import { ColorLabels } from "../../common/components/";
 import { colors } from "../../themes/Colors";
 import UpComomingSlots from "./UpComingSlots";
-
 import {
     DashBoardContainer,
     AvailableSlotsText,
@@ -19,23 +19,25 @@ import {
     ConfirmBtn,
     ConfirmBtnContainer,
     TimeBtns,
+    SlotsUnAvailable,
     AvailableSlots
 }
 from "./styledComponent";
+
 @inject('slotsDashBoardStore')
 @observer
 class DashBoard extends React.Component {
-    @observable isClickedTime;
+
 
     componentDidMount() {
         this.doNetworkCall();
     }
+
     doNetworkCall = async() => {
         await this.props.slotsDashBoardStore.getSlotsData();
     }
 
     onClickDateAvailableSlots = (event) => {
-
         const { onClickDateAvailableSlots } = this.props.slotsDashBoardStore;
         onClickDateAvailableSlots(event.target.id);
 
@@ -51,34 +53,28 @@ class DashBoard extends React.Component {
         onClickConfirm();
     }
 
-
-
-    render() {
-
-        const { availableSlots, selected, booked, available, confirm } = Strings.slotsDashBoard;
-
+    renderSuccessUI = observer(() => {
+        const { availableSlotsDates, availableSlotsTimings } = this.props.slotsDashBoardStore;
         const {
-            availableSlotsDates,
             previousSlots,
             currentDate,
             slotsResponse,
-            availableSlotsTimings,
-            upComingSlotsDates,
-            upComingSlotsCurrentDate,
-            upComingSlotsDetails,
-            onClickDateUpComingSlots,
-            onClickCancelSlot
+            countOfBookingSlotsPerDay
         } = this.props.slotsDashBoardStore;
 
-        //console.log(upComingSlotsDates, "dfg");
+        const {
+            selected,
+            booked,
+            available,
+            confirm,
+            slotsAreUnavailable
+        } = Strings.slotsDashBoard;
 
+        if (availableSlotsDates.length == 0 && availableSlotsTimings.length == 0) {
+            return <NoDataView />;
+        }
 
-        return <DashBoardContainer>
-                <AvailableSlots>
-                <AvailableSlotsText>
-                    {availableSlots}
-                </AvailableSlotsText>
-                <SlotsDateAndTime>
+        return <SlotsDateAndTime>
                     <Dates>
                         {slotsResponse.length>0 && availableSlotsDates.map(date=>
                                             <DateBtn 
@@ -88,12 +84,15 @@ class DashBoard extends React.Component {
                                                 key={date}>{date}
                                             </DateBtn>)}
                     </Dates>
+                    
                     <SlotTimings>
+                    
                         <Legend>
                             <ColorLabels colorValue={colors.brightBlue}>{selected}</ColorLabels>
                             <ColorLabels colorValue={colors.lightBlueGrey}>{booked}</ColorLabels>
                             <ColorLabels colorValue={colors.white}>{available}</ColorLabels>
                         </Legend>
+                        
                         <TimeBtns>
                         {slotsResponse.length>0 && availableSlotsTimings.map(obj=>
                                 <TimeBtn
@@ -105,18 +104,71 @@ class DashBoard extends React.Component {
                                     {obj.start_time} - {obj.end_time}
                                 </TimeBtn>)}
                         </TimeBtns>
-                        <ConfirmBtnContainer><ConfirmBtn onClick={this.onClickConfirm}>{confirm}</ConfirmBtn></ConfirmBtnContainer>
+                        
+                        
+                        
+                        <ConfirmBtnContainer>
+                            <SlotsUnAvailable 
+                                visibilityValue={countOfBookingSlotsPerDay==10}
+                                >{slotsAreUnavailable}
+                            </SlotsUnAvailable>
+                            <ConfirmBtn 
+                                onClick={this.onClickConfirm}
+                                >{confirm}
+                            </ConfirmBtn>
+                        </ConfirmBtnContainer>
+                   
                     </SlotTimings>
+                    
                 </SlotsDateAndTime>
+
+
+    })
+
+
+    render() {
+
+        const { availableSlots } = Strings.slotsDashBoard;
+
+        const {
+
+            upComingSlotsDates,
+            getResponseStatus,
+            getResponseError,
+            upComingSlotsCurrentDate,
+            upComingSlotsDetails,
+            onClickDateUpComingSlots,
+            onClickCancelSlot,
+        } = this.props.slotsDashBoardStore;
+
+
+
+        return <DashBoardContainer>
+                <AvailableSlots>
+                
+                    <AvailableSlotsText>
+                        {availableSlots}
+                    </AvailableSlotsText>
+                    
+                    <LoadingWrapperWithFailure
+                        apiStatus={getResponseStatus}
+                        apiError={getResponseError}
+                        onRetryClick={this.doNetworkCall}
+                        renderSuccessUI={this.renderSuccessUI}
+                    />
                 </AvailableSlots>
+                
                 <UpComomingSlots
                     upComingSlotsDates={upComingSlotsDates}
                     upComingSlotsCurrentDate={upComingSlotsCurrentDate}
                     upComingSlotsDetails={upComingSlotsDetails}
                     onClickDateUpComingSlots={onClickDateUpComingSlots}
                     onClickCancelSlot={onClickCancelSlot}
+                    apiStatus={getResponseStatus}
+                        apiError={getResponseError}
 
                 />
+                
             </DashBoardContainer>;
     }
 }
