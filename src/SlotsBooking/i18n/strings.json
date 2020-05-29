@@ -9,18 +9,11 @@
 
     },
 
-    "upComingSlots": {
-        "washingMachineiD": "Washing Machine ID     : "
-        "timeSlot": "Time Slot  ",
-        "cancel": "Cancel",
-        "noBookingsYet": "No bookings yet"
-    },
-
     "reportAnIssue": {
         "reportIssue": "Report Issue",
         "description": "DESCRIPTION",
         "placeHolderOfReportAnIssue": "Create a new conversation by writing your message here...nested loops",
-        "report": "REPORT",
+        "report": "REPORT"
     },
     "previousSlots": {
         "date": "DATE",

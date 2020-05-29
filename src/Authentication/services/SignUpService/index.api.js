@@ -1,26 +1,25 @@
-import { networkCallWithApisauce } from "../../utils/APIUtils";
-import { apiMethods } from "../../constants/APIConstants";
-import { create } from "apisauce";
-import { endPoints } from "../endPoints";
-
+import { networkCallWithApisauce } from '../../utils/APIUtils'
+import { apiMethods } from '../../constants/APIConstants'
+import { create } from 'apisauce'
+import { endPoints } from '../endPoints'
 
 class SignUpService {
+   api
 
-    api
+   constructor() {
+      this.api = create({
+         baseURL: 'sg'
+      })
+   }
 
-    constructor() {
-        this.api = create({
-            baseURL: "sg"
-        });
-    }
-
-    signUpAPI = (requestObj) => {
-        return networkCallWithApisauce(
-            this.api,
-            endPoints.SignUp, requestObj,
-            apiMethods.post
-        );
-    }
+   signUpAPI = requestObj => {
+      return networkCallWithApisauce(
+         this.api,
+         endPoints.SignUp,
+         requestObj,
+         apiMethods.post
+      )
+   }
 }
 
-export default SignUpService;
+export default SignUpService

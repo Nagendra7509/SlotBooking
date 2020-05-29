@@ -1,20 +1,18 @@
 {
     "slotsDashBoard": {
         "availableSlots": "Available Slots",
-        "05:00AM-06:00AM": "05:00AM-06:00AM",
-        "06:00AM-07:00AM": "06:00 AM - 07:00AM",
-        "07:00AM-08:00AM": "07:00 AM - 08:00AM",
-        "09:00AM-10:00AM": "09:00 AM - 10:00AM",
-        "03:00PM-04:00PM": "03:00 PM - 04:00 PM",
-        "05:00PM-06:00PM": "05:00 PM - 06:00 PM",
-        "7:30PM-8:30PM": "7:30 PM - 8:30PM",
-        "09:00PM-10:00PM": "09:00 PM - 10:00 PM",
-        "10:15AM-12:00AM": "10:15 AM - 12:00AM",
-        "10:00AM-11:00 AM": "10:00 AM - 11:00 AM"
         "selected": "Selected",
         "booked": "Booked",
         "available": "Available",
-        "slotsAreUnavailable": "Slots are Unavailable"
+        "slotsAreUnavailable": "Slots are Unavailable",
+        "confirm": "Confirm"
+    },
+    "upComingSlots": {
+        "upComingSlots": "Upcoming Slots",
+        "washingMachineId": "Washing Machine ID : ",
+        "timeSlot": "Time Slot :",
+        "cancel": "Cancel",
+        "noBookingsYet": "No bookings yet"
     }
 
 }
