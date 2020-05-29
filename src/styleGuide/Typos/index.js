@@ -44,9 +44,6 @@ const Typo12NeonRedHKGroteskRegular = styled.span `
 `;
 const Typo14DarkBlueGreyHKGroteskRegular = styled.span `
    ${tw``}
-   width: 74px;
-   height: 24px;
-   font-family: HKGrotesk;
    font-size: 14px;
    font-weight: normal;
    font-stretch: normal;
@@ -78,6 +75,8 @@ const Typo12HKGroteskRegular = styled.span `
   visibility:${props=>props.visibility?"visible":"hidden"};
   color: #ff0b37;
    `;
+
+
 
 export {
    Typo32DarkBlueGreyRubikRegular,

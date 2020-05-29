@@ -33,8 +33,17 @@ width: 159px;
   color:${colors.darkBlueGrey};
     `;
 
+const Heading = styled.span `
+  font-size: 12px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 0.12px;
+  color:${colors.brightBlue}`;
 export {
   NavItem,
   TimeBtn,
-  Time
+  Time,
+  Heading
 };
