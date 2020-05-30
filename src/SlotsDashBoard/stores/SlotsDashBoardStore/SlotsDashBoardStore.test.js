@@ -174,7 +174,7 @@ describe('slotsDashBoardStore Tests', () => {
     it('should test onClickDateUpComingSlots', () => {
         const date = "25-05-2020";
 
-        slotsDashBoardStore.upcomingSlotsResponse = getSlotsResponse.up_coming_slots.map(obj => new UpComingSlotDetails(obj));
+        slotsDashBoardStore.upcomingSlotsResponse = getSlotsResponse.upcoming_slots.map(obj => new UpComingSlotDetails(obj));
         slotsDashBoardStore.onClickDateUpComingSlots(date);
 
         expect(slotsDashBoardStore.upComingSlotsCurrentDate).toBe(date);
@@ -217,7 +217,7 @@ describe('slotsDashBoardStore Tests', () => {
 
     it('should test countOfBookingSlotsPerDay', () => {
 
-        slotsDashBoardStore.availableSlotsTimings = [...getSlotsResponse.available_slots[0].timing_slots];
+        slotsDashBoardStore.availableSlotsTimings = [...getSlotsResponse.available_slots[0].time_slots];
 
 
         expect(slotsDashBoardStore.countOfBookingSlotsPerDay).toBe(10);

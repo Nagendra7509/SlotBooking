@@ -1,7 +1,7 @@
 {
     "available_slots": [{
         "date": "25-05-2020",
-        "timing_slots": [{ "start_time": "05:00 AM", "end_time": "06:00 AM", "is_available": true },
+        "time_slots": [{ "start_time": "05:00 AM", "end_time": "06:00 AM", "is_available": true },
             { "start_time": "06:00 AM", "end_time": "07:00 AM", "is_available": true },
             { "start_time": "07:00 AM", "end_time": "08:00 AM", "is_available": true },
             { "start_time": "09:00 AM", "end_time": "10:00 AM", "is_available": true },
@@ -14,7 +14,7 @@
         ]
     }, {
         "date": "26-05-2020",
-        "timing_slots": [{ "start_time": "05:00 AM", "end_time": "06:00 AM", "is_available": false },
+        "time_slots": [{ "start_time": "05:00 AM", "end_time": "06:00 AM", "is_available": false },
             { "start_time": "06:00 AM", "end_time": "07:00 AM", "is_available": true },
             { "start_time": "07:00 AM", "end_time": "08:00 AM", "is_available": false },
             { "start_time": "09:00 AM", "end_time": "10:00 AM", "is_available": true },
@@ -28,7 +28,7 @@
 
     }, {
         "date": "27-05-2020",
-        "timing_slots": [{ "start_time": "05:00 AM", "end_time": "06:00 AM", "is_available": false },
+        "time_slots": [{ "start_time": "05:00 AM", "end_time": "06:00 AM", "is_available": false },
             { "start_time": "06:00 AM", "end_time": "07:00 AM", "is_available": false },
             { "start_time": "07:00 AM", "end_time": "08:00 AM", "is_available": true },
             { "start_time": "09:00 AM", "end_time": "10:00 AM", "is_available": false },
@@ -42,7 +42,7 @@
 
     }, {
         "date": "28-05-2020",
-        "timing_slots": [{ "start_time": "05:00 AM", "end_time": "06:00 AM", "is_available": true },
+        "time_slots": [{ "start_time": "05:00 AM", "end_time": "06:00 AM", "is_available": true },
             { "start_time": "06:00 AM", "end_time": "07:00 AM", "is_available": true },
             { "start_time": "07:00 AM", "end_time": "08:00 AM", "is_available": true },
             { "start_time": "09:00 AM", "end_time": "10:00 AM", "is_available": true },
@@ -55,7 +55,7 @@
         ]
 
     }],
-    "up_coming_slots": [{
+    "upcoming_slots": [{
         "date": "25-05-2020",
         "washing_machine_id": "drt",
         "time_slot": {

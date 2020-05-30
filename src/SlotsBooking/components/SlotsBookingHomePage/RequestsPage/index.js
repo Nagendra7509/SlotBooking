@@ -5,7 +5,7 @@ import { observer } from "mobx-react";
 class Requests extends React.Component {
 
     render() {
-        return <h1 className="text-center">Requests</h1>
+        return <h1 className="text-center">Requests Page</h1>
     }
 }
 

@@ -8,7 +8,7 @@ class AvailableSlotsModel {
 
     constructor(obj) {
         this.date = obj.date;
-        this.timingSlots = obj.timing_slots;
+        this.timingSlots = obj.time_slots;
     }
 
 }

@@ -84,7 +84,7 @@ class SlotsDashBoardStore {
         this.availableSlotsTimings = this.slotsResponse.find(obj => obj.date == this.currentDate).timingSlots;
 
         //upcoming slots
-        this.upcomingSlotsResponse = response.up_coming_slots.map(obj => new UpComingSlotDetails(obj));
+        this.upcomingSlotsResponse = response.upcoming_slots.map(obj => new UpComingSlotDetails(obj));
         //this.upcomingSlotsResponse = response.up_coming_slots;
         this.upComingSlotsDates = this.upcomingSlotsResponse.map(obj => obj.date);
         this.upComingSlotsCurrentDate = this.upComingSlotsDates[0];

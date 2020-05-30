@@ -18,7 +18,7 @@ class DashBoardService {
             endPoints.DASHBOARD_END_POINT,
             requestObj,
             apiMethods.get
-        )
+        );
     }
 
     postBookedSlot = (requestObj) => {
