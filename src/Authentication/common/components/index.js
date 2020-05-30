@@ -8,7 +8,7 @@ from './styledComponent';
 
 export const InputTag = props => (
    <InputField
-      error={props.error}
+      borderValue={props.borderValue}
       onChange={props.onChange}
       defaultValue={props.value}
       type={props.type}

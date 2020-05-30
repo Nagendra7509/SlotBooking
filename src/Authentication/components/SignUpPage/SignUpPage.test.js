@@ -4,7 +4,7 @@ import SignUpPage from '.'
 
 /*global expect */
 
-describe('LoginPage testCases', () => {
+describe('SignUpPage testCases', () => {
    it('should render typed username', () => {
       const username = 'test-user'
       const { getByPlaceholderText } = render(
@@ -50,7 +50,7 @@ describe('LoginPage testCases', () => {
       getByText(/CONFIRM PASSWORD/i)
    })
 
-   it('should render sign button', () => {
+   it('should render sign up button', () => {
       const { getByRole } = render(<SignUpPage />)
       getByRole('button', { name: 'SIGNUP' })
    })

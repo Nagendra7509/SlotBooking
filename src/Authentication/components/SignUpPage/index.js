@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Typo12HKGroteskSemiBoldSteel } from "../../../styleGuide/Typos";
+import { Typo12HKGroteskSemiBoldSteel, Typo12HKGroteskRegular } from "../../../styleGuide/Typos";
 import { InputTag, IbHubsLogo } from '../../common/components'
 import { ibhubsLogo } from '../../assets'
 import Strings from '../../i18n/strings.json'
@@ -24,7 +24,10 @@ class SignUpPage extends React.Component {
          onChangePasswordSignUp,
          onChangeConfirmPasswordSignUp,
          onChangeUserNameSignUp,
-         onClickSignUpBtn
+         onClickSignUpBtn,
+         userNameError,
+         passwordError,
+         confirmPasswordError
       } = this.props;
 
       return (
@@ -46,7 +49,13 @@ class SignUpPage extends React.Component {
                   value={ username }
                   type='text'
                   placeholder='username'
+                  
                />
+               
+               <Typo12HKGroteskRegular 
+                  visibilityValue={userNameError!="noError"}
+                  >{userNameError}
+               </Typo12HKGroteskRegular>
                
                <Typo12HKGroteskSemiBoldSteel>{Strings.signUp.password}</Typo12HKGroteskSemiBoldSteel>
                
@@ -55,7 +64,13 @@ class SignUpPage extends React.Component {
                   value={password}
                   type='password'
                   placeholder='password'
+                  
                />
+               
+               <Typo12HKGroteskRegular 
+                  visibilityValue={passwordError!="noError"}
+                  >{passwordError}
+               </Typo12HKGroteskRegular>
                
                <Typo12HKGroteskSemiBoldSteel>{Strings.signUp.confirmPassword}</Typo12HKGroteskSemiBoldSteel>
                
@@ -64,7 +79,13 @@ class SignUpPage extends React.Component {
                   value={confirmPassword}
                   type='password'
                   placeholder='confirm password'
+                  
                />
+               
+               <Typo12HKGroteskRegular 
+                  visibilityValue={confirmPasswordError!="noError"}
+                  >{confirmPasswordError}
+               </Typo12HKGroteskRegular>
                
                <SignUpBtn
                   type='button'

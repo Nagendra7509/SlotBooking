@@ -85,7 +85,7 @@ class DashBoard extends React.Component {
                                             </DateBtn>)}
                     </Dates>
                     
-                    <SlotTimings>
+                    <SlotTimings >
                     
                         <Legend>
                             <ColorLabels colorValue={colors.brightBlue}>{selected}</ColorLabels>
@@ -108,18 +108,19 @@ class DashBoard extends React.Component {
                         
                         
                         <ConfirmBtnContainer>
-                            <SlotsUnAvailable 
-                                visibilityValue={countOfBookingSlotsPerDay==10}
-                                >{slotsAreUnavailable}
-                            </SlotsUnAvailable>
+                            
                             <ConfirmBtn 
                                 onClick={this.onClickConfirm}
                                 >{confirm}
                             </ConfirmBtn>
                         </ConfirmBtnContainer>
-                   
+                        
+                         <SlotsUnAvailable
+                            >{slotsAreUnavailable}
+                        </SlotsUnAvailable>
+                        
                     </SlotTimings>
-                    
+                   
                 </SlotsDateAndTime>
 
 
@@ -174,3 +175,6 @@ class DashBoard extends React.Component {
 }
 
 export default DashBoard;
+
+
+//visibilityValue={countOfBookingSlotsPerDay==10}

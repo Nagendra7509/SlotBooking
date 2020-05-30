@@ -61,7 +61,7 @@ class LoginPage extends React.Component {
                
                <SigInText>{Strings.login.hiTherePleaseSignIn}</SigInText>
                
-               <Typo12HKGroteskSemiBoldSteel>{Strings.signUp.userName}</Typo12HKGroteskSemiBoldSteel>
+               <Typo12HKGroteskSemiBoldSteel>{Strings.login.userName}</Typo12HKGroteskSemiBoldSteel>
                
                <InputTag
                   onChange={onChangeUserNameLogin}
@@ -75,7 +75,7 @@ class LoginPage extends React.Component {
                   >{errroMessageUserName}
                </Typo12HKGroteskRegular>
                
-               <Typo12HKGroteskSemiBoldSteel>{Strings.signUp.password}</Typo12HKGroteskSemiBoldSteel>
+               <Typo12HKGroteskSemiBoldSteel>{Strings.login.password}</Typo12HKGroteskSemiBoldSteel>
                
                <InputTag
                   onChange={onChangePasswordLogin}

@@ -27,7 +27,7 @@ ${tw `rounded m-2 p-2 focus:outline-none`}
 
 
 const SlotTimings = styled.div `
-    ${tw `w-4/5 p-4 border `}
+    ${tw `w-4/5 p-4 border relative`}
     background-color:${colors.paleGrey}`;
 
 const TimeBtn = styled.button `
@@ -62,13 +62,14 @@ const AvailableSlots = styled.div `
     ${tw `flex mt-10`}`;
 
 const ConfirmBtnContainer = styled.div ` 
-${tw `flex flex-between items-baseline mx-10`}`;
+${tw `flex justify-end items-baseline mx-10`}`;
 
-const SlotsUnAvailable = styled.div `${tw `m-auto`}
-  visibility:${props=>props.visibilityValue?"visible":"hidden"};
-  font-size: 24px;
-  font-weight: 600;
-  color: ${colors.darkBlueGrey};`;
+const SlotsUnAvailable = styled.div `${tw `absolute inset-0`}
+    
+    border:2px solid red;
+    font-size: 24px;
+    font-weight: 600;
+    color: ${colors.darkBlueGrey};`;
 
 
 export {
@@ -86,3 +87,6 @@ export {
     SlotsUnAvailable,
     AvailableSlots
 };
+
+
+//visibility:${props=>props.visibilityValue?"visible":"hidden"};
