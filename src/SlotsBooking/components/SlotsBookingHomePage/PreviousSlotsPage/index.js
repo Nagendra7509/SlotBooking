@@ -35,10 +35,10 @@ class PreviousSlots extends React.Component {
                                                         {obj.date}
                                                     </Typo14DarkBlueGreyHKGroteskRegular>
                                                     <Typo14DarkBlueGreyHKGroteskRegular>
-                                                        {obj.start_time+" - "+obj.end_time}
+                                                        {obj.startTime+" - "+obj.endTime}
                                                     </Typo14DarkBlueGreyHKGroteskRegular>
                                                     <Typo14DarkBlueGreyHKGroteskRegular>
-                                                        {obj.washing_machine_id}
+                                                        {obj.washingMachineId}
                                                     </Typo14DarkBlueGreyHKGroteskRegular>
                                                 </PreviousSlotsTableRow>)}
                                                 

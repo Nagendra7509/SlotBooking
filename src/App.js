@@ -1,10 +1,7 @@
 import React from 'react'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'mobx-react'
-import {
-   authenticationSignUpRoute,
-   authenticationLoginRoute
-} from './Authentication/routes'
+import { routesOfSignInAndSignUp } from './Authentication/routes'
 
 import { slotsBookingRoute } from './SlotsBooking/routes'
 import HomePage from './components/HomePage'
@@ -19,8 +16,7 @@ const App = () => {
                <Route exact path='/page-1'>
                   <Page1 />
                </Route>
-               {authenticationSignUpRoute}
-               {authenticationLoginRoute}
+               {routesOfSignInAndSignUp}
                {slotsBookingRoute}
                <Route path='/'>
                   <HomePage />

@@ -64,12 +64,13 @@ const AvailableSlots = styled.div `
 const ConfirmBtnContainer = styled.div ` 
 ${tw `flex justify-end items-baseline mx-10`}`;
 
-const SlotsUnAvailable = styled.div `${tw `absolute inset-0`}
-    
-    border:2px solid red;
+const SlotsUnAvailable = styled.div `${tw `absolute inset-0 flex justify-center pt-40`}
+    background-color:black;
+    opacity:0.5;
     font-size: 24px;
     font-weight: 600;
-    color: ${colors.darkBlueGrey};`;
+    
+    color: white;`;
 
 
 export {

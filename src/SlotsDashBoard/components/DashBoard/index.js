@@ -6,7 +6,7 @@ import NoDataView from "../../../Common/LoadingWrapper/NoDataView/index";
 import Strings from "../../i18n/strings.json";
 import { ColorLabels } from "../../common/components/";
 import { colors } from "../../themes/Colors";
-import UpComomingSlots from "./UpComingSlots";
+import UpComingSlots from "./UpComingSlots";
 import {
     DashBoardContainer,
     AvailableSlotsText,
@@ -33,8 +33,8 @@ class DashBoard extends React.Component {
         this.doNetworkCall();
     }
 
-    doNetworkCall = async() => {
-        await this.props.slotsDashBoardStore.getSlotsData();
+    doNetworkCall = () => {
+        this.props.slotsDashBoardStore.getSlotsData();
     }
 
     onClickDateAvailableSlots = (event) => {
@@ -115,9 +115,10 @@ class DashBoard extends React.Component {
                             </ConfirmBtn>
                         </ConfirmBtnContainer>
                         
-                         <SlotsUnAvailable
+                            
+                        {countOfBookingSlotsPerDay==10 && <SlotsUnAvailable
                             >{slotsAreUnavailable}
-                        </SlotsUnAvailable>
+                        </SlotsUnAvailable>}
                         
                     </SlotTimings>
                    
@@ -142,7 +143,7 @@ class DashBoard extends React.Component {
             onClickCancelSlot,
         } = this.props.slotsDashBoardStore;
 
-
+        //console.log(upComingSlotsDetails);
 
         return <DashBoardContainer>
                 <AvailableSlots>
@@ -159,7 +160,7 @@ class DashBoard extends React.Component {
                     />
                 </AvailableSlots>
                 
-                <UpComomingSlots
+                <UpComingSlots
                     upComingSlotsDates={upComingSlotsDates}
                     upComingSlotsCurrentDate={upComingSlotsCurrentDate}
                     upComingSlotsDetails={upComingSlotsDetails}

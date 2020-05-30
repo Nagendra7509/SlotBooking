@@ -6,5 +6,4 @@ import SlotsBookingRoute from "./SlotsBookingRoute";
 
 export const slotsBookingRoute = (
     <ProtectedRoute path={SLOTS_BOOKING_PATH} component={SlotsBookingRoute}/>
-
 );

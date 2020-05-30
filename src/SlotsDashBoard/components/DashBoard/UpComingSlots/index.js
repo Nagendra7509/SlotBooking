@@ -23,7 +23,7 @@ import {
 from "./styledComponent";
 
 @observer
-class UpComomingSlots extends React.Component {
+class UpComingSlots extends React.Component {
 
     onClickDateUpComingSlots = (event) => {
         const { onClickDateUpComingSlots } = this.props;
@@ -52,15 +52,20 @@ class UpComomingSlots extends React.Component {
             noBookingsYet
         } = Strings.upComingSlots;
 
+
+        //console.log('render upComingSlots')
+        const { time_slot } = upComingSlotsDetails;
+        // (time_slot && console.log(time_slot.start_time));
+
         return <UpComingSlotsContainer>
-                    
+
                     <UpComomingSlotText>
                         {upComingSlots}
                     </UpComomingSlotText>
                     <DatesAndSlotsDetails>
-                        {upComingSlotsDetails.washing_machine_id!="" && 
+                        {upComingSlotsDetails.washingMachineId!="" && 
                             <DateAndSlots>
-                      
+
                                 <Dates>
                                  {upComingSlotsDates.map(obj=><DateBtn 
                                                                 id={obj}
@@ -69,30 +74,32 @@ class UpComomingSlots extends React.Component {
                                                                 key={obj}>{obj}
                                                             </DateBtn>)}
                                 </Dates>
-                                
+
                                 <SlotsDetails>
                                     <WashingMachineId>
-                                        {washingMachineId}{upComingSlotsDetails.washing_machine_id}
+                                        {washingMachineId}{upComingSlotsDetails.washingMachineId}
                                     </WashingMachineId>
-                                    <TimeSlot>{timeSlot}{upComingSlotsDetails.time_slot}</TimeSlot>
+                                    <TimeSlot>
+                                        {timeSlot}
+                                        {upComingSlotsDetails.startTime+" - "+upComingSlotsDetails.endTime}</TimeSlot>
                                 </SlotsDetails>
-                                
+
                                 <CancelBtnContainer>
                                     <CancelBtn onClick={this.onClickCancelSlot}>{cancel}</CancelBtn>
                                 </CancelBtnContainer>
-                        
+
                             </DateAndSlots>}
-                        {upComingSlotsDetails.washing_machine_id=="" && 
+                        {upComingSlotsDetails.washingMachineId=="" && 
                         <NoBookingsContainer>
                             <NoBookingImg src={noBookingImg.noBookingAdress}/>
                             <NoBookingsYetText>{noBookingsYet}<NotSymbolImg src={notSymbol.notSymbolAdress}/></NoBookingsYetText>
                         </NoBookingsContainer>}
-                    
+
                     </DatesAndSlotsDetails>
-                
+
                 </UpComingSlotsContainer>;
 
     }
 }
 
-export default UpComomingSlots;
+export default UpComingSlots;

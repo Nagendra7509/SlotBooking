@@ -9,6 +9,9 @@ import {
 }
 from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
+import AvailableSlotsModel from "../Models/AvailableSlotsModel";
+import UpComingSlotDetails from "../Models/UpComingSlotDetails";
+import PreviousSlotsModel from "../Models/PreviousSlotsModel";
 
 
 class SlotsDashBoardStore {
@@ -24,8 +27,11 @@ class SlotsDashBoardStore {
     @observable bookedDateAndTime;
     @observable upcomingSlotsResponse;
     @observable upComingSlotsCurrentDate;
-    @observable upComingSlotsDetails;
+    @observable upComingSlotsDetails = [];
     @observable upComingSlotsDates;
+
+    @observable getConfirmSlotStatus;
+    @observable getConfirmSlotError;
 
     constructor(dashBoardAPIService) {
         this.init();
@@ -37,14 +43,19 @@ class SlotsDashBoardStore {
         this.getResponseError = null;
         this.availableSlotsDates = [];
         this.previousSlots = [];
-        this.currentDate;
+        this.currentDate = "";
         this.slotsResponse = [];
         this.availableSlotsTimings = [];
         this.bookedDateAndTime = {};
         this.upcomingSlotsResponse = [];
-        this.upComingSlotsCurrentDate;
-        this.upComingSlotsDetails = [];
+        this.upComingSlotsCurrentDate = "";
+        this.upComingSlotsDetails = {};
         this.upComingSlotsDates = [];
+
+        this.getConfirmSlotStatus = API_INITIAL;
+        this.getConfirmSlotError = null;
+        this.getCancelSlotStatus = API_INITIAL;
+        this.getCancelSlotError = null;
     }
 
     @action.bound
@@ -66,19 +77,21 @@ class SlotsDashBoardStore {
     setAPIResponse(response) {
 
         //available slots
-        this.slotsResponse = response.available_slots;
+        this.slotsResponse = response.available_slots.map(obj => (new AvailableSlotsModel(obj)));
+        // this.slotsResponse = response.available_slots;
         this.availableSlotsDates = this.slotsResponse.map(obj => obj.date);
         this.currentDate = this.availableSlotsDates[0];
-        this.availableSlotsTimings = this.slotsResponse.find(obj => obj.date == this.currentDate).timing_slots;
+        this.availableSlotsTimings = this.slotsResponse.find(obj => obj.date == this.currentDate).timingSlots;
 
         //upcoming slots
-        this.upcomingSlotsResponse = response.up_coming_slots;
+        this.upcomingSlotsResponse = response.up_coming_slots.map(obj => new UpComingSlotDetails(obj));
+        //this.upcomingSlotsResponse = response.up_coming_slots;
         this.upComingSlotsDates = this.upcomingSlotsResponse.map(obj => obj.date);
         this.upComingSlotsCurrentDate = this.upComingSlotsDates[0];
         this.upComingSlotsDetails = this.upcomingSlotsResponse.find(obj => obj.date == this.upComingSlotsCurrentDate);
 
         //previous slots
-        this.previousSlots = response.previous_slots;
+        this.previousSlots = response.previous_slots.map(obj => new PreviousSlotsModel(obj));
 
     }
 
@@ -90,7 +103,9 @@ class SlotsDashBoardStore {
     @action.bound
     onClickDateAvailableSlots(date) {
         this.currentDate = date;
-        this.availableSlotsTimings = this.slotsResponse.find(obj => obj.date == this.currentDate).timing_slots;
+        //this.availableSlotsTimings = this.slotsResponse.find(obj => obj.date == this.currentDate).timing_slots;
+        this.availableSlotsTimings = this.slotsResponse.find(obj => obj.date == this.currentDate).timingSlots;
+
     }
 
     @action.bound
@@ -108,6 +123,7 @@ class SlotsDashBoardStore {
     onClickConfirm() {
 
         if (this.bookedDateAndTime.date) {
+
             const userPromise = this.dashBoardAPIService.postBookedSlot(this.bookedDateAndTime);
 
             return bindPromiseWithOnSuccess(userPromise)
@@ -116,6 +132,7 @@ class SlotsDashBoardStore {
 
         }
         else {
+
             alert('please select the time slot');
         }
 
@@ -154,7 +171,7 @@ class SlotsDashBoardStore {
 
     @action.bound
     setGetResponseConfirmSlotStatus(status) {
-
+        this.getConfirmSlotStatus = status;
         //console.log(status, "status");
     }
 
@@ -162,17 +179,20 @@ class SlotsDashBoardStore {
     setAPIResponseOfConfirmSlot(response) {
         this.getSlotsData();
         alert('successfully allocated slot');
+        this.bookedDateAndTime = {};
     }
 
 
     @action.bound
     setGetAPIErrorOfConfirmSlot(error) {
         alert('slot not allocated');
+        this.getConfirmSlotError = error;
     }
 
     @action.bound
     setGetResponseCancelSlotStatus(status) {
         //console.log(status,"status");
+        this.getCancelSlotStatus = status;
     }
 
     @action.bound
@@ -184,6 +204,7 @@ class SlotsDashBoardStore {
     @action.bound
     setGetAPIErrorOfCancelSlot(error) {
         alert('slot not canceled successfully');
+        this.getCancelSlotError = error;
     }
 
 }

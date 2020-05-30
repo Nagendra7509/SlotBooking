@@ -6,9 +6,16 @@ import SignUpRoute from './SignUpRoute'
 import LoginRoute from './LoginRoute'
 
 
-export const authenticationSignUpRoute = (
-   <Route path={SIGN_UP_PATH} component={SignUpRoute} />
-)
-export const authenticationLoginRoute = (
+
+export const routesOfSignInAndSignUp = [
+   <Route path={SIGN_UP_PATH} component={SignUpRoute} />,
    <Route path={LOGIN_PATH} component={LoginRoute} />
-)
+];
+
+
+// export const authenticationSignUpRoute = (
+      //    <Route path={SIGN_UP_PATH} component={SignUpRoute} />
+      // )
+      // export const authenticationLoginRoute = (
+      //    <Route path={LOGIN_PATH} component={LoginRoute} />
+      // )
