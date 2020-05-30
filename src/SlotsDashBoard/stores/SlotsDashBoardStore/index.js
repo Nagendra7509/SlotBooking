@@ -7,8 +7,8 @@ import {
     API_SUCCESS,
     API_FAILED
 }
-from '@ib/api-constants'
-import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
+from '@ib/api-constants';
+import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 import AvailableSlotsModel from "../Models/AvailableSlotsModel";
 import UpComingSlotDetails from "../Models/UpComingSlotDetails";
 import PreviousSlotsModel from "../Models/PreviousSlotsModel";
@@ -132,11 +132,8 @@ class SlotsDashBoardStore {
 
         }
         else {
-
             alert('please select the time slot');
         }
-
-
     }
 
     @action.bound
@@ -172,7 +169,6 @@ class SlotsDashBoardStore {
     @action.bound
     setGetResponseConfirmSlotStatus(status) {
         this.getConfirmSlotStatus = status;
-        //console.log(status, "status");
     }
 
     @action.bound
@@ -191,7 +187,7 @@ class SlotsDashBoardStore {
 
     @action.bound
     setGetResponseCancelSlotStatus(status) {
-        //console.log(status,"status");
+
         this.getCancelSlotStatus = status;
     }
 

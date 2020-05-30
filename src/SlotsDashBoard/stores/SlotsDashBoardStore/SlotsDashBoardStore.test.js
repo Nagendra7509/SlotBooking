@@ -1,9 +1,9 @@
 import Cookie from "js-cookie";
 import React from "react";
-import { API_FAILED, API_FETCHING, API_SUCCESS, API_INITIAL } from "@ib/api-constants"
+import { API_FAILED, API_FETCHING, API_SUCCESS, API_INITIAL } from "@ib/api-constants";
 
 import DashBoardService from "../../services/DashBoardService/index.api";
-import getProductsResponse from "../../fixtures/getResponse.json";
+import getSlotsResponse from "../../fixtures/getResponse.json";
 import AvailableSlotsModel from "../Models/AvailableSlotsModel";
 import UpComingSlotDetails from "../Models/UpComingSlotDetails";
 import SlotsDashBoardStore from ".";
@@ -11,14 +11,9 @@ import SlotsDashBoardStore from ".";
 /*global jest*/
 /*global expect*/
 
-let mockSetCookie = jest.fn();
-let mockRemoveCookie = jest.fn();
-
-Cookie.set = mockSetCookie;
-Cookie.remove = mockRemoveCookie;
 
 describe('slotsDashBoardStore Tests', () => {
-    let slotsDashBoardStore, dashBoardServiceAPI, availbleSlotsModel;
+    let slotsDashBoardStore, dashBoardServiceAPI;
 
     beforeEach(() => {
 
@@ -50,6 +45,7 @@ describe('slotsDashBoardStore Tests', () => {
     it('should test fetching slotsDashBoardStore', () => {
         const mockLoadingPromise = new Promise((resolve, reject) => {});
         const mockdashBoardServiceAPI = jest.fn();
+
         mockdashBoardServiceAPI.mockReturnValue(mockLoadingPromise);
         dashBoardServiceAPI.responseAPI = mockdashBoardServiceAPI;
 
@@ -60,7 +56,7 @@ describe('slotsDashBoardStore Tests', () => {
     it('should test getSlotsData success state', async() => {
 
         const mockSuccessPromise = new Promise((resolve, reject) => {
-            resolve(getProductsResponse);
+            resolve(getSlotsResponse);
         });
 
         const mockdashBoardServiceAPI = jest.fn();
@@ -92,9 +88,10 @@ describe('slotsDashBoardStore Tests', () => {
 
 
     it('should test onClickDateAvailableSlots', () => {
+
         const date = "25-05-2020";
 
-        slotsDashBoardStore.slotsResponse = getProductsResponse.available_slots.map(obj => new AvailableSlotsModel(obj));
+        slotsDashBoardStore.slotsResponse = getSlotsResponse.available_slots.map(obj => new AvailableSlotsModel(obj));
         slotsDashBoardStore.onClickDateAvailableSlots(date);
 
         expect(slotsDashBoardStore.currentDate).toBe(date);
@@ -123,27 +120,24 @@ describe('slotsDashBoardStore Tests', () => {
     });
 
     it('should test onClickConfirm availableSlots withOutSelecting time', () => {
+
         window.alert = jest.fn();
         slotsDashBoardStore.bookedDateAndTime = {};
         slotsDashBoardStore.onClickConfirm();
         expect(window.alert.mock.calls.length).toBe(1);
 
-
-
     });
 
     it('should test onClickConfirm availableSlots withSelecting time onSuccess', async() => {
-
 
         slotsDashBoardStore.bookedDateAndTime = {
             "date": "28-05-2020",
             "start_time": "05:00 AM",
             "end_time": "06:00 AM"
-        }
-
+        };
 
         const mockSuccessPromise = new Promise((resolve, reject) => {
-            resolve(getProductsResponse);
+            resolve(getSlotsResponse);
         });
 
         const mockdashBoardServiceAPI = jest.fn();
@@ -157,20 +151,18 @@ describe('slotsDashBoardStore Tests', () => {
 
     it('should test onClickConfirm availableSlots withSelecting time onFailure', async() => {
 
-
         slotsDashBoardStore.bookedDateAndTime = {
             "date": "28-05-2020",
             "start_time": "05:00 AM",
             "end_time": "06:00 AM"
         }
 
-
-        const mockSuccessPromise = new Promise((resolve, reject) => {
+        const mockFailurePromise = new Promise((resolve, reject) => {
             reject(new Error("failure"));
         });
 
         const mockdashBoardServiceAPI = jest.fn();
-        mockdashBoardServiceAPI.mockReturnValue(mockSuccessPromise);
+        mockdashBoardServiceAPI.mockReturnValue(mockFailurePromise);
         dashBoardServiceAPI.postBookedSlot = mockdashBoardServiceAPI;
 
         await slotsDashBoardStore.onClickConfirm();
@@ -182,7 +174,7 @@ describe('slotsDashBoardStore Tests', () => {
     it('should test onClickDateUpComingSlots', () => {
         const date = "25-05-2020";
 
-        slotsDashBoardStore.upcomingSlotsResponse = getProductsResponse.up_coming_slots.map(obj => new UpComingSlotDetails(obj));
+        slotsDashBoardStore.upcomingSlotsResponse = getSlotsResponse.up_coming_slots.map(obj => new UpComingSlotDetails(obj));
         slotsDashBoardStore.onClickDateUpComingSlots(date);
 
         expect(slotsDashBoardStore.upComingSlotsCurrentDate).toBe(date);
@@ -193,7 +185,7 @@ describe('slotsDashBoardStore Tests', () => {
 
     it('should test onClickCancelSlot success state', async() => {
         const mockSuccessPromise = new Promise((resolve, reject) => {
-            resolve(getProductsResponse);
+            resolve(getSlotsResponse);
         });
 
         const mockdashBoardServiceAPI = jest.fn();
@@ -206,7 +198,30 @@ describe('slotsDashBoardStore Tests', () => {
 
     });
 
+    it('should test onClickCancelSlot failure state', async() => {
+        const mockFailurePromise = new Promise((resolve, reject) => {
+            reject(new Error("failure"));
+        });
 
+        const mockdashBoardServiceAPI = jest.fn();
+        mockdashBoardServiceAPI.mockReturnValue(mockFailurePromise);
+        dashBoardServiceAPI.postCancelSlot = mockdashBoardServiceAPI;
+
+        await slotsDashBoardStore.onClickCancelSlot();
+        expect(slotsDashBoardStore.getCancelSlotStatus).toBe(API_FAILED);
+        expect(slotsDashBoardStore.getCancelSlotError).toBe('failure');
+
+
+    });
+
+
+    it('should test countOfBookingSlotsPerDay', () => {
+
+        slotsDashBoardStore.availableSlotsTimings = [...getSlotsResponse.available_slots[0].timing_slots];
+
+
+        expect(slotsDashBoardStore.countOfBookingSlotsPerDay).toBe(10);
+    });
 
 
 
