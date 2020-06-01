@@ -13,11 +13,10 @@ class LoginService {
       })
    }
 
-   loginAPI = requestObj => {
+   loginAPI = () => {
       return networkCallWithApisauce(
          this.api,
-         endPoints.Login,
-         requestObj,
+         endPoints.Login, {},
          apiMethods.get
       )
    }

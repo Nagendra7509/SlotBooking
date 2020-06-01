@@ -116,7 +116,7 @@ class DashBoard extends React.Component {
                         </ConfirmBtnContainer>
                         
                             
-                        {countOfBookingSlotsPerDay==10 && <SlotsUnAvailable
+                        {(slotsResponse.length>0 && countOfBookingSlotsPerDay==availableSlotsTimings.length) && <SlotsUnAvailable
                             >{slotsAreUnavailable}
                         </SlotsUnAvailable>}
                         

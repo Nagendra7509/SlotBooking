@@ -1,0 +1,25 @@
+{
+    "sideNav": {
+        "issues": "ISSUES",
+        "washingMachine": "WASHING MACHINE",
+        "settings": "SETTINGS"
+    },
+    "topNav": {
+        "profile": "Profile"
+    },
+    "allocatedSlots": {
+        "washingMachineId": "Washing Machine ID :",
+        "slots": "SLOTS",
+        "from": "FROM",
+        "to": "TO",
+        "addSlots": "Add Slots",
+        "update": "Update"
+    },
+    "activeAndInactive": {
+        "washingMachineId": "Washing Machine ID :",
+        "updateSlots": "Update Slots",
+        "markAsInactive": "Mark As Inactive",
+        "markAsActive": "Mark As Active",
+        "allocatedSlots": "Allocated Slots"
+    }
+}

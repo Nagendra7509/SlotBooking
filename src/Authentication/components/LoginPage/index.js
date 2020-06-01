@@ -36,7 +36,7 @@ class LoginPage extends React.Component {
    render() {
 
       if (getAccessToken()) {
-         return <Redirect to ={{pathname:'/slot-booking/DashBoard/'}}/>;
+         return <Redirect to ={{pathname:'/slot-booking/dashBoard/'}}/>;
       }
 
       const {

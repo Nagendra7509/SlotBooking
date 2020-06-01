@@ -18,8 +18,8 @@ class AuthenticationStore {
    @observable getUserSignUpStatus
    @observable getUserSignUpError
    @observable signUpAPIService
-   @observable isUser
-   @observable loginCredentialsError = " ";
+   @observable isAdmin
+   @observable loginCredentialsError = "";
 
    constructor(loginAPIService, signUpAPIService) {
       this.init()
@@ -32,17 +32,13 @@ class AuthenticationStore {
       this.getUserSignInAPIError = null
       this.getUserLoginStatus = API_INITIAL
       this.getUserLoginError = null
-      this.isUser;
+      this.isAdmin = false;
    }
 
    @action.bound
-   userLogin(userName, password) {
-      const requestObj = {
-         username: userName,
-         password: password
-      }
-      const userPromise = this.loginAPIService.loginAPI(requestObj);
+   userLogin() {
 
+      const userPromise = this.loginAPIService.loginAPI();
       return bindPromiseWithOnSuccess(userPromise)
          .to(this.setGetUserLoginAPIStatus, this.setUserLoginAPIResponse)
          .catch(this.setGetUserLoginAPIError)
@@ -55,8 +51,11 @@ class AuthenticationStore {
 
    @action.bound
    setUserLoginAPIResponse(response) {
+      //alert(response.is_admin);
       setAccessToken(response.access_token)
-      this.isUser = response.isUser;
+      this.isAdmin = response.is_admin;
+      //console.log(this.isAdmin, "userLogin");
+
 
    }
 
@@ -96,7 +95,7 @@ class AuthenticationStore {
 
    @action.bound
    postCredentialsOfLogin(userName, password) {
-      //alert('called');
+
       this.loginCredentialsError = " ";
       const requestObj = {
          username: userName,

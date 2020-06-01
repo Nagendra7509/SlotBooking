@@ -27,7 +27,7 @@ ${tw `rounded m-2 p-2 focus:outline-none`}
 
 
 const SlotTimings = styled.div `
-    ${tw `w-4/5 p-4 border relative`}
+    ${tw `w-4/5 p-10 relative`}
     background-color:${colors.paleGrey}`;
 
 const TimeBtn = styled.button `
@@ -38,8 +38,8 @@ const TimeBtn = styled.button `
   font-style: normal;
   line-height: 1.5;
   border: solid 1px ${colors.lightBlueGrey};
-  opacity:${props=>props.opacityValue?0.5:1};
-  background-color:${props=>props.opacityValue?colors.paleGrey:"white"};
+  opacity:${props=>props.opacityValue?1:0.5};
+  background-color:${props=>props.opacityValue?"white":colors.paleGrey};
   letter-spacing: normal;
   color: ${colors.darkBlueGrey};`;
 
@@ -56,7 +56,7 @@ const ConfirmBtn = styled.button `
   background-color: ${colors.greenishTeal};`;
 
 const TimeBtns = styled.div `
-    ${tw `p-10`}`;
+    ${tw `p-5`}`;
 
 const AvailableSlots = styled.div `
     ${tw `flex mt-10`}`;

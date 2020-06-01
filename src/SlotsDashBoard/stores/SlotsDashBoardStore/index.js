@@ -155,7 +155,7 @@ class SlotsDashBoardStore {
     @computed get countOfBookingSlotsPerDay() {
         let counterOfBookingSlots = 0;
         this.availableSlotsTimings.map(obj => {
-            if (obj.is_available) {
+            if (!obj.is_available) {
                 counterOfBookingSlots++;
             }
         });
