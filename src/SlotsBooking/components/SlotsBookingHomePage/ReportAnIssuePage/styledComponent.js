@@ -42,11 +42,15 @@ const ReportBtn = styled.button `
   ${tw `px-4 py-4 m-auto text-white`}
   background-color:${colors.brightBlue}`;
 
+const ReportAnIssuePageAndNavBar = styled.div `
+  ${tw `flex flex-col`}`;
+
 export {
   RequestsContainer,
   RequestBox,
   ReportIssueText,
   DescriptionText,
   ReportInputBox,
-  ReportBtn
+  ReportBtn,
+  ReportAnIssuePageAndNavBar
 }

@@ -1,9 +1,9 @@
 import React from "react";
-import { Redirect, withRouter } from "react-router-dom";
 import { observer } from "mobx-react";
 import { LOGIN_PATH } from "../../../../Authentication/constants/routeConstants/RouteConstants";
 import { clearUserSession } from "../../../../Authentication/utils/StorageUtils";
-import { LogoutBtn, ProfileViewContainer } from "./styledComponent";
+import NavigationBar from "../../../common/components/NavigationBar";
+import { LogoutBtn, ProfileViewContainer, ProfilePageAndNavBar } from "./styledComponent";
 
 @observer
 class Profile extends React.Component {
@@ -17,10 +17,16 @@ class Profile extends React.Component {
     }
 
     render() {
-        return <ProfileViewContainer>
-                    <LogoutBtn onClick={this.onClickLogout}>Logout</LogoutBtn>
-                </ProfileViewContainer>;
+        return <ProfilePageAndNavBar>
+        
+                    <NavigationBar/>
+                    
+                        <ProfileViewContainer>
+                            <LogoutBtn onClick={this.onClickLogout}>Logout</LogoutBtn>
+                        </ProfileViewContainer>
+                        
+                </ProfilePageAndNavBar>;
     }
 }
 
-export default withRouter(Profile);
+export default Profile;

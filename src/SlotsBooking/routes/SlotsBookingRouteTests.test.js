@@ -18,38 +18,9 @@ describe('SlotsBooking Component Test cases', () => {
 
     it('should test SlotsBooking NavItems', () => {
 
-        const { getByText } = render(
-            <Provider slotsDashBoardStore={slotsDashBoardStore}>
-                <SlotsBookingRoute/>
-            </Provider>);
-
-        getByText('Home');
-        getByText('Requests');
-        getByText('Report an Issue');
-        getByText('Previous Slots');
-        getByText('Profile');
-        getByText('Number of slots missed:0')
-
     });
 
     it('should test Home Page', () => {
-
-        slotsDashBoardStore.setAPIResponse(getResponse);
-
-
-        console.log(getResponse);
-        const { getByText, getByRole } = render(
-            <Provider slotsDashBoardStore={slotsDashBoardStore}>
-                <SlotsBookingRoute />
-            </Provider>
-        );
-
-
-        console.log(slotsDashBoardStore.slotsResponse, "hello");
-        getByText('Available Slots');
-        getByText('Upcoming Slots');
-        // getByRole("button", { name: "05:00 AM-06:00 AM" })
-        //getByRole("button", { name: "LOGIN" })
 
     });
 

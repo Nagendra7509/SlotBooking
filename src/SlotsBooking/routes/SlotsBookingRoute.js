@@ -1,5 +1,6 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
+import { withRouter } from "react-router-dom";
 import { observable, action } from "mobx";
 import SlotsBookingHomePage from "../components/SlotsBookingHomePage";
 
@@ -7,54 +8,12 @@ import SlotsBookingHomePage from "../components/SlotsBookingHomePage";
 @observer
 class SlotsBookingRoute extends React.Component {
 
-    @observable currentPage = "Home";
-
-    @action.bound
-    onClickHome() {
-        this.currentPage = "Home";
-    }
-
-    @action.bound
-    onClickRequests() {
-        this.currentPage = "Requests";
-    }
-
-    @action.bound
-    onClickReportAnIssue() {
-        this.currentPage = "ReportAnIssue";
-    }
-
-    @action.bound
-    onClickPreviousSlots() {
-        this.currentPage = "PreviousSlots";
-    }
-
-    @action.bound
-    onClickProfile() {
-        this.currentPage = "Profile";
-    }
-
     render() {
-        const { previousSlots } = this.props.slotsDashBoardStore;
-        const {
-            currentPage,
-            onClickHome,
-            onClickRequests,
-            onClickReportAnIssue,
-            onClickPreviousSlots,
-            onClickProfile,
-        } = this;
 
         return <SlotsBookingHomePage
-                currentPage={currentPage}
-                onClickHome={onClickHome}
-                onClickRequests={onClickRequests}
-                onClickReportAnIssue={onClickReportAnIssue}
-                onClickPreviousSlots={onClickPreviousSlots}
-                onClickProfile={onClickProfile}
-                previousSlots={previousSlots}
+            
             />;
     }
 }
 
-export default SlotsBookingRoute;
+export default withRouter(SlotsBookingRoute);

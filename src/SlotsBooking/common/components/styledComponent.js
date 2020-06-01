@@ -3,15 +3,15 @@ import tw from 'tailwind.macro';
 import { colors } from '../../themes/Colors'
 
 
-const NavItem = styled.span `
-  ${tw `cursor-pointer`}
+const NavItem = styled.a `
+  ${tw `cursor-pointer  hover:text-black focus:text-black`}
   font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.33;
   letter-spacing: normal;
-  color:${props=>props.colorValue?"black":colors.steel60 };
+  color:${colors.steel60};
     `;
 const TimeBtn = styled.button `
 width: 170px;
@@ -39,6 +39,9 @@ const Heading = styled.span `
   line-height: 1.33;
   letter-spacing: 0.12px;
   color:${colors.brightBlue}`;
+
+
+
 
 
 export {

@@ -92,7 +92,6 @@ class SlotsDashBoardStore {
 
         //previous slots
         this.previousSlots = response.previous_slots.map(obj => new PreviousSlotsModel(obj));
-
     }
 
     @action.bound

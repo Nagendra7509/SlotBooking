@@ -10,8 +10,11 @@ const LogoutBtn = styled.button `
 const ProfileViewContainer = styled.div `
     ${tw `flex justify-center mt-10`}`;
 
+const ProfilePageAndNavBar = styled.div `
+    ${tw `flex flex-col`}`;
 
 export {
     LogoutBtn,
-    ProfileViewContainer
+    ProfileViewContainer,
+    ProfilePageAndNavBar
 };
