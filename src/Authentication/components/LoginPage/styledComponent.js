@@ -3,7 +3,7 @@ import tw from 'tailwind.macro';
 import { colors } from '../../themes/Colors'
 
 const LoginPageContainer = styled.div `
-    ${tw`flex justify-center items-center h-screen `}
+    ${tw`flex justify-center items-center h-full `}
     background-color:${colors.iceBlue}`
 
 const LoginForm = styled.form `

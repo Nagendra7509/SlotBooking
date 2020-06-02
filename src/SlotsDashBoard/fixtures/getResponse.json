@@ -58,7 +58,7 @@
     }],
     "upcoming_slots": [{
         "date": "25-05-2020",
-        "washing_machine_id": "drt",
+        "washing_machine_id": "7",
         "time_slot": {
             "start_time": "10:00 AM",
             "end_time": "11:00 AM"
@@ -66,7 +66,7 @@
 
     }, {
         "date": "01-06-2020",
-        "washing_machine_id": "7",
+        "washing_machine_id": "8",
         "time_slot": {
             "start_time": "6:00 AM",
             "end_time": "7:00 AM"

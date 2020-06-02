@@ -143,7 +143,6 @@ class DashBoard extends React.Component {
             onClickCancelSlot,
         } = this.props.slotsDashBoardStore;
 
-        //console.log(upComingSlotsDetails);
 
         return <DashBoardContainer>
                 <AvailableSlots>
@@ -176,6 +175,3 @@ class DashBoard extends React.Component {
 }
 
 export default DashBoard;
-
-
-//visibilityValue={countOfBookingSlotsPerDay==10}

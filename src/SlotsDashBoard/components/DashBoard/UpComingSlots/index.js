@@ -36,7 +36,6 @@ class UpComingSlots extends React.Component {
     }
 
 
-
     render() {
         const {
             upComingSlotsDates,
@@ -53,9 +52,7 @@ class UpComingSlots extends React.Component {
         } = Strings.upComingSlots;
 
 
-        //console.log('render upComingSlots')
         const { time_slot } = upComingSlotsDetails;
-        // (time_slot && console.log(time_slot.start_time));
 
         return <UpComingSlotsContainer>
 
@@ -63,10 +60,8 @@ class UpComingSlots extends React.Component {
                         {upComingSlots}
                     </UpComomingSlotText>
                     <DatesAndSlotsDetails>
-                        {upComingSlotsDetails.washingMachineId!="" && 
-                            <DateAndSlots>
-
-                                <Dates>
+                    
+                            <Dates>
                                  {upComingSlotsDates.map(obj=><DateBtn 
                                                                 id={obj}
                                                                 onClick={this.onClickDateUpComingSlots} 
@@ -74,6 +69,10 @@ class UpComingSlots extends React.Component {
                                                                 key={obj}>{obj}
                                                             </DateBtn>)}
                                 </Dates>
+                        {upComingSlotsDetails.washingMachineId!="" && 
+                            <DateAndSlots>
+
+                                
 
                                 <SlotsDetails>
                                     <WashingMachineId>

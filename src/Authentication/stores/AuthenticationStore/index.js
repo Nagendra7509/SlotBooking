@@ -51,10 +51,8 @@ class AuthenticationStore {
 
    @action.bound
    setUserLoginAPIResponse(response) {
-      //alert(response.is_admin);
       setAccessToken(response.access_token)
       this.isAdmin = response.is_admin;
-      //console.log(this.isAdmin, "userLogin");
 
 
    }

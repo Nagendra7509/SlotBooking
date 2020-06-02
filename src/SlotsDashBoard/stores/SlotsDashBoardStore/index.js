@@ -33,6 +33,9 @@ class SlotsDashBoardStore {
     @observable getConfirmSlotStatus;
     @observable getConfirmSlotError;
 
+    @observable getCancelSlotStatus;
+    @observable getCancelSlotError;
+
     constructor(dashBoardAPIService) {
         this.init();
         this.dashBoardAPIService = dashBoardAPIService;
@@ -61,9 +64,9 @@ class SlotsDashBoardStore {
     @action.bound
     getSlotsData() {
 
-        const userPromise = this.dashBoardAPIService.responseAPI();
+        const promise = this.dashBoardAPIService.responseAPI();
 
-        return bindPromiseWithOnSuccess(userPromise)
+        return bindPromiseWithOnSuccess(promise)
             .to(this.setGetResponseAPIStatus, this.setAPIResponse)
             .catch(this.setGetAPIError);
     }
@@ -123,9 +126,9 @@ class SlotsDashBoardStore {
 
         if (this.bookedDateAndTime.date) {
 
-            const userPromise = this.dashBoardAPIService.postBookedSlot(this.bookedDateAndTime);
+            const promise = this.dashBoardAPIService.postBookedSlot(this.bookedDateAndTime);
 
-            return bindPromiseWithOnSuccess(userPromise)
+            return bindPromiseWithOnSuccess(promise)
                 .to(this.setGetResponseConfirmSlotStatus, this.setAPIResponseOfConfirmSlot)
                 .catch(this.setGetAPIErrorOfConfirmSlot);
 
@@ -144,9 +147,9 @@ class SlotsDashBoardStore {
 
     @action.bound
     onClickCancelSlot() {
-        const userPromise = this.dashBoardAPIService.postCancelSlot(this.bookedDateAndTime);
-
-        return bindPromiseWithOnSuccess(userPromise)
+        const promise = this.dashBoardAPIService.postCancelSlot(this.bookedDateAndTime);
+        //Pending 
+        return bindPromiseWithOnSuccess(promise)
             .to(this.setGetResponseCancelSlotStatus, this.setAPIResponseOfCancelSlot)
             .catch(this.setGetAPIErrorOfCancelSlot);
 

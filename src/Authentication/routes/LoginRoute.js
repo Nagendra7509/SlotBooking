@@ -83,7 +83,7 @@ class LoginRoute extends React.Component {
 
         } = this;
 
-        const { getUserLoginStatus } = this.props.authenticationStore;
+        const { getUserLoginStatus, isAdmin } = this.props.authenticationStore;
 
         return (
             <LoginPage
@@ -96,6 +96,7 @@ class LoginRoute extends React.Component {
                 errorMessagePassword={errorMessagePassword}
                 errorMessageLoginButton={errorMessageLoginButton}
                 getUserLoginStatus={getUserLoginStatus}
+                isAdmin={isAdmin}
             />
         );
     }

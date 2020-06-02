@@ -16,6 +16,8 @@
         "update": "Update"
     },
     "activeAndInactive": {
+        "active": "ACTIVE",
+        "inActive": "INACTIVE",
         "washingMachineId": "Washing Machine ID :",
         "updateSlots": "Update Slots",
         "markAsInactive": "Mark As Inactive",

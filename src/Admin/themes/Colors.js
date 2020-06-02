@@ -14,5 +14,6 @@ export const colors = {
     coolGrey: '#b5b7c4',
     black60: 'rgba(0, 0, 0, 0.6)',
     yellowOrange: '#ffb800',
-    greenishTeal: '#2dca73'
+    greenishTeal: '#2dca73',
+    steel60: "rgba(126, 133, 142, 0.6)"
 }
