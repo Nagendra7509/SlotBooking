@@ -22,6 +22,7 @@
         "updateSlots": "Update Slots",
         "markAsInactive": "Mark As Inactive",
         "markAsActive": "Mark As Active",
-        "allocatedSlots": "Allocated Slots"
+        "allocatedSlots": "Allocated Slots",
+        "addNewMachine": "Add New Machine"
     }
 }

@@ -5,6 +5,16 @@ import TopNavBar from "../../common/components/TopNavBar";
 import ActiveAndInactiveState from "../../common/components/ActiveAndInactiveState";
 import { ADMIN_PAGE_WASHINGMACHINE_INACTIVE } from "../../constants/routeConstants/RouteConstants";
 import WashingMachineCard from "../../common/components/WashingMachineCard";
+import { Typo14WhiteHKGroteskSemiBold } from "../../../styleGuide/Typos";
+import { activeAndInactive } from "../../i18n/strings.json";
+import {
+    WashingMachineInActiveContainer,
+    SideNavBarAndInActiveMachines,
+    InActiveMachines,
+    InActiveMachineCards,
+    AddNewMachine
+}
+from "./styledComponents";
 
 @inject('adminStore')
 @observer
@@ -15,35 +25,66 @@ class WashingMachineInactive extends React.Component {
     }
 
     onClickUpdate = (event) => {
-        //alert(event.target.id);
         const { onClickUpdateInWashingMachineCard } = this.props.adminStore;
         onClickUpdateInWashingMachineCard(event.target.id);
+
+        const {
+            updateMachineId,
+            updateMachineStatus
+        } = this.props.adminStore;
+
+        const { history } = this.props;
+        history.push(`/slot-booking/admin/washingMachine/details/${updateMachineStatus}/${updateMachineId}`);
+    }
+
+    onClickActiveOrInactiveStatus = (event) => {
+
+        const { onClickActiveOrInactiveStatus } = this.props.adminStore;
+        onClickActiveOrInactiveStatus(event.target.id);
+
+
     }
 
 
     render() {
 
-        const { inActiveWashingMachines } = this.props.adminStore
+        const { inActiveWashingMachines, onClickNewWashingMachine } = this.props.adminStore
 
-        return <div>
-                <TopNavBar path={ADMIN_PAGE_WASHINGMACHINE_INACTIVE}/>
-                <div class="flex">
-                    <SideNavBar path={ADMIN_PAGE_WASHINGMACHINE_INACTIVE}/>
-                    <div className="flex flex-col">
-                        <ActiveAndInactiveState path={ADMIN_PAGE_WASHINGMACHINE_INACTIVE}/>
-                        <div className="flex flex-wrap">
-                        {inActiveWashingMachines.length>0 && inActiveWashingMachines.map(obj=>
+        return <WashingMachineInActiveContainer>
+        
+                    <TopNavBar 
+                        path={ADMIN_PAGE_WASHINGMACHINE_INACTIVE}
+                    />
+                    <SideNavBarAndInActiveMachines>
+                    
+                        <SideNavBar 
+                            path={ADMIN_PAGE_WASHINGMACHINE_INACTIVE}
+                        />
+                        <InActiveMachines>
+                        
+                            <ActiveAndInactiveState 
+                                path={ADMIN_PAGE_WASHINGMACHINE_INACTIVE}
+                            />
+                            <AddNewMachine>
+                                <Typo14WhiteHKGroteskSemiBold 
+                                    onClick={onClickNewWashingMachine}
+                                    >+ {activeAndInactive.addNewMachine}
+                                </Typo14WhiteHKGroteskSemiBold>
+                            </AddNewMachine>
+                            <InActiveMachineCards>
+                                {inActiveWashingMachines.length>0 && inActiveWashingMachines.map(obj=>
                                             <WashingMachineCard
                                                 key={obj.washingMachineId}
                                                 washingMachineStatus ={obj.washingMachineStatus}
                                                 washingMachineId={obj.washingMachineId}
                                                 onClickUpdate={this.onClickUpdate}
+                                                onClickActiveOrInactiveStatus={this.onClickActiveOrInactiveStatus}
                                             />
-                                            )}
-                        </div>
-                    </div>
-                </div>
-                </div>
+                                )}
+                            </InActiveMachineCards>
+                        </InActiveMachines>
+                    </SideNavBarAndInActiveMachines>
+                </WashingMachineInActiveContainer>
     }
 }
 

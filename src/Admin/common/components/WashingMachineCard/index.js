@@ -19,7 +19,12 @@ class WashingMachineCard extends React.Component {
     render() {
 
         const washingMachinesUrls = [...washingMachineUrls];
-        const { washingMachineId, washingMachineStatus, onClickUpdate } = this.props;
+        const {
+            washingMachineId,
+            washingMachineStatus,
+            onClickUpdate,
+            onClickActiveOrInactiveStatus
+        } = this.props;
         const {
             washingMachineID,
             updateSlots,
@@ -46,7 +51,11 @@ class WashingMachineCard extends React.Component {
                                 <Option value={allocatedSlots}>{allocatedSlots}</Option>
                             </SelectTag>
                             
-                            <Status>{washingMachineStatus=="ACTIVE"?markAsInactive:markAsActive}</Status>
+                            <Status
+                                id={washingMachineId}
+                                onClick={onClickActiveOrInactiveStatus}
+                                >{washingMachineStatus=="ACTIVE"?markAsInactive:markAsActive}
+                            </Status>
                     </UpdateAndStatus>
                 
                 </WashingMachineDetails>

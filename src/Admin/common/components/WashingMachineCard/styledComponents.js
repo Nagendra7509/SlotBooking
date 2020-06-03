@@ -4,27 +4,29 @@ import { colors } from "../../../themes/Colors";
 
 
 const WashingMachineCardContainer = styled.div `
-    ${tw `flex flex-col m-4 py-4`}
+    ${tw `flex flex-col m-4 py-4 `}
+    width:300px;
     border:1px solid ${colors.lightBlueGrey}`;
 
 const WashingMachineImg = styled.img `
-    ${tw `m-auto`}
-    width:70%;
+    ${tw `m-auto mb-4`}
+    width:80%;
     object-fit:contain`;
 
 const WashingMachineDetails = styled.div `
     ${tw `flex flex-col`}`;
 
 const WashingMachineCardId = styled.p `
-    ${tw `mx-6 my-2`}
+    ${tw `mx-6 my-4`}
     `;
 
 const UpdateAndStatus = styled.div `
-    ${tw `flex justify-around`}`;
+    ${tw `flex justify-around items-center`}`;
 
 const SelectTag = styled.select `
-background-color:white;
-border:1px solid ${colors.lightBlueGrey}`;
+    ${tw `px-4 py-2`}
+    background-color:white;
+    border:1px solid ${colors.lightBlueGrey}`;
 
 const Option = styled.option ``;
 

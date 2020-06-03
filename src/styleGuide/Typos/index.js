@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import tw from 'tailwind.macro'
+import tw from 'tailwind.macro';
+import { colors } from "../../Admin/themes/Colors.js"
 
 const Typo32DarkBlueGreyRubikRegular = styled.div `
    ${tw``}
@@ -76,7 +77,16 @@ const Typo12HKGroteskRegular = styled.span `
   color: #ff0b37;
    `;
 
-
+const Typo14WhiteHKGroteskSemiBold = styled.button `
+    ${tw `px-6 py-2 mx-10 my-4`}
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  color:white;
+  background-color:${colors.brightBlue}`;
 
 export {
     Typo32DarkBlueGreyRubikRegular,
@@ -84,5 +94,6 @@ export {
     Typo12NeonRedHKGroteskRegular,
     Typo14DarkBlueGreyHKGroteskRegular,
     Typo12HKGroteskSemiBoldSteel,
-    Typo12HKGroteskRegular
+    Typo12HKGroteskRegular,
+    Typo14WhiteHKGroteskSemiBold
 };

@@ -21,6 +21,36 @@ class AdminService {
         )
     }
 
+    getUpdateWashingMachineSlotsDetails = requestObj => {
+        return networkCallWithApisauce(
+            this.api,
+            endPoints,
+            requestObj,
+            apiMethods.get
+        );
+
+    }
+
+    postStatusToChange = requestObj => {
+        return networkCallWithApisauce(
+            this.api,
+            endPoints,
+            requestObj,
+            apiMethods.post
+        );
+    }
+
+    postNewWashingMachineIdToAdd = requestObj => {
+        return networkCallWithApisauce(
+            this.api,
+            endPoints,
+            requestObj,
+            apiMethods.post
+        );
+    }
+
+
+
 
 }
 

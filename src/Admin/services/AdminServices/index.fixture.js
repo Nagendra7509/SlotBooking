@@ -18,6 +18,22 @@ class AdminService {
             }, 1000);
         });
     }
+
+    postStatusToChange = (requestObj) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(200);
+            }, 1000);
+        });
+    }
+
+    postNewWashingMachineIdToAdd = (requestObj) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(200);
+            }, 1000);
+        });
+    }
 }
 
 export default AdminService;

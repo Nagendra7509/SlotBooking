@@ -28,6 +28,18 @@
             "status": "INACTIVE"
         }, {
             "washing_machine_id": "10",
+            "status": "ACTIVE"
+        }, {
+            "washing_machine_id": "11",
+            "status": "INACTIVE"
+        }, {
+            "washing_machine_id": "12",
+            "status": "INACTIVE"
+        }, {
+            "washing_machine_id": "13",
+            "status": "ACTIVE"
+        }, {
+            "washing_machine_id": "14",
             "status": "INACTIVE"
         }
 
