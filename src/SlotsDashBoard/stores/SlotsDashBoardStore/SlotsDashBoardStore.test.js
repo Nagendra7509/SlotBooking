@@ -4,8 +4,8 @@ import { API_FAILED, API_FETCHING, API_SUCCESS, API_INITIAL } from "@ib/api-cons
 
 import DashBoardService from "../../services/DashBoardService/index.api";
 import getSlotsResponse from "../../fixtures/getResponse.json";
-import AvailableSlotsModel from "../Models/AvailableSlotsModel";
-import UpComingSlotDetails from "../Models/UpComingSlotDetails";
+import AvailableSlotsModel from "../models/AvailableSlotsModel";
+import UpComingSlotDetails from "../models/UpComingSlotDetails";
 import SlotsDashBoardStore from ".";
 
 /*global jest*/
@@ -23,37 +23,46 @@ describe('slotsDashBoardStore Tests', () => {
 
 
     it('should test initialising slotsDashBoardStore ', () => {
-        expect(slotsDashBoardStore.getResponseStatus).toBe(API_INITIAL);
-        expect(slotsDashBoardStore.getResponseError).toBe(null);
+
+        expect(slotsDashBoardStore.getAvailableSlotsResponseStatus).toBe(API_INITIAL);
+        expect(slotsDashBoardStore.getAvailableSlotsResponseError).toBe(null);
+        expect(slotsDashBoardStore.getUpcomingSlotsResponseStatus).toBe(API_INITIAL);
+        expect(slotsDashBoardStore.getUpcomingSlotsResponseError).toBe(null);
+        expect(slotsDashBoardStore.getPreviousSlotsResponseStatus).toBe(API_INITIAL);
+        expect(slotsDashBoardStore.getPreviousSlotsResponseError).toBe(null);
+
+        expect(slotsDashBoardStore.getConfirmSlotStatus).toBe(API_INITIAL);
+        expect(slotsDashBoardStore.getConfirmSlotError).toBe(null);
+        expect(slotsDashBoardStore.getConfirmSlotStatus).toBe(API_INITIAL);
+        expect(slotsDashBoardStore.getConfirmSlotError).toBe(null);
+
         expect(slotsDashBoardStore.availableSlotsDates).toStrictEqual([]);
         expect(slotsDashBoardStore.previousSlots).toStrictEqual([]);
         expect(slotsDashBoardStore.currentDate).toBe("");
-        expect(slotsDashBoardStore.slotsResponse).toStrictEqual([]);
+        expect(slotsDashBoardStore.availableSlotsResponse).toStrictEqual([]);
         expect(slotsDashBoardStore.availableSlotsTimings).toStrictEqual([]);
         expect(slotsDashBoardStore.bookedDateAndTime).toStrictEqual({});
         expect(slotsDashBoardStore.upcomingSlotsResponse).toStrictEqual([]);
         expect(slotsDashBoardStore.upComingSlotsCurrentDate).toStrictEqual("");
         expect(slotsDashBoardStore.upComingSlotsDetails).toStrictEqual({});
         expect(slotsDashBoardStore.upComingSlotsDates).toStrictEqual([]);
-        expect(slotsDashBoardStore.getConfirmSlotStatus).toBe(API_INITIAL);
-        expect(slotsDashBoardStore.getConfirmSlotError).toBe(null);
-        expect(slotsDashBoardStore.getConfirmSlotStatus).toBe(API_INITIAL);
-        expect(slotsDashBoardStore.getConfirmSlotError).toBe(null);
+
+
 
     });
 
-    it('should test fetching slotsDashBoardStore', () => {
+    it('should test fetching Availableslots', () => {
         const mockLoadingPromise = new Promise((resolve, reject) => {});
         const mockdashBoardServiceAPI = jest.fn();
 
         mockdashBoardServiceAPI.mockReturnValue(mockLoadingPromise);
-        dashBoardServiceAPI.responseAPI = mockdashBoardServiceAPI;
+        dashBoardServiceAPI.availableSlotsResponseAPI = mockdashBoardServiceAPI;
 
-        slotsDashBoardStore.getSlotsData();
-        expect(slotsDashBoardStore.getResponseStatus).toBe(API_FETCHING);
+        slotsDashBoardStore.getAvailableSlotsData();
+        expect(slotsDashBoardStore.getAvailableSlotsResponseStatus).toBe(API_FETCHING);
     });
 
-    it('should test getSlotsData success state', async() => {
+    it('should test getAvailableSlotsData success state', async() => {
 
         const mockSuccessPromise = new Promise((resolve, reject) => {
             resolve(getSlotsResponse);
@@ -61,15 +70,15 @@ describe('slotsDashBoardStore Tests', () => {
 
         const mockdashBoardServiceAPI = jest.fn();
         mockdashBoardServiceAPI.mockReturnValue(mockSuccessPromise);
-        dashBoardServiceAPI.responseAPI = mockdashBoardServiceAPI;
+        dashBoardServiceAPI.availableSlotsResponseAPI = mockdashBoardServiceAPI;
 
 
-        await slotsDashBoardStore.getSlotsData();
-        expect(slotsDashBoardStore.getResponseStatus).toBe(API_SUCCESS);
+        await slotsDashBoardStore.getAvailableSlotsData();
+        expect(slotsDashBoardStore.getAvailableSlotsResponseStatus).toBe(API_SUCCESS);
 
     });
 
-    it('should test getSlotsData failure state', async() => {
+    it('should test getAvailableSlotsData failure state', async() => {
 
         const mockFailurePromise = new Promise((resolve, reject) => {
             reject(
@@ -78,24 +87,117 @@ describe('slotsDashBoardStore Tests', () => {
 
         const mockdashBoardServiceAPI = jest.fn();
         mockdashBoardServiceAPI.mockReturnValue(mockFailurePromise);
-        dashBoardServiceAPI.responseAPI = mockdashBoardServiceAPI;
+        dashBoardServiceAPI.availableSlotsResponseAPI = mockdashBoardServiceAPI;
 
 
-        await slotsDashBoardStore.getSlotsData();
-        expect(slotsDashBoardStore.getResponseStatus).toBe(API_FAILED);
-        expect(slotsDashBoardStore.getResponseError).toBe('failure');
+        await slotsDashBoardStore.getAvailableSlotsData();
+        expect(slotsDashBoardStore.getAvailableSlotsResponseStatus).toBe(API_FAILED);
+        expect(slotsDashBoardStore.getAvailableSlotsResponseError).toBe('failure');
     });
+
+
+    it('should test fetching UpComingslots', () => {
+        const mockLoadingPromise = new Promise((resolve, reject) => {});
+        const mockdashBoardServiceAPI = jest.fn();
+
+        mockdashBoardServiceAPI.mockReturnValue(mockLoadingPromise);
+        dashBoardServiceAPI.upcomingSlotsResponseAPI = mockdashBoardServiceAPI;
+
+        slotsDashBoardStore.getUpcomingSlotsData();
+        expect(slotsDashBoardStore.getUpcomingSlotsResponseStatus).toBe(API_FETCHING);
+    });
+
+    it('should test UpComingSlotsData success state', async() => {
+
+        const mockSuccessPromise = new Promise((resolve, reject) => {
+            resolve(getSlotsResponse);
+        });
+
+        const mockdashBoardServiceAPI = jest.fn();
+        mockdashBoardServiceAPI.mockReturnValue(mockSuccessPromise);
+        dashBoardServiceAPI.upcomingSlotsResponseAPI = mockdashBoardServiceAPI;
+
+
+        await slotsDashBoardStore.getUpcomingSlotsData();
+        expect(slotsDashBoardStore.getUpcomingSlotsResponseStatus).toBe(API_SUCCESS);
+
+    });
+
+    it('should test upComingData failure state', async() => {
+
+        const mockFailurePromise = new Promise((resolve, reject) => {
+            reject(
+                new Error('failure'));
+        });
+
+        const mockdashBoardServiceAPI = jest.fn();
+        mockdashBoardServiceAPI.mockReturnValue(mockFailurePromise);
+        dashBoardServiceAPI.upcomingSlotsResponseAPI = mockdashBoardServiceAPI;
+
+
+        await slotsDashBoardStore.getUpcomingSlotsData();
+        expect(slotsDashBoardStore.getUpcomingSlotsResponseStatus).toBe(API_FAILED);
+        expect(slotsDashBoardStore.getUpcomingSlotsResponseError).toBe('failure');
+    });
+
+
+    it('should test fetching Previousslots', () => {
+        const mockLoadingPromise = new Promise((resolve, reject) => {});
+        const mockdashBoardServiceAPI = jest.fn();
+
+        mockdashBoardServiceAPI.mockReturnValue(mockLoadingPromise);
+        dashBoardServiceAPI.previousSlotsResponseAPI = mockdashBoardServiceAPI;
+
+        slotsDashBoardStore.getPreviousSlotsData();
+        expect(slotsDashBoardStore.getPreviousSlotsResponseStatus).toBe(API_FETCHING);
+    });
+
+    it('should test PreviousSlotsData success state', async() => {
+
+        const mockSuccessPromise = new Promise((resolve, reject) => {
+            resolve(getSlotsResponse);
+        });
+
+        const mockdashBoardServiceAPI = jest.fn();
+        mockdashBoardServiceAPI.mockReturnValue(mockSuccessPromise);
+        dashBoardServiceAPI.previousSlotsResponseAPI = mockdashBoardServiceAPI;
+
+
+        await slotsDashBoardStore.getPreviousSlotsData();
+        expect(slotsDashBoardStore.getPreviousSlotsResponseStatus).toBe(API_SUCCESS);
+
+    });
+
+    it('should test PreviousData failure state', async() => {
+
+        const mockFailurePromise = new Promise((resolve, reject) => {
+            reject(
+                new Error('failure'));
+        });
+
+        const mockdashBoardServiceAPI = jest.fn();
+        mockdashBoardServiceAPI.mockReturnValue(mockFailurePromise);
+        dashBoardServiceAPI.previousSlotsResponseAPI = mockdashBoardServiceAPI;
+
+
+        await slotsDashBoardStore.getPreviousSlotsData();
+        expect(slotsDashBoardStore.getPreviousSlotsResponseStatus).toBe(API_FAILED);
+        expect(slotsDashBoardStore.getPreviousSlotsResponseError).toBe('failure');
+    });
+
+
+
 
 
     it('should test onClickDateAvailableSlots', () => {
 
         const date = "25-05-2020";
 
-        slotsDashBoardStore.slotsResponse = getSlotsResponse.available_slots.map(obj => new AvailableSlotsModel(obj));
+        slotsDashBoardStore.availableSlotsResponse = getSlotsResponse.available_slots.map(obj => new AvailableSlotsModel(obj));
         slotsDashBoardStore.onClickDateAvailableSlots(date);
 
         expect(slotsDashBoardStore.currentDate).toBe(date);
-        expect(slotsDashBoardStore.availableSlotsTimings.length).toBe(10);
+        expect(slotsDashBoardStore.availableSlotsTimings.length).toBeDefined;
 
 
     });
@@ -222,9 +324,6 @@ describe('slotsDashBoardStore Tests', () => {
 
         expect(slotsDashBoardStore.countOfBookingSlotsPerDay).toBe(10);
     });
-
-
-
 
 
 });

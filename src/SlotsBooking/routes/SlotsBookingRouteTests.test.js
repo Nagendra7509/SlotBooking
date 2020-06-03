@@ -6,7 +6,7 @@ import SlotsDashBoardStore from "../../SlotsDashBoard/stores/SlotsDashBoardStore
 import DashBoardService from "../../SlotsDashBoard/services/DashBoardService/index.api";
 import SlotsBookingHomePage from "../components/SlotsBookingHomePage";
 import getResponse from "../../SlotsDashBoard/fixtures/getResponse.json";
-import AvailableSlotsModel from "../../SlotsDashBoard/stores/Models/AvailableSlotsModel";
+import AvailableSlotsModel from "../../SlotsDashBoard/stores/models/AvailableSlotsModel";
 
 describe('SlotsBooking Component Test cases', () => {
     let slotsDashBoardStore, dashBoardService;
@@ -17,10 +17,6 @@ describe('SlotsBooking Component Test cases', () => {
     });
 
     it('should test SlotsBooking NavItems', () => {
-
-    });
-
-    it('should test Home Page', () => {
 
     });
 

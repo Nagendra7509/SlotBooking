@@ -4,6 +4,7 @@ import { Typo14DarkBlueGreyHKGroteskRegular } from "../../../../styleGuide/Typos
 import Strings from "../../../i18n/strings.json";
 import { PreviousSlotsHeading } from "../../../common/components";
 import NavigationBar from "../../../common/components/NavigationBar";
+import { PREVIOUS_SLOTS_PAGE_PATH } from '../../../constants/routeConstants/RouteConstants';
 import {
     PreviousSlotsContainer,
     PreviousSlotsTableTitles,
@@ -20,7 +21,7 @@ class PreviousSlots extends React.Component {
 
 
     componentDidMount() {
-        this.props.slotsDashBoardStore.getSlotsData();
+        this.props.slotsDashBoardStore.getPreviousSlotsData();
     }
 
     render() {
@@ -30,7 +31,7 @@ class PreviousSlots extends React.Component {
 
         return <PreviousSlotsAndNavBar>
         
-                    <NavigationBar/>
+                    <NavigationBar pathName={PREVIOUS_SLOTS_PAGE_PATH}/>
                     
                     <PreviousSlotsContainer>
             

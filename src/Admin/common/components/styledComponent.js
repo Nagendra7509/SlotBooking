@@ -4,7 +4,7 @@ import { colors } from "../../themes/Colors";
 
 
 const NavItem = styled.a `
-  ${tw `p-10`}
+  ${tw `p-6`}
   font-size: 12px;
   font-weight: bold;
   font-stretch: normal;
@@ -12,10 +12,10 @@ const NavItem = styled.a `
   line-height: 1.33;
   letter-spacing: 0.12px;
   border-bottom:1px solid ${colors.lightBlueGrey};
-  color:${props=>props.isClicked?colors.brightBlue:colors.darkBlueGrey};`;
+  color:${props=>props.path===props.href?colors.brightBlue:colors.darkBlueGrey};`;
 
 const StatusItem = styled.a `  
-    ${tw `px-4 py-2 hover:bg-blue-600 hover:text-white`}
+    ${tw `px-4 py-2`}
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -23,7 +23,8 @@ const StatusItem = styled.a `
   border:2px solid ${colors.lightBlueGrey};
   line-height: 1.71;
   letter-spacing: normal;
-  color:${colors.darkBlueGrey};`;
+  color:${props=>props.path===props.href?colors.white:colors.darkBlueGrey};
+  background-color:${props=>props.path===props.href?colors.brightBlue:colors.white}`;
 
 
 export {

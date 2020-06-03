@@ -3,7 +3,7 @@ import { observer, inject } from "mobx-react";
 import TopNavBar from "../../common/components/TopNavBar";
 import SideNavBar from "../../common/components/SideNavBar";
 import IssuesPage from "../IssuesPage";
-
+import { ADMIN_PAGE_PATH_ISSUES } from "../../constants/routeConstants/RouteConstants";
 @inject('adminStore')
 @observer
 class AdminPage extends React.Component {
@@ -22,9 +22,9 @@ class AdminPage extends React.Component {
         //console.log(Math.floor(Math.random() * (5 + 0 + 1), "rfgrf"));
 
         return <div>
-                <TopNavBar/>
+                <TopNavBar path={ADMIN_PAGE_PATH_ISSUES}/>
                 <div className="flex">
-                    <SideNavBar/>
+                    <SideNavBar path={ADMIN_PAGE_PATH_ISSUES}/>
                     <IssuesPage/>
                 </div>
                 </div>;

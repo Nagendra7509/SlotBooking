@@ -9,6 +9,7 @@ import {
 from '@ib/api-constants';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 import AdminModel from "../models/AdminModel";
+import UpdateSlotsModel from "../models/UpdateSlotsModel";
 
 
 
@@ -19,6 +20,10 @@ class AdminStore {
     @observable adminResponse;
     @observable activeWashingMachines = [];
     @observable inActiveWashingMachines = [];
+    @observable updateSlotsResponse = [];
+
+    @observable getUpdateSlotsResponseStatus;
+    @observable getUpdateSlotsResponseError;
     adminService
 
     constructor(adminService) {
@@ -29,7 +34,11 @@ class AdminStore {
     init = () => {
         this.getAdminResponseStatus = API_INITIAL;
         this.getAdminResponseError = null;
+        this.getUpdateSlotsResponseStatus = API_INITIAL;
+        this.getUpdateSlotsResponseError = null;
+
         this.adminResponse = [];
+        this.updateSlotsResponse = [];
         this.activeWashingMachines = [];
         this.inActiveWashingMachines = [];
     }
@@ -52,22 +61,53 @@ class AdminStore {
     @action.bound
     setAdminAPIResponse(response) {
         this.adminResponse = response.washing_machines.map(obj => new AdminModel(obj));
-        //console.log(this.adminResponse, "response");
+
 
         //activeWashingMachines
         this.activeWashingMachines = this.adminResponse.filter(obj => obj.washingMachineStatus == "ACTIVE");
 
         //inActiveWashingMachines
         this.inActiveWashingMachines = this.adminResponse.filter(obj => obj.washingMachineStatus == "INACTIVE");
-
-
-        console.log(this.activeWashingMachines, "active");
-        console.log(this.inActiveWashingMachines, "inActive");
     }
 
     @action.bound
     setGetAdminAPIError(error) {
         this.getAdminResponseError = error;
+    }
+
+    @action.bound
+    onClickNewWashingMachine() {
+        //let washingMachineNumber = prompt("Enter WashingMachine Number");
+
+    }
+
+    @action.bound
+    onClickUpdateInWashingMachineCard(id) {
+        const requestObj = {
+            "washing_machine_id": id
+        };
+        const promise = this.adminService.getUpdateWashingMachineSlotsDetails(requestObj);
+
+        return bindPromiseWithOnSuccess(promise)
+            .to(this.setGetUpdateWashingMachineResponseAPIStatus, this.setUpdateWashingMachineAPIResponse)
+            .catch(this.setGetUpdateWashingMachineAPIError);
+    }
+
+
+    @action.bound
+    setGetUpdateWashingMachineResponseAPIStatus(status) {
+        this.getUpdateSlotsResponseStatus = status;
+    }
+
+    @action.bound
+    setUpdateWashingMachineAPIResponse(response) {
+        this.updateSlotsResponse = (new UpdateSlotsModel(response));
+        //console.log(this.updateSlotsResponse);
+    }
+
+    @action.bound
+    setGetUpdateWashingMachineAPIError(error) {
+        this.getUpdateSlotsResponseError = error;
     }
 
 

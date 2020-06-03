@@ -13,7 +13,8 @@ const IbHubsLogo = styled.img `
     object-fit:contain;`;
 
 const NavItems = styled.div `
-    ${tw `flex justify-around sm:w-full lg:w-1/2 items-center flex-wrap	 `}`;
+    ${tw `flex justify-around sm:w-full lg:w-1/2 items-center flex-wrap	 `}
+    `;
 
 const ProfileImg = styled.img `
 ${tw `flex-center cursor-pointer`}`;

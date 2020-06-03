@@ -12,11 +12,26 @@ class DashBoardService {
         })
     }
 
-    responseAPI = requestObj => {
+    availableSlotsResponseAPI = () => {
         return networkCallWithApisauce(
             this.api,
-            endPoints.DASHBOARD_END_POINT,
-            requestObj,
+            endPoints.DASHBOARD_END_POINT, {},
+            apiMethods.get
+        );
+    }
+
+    upcomingSlotsResponseAPI = () => {
+        return networkCallWithApisauce(
+            this.api,
+            endPoints.DASHBOARD_END_POINT, {},
+            apiMethods.get
+        );
+    }
+
+    previousSlotsResponseAPI = () => {
+        return networkCallWithApisauce(
+            this.api,
+            endPoints.DASHBOARD_END_POINT, {},
             apiMethods.get
         );
     }

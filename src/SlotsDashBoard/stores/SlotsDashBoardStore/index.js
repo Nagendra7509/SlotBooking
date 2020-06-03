@@ -9,20 +9,28 @@ import {
 }
 from '@ib/api-constants';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
-import AvailableSlotsModel from "../Models/AvailableSlotsModel";
-import UpComingSlotDetails from "../Models/UpComingSlotDetails";
-import PreviousSlotsModel from "../Models/PreviousSlotsModel";
+import AvailableSlotsModel from "../models/AvailableSlotsModel";
+import UpComingSlotDetails from "../models/UpComingSlotDetails";
+import PreviousSlotsModel from "../models/PreviousSlotsModel";
 
 
 class SlotsDashBoardStore {
 
-    @observable getResponseStatus
-    @observable getResponseError
+    @observable getAvailableSlotsResponseStatus;
+    @observable getAvailableSlotsResponseError;
+
+    @observable getUpcomingSlotsResponseStatus;
+    @observable getUpcomingSlotsResponseError;
+
+    @observable getPreviousSlotsResponseStatus;
+    @observable getPreviousSlotsResponseError;
+
     @observable dashBoardAPIService
     @observable availableSlotsDates
     @observable previousSlots
     @observable currentDate;
-    @observable slotsResponse;
+    @observable availableSlotsResponse;
+
     @observable availableSlotsTimings;
     @observable bookedDateAndTime;
     @observable upcomingSlotsResponse;
@@ -36,18 +44,28 @@ class SlotsDashBoardStore {
     @observable getCancelSlotStatus;
     @observable getCancelSlotError;
 
+
     constructor(dashBoardAPIService) {
         this.init();
         this.dashBoardAPIService = dashBoardAPIService;
     }
 
     init() {
-        this.getResponseStatus = API_INITIAL;
-        this.getResponseError = null;
+
+        this.getAvailableSlotsResponseStatus = API_INITIAL;
+        this.getAvailableSlotsResponseError = null;
+
+        this.getUpcomingSlotsResponseStatus = API_INITIAL;
+        this.getUpcomingSlotsResponseError = null;
+
+        this.getPreviousSlotsResponseStatus = API_INITIAL;
+        this.getPreviousSlotsResponseError = null;
+
+
         this.availableSlotsDates = [];
         this.previousSlots = [];
         this.currentDate = "";
-        this.slotsResponse = [];
+        this.availableSlotsResponse = [];
         this.availableSlotsTimings = [];
         this.bookedDateAndTime = {};
         this.upcomingSlotsResponse = [];
@@ -57,56 +75,110 @@ class SlotsDashBoardStore {
 
         this.getConfirmSlotStatus = API_INITIAL;
         this.getConfirmSlotError = null;
+
         this.getCancelSlotStatus = API_INITIAL;
         this.getCancelSlotError = null;
     }
 
     @action.bound
-    getSlotsData() {
+    getAvailableSlotsData() {
 
-        const promise = this.dashBoardAPIService.responseAPI();
+        const promise = this.dashBoardAPIService.availableSlotsResponseAPI();
 
         return bindPromiseWithOnSuccess(promise)
-            .to(this.setGetResponseAPIStatus, this.setAPIResponse)
-            .catch(this.setGetAPIError);
+            .to(this.setGetResponseAvailableSlotsAPIStatus, this.setAPIResponseAvailableSlots)
+            .catch(this.setGetAvailableSlotsAPIError);
     }
 
     @action.bound
-    setGetResponseAPIStatus(apiStatus) {
-        this.getResponseStatus = apiStatus;
+    setGetResponseAvailableSlotsAPIStatus(apiStatus) {
+        this.getAvailableSlotsResponseStatus = apiStatus;
     }
 
     @action.bound
-    setAPIResponse(response) {
+    setAPIResponseAvailableSlots(response) {
 
         //available slots
-        this.slotsResponse = response.available_slots.map(obj => (new AvailableSlotsModel(obj)));
-        // this.slotsResponse = response.available_slots;
-        this.availableSlotsDates = this.slotsResponse.map(obj => obj.date);
+        this.availableSlotsResponse = response.available_slots.map(obj => (new AvailableSlotsModel(obj)));
+
+        this.availableSlotsDates = this.availableSlotsResponse.map(obj => obj.date);
         this.currentDate = this.availableSlotsDates[0];
-        this.availableSlotsTimings = this.slotsResponse.find(obj => obj.date == this.currentDate).timingSlots;
+        this.availableSlotsTimings = this.availableSlotsResponse.find(obj => obj.date == this.currentDate).timingSlots;;
+    }
+
+    @action.bound
+    setGetAvailableSlotsAPIError(error) {
+        this.getAvailableSlotsResponseError = error;
+    }
+
+
+
+    @action.bound
+    getUpcomingSlotsData() {
+
+        const promise = this.dashBoardAPIService.upcomingSlotsResponseAPI();
+
+        return bindPromiseWithOnSuccess(promise)
+            .to(this.setGetResponseUpcomingSlotsAPIStatus, this.setAPIResponseUpcomingSlots)
+            .catch(this.setGetUpcomingSlotsAPIError);
+    }
+
+    @action.bound
+    setGetResponseUpcomingSlotsAPIStatus(apiStatus) {
+        this.getUpcomingSlotsResponseStatus = apiStatus;
+    }
+
+    @action.bound
+    setAPIResponseUpcomingSlots(response) {
 
         //upcoming slots
         this.upcomingSlotsResponse = response.upcoming_slots.map(obj => new UpComingSlotDetails(obj));
-        //this.upcomingSlotsResponse = response.up_coming_slots;
         this.upComingSlotsDates = this.upcomingSlotsResponse.map(obj => obj.date);
         this.upComingSlotsCurrentDate = this.upComingSlotsDates[0];
         this.upComingSlotsDetails = this.upcomingSlotsResponse.find(obj => obj.date == this.upComingSlotsCurrentDate);
+
+
+    }
+
+    @action.bound
+    setGetUpcomingSlotsAPIError(error) {
+        this.getUpcomingSlotsResponseError = error;
+    }
+
+
+    @action.bound
+    getPreviousSlotsData() {
+
+        const promise = this.dashBoardAPIService.previousSlotsResponseAPI();
+
+        return bindPromiseWithOnSuccess(promise)
+            .to(this.setGetResponsePreviousSlotsAPIStatus, this.setAPIResponsePreviousSlots)
+            .catch(this.setGetPreviousSlotsAPIError);
+    }
+
+    @action.bound
+    setGetResponsePreviousSlotsAPIStatus(apiStatus) {
+        this.getPreviousSlotsResponseStatus = apiStatus;
+    }
+
+    @action.bound
+    setAPIResponsePreviousSlots(response) {
 
         //previous slots
         this.previousSlots = response.previous_slots.map(obj => new PreviousSlotsModel(obj));
     }
 
     @action.bound
-    setGetAPIError(error) {
-        this.getResponseError = error;
+    setGetPreviousSlotsAPIError(error) {
+        this.getPreviousSlotsResponseError = error;
     }
+
 
     @action.bound
     onClickDateAvailableSlots(date) {
         this.currentDate = date;
         //this.availableSlotsTimings = this.slotsResponse.find(obj => obj.date == this.currentDate).timing_slots;
-        this.availableSlotsTimings = this.slotsResponse.find(obj => obj.date == this.currentDate).timingSlots;
+        this.availableSlotsTimings = this.availableSlotsResponse.find(obj => obj.date == this.currentDate).timingSlots;
 
     }
 
@@ -123,7 +195,6 @@ class SlotsDashBoardStore {
 
     @action.bound
     onClickConfirm() {
-
         if (this.bookedDateAndTime.date) {
 
             const promise = this.dashBoardAPIService.postBookedSlot(this.bookedDateAndTime);
@@ -175,7 +246,7 @@ class SlotsDashBoardStore {
 
     @action.bound
     setAPIResponseOfConfirmSlot(response) {
-        this.getSlotsData();
+        this.getAvailableSlotsData();
         alert('successfully allocated slot');
         this.bookedDateAndTime = {};
     }
@@ -189,13 +260,12 @@ class SlotsDashBoardStore {
 
     @action.bound
     setGetResponseCancelSlotStatus(status) {
-
         this.getCancelSlotStatus = status;
     }
 
     @action.bound
     setAPIResponseOfCancelSlot(response) {
-        this.getSlotsData();
+        this.getUpcomingSlotsData();
         alert('canceled slot successfully');
     }
 

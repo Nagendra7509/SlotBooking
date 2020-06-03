@@ -32,7 +32,7 @@ class AuthenticationStore {
       this.getUserSignInAPIError = null
       this.getUserLoginStatus = API_INITIAL
       this.getUserLoginError = null
-      this.isAdmin = false;
+      this.isAdmin;
    }
 
    @action.bound

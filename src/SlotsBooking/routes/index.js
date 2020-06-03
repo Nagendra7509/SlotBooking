@@ -10,9 +10,9 @@ import Profile from "../components/SlotsBookingHomePage/Profile";
 
 
 export const slotsBookingRoute = [
-    <ProtectedRoute path={SLOTS_BOOKING_PATH} component={SlotsBookingRoute}/>,
-    <ProtectedRoute path={REQUEST_PAGE_PATH} component={Requests}/>,
-    <ProtectedRoute path={REPORTANISSUE_PAGE_PATH} component={ReportAnIssue}/>,
-    <ProtectedRoute path={PREVIOUS_SLOTS_PAGE_PATH} component={PreviousSlots}/>,
-    <ProtectedRoute path={PROFILE_PAGE} component={Profile}/>
+    <ProtectedRoute key={Math.random()} path={SLOTS_BOOKING_PATH} component={SlotsBookingRoute}/>,
+    <ProtectedRoute key={Math.random()} path={REQUEST_PAGE_PATH} component={Requests}/>,
+    <ProtectedRoute key={Math.random()} path={REPORTANISSUE_PAGE_PATH} component={ReportAnIssue}/>,
+    <ProtectedRoute key={Math.random()} path={PREVIOUS_SLOTS_PAGE_PATH} component={PreviousSlots}/>,
+    <ProtectedRoute key={Math.random()} path={PROFILE_PAGE} component={Profile}/>
 ];

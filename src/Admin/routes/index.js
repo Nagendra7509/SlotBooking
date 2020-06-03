@@ -13,11 +13,11 @@ import ProfilePage from "../components/ProfilePage";
 import Settings from "../components/Settings";
 import WashingMachineActive from "../components/WashingMachineActivePage";
 import WashingMachineInactive from '../components/WashingMachineInActivePage';
-export const adminPageRoutes = [
-    <ProtectedRoute path={ADMIN_PAGE_PATH_ISSUES} component={AdminPage}/>,
-    <ProtectedRoute path = { ADMIN_PAGE_PROFILE } component ={ProfilePage}/>,
-    <ProtectedRoute path = { ADMIN_PAGE_SETTINGS } component ={Settings}/>,
-    <ProtectedRoute path = { ADMIN_PAGE_WASHINGMACHINE_ACTIVE } component ={WashingMachineActive}/>,
-    <ProtectedRoute path = { ADMIN_PAGE_WASHINGMACHINE_INACTIVE } component={WashingMachineInactive}/>
 
+export const adminPageRoutes = [
+    <ProtectedRoute key={Math.random()} path={ADMIN_PAGE_PATH_ISSUES} component={AdminPage}/>,
+    <ProtectedRoute key={Math.random()} path = { ADMIN_PAGE_PROFILE } component ={ProfilePage}/>,
+    <ProtectedRoute key={Math.random()} path = { ADMIN_PAGE_SETTINGS } component ={Settings}/>,
+    <ProtectedRoute key={Math.random()} path = { ADMIN_PAGE_WASHINGMACHINE_ACTIVE } component ={WashingMachineActive}/>,
+    <ProtectedRoute key={Math.random()} path = { ADMIN_PAGE_WASHINGMACHINE_INACTIVE } component={WashingMachineInactive}/>
 ];

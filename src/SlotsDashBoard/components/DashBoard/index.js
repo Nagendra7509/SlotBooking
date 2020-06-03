@@ -34,7 +34,9 @@ class DashBoard extends React.Component {
     }
 
     doNetworkCall = () => {
-        this.props.slotsDashBoardStore.getSlotsData();
+        this.props.slotsDashBoardStore.getAvailableSlotsData();
+        this.props.slotsDashBoardStore.getUpcomingSlotsData();
+        this.props.slotsDashBoardStore.getPreviousSlotsData();
     }
 
     onClickDateAvailableSlots = (event) => {
@@ -58,7 +60,7 @@ class DashBoard extends React.Component {
         const {
             previousSlots,
             currentDate,
-            slotsResponse,
+            availableSlotsResponse,
             countOfBookingSlotsPerDay
         } = this.props.slotsDashBoardStore;
 
@@ -70,13 +72,15 @@ class DashBoard extends React.Component {
             slotsAreUnavailable
         } = Strings.slotsDashBoard;
 
+
+
         if (availableSlotsDates.length == 0 && availableSlotsTimings.length == 0) {
             return <NoDataView />;
         }
 
         return <SlotsDateAndTime>
                     <Dates>
-                        {slotsResponse.length>0 && availableSlotsDates.map(date=>
+                        {availableSlotsResponse.length>0 && availableSlotsDates.map(date=>
                                             <DateBtn 
                                                 onClick={this.onClickDateAvailableSlots} 
                                                 id={date} 
@@ -94,7 +98,7 @@ class DashBoard extends React.Component {
                         </Legend>
                         
                         <TimeBtns>
-                        {slotsResponse.length>0 && availableSlotsTimings.map(obj=>
+                        {availableSlotsResponse.length>0 && availableSlotsTimings.map(obj=>
                                 <TimeBtn
                                     onClick={this.onClickTime}
                                     isClicked={obj.is_available}
@@ -116,7 +120,7 @@ class DashBoard extends React.Component {
                         </ConfirmBtnContainer>
                         
                             
-                        {(slotsResponse.length>0 && countOfBookingSlotsPerDay==availableSlotsTimings.length) && <SlotsUnAvailable
+                        {(availableSlotsResponse.length>0 && countOfBookingSlotsPerDay==availableSlotsTimings.length) && <SlotsUnAvailable
                             >{slotsAreUnavailable}
                         </SlotsUnAvailable>}
                         
@@ -135,8 +139,8 @@ class DashBoard extends React.Component {
         const {
 
             upComingSlotsDates,
-            getResponseStatus,
-            getResponseError,
+            getAvailableSlotsResponseStatus,
+            getAvailableSlotsResponseError,
             upComingSlotsCurrentDate,
             upComingSlotsDetails,
             onClickDateUpComingSlots,
@@ -152,8 +156,8 @@ class DashBoard extends React.Component {
                     </AvailableSlotsText>
                     
                     <LoadingWrapperWithFailure
-                        apiStatus={getResponseStatus}
-                        apiError={getResponseError}
+                        apiStatus={getAvailableSlotsResponseStatus}
+                        apiError={getAvailableSlotsResponseError}
                         onRetryClick={this.doNetworkCall}
                         renderSuccessUI={this.renderSuccessUI}
                     />
@@ -165,8 +169,6 @@ class DashBoard extends React.Component {
                     upComingSlotsDetails={upComingSlotsDetails}
                     onClickDateUpComingSlots={onClickDateUpComingSlots}
                     onClickCancelSlot={onClickCancelSlot}
-                    apiStatus={getResponseStatus}
-                        apiError={getResponseError}
 
                 />
                 

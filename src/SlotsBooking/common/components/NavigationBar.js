@@ -18,7 +18,7 @@ class NavigationBar extends React.Component {
 
 
     render() {
-
+        const { pathName } = this.props;
         return (<NavBar>
                 
                     <TopPart>
@@ -30,26 +30,31 @@ class NavigationBar extends React.Component {
                         <NavItems>
                         
                             <NavBarItem 
+                                path={pathName}
                                 href={SLOTS_BOOKING_PATH}
                                 >{Strings.navigationBar.home}
                             </NavBarItem>
                             
                             <NavBarItem 
+                                path={pathName}
                                 href={REQUEST_PAGE_PATH}
                                 >{Strings.navigationBar.requests}
                             </NavBarItem>
                             
                             <NavBarItem 
+                                path={pathName}
                                 href={REPORTANISSUE_PAGE_PATH}
                                 >{Strings.navigationBar.reportAnIssue}
                             </NavBarItem>
                             
                             <NavBarItem 
+                                path={pathName}
                                 href={PREVIOUS_SLOTS_PAGE_PATH} 
                                 >{Strings.navigationBar.previousSlots}
                             </NavBarItem>
                             
                             <NavBarItem 
+                                path={pathName}
                                 href={PROFILE_PAGE} 
                                 >{Strings.navigationBar.profile}
                             </NavBarItem>

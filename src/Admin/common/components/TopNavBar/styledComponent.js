@@ -24,7 +24,7 @@ const Profile = styled.a `
   font-style: normal;
   line-height: 1.33;
   letter-spacing: normal;
-  color: ${colors.steel60};`;
+  color: ${props=>props.href===props.path?"black":colors.steel60};`;
 
 export {
     NavBarContainer,

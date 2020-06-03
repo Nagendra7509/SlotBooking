@@ -15,35 +15,22 @@ import { SideNavBarContainer } from "./styledComponent";
 @observer
 class SideNavBar extends React.Component {
 
-    @observable clickedItem;
-
-    handleOnClick = (event) => {
-        //alert(event.target.id);
-        this.clickedItem = event.target.id;
-    }
-
     render() {
         const { issues, washingMachine, settings } = sideNav;
-
+        const { path } = this.props;
         return <SideNavBarContainer>
                     <SideNavItem
-                        id={issues}
-                        isClicked={this.clickedItem==issues}
-                        onClick={this.handleOnClick}
+                        path={path}
                         href={ADMIN_PAGE_PATH_ISSUES}
                         >{issues}
                     </SideNavItem>
-                    <SideNavItem
-                        id={washingMachine}
-                        isClicked={this.clickedItem==washingMachine}
-                        onClick={this.handleOnClick}    
+                    <SideNavItem  
+                        path={path}
                         href={ADMIN_PAGE_WASHINGMACHINE_ACTIVE}
                         >{washingMachine}
                     </SideNavItem>
                     <SideNavItem
-                        id={settings}
-                        isClicked={this.clickedItem==settings}
-                        onClick={this.handleOnClick}
+                        path={path}
                         href={ADMIN_PAGE_SETTINGS}
                         >{settings}
                     </SideNavItem>

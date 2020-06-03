@@ -1,13 +1,31 @@
 import availableSlotsResponse from "../../fixtures/getResponse.json";
 
 class DashBoardService {
-    responseAPI() {
+    availableSlotsResponseAPI() {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(availableSlotsResponse);
             }, 1000);
         });
     }
+
+    upcomingSlotsResponseAPI() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(availableSlotsResponse);
+            }, 1000);
+        });
+    }
+
+    previousSlotsResponseAPI() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(availableSlotsResponse);
+            }, 1000);
+        });
+    }
+
+
 
     postBookedSlot() {
         return new Promise((resolve, reject) => {

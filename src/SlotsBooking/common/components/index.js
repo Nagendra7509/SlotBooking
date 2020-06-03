@@ -3,7 +3,7 @@ import { NavItem, TimeBtn, Time, Heading } from "./styledComponent";
 
 
 export const NavBarItem = props => <NavItem 
-                                        onClick={props.onClick} 
+                                        path={props.path}
                                         href={props.href}
                                         >{props.children}
                                     </NavItem>;

@@ -4,6 +4,7 @@ const ADMIN_PAGE_WASHINGMACHINE_INACTIVE = "/slot-booking/admin/washingMachine/i
 const ADMIN_PAGE_SETTINGS = "/slot-booking/admin/settings";
 const ADMIN_PAGE_PROFILE = "/slot-booking/admin/profile";
 
+
 export {
     ADMIN_PAGE_PATH_ISSUES,
     ADMIN_PAGE_WASHINGMACHINE_ACTIVE,

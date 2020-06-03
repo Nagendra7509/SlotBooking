@@ -4,14 +4,15 @@ import { colors } from '../../themes/Colors'
 
 
 const NavItem = styled.a `
-  ${tw `cursor-pointer  hover:text-black focus:text-black`}
+  ${tw `cursor-pointer  `}
+ 
   font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.33;
   letter-spacing: normal;
-  color:${colors.steel60};
+  color:${props => (props.href===props.path)?'black':colors.steel60};
     `;
 const TimeBtn = styled.button `
 width: 170px;

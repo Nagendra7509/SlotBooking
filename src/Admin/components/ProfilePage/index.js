@@ -5,6 +5,7 @@ import { clearUserSession } from "../../../Authentication/utils/StorageUtils";
 import { LOGIN_PATH } from "../../../Authentication/constants/routeConstants/RouteConstants";
 import TopNavBar from "../../common/components/TopNavBar";
 import SideNavBar from "../../common/components/SideNavBar";
+import { ADMIN_PAGE_PROFILE } from "../../constants/routeConstants/RouteConstants";
 @observer
 class ProfilePage extends React.Component {
 
@@ -17,9 +18,9 @@ class ProfilePage extends React.Component {
 
     render() {
         return <div>
-                <TopNavBar/>
+                <TopNavBar path={ADMIN_PAGE_PROFILE}/>
                 <div className="flex ">
-                    <SideNavBar/>
+                    <SideNavBar path={ADMIN_PAGE_PROFILE}/>
                     <div>
                         <button onClick={this.onClickLogout} className="border-2 border-solid border-green-600">LogOut</button>
                     </div>
