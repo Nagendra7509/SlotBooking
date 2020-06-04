@@ -10,6 +10,7 @@ from '@ib/api-constants';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 import AdminModel from "../models/AdminModel";
 import UpdateSlotsModel from "../models/UpdateSlotsModel";
+import TimeSlots from "../models/UpdateSlotsModel/TimeSlots";
 
 
 
@@ -30,6 +31,8 @@ class AdminStore {
     adminService
     @observable updateMachineId
     @observable updateMachineStatus
+    @observable getPostUpdateSlotsStatus;
+    @observable getPostUpdateSlotsError;
 
     constructor(adminService) {
         this.init();
@@ -45,6 +48,8 @@ class AdminStore {
         this.getPostStatusOfWashingMachineResponseError = null;
         this.getPostNewWashingMachineIdStatus = API_INITIAL;
         this.getPostNewWashingMachineIdError = null;
+        this.getPostUpdateSlotsStatus = API_INITIAL;
+        this.getPostUpdateSlotsError = null;
         this.adminResponse = [];
         this.updateSlotsResponse = [];
         this.activeWashingMachines = [];
@@ -90,16 +95,21 @@ class AdminStore {
             alert('Already Exists Enter another number');
         }
         else {
+            if (washingMachineNumber) {
+                const requestObj = {
+                    "washing_machine_id": washingMachineNumber
+                };
+                const promise = this.adminService.postNewWashingMachineIdToAdd(requestObj);
 
-            const requestObj = {
-                "washing_machine_id": washingMachineNumber
-            };
-            const promise = this.adminService.postNewWashingMachineIdToAdd(requestObj);
-
-            return bindPromiseWithOnSuccess(promise)
-                .to(this.setGetPostNewWashingMachineAPIStatus, this.setPostNewWashingMachineAPIResponse)
-                .catch(this.setGetPostNewWashingMachineAPIError);
+                return bindPromiseWithOnSuccess(promise)
+                    .to(this.setGetPostNewWashingMachineAPIStatus, this.setPostNewWashingMachineAPIResponse)
+                    .catch(this.setGetPostNewWashingMachineAPIError);
+            }
+            else {
+                alert('enter washing machine number')
+            }
         }
+
 
     }
 
@@ -119,6 +129,7 @@ class AdminStore {
     @action.bound
     setGetPostNewWashingMachineAPIError(error) {
         this.getPostNewWashingMachineIdError = error;
+        alert("new washing machine is not added" + error);
         this.getAdminResponse();
     }
 
@@ -126,11 +137,11 @@ class AdminStore {
 
     @action.bound
     onClickUpdateInWashingMachineCard(id) {
-        // alert(id);
         this.updateMachineId = id;
         this.updateMachineStatus = this.adminResponse.filter(obj => obj.washingMachineId == id)[0].washingMachineStatus.toLowerCase();
         const requestObj = {
-            "washing_machine_id": id
+            "washing_machine_id": id,
+            "day": "Monday"
         };
         const promise = this.adminService.getUpdateWashingMachineSlotsDetails(requestObj);
 
@@ -181,13 +192,14 @@ class AdminStore {
     @action.bound
     setGetPostWashingMachineStatusAPIError(error) {
         this.getPostStatusOfWashingMachineResponseError = error;
+        alert('failed status not updated' + error);
     }
 
 
 
     @action.bound
     onClickCloseBtn(id) {
-        const updateTimeSlots = this.updateSlotsResponse.timeSlots.filter(obj => !(obj.startTime == id));
+        const updateTimeSlots = this.updateSlotsResponse.timeSlots.filter(obj => !(obj.id == id));
         this.updateSlotsResponse.timeSlots = updateTimeSlots;
     }
 
@@ -197,8 +209,8 @@ class AdminStore {
         let endTime = prompt("Enter endTime with the help of slots Table");
 
         if (startTime.length == 8 && endTime.length == 8) {
-
-            const addTimeslot = [...this.updateSlotsResponse.timeSlots, { "startTime": startTime, "endTime": endTime }]
+            const newSlot = { "start_time": startTime, "end_time": endTime }
+            const addTimeslot = [...this.updateSlotsResponse.timeSlots, new TimeSlots(newSlot)]
             this.updateSlotsResponse.timeSlots = addTimeslot;
 
         }
@@ -208,6 +220,56 @@ class AdminStore {
     }
 
 
+    @action.bound
+    onChangeStartTimeInUpdateSlots(id, value) {
+        this.updateSlotsResponse.timeSlots = this.updateSlotsResponse.timeSlots.map(obj => {
+            if (obj.id == id) {
+                obj.onChangeFromTime(value);
+            }
+            return obj;
+        });
+    }
+
+    @action.bound
+    onChangeEndTimeInUpdateSlots(id, value) {
+        this.updateSlotsResponse.timeSlots = this.updateSlotsResponse.timeSlots.map(obj => {
+            if (obj.id == id) {
+                obj.onChangeToTime(value);
+            }
+            return obj;
+        });
+    }
+
+    @action.bound
+    onClickUpdateBtn() {
+        const requestObj = {
+            "washing_machine_id": this.updateSlotsResponse.washingMachineId,
+            "day": this.updateSlotsResponse.day,
+            "time_slots": this.updateSlotsResponse.timeSlots.map(obj => ({ "start_time": obj.startTime, "end_time": obj.endTime }))
+        }
+
+        const promise = this.adminService.postUpdateSlotsDetails(requestObj);
+
+        return bindPromiseWithOnSuccess(promise)
+            .to(this.setGetPostUpdateSlotsResponseAPIStatus, this.setGetPostUpdateSlotsAPIResponse)
+            .catch(this.setGetPostUpdateSlotsAPIError);
+    }
+
+    @action.bound
+    setGetPostUpdateSlotsResponseAPIStatus(status) {
+        this.getPostUpdateSlotsStatus = status;
+    }
+
+    @action.bound
+    setGetPostUpdateSlotsAPIResponse(response) {
+        alert("successfully updated");
+    }
+
+    @action.bound
+    setGetPostUpdateSlotsAPIError(error) {
+        this.getPostUpdateSlotsError = error;
+        alert("data not updated" + error);
+    }
 
 }
 

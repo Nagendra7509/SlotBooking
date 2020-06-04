@@ -34,6 +34,14 @@ class AdminService {
             }, 1000);
         });
     }
+
+    postUpdateSlotsDetails = (requestObj) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(200);
+            }, 1000);
+        });
+    }
 }
 
 export default AdminService;

@@ -4,6 +4,7 @@ import { observable } from "mobx";
 
 
 class UpdateSlotsModel {
+    @observable id;
     @observable washingMachineId;
     @observable day;
     @observable timeSlots;
