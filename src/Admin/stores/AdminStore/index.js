@@ -13,7 +13,6 @@ import UpdateSlotsModel from "../models/UpdateSlotsModel";
 import TimeSlots from "../models/UpdateSlotsModel/TimeSlots";
 
 
-
 class AdminStore {
 
     @observable getAdminResponseStatus;
@@ -73,6 +72,7 @@ class AdminStore {
 
     @action.bound
     setAdminAPIResponse(response) {
+
         this.adminResponse = response.washing_machines.map(obj => new AdminModel(obj));
 
         this.activeWashingMachines = this.adminResponse.filter(obj => obj.washingMachineStatus == "ACTIVE");
@@ -86,9 +86,9 @@ class AdminStore {
     }
 
     @action.bound
-    onClickNewWashingMachine() {
+    onClickNewWashingMachine(washingMachineNumber) {
 
-        let washingMachineNumber = prompt("Enter WashingMachine Number");
+        //let washingMachineNumber = prompt("Enter WashingMachine Number");
         let checkingNumberExistOrNot = this.adminResponse.filter(obj => obj.washingMachineId === washingMachineNumber);
 
         if (checkingNumberExistOrNot.length == 1) {
@@ -109,8 +109,6 @@ class AdminStore {
                 alert('enter washing machine number')
             }
         }
-
-
     }
 
 

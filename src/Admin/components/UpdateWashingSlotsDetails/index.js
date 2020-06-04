@@ -38,6 +38,7 @@ from "./styledComponents";
 @observer
 class UpdateWashingSlotsDetails extends React.Component {
 
+
     constructor(props) {
         super(props);
         this.getUpdateSlotsData();
@@ -60,6 +61,7 @@ class UpdateWashingSlotsDetails extends React.Component {
     }
 
     onClickAddNewSlot = () => {
+
         const { onClickAddNewSlot } = this.props.adminStore;
         onClickAddNewSlot();
     }
@@ -170,10 +172,10 @@ class UpdateWashingSlotsDetails extends React.Component {
                         </SlotDetailsContainer>
                         
                         
-                
+                        
                     </SideNavBarAndSlotsDetails>
                     
-
+                    
                 </UpDateSlotContainer>
     }
 }

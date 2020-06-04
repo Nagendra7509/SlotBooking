@@ -35,5 +35,9 @@
         "pm": "PM",
         "addSlots": "+ Add Slots",
         "update": "Update"
+    },
+    "popUp": {
+        "washingMachineID": "Washing Machine ID",
+        "add": "ADD"
     }
 }

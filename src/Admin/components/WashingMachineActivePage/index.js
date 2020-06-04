@@ -1,5 +1,6 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
+import { observable } from "mobx";
 import SideNavBar from "../../common/components/SideNavBar";
 import TopNavBar from "../../common/components/TopNavBar";
 import ActiveAndInactiveState from "../../common/components/ActiveAndInactiveState";
@@ -10,6 +11,7 @@ import {
     Typo14WhiteHKGroteskSemiBold
 }
 from "../../../styleGuide/Typos";
+import PopUp from "../PopUp";
 import {
     WashingMachineActiveContainer,
     SideNavBarAndActiveMachines,
@@ -24,6 +26,8 @@ from "./styledComponents";
 @inject('adminStore')
 @observer
 class WashingMachineActive extends React.Component {
+
+    @observable isClickedAddNewMachine = false;
 
 
     componentDidMount() {
@@ -53,6 +57,12 @@ class WashingMachineActive extends React.Component {
         onClickActiveOrInactiveStatus(event.target.id);
     }
 
+    onClickAddMachine = () => {
+        this.isClickedAddNewMachine = !this.isClickedAddNewMachine;
+        // const { onClickNewWashingMachine } = this.props.adminStore;
+        // onClickNewWashingMachine();
+    }
+
 
     render() {
         const { activeWashingMachines, onClickNewWashingMachine } = this.props.adminStore;
@@ -77,7 +87,7 @@ class WashingMachineActive extends React.Component {
                             
                             <AddNewMachine>
                                 <Typo14WhiteHKGroteskSemiBold 
-                                    onClick={onClickNewWashingMachine}
+                                    onClick={this.onClickAddMachine}
                                     >+ {activeAndInactive.addNewMachine}
                                 </Typo14WhiteHKGroteskSemiBold>
                             </AddNewMachine>
@@ -95,7 +105,9 @@ class WashingMachineActive extends React.Component {
                             </ActiveMachineCards>
                             
                         </ActiveMachines>
-                    
+                        {this.isClickedAddNewMachine && <PopUp 
+                                onClickAddMachine={this.onClickAddMachine}
+                                onClickNewWashingMachine={onClickNewWashingMachine}/>}
                 </SideNavBarAndActiveMachines>
                 
             </WashingMachineActiveContainer>
