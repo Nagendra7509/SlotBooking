@@ -37,11 +37,10 @@ class LoginPage extends React.Component {
 
       if (getAccessToken()) {
          const { isAdmin } = this.props;
-         //alert(isAdmin + "login");
-         if (isAdmin) {
+         if (isAdmin && isAdmin != undefined) {
             return <Redirect to ={{pathname:'/slot-booking/admin/issues/'}}/>;
          }
-         else {
+         if (!isAdmin && isAdmin != undefined) {
             return <Redirect to ={{pathname:'/slot-booking/dashBoard/'}}/>;
          }
       }

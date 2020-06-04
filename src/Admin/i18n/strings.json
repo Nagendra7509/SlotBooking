@@ -24,5 +24,16 @@
         "markAsActive": "Mark As Active",
         "allocatedSlots": "Allocated Slots",
         "addNewMachine": "Add New Machine"
+    },
+    "updateSlots": {
+        "washingMachineID": "Washing Machine ID : ",
+        "slots": "SLOTS",
+        "slot": "slot",
+        "from": "FROM",
+        "to": "TO",
+        "am": "AM",
+        "pm": "PM",
+        "addSlots": "+ Add Slots",
+        "update": "Update"
     }
 }

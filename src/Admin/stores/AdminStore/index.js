@@ -126,6 +126,7 @@ class AdminStore {
 
     @action.bound
     onClickUpdateInWashingMachineCard(id) {
+        // alert(id);
         this.updateMachineId = id;
         this.updateMachineStatus = this.adminResponse.filter(obj => obj.washingMachineId == id)[0].washingMachineStatus.toLowerCase();
         const requestObj = {
@@ -182,6 +183,29 @@ class AdminStore {
         this.getPostStatusOfWashingMachineResponseError = error;
     }
 
+
+
+    @action.bound
+    onClickCloseBtn(id) {
+        const updateTimeSlots = this.updateSlotsResponse.timeSlots.filter(obj => !(obj.startTime == id));
+        this.updateSlotsResponse.timeSlots = updateTimeSlots;
+    }
+
+    @action.bound
+    onClickAddNewSlot() {
+        let startTime = prompt("Enter startTime with the help of slots Table");
+        let endTime = prompt("Enter endTime with the help of slots Table");
+
+        if (startTime.length == 8 && endTime.length == 8) {
+
+            const addTimeslot = [...this.updateSlotsResponse.timeSlots, { "startTime": startTime, "endTime": endTime }]
+            this.updateSlotsResponse.timeSlots = addTimeslot;
+
+        }
+        else {
+            alert("Enter Valid Time Slot")
+        }
+    }
 
 
 

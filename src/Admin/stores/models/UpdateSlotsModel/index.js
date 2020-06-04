@@ -11,7 +11,7 @@ class UpdateSlotsModel {
     constructor(obj) {
         this.washingMachineId = obj.washingMachine_id;
         this.day = obj.day;
-        this.timeSlots = obj.time_slots.map(obj => new TimeSlots(obj));
+        this.timeSlots = obj.time_slots.map(obj => (new TimeSlots(obj)));
     }
 
 }
