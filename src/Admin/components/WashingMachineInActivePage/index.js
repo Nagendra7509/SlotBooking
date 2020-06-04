@@ -1,12 +1,12 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
 import { observable } from "mobx";
+import { Typo14WhiteHKGroteskSemiBold } from "../../../styleGuide/Typos";
 import SideNavBar from "../../common/components/SideNavBar";
 import TopNavBar from "../../common/components/TopNavBar";
 import ActiveAndInactiveState from "../../common/components/ActiveAndInactiveState";
 import { ADMIN_PAGE_WASHINGMACHINE_INACTIVE } from "../../constants/routeConstants/RouteConstants";
 import WashingMachineCard from "../../common/components/WashingMachineCard";
-import { Typo14WhiteHKGroteskSemiBold } from "../../../styleGuide/Typos";
 import { activeAndInactive } from "../../i18n/strings.json";
 import PopUp from "../PopUp";
 import {
@@ -29,6 +29,7 @@ class WashingMachineInactive extends React.Component {
     }
 
     onClickUpdate = (event) => {
+
         const { onClickUpdateInWashingMachineCard } = this.props.adminStore;
         onClickUpdateInWashingMachineCard(event.target.id);
 
@@ -68,17 +69,20 @@ class WashingMachineInactive extends React.Component {
                         <SideNavBar 
                             path={ADMIN_PAGE_WASHINGMACHINE_INACTIVE}
                         />
+                        
                         <InActiveMachines>
                         
                             <ActiveAndInactiveState 
                                 path={ADMIN_PAGE_WASHINGMACHINE_INACTIVE}
                             />
+                            
                             <AddNewMachine>
                                 <Typo14WhiteHKGroteskSemiBold 
                                     onClick={this.onClickAddMachine}
                                     >+ {activeAndInactive.addNewMachine}
                                 </Typo14WhiteHKGroteskSemiBold>
                             </AddNewMachine>
+                            
                             <InActiveMachineCards>
                                 {inActiveWashingMachines.length>0 && inActiveWashingMachines.map(obj=>
                                             <WashingMachineCard
@@ -90,6 +94,7 @@ class WashingMachineInactive extends React.Component {
                                             />
                                 )}
                             </InActiveMachineCards>
+                            
                         </InActiveMachines>
                         {this.isClickedAddNewMachine && <PopUp
                                         onClickAddMachine={this.onClickAddMachine}

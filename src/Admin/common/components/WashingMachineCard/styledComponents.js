@@ -17,8 +17,7 @@ const WashingMachineDetails = styled.div `
     ${tw `flex flex-col`}`;
 
 const WashingMachineCardId = styled.p `
-    ${tw `mx-6 my-4`}
-    `;
+    ${tw `mx-6 my-4`}`;
 
 const UpdateAndStatus = styled.div `
     ${tw `flex justify-around items-center`}`;
@@ -38,8 +37,7 @@ const Status = styled.p `
   font-style: normal;
   line-height: 1.71;
   letter-spacing: normal;
-  color:${colors.brightBlue};
-    `;
+  color:${colors.brightBlue};`;
 
 
 export {

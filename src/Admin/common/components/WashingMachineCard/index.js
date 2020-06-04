@@ -41,6 +41,7 @@ class WashingMachineCard extends React.Component {
                     src={washingMachinesUrls[Math.floor(Math.random() * (5 + 0 + 1))]} 
                     alt={"WashingMachineImg"}
                 />  
+                
                 <WashingMachineDetails>
                 
                     <WashingMachineCardId>{washingMachineID}{washingMachineId}</WashingMachineCardId>

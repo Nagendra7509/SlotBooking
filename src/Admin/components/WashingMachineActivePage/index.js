@@ -59,8 +59,6 @@ class WashingMachineActive extends React.Component {
 
     onClickAddMachine = () => {
         this.isClickedAddNewMachine = !this.isClickedAddNewMachine;
-        // const { onClickNewWashingMachine } = this.props.adminStore;
-        // onClickNewWashingMachine();
     }
 
 
@@ -77,7 +75,6 @@ class WashingMachineActive extends React.Component {
                         <SideNavBar 
                             path={ADMIN_PAGE_WASHINGMACHINE_ACTIVE}
                         />
-                        
                         
                         <ActiveMachines >
                         

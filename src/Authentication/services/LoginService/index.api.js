@@ -9,26 +9,26 @@ class LoginService {
 
    constructor() {
       this.api = create({
-         baseURL: 'dgs'
+         baseURL: 'https://80db821aa62d.ngrok.io'
       })
    }
 
-   loginAPI = () => {
+   loginAPI = (requestObj) => {
       return networkCallWithApisauce(
          this.api,
-         endPoints.Login, {},
-         apiMethods.get
-      )
+         '/api/slot_booking/user/login/v1/', requestObj,
+         apiMethods.post
+      );
    }
 
-   postCredentials = requestObj => {
-      return networkCallWithApisauce(
-         this.api,
-         endPoints.Login,
-         requestObj,
-         apiMethods.post
-      )
-   }
+   // postCredentials = requestObj => {
+   //    return networkCallWithApisauce(
+   //       this.api,
+   //       '/api/slot_booking/user/login/v1/',
+   //       requestObj,
+   //       apiMethods.post
+   //    )
+   // }
 }
 
 export default LoginService;

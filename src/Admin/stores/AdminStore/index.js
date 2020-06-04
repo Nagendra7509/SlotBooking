@@ -28,8 +28,8 @@ class AdminStore {
     @observable getPostNewWashingMachineIdStatus;
     @observable getPostNewWashingMachineIdError;
     adminService
-    @observable updateMachineId
-    @observable updateMachineStatus
+    updateMachineId
+    updateMachineStatus
     @observable getPostUpdateSlotsStatus;
     @observable getPostUpdateSlotsError;
 

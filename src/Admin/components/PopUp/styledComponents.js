@@ -4,7 +4,8 @@ import { colors } from "../../themes/Colors";
 
 
 const PopUpContainer = styled.div `
-    ${tw `flex justify-center items-center h-screen absolute  inset-0`}`;
+    ${tw `flex justify-center items-center h-screen absolute  inset-0 bg-gray-transparent`}
+    `;
 
 const WashingMachineImg = styled.img `
     object-fit:contain;
@@ -25,8 +26,7 @@ const WashingMachineId = styled.p `
   font-style: normal;
   line-height: 1.33;
   letter-spacing: normal;
-  color:${colors.darkBlueGrey};
-    `;
+  color:${colors.darkBlueGrey};`;
 
 const InputTag = styled.input `
     ${tw `mx-auto mt-10`}
@@ -34,8 +34,8 @@ const InputTag = styled.input `
     border:2px solid ${colors.lightBlueGrey}`;
 
 const AddButton = styled.button `
-    ${tw `mt-10 mx-auto px-4 py-2 rounded`}
-    width:30%;
+  ${tw `mt-10 mx-auto px-4 py-2 rounded`}
+  width:30%;
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
@@ -43,14 +43,14 @@ const AddButton = styled.button `
   line-height: 1.5;
   letter-spacing: normal;
   background-color:${colors.brightBlue};
-  color: ${colors.white};    
-    `;
+  color: ${colors.white};`;
 
 const PopUpDetails = styled.div `
-    ${tw `flex `}
+    ${tw `flex relative`}
     border:2px solid ${colors.lightBlueGrey};
     background-color:white;
     height:60%;
+    box-shadow: 0 8px 16px 0 ${colors.darkBlueGrey};
     width:60%;`;
 
 
@@ -64,4 +64,4 @@ export {
     InputTag,
     PopUpDetails,
     AddButton
-}
+};

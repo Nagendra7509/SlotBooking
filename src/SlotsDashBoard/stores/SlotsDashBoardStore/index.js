@@ -25,7 +25,7 @@ class SlotsDashBoardStore {
     @observable getPreviousSlotsResponseStatus;
     @observable getPreviousSlotsResponseError;
 
-    @observable dashBoardAPIService
+    dashBoardAPIService
     @observable availableSlotsDates
     @observable previousSlots
     @observable currentDate;

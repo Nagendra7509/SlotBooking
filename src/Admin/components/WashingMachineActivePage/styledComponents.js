@@ -7,8 +7,7 @@ const AddNewMachine = styled.div `
     ${tw `flex justify-end `}`
 
 const WashingMachineActiveContainer = styled.div `
-    ${tw `relative`}
-    `;
+    ${tw `relative`}`;
 
 const SideNavBarAndActiveMachines = styled.div `
     ${tw `flex`}`;

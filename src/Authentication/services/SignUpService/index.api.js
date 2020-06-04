@@ -9,14 +9,14 @@ class SignUpService {
 
    constructor() {
       this.api = create({
-         baseURL: 'sg'
+         baseURL: 'https://80db821aa62d.ngrok.io'
       })
    }
 
    signUpAPI = requestObj => {
       return networkCallWithApisauce(
          this.api,
-         endPoints.SignUp,
+         '/api/slot_booking/user/signup/v1/',
          requestObj,
          apiMethods.post
       );

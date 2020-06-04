@@ -15,8 +15,7 @@ const NavItem = styled.a `
   color:${props=>props.path===props.href?colors.brightBlue:colors.darkBlueGrey};`;
 
 const StatusItem = styled.a `  
-    ${tw `px-4 py-2 `}
-    
+  ${tw `px-4 py-2 `}
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -31,7 +30,4 @@ const StatusItem = styled.a `
 export {
     NavItem,
     StatusItem
-}
-
-
-//
+};

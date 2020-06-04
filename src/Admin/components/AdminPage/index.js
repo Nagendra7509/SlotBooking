@@ -4,6 +4,12 @@ import TopNavBar from "../../common/components/TopNavBar";
 import SideNavBar from "../../common/components/SideNavBar";
 import IssuesPage from "../IssuesPage";
 import { ADMIN_PAGE_PATH_ISSUES } from "../../constants/routeConstants/RouteConstants";
+import {
+    AdminHomePageContainer,
+    SideNavBarAndIssues
+}
+from "./styledComponents";
+
 @inject('adminStore')
 @observer
 class AdminPage extends React.Component {
@@ -18,16 +24,14 @@ class AdminPage extends React.Component {
     }
 
     render() {
-        //const urls = [...washingMachineUrls];
-        //console.log(Math.floor(Math.random() * (5 + 0 + 1), "rfgrf"));
 
-        return <div>
+        return <AdminHomePageContainer>
                 <TopNavBar path={ADMIN_PAGE_PATH_ISSUES}/>
-                <div className="flex">
+                <SideNavBarAndIssues>
                     <SideNavBar path={ADMIN_PAGE_PATH_ISSUES}/>
                     <IssuesPage/>
-                </div>
-                </div>;
+                </SideNavBarAndIssues>
+                </AdminHomePageContainer>;
     }
 }
 

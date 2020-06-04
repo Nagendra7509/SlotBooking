@@ -30,7 +30,6 @@ describe('slotsDashBoardStore Tests', () => {
         expect(slotsDashBoardStore.getUpcomingSlotsResponseError).toBe(null);
         expect(slotsDashBoardStore.getPreviousSlotsResponseStatus).toBe(API_INITIAL);
         expect(slotsDashBoardStore.getPreviousSlotsResponseError).toBe(null);
-
         expect(slotsDashBoardStore.getConfirmSlotStatus).toBe(API_INITIAL);
         expect(slotsDashBoardStore.getConfirmSlotError).toBe(null);
         expect(slotsDashBoardStore.getConfirmSlotStatus).toBe(API_INITIAL);

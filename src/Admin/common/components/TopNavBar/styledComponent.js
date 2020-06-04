@@ -17,8 +17,8 @@ const NavItem = styled.img `
 object-fit:contain`;
 
 const Profile = styled.a `
-    ${tw `px-4`}
-    font-size: 18px;
+  ${tw `px-4`}
+  font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;

@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-
+import { IssuesPageContainer } from "./styledComponents";
 
 @observer
 class IssuesPage extends React.Component {
@@ -8,7 +8,7 @@ class IssuesPage extends React.Component {
 
     render() {
 
-        return <h1>IssuesPage</h1>;
+        return <IssuesPageContainer>IssuesPage</IssuesPageContainer>;
     }
 
 }

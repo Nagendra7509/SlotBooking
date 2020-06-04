@@ -32,16 +32,21 @@ class SignUpRoute extends React.Component {
       this.confirmPassword = event.target.value
    }
 
-   @action.bound
-   onClickSignUpBtn() {
+
+   onClickSignUpBtn = async() => {
 
       const { passwordMisMatch, enterPassword, enterUserName } = Strings.signUp;
 
       if (this.userName != "" && this.password != "") {
          if (this.password == this.confirmPassword) {
             clearUserSession();
-            const { history } = this.props;
-            history.replace('/slot-booking/login/');
+
+            const { userSignUp } = this.props.authenticationStore;
+
+            await userSignUp(this.userName, this.password);
+
+            //const { history } = this.props;
+            //history.replace('/slot-booking/login/');
          }
          else {
             this.confirmPasswordError = passwordMisMatch;

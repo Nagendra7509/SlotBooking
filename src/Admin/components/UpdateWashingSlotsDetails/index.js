@@ -45,8 +45,6 @@ class UpdateWashingSlotsDetails extends React.Component {
 
     }
 
-
-
     getUpdateSlotsData = async() => {
         const { getAdminResponse, onClickUpdateInWashingMachineCard } = this.props.adminStore;
         await getAdminResponse();
@@ -176,7 +174,7 @@ class UpdateWashingSlotsDetails extends React.Component {
                     </SideNavBarAndSlotsDetails>
                     
                     
-                </UpDateSlotContainer>
+                </UpDateSlotContainer>;
     }
 }
 

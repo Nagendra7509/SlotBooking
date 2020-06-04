@@ -33,10 +33,10 @@ class LoginRoute extends React.Component {
             this.errroMessageUserName = 'noError';
             this.errorMessagePassword = 'noError';
             const { userLogin, postCredentialsOfLogin } = this.props.authenticationStore;
-            await postCredentialsOfLogin(this.userName, this.password);
-            await userLogin();
+            //await postCredentialsOfLogin(this.userName, this.password);
+            await userLogin(this.userName, this.password);
             const { isAdmin, loginCredentialsError } = this.props.authenticationStore;
-
+            //alert(getAccessToken());
             if (getAccessToken()) {
                 const { history } = this.props;
                 if (isAdmin) {

@@ -49,6 +49,15 @@ class AdminService {
         );
     }
 
+    postUpdateSlotsDetails = requestObj => {
+        return networkCallWithApisauce(
+            this.api,
+            endPoints,
+            requestObj,
+            apiMethods.post
+        );
+    }
+
 
 
 

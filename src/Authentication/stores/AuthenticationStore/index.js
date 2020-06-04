@@ -14,10 +14,10 @@ class AuthenticationStore {
 
    @observable getUserLoginStatus
    @observable getUserLoginError
-   @observable loginAPIService
+   loginAPIService
    @observable getUserSignUpStatus
    @observable getUserSignUpError
-   @observable signUpAPIService
+   signUpAPIService
    @observable isAdmin
    @observable loginCredentialsError = "";
 
@@ -36,9 +36,14 @@ class AuthenticationStore {
    }
 
    @action.bound
-   userLogin() {
+   userLogin(userName, password) {
 
-      const userPromise = this.loginAPIService.loginAPI();
+      const requestObj = {
+         "username": userName,
+         "password": password
+      }
+      console.log(requestObj);
+      const userPromise = this.loginAPIService.loginAPI(requestObj);
       return bindPromiseWithOnSuccess(userPromise)
          .to(this.setGetUserLoginAPIStatus, this.setUserLoginAPIResponse)
          .catch(this.setGetUserLoginAPIError)
@@ -46,11 +51,13 @@ class AuthenticationStore {
 
    @action.bound
    setGetUserLoginAPIStatus(apiStatus) {
-      this.getUserLoginStatus = apiStatus
+      this.getUserLoginStatus = apiStatus;
+      console.log(apiStatus, "status");
    }
 
    @action.bound
    setUserLoginAPIResponse(response) {
+      console.log(response, "response");
       setAccessToken(response.access_token)
       this.isAdmin = response.is_admin;
 
@@ -59,16 +66,17 @@ class AuthenticationStore {
 
    @action.bound
    setGetUserLoginAPIError(error) {
+      console.log(error);
       this.getUserLoginError = error
    }
 
    @action.bound
    userSignUp(userName, password) {
       const requestObj = {
-         username: userName,
-         password: password
+         "username": userName,
+         "password": password
       }
-      const userPromise = this.SignUpAPIService.signUpAPI(requestObj)
+      const userPromise = this.signUpAPIService.signUpAPI(requestObj)
 
       return bindPromiseWithOnSuccess(userPromise)
          .to(this.setGetUserSignUpAPIStatus, this.setUserSignUpAPIResponse)
@@ -78,50 +86,52 @@ class AuthenticationStore {
    @action.bound
    setGetUserSignUpAPIStatus(apiStatus) {
       this.getUserSignUpStatus = apiStatus;
+      console.log(apiStatus, "status");
    }
 
    @action.bound
    setUserSignUpAPIResponse(response) {
-
+      console.log(response, "response");
    }
 
    @action.bound
    setGetUserSignUpAPIError(error) {
       this.getUserSignUpError = error;
+      console.log(error, "error");
    }
 
 
-   @action.bound
-   postCredentialsOfLogin(userName, password) {
+   // @action.bound
+   // postCredentialsOfLogin(userName, password) {
 
-      this.loginCredentialsError = " ";
-      const requestObj = {
-         username: userName,
-         password: password
-      }
-      const userPromise = this.loginAPIService.postCredentials(requestObj);
+   //    this.loginCredentialsError = " ";
+   //    const requestObj = {
+   //       username: userName,
+   //       password: password
+   //    }
+   //    const userPromise = this.loginAPIService.postCredentials(requestObj);
 
-      return bindPromiseWithOnSuccess(userPromise)
-         .to(this.setGetUserLoginCredentialsAPIStatus, this.setUserLoginCredentialsAPIResponse)
-         .catch(this.setGetUserLoginCredentialAPIError)
+   //    return bindPromiseWithOnSuccess(userPromise)
+   //       .to(this.setGetUserLoginCredentialsAPIStatus, this.setUserLoginCredentialsAPIResponse)
+   //       .catch(this.setGetUserLoginCredentialAPIError)
 
-   }
+   // }
 
-   @action.bound
-   setGetUserLoginCredentialsAPIStatus(status) {
-      //console.log()
-   }
+   // @action.bound
+   // setGetUserLoginCredentialsAPIStatus(status) {
+   //    //console.log()
+   // }
 
-   @action.bound
-   setUserLoginCredentialsAPIResponse(response) {
-      //alert('posted credentials');
-   }
+   // @action.bound
+   // setUserLoginCredentialsAPIResponse(response) {
+   //    //alert('posted credentials');
+   // }
 
-   @action.bound
-   setGetUserLoginCredentialAPIError(error) {
-      this.loginCredentialsError = error;
-      //alert(this.loginCredentialsError);
-   }
+   // @action.bound
+   // setGetUserLoginCredentialAPIError(error) {
+   //    this.loginCredentialsError = error;
+   //    //alert(this.loginCredentialsError);
+   // }
 
 
 

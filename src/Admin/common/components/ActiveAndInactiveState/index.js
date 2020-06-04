@@ -17,21 +17,22 @@ class ActiveAndInactiveState extends React.Component {
 
         const { active, inActive } = activeAndInactive;
         const { path } = this.props;
+
         return (
             <ActiveAndInactiveContainer>
-                    <ActiveAndInactiveBar>
-                        <Status
-                            path={path}
-                            href={ADMIN_PAGE_WASHINGMACHINE_ACTIVE}
-                            >{active}
-                        </Status>
-                        <Status
-                            path={path}
-                            href={ADMIN_PAGE_WASHINGMACHINE_INACTIVE}
-                            >{inActive}
-                        </Status>
-                    </ActiveAndInactiveBar>
-                </ActiveAndInactiveContainer>
+                <ActiveAndInactiveBar>
+                    <Status
+                        path={path}
+                        href={ADMIN_PAGE_WASHINGMACHINE_ACTIVE}
+                        >{active}
+                    </Status>
+                    <Status
+                        path={path}
+                        href={ADMIN_PAGE_WASHINGMACHINE_INACTIVE}
+                        >{inActive}
+                    </Status>
+                </ActiveAndInactiveBar>
+            </ActiveAndInactiveContainer>
         );
 
     }

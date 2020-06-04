@@ -1,5 +1,4 @@
 import React from "react";
-
 import { ibhubsLogo, profile } from "../../../assets/";
 import { topNav } from "../../../i18n/strings.json";
 import { ADMIN_PAGE_PROFILE } from "../../../constants/routeConstants/RouteConstants";
@@ -16,7 +15,9 @@ class TopNavBar extends React.Component {
 
 
     render() {
+
         const { path } = this.props;
+
         return <NavBarContainer>
                     <IbHubsLogo src={ibhubsLogo.logoAdress} alt={"ibhubsLogo"}/>
                     <NavItems>
@@ -31,4 +32,4 @@ class TopNavBar extends React.Component {
     }
 }
 
-export default TopNavBar
+export default TopNavBar;
