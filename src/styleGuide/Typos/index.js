@@ -61,7 +61,7 @@ const Typo12HKGroteskSemiBoldSteel = styled.label `
   font-style: normal;
   line-height: 1.33;
   letter-spacing: 0.12px;
-  margin: 10px 108px 2px 108px;
+  margin: 10px 80px 2px 80px;
   color:#7e858e;`;
 
 
@@ -70,12 +70,11 @@ const Typo12HKGroteskRegular = styled.span `
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  margin: 0px 304px 0px 108px;
+  margin:auto;
   line-height: 1.33;
   letter-spacing: normal;
   visibility:${props=>props.visibilityValue?"visible":"hidden"};
-  color: #ff0b37;
-   `;
+  color: #ff0b37;`;
 
 const Typo14WhiteHKGroteskSemiBold = styled.button `
     ${tw `px-6 py-2 mx-10 my-4`}
@@ -97,3 +96,8 @@ export {
     Typo12HKGroteskRegular,
     Typo14WhiteHKGroteskSemiBold
 };
+//Typo12HKGroteskRegular
+//margin: 0px 304px 0px 108px;
+//
+
+//Typo12HKGroteskSemiBoldSteel

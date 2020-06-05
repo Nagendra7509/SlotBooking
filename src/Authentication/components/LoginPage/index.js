@@ -14,7 +14,7 @@ import {
    IbHubsLogo,
 }
 from '../../common/components';
-
+import { SIGN_UP_PATH } from "../../constants/routeConstants/RouteConstants";
 import { ibhubsLogo } from '../../assets';
 import Strings from '../../i18n/strings.json';
 import { getAccessToken } from "../../utils/StorageUtils";
@@ -74,6 +74,7 @@ class LoginPage extends React.Component {
                   value={username}
                   type='text'
                   placeholder='username'
+                  borderValue={errroMessageUserName!="noError"}
                />
              
                <Typo12HKGroteskRegular 
@@ -88,6 +89,7 @@ class LoginPage extends React.Component {
                   value={password}
                   type='password'
                   placeholder='password'
+                  borderValue={errorMessagePassword!="noError"}
                />
                
                <Typo12HKGroteskRegular 
@@ -110,7 +112,7 @@ class LoginPage extends React.Component {
                <DontHaveAccount>
                   {Strings.login.donotHaveAnAccount}
                   <SignupLink
-                     href={'https://a2ae96eb5eb34fdda2eb65989640e7b0.vfs.cloud9.ap-southeast-1.amazonaws.com/slot-booking/sign-up/#/slot-booking/sign-up/'}
+                     href={SIGN_UP_PATH}
                   >{' '}{Strings.login.signUp}
                   </SignupLink>
                </DontHaveAccount>
@@ -123,3 +125,5 @@ class LoginPage extends React.Component {
 }
 
 export default LoginPage;
+//LOGIN_PATH
+//https://a2ae96eb5eb34fdda2eb65989640e7b0.vfs.cloud9.ap-southeast-1.amazonaws.com/slot-booking/sign-up/#/slot-booking/sign-up/

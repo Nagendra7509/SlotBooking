@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { clearUserSession } from "../../../Authentication/utils/StorageUtils";
+import { clearUserSession } from "../../../utils/StorageUtils";
 import { LOGIN_PATH } from "../../../Authentication/constants/routeConstants/RouteConstants";
 import TopNavBar from "../../common/components/TopNavBar";
 import SideNavBar from "../../common/components/SideNavBar";

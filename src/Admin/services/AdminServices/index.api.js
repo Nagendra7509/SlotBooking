@@ -1,7 +1,8 @@
 import { create } from 'apisauce'
-import { networkCallWithApisauce } from '../../utils/APIUtils'
-import { apiMethods } from '../../constants/APIConstants'
+import { networkCallWithApisauce } from '../../../utils/APIUtils'
+import { apiMethods } from '../../../constants/APIConstants'
 import { endPoints } from '../endPoints'
+import { EnvironmentConstants } from "../../../Common/constants/environmentConstants";
 
 class AdminService {
 
@@ -9,22 +10,23 @@ class AdminService {
 
     constructor() {
         this.api = create({
-            baseURL: 'dgs'
+            baseURL: EnvironmentConstants.SLOTS_BOOKING_BASE_URL
         })
     }
 
     adminResponse = () => {
         return networkCallWithApisauce(
             this.api,
-            endPoints, {},
+            '/api/slot_booking/get/washing/machine/details/v1/', {},
             apiMethods.get
         )
     }
 
     getUpdateWashingMachineSlotsDetails = requestObj => {
+        //console.log(requestObj, "api update");
         return networkCallWithApisauce(
             this.api,
-            endPoints,
+            '/api/slot_booking/get/washing/machine/slots/v1/',
             requestObj,
             apiMethods.get
         );
@@ -43,7 +45,7 @@ class AdminService {
     postNewWashingMachineIdToAdd = requestObj => {
         return networkCallWithApisauce(
             this.api,
-            endPoints,
+            '/api/slot_booking/add/washing/machine/v1/',
             requestObj,
             apiMethods.post
         );
@@ -52,13 +54,11 @@ class AdminService {
     postUpdateSlotsDetails = requestObj => {
         return networkCallWithApisauce(
             this.api,
-            endPoints,
+            '',
             requestObj,
             apiMethods.post
         );
     }
-
-
 
 
 }

@@ -46,6 +46,7 @@ class WashingMachineActive extends React.Component {
             updateMachineId,
             updateMachineStatus
         } = this.props.adminStore;
+        //console.log(updateMachineId, updateMachineStatus, "hello-->update slots in active");
 
         const { history } = this.props;
         history.push(`/slot-booking/admin/washingMachine/details/${updateMachineStatus}/${updateMachineId}`);

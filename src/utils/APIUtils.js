@@ -12,6 +12,7 @@ export const networkCallWithApisauce = async(
 ) => {
    let response = null
    const accessToken = getAccessToken()
+   //alert(accessToken);
    if (accessToken) {
       api.setHeader('Authorization', `Bearer ${accessToken}`)
    }

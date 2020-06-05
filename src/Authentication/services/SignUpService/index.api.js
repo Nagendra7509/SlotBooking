@@ -1,7 +1,8 @@
 import { create } from 'apisauce'
 import { networkCallWithApisauce } from '../../utils/APIUtils'
 import { apiMethods } from '../../constants/APIConstants'
-import { endPoints } from '../endPoints'
+import { endPoints } from '../endPoints';
+import { EnvironmentConstants } from "../../../Common/constants/environmentConstants";
 
 class SignUpService {
 
@@ -9,7 +10,7 @@ class SignUpService {
 
    constructor() {
       this.api = create({
-         baseURL: 'https://80db821aa62d.ngrok.io'
+         baseURL: EnvironmentConstants.SLOTS_BOOKING_BASE_URL
       })
    }
 

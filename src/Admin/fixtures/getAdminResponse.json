@@ -4,7 +4,7 @@
             "status": "ACTIVE"
         }, {
             "washing_machine_id": "02",
-            "status": "INACTIVE"
+            "status": "ACTIVE"
         }, {
             "washing_machine_id": "03",
             "status": "INACTIVE"
@@ -19,16 +19,16 @@
             "status": "ACTIVE"
         }, {
             "washing_machine_id": "07",
-            "status": "ACTIVE"
-        }, {
-            "washing_machine_id": "08",
-            "status": "ACTIVE"
-        }, {
-            "washing_machine_id": "09",
             "status": "INACTIVE"
         }, {
-            "washing_machine_id": "10",
+            "washing_machine_id": "08",
+            "status": "INACTIVE"
+        }, {
+            "washing_machine_id": "09",
             "status": "ACTIVE"
+        }, {
+            "washing_machine_id": "10",
+            "status": "INACTIVE"
         }, {
             "washing_machine_id": "11",
             "status": "INACTIVE"

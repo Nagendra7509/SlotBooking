@@ -7,7 +7,7 @@ const DashBoardContainer = styled.div `
     ${tw ``} `;
 
 const AvailableSlotsText = styled.span `
-${tw `w-1/3 mt-10`}
+${tw `w-1/5 mt-10`}
   font-size: 20px;
   font-weight: 600;
   text-align:center;
@@ -27,7 +27,7 @@ ${tw `rounded m-2 p-2 focus:outline-none`}
 
 
 const SlotTimings = styled.div `
-    ${tw `w-4/5 p-10 relative`}
+    ${tw ` p-10 relative`}
     background-color:${colors.paleGrey}`;
 
 const TimeBtn = styled.button `
@@ -44,7 +44,7 @@ const TimeBtn = styled.button `
   color: ${colors.darkBlueGrey};`;
 
 const SlotsDateAndTime = styled.div `
-    ${tw `flex flex-col  m-6`}`;
+    ${tw `flex flex-col  m-6 w-3/5`}`;
 
 const Legend = styled.div `
     ${tw `flex justify-end flex-wrap `}`;
@@ -59,7 +59,9 @@ const TimeBtns = styled.div `
     ${tw `p-5`}`;
 
 const AvailableSlots = styled.div `
-    ${tw `flex mt-10`}`;
+    ${tw `flex mt-10`}
+    
+    `;
 
 const ConfirmBtnContainer = styled.div ` 
 ${tw `flex justify-end items-baseline mx-10`}`;

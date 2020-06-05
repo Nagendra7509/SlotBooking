@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { LOGIN_PATH } from "../../../../Authentication/constants/routeConstants/RouteConstants";
-import { clearUserSession } from "../../../../Authentication/utils/StorageUtils";
+import { clearUserSession } from "../../../../utils/StorageUtils";
 import NavigationBar from "../../../common/components/NavigationBar";
 import { PROFILE_PAGE } from '../../../constants/routeConstants/RouteConstants';
 import { LogoutBtn, ProfileViewContainer, ProfilePageAndNavBar } from "./styledComponent";

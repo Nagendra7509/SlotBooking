@@ -8,7 +8,8 @@ import {
 from '@ib/api-constants'
 import { observable, action } from 'mobx'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { setAccessToken } from '../../utils/StorageUtils'
+import { setAccessToken } from '../../../utils/StorageUtils';
+import { getUserDisplayableErrorMessage } from "../../../utils/APIUtils";
 
 class AuthenticationStore {
 
@@ -20,6 +21,8 @@ class AuthenticationStore {
    signUpAPIService
    @observable isAdmin
    @observable loginCredentialsError = "";
+   @observable signUpCredentialError = "";
+
 
    constructor(loginAPIService, signUpAPIService) {
       this.init()
@@ -29,7 +32,7 @@ class AuthenticationStore {
 
    init() {
       this.getUserSignUpStatus = API_INITIAL
-      this.getUserSignInAPIError = null
+      this.getUserSignUpError = null
       this.getUserLoginStatus = API_INITIAL
       this.getUserLoginError = null
       this.isAdmin;
@@ -52,22 +55,20 @@ class AuthenticationStore {
    @action.bound
    setGetUserLoginAPIStatus(apiStatus) {
       this.getUserLoginStatus = apiStatus;
-      console.log(apiStatus, "status");
    }
 
    @action.bound
    setUserLoginAPIResponse(response) {
-      console.log(response, "response");
       setAccessToken(response.access_token)
       this.isAdmin = response.is_admin;
-
-
+      this.getUserLoginError = null;
    }
 
    @action.bound
    setGetUserLoginAPIError(error) {
-      console.log(error);
-      this.getUserLoginError = error
+
+      this.getUserLoginError = getUserDisplayableErrorMessage(error);
+      //console.log(typeof this.getUserLoginError, "store-->");
    }
 
    @action.bound
@@ -86,55 +87,20 @@ class AuthenticationStore {
    @action.bound
    setGetUserSignUpAPIStatus(apiStatus) {
       this.getUserSignUpStatus = apiStatus;
-      console.log(apiStatus, "status");
    }
 
    @action.bound
    setUserSignUpAPIResponse(response) {
-      console.log(response, "response");
+
+      alert('sign up done successfully');
+      this.getUserSignUpError = null;
    }
 
    @action.bound
    setGetUserSignUpAPIError(error) {
-      this.getUserSignUpError = error;
-      console.log(error, "error");
+      this.getUserSignUpError = getUserDisplayableErrorMessage(error);
+      // console.log(this.getUserSignUpError);
    }
-
-
-   // @action.bound
-   // postCredentialsOfLogin(userName, password) {
-
-   //    this.loginCredentialsError = " ";
-   //    const requestObj = {
-   //       username: userName,
-   //       password: password
-   //    }
-   //    const userPromise = this.loginAPIService.postCredentials(requestObj);
-
-   //    return bindPromiseWithOnSuccess(userPromise)
-   //       .to(this.setGetUserLoginCredentialsAPIStatus, this.setUserLoginCredentialsAPIResponse)
-   //       .catch(this.setGetUserLoginCredentialAPIError)
-
-   // }
-
-   // @action.bound
-   // setGetUserLoginCredentialsAPIStatus(status) {
-   //    //console.log()
-   // }
-
-   // @action.bound
-   // setUserLoginCredentialsAPIResponse(response) {
-   //    //alert('posted credentials');
-   // }
-
-   // @action.bound
-   // setGetUserLoginCredentialAPIError(error) {
-   //    this.loginCredentialsError = error;
-   //    //alert(this.loginCredentialsError);
-   // }
-
-
-
 }
 
 export default AuthenticationStore;

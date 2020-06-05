@@ -1,8 +1,8 @@
 {
 
-    "washingMachine_id": "01",
+    "washing_machine_id": "01",
     "day": "Monday",
-    "time_slots": [{ "start_time": "05:00 AM", "end_time": "06:00 AM" },
+    "alloted_slots": [{ "start_time": "05:00 AM", "end_time": "06:00 AM" },
         { "start_time": "06:00 AM", "end_time": "07:00 AM" },
         { "start_time": "07:00 AM", "end_time": "08:00 AM" },
         { "start_time": "09:00 AM", "end_time": "10:00 AM" },

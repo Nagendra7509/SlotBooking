@@ -9,8 +9,9 @@
         "signUp": "SIGNUP",
         "usernameAlreadyExits": "username already exits",
         "passwordMisMatch": "Password Mismatch",
-        "enterPassword":"Enter Password",
-        "enterUserName":"Enter Username"
+        "enterPassword": "Enter Password",
+        "enterUserName": "Enter Username",
+        "passwordShouldBeGreaterThan8Characters": "password should be greater than 8 characters"
 
     },
     "login": {

@@ -12,6 +12,7 @@ import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 import AvailableSlotsModel from "../models/AvailableSlotsModel";
 import UpComingSlotDetails from "../models/UpComingSlotDetails";
 import PreviousSlotsModel from "../models/PreviousSlotsModel";
+import { getAccessToken } from "../../../Authentication/utils/StorageUtils";
 
 
 class SlotsDashBoardStore {
@@ -93,6 +94,7 @@ class SlotsDashBoardStore {
     @action.bound
     setGetResponseAvailableSlotsAPIStatus(apiStatus) {
         this.getAvailableSlotsResponseStatus = apiStatus;
+        console.log(this.getAvailableSlotsResponseStatus, "status");
     }
 
     @action.bound
@@ -104,11 +106,15 @@ class SlotsDashBoardStore {
         this.availableSlotsDates = this.availableSlotsResponse.map(obj => obj.date);
         this.currentDate = this.availableSlotsDates[0];
         this.availableSlotsTimings = this.availableSlotsResponse.find(obj => obj.date == this.currentDate).timingSlots;;
+
+        console.log(this.availableSlotsResponse, "response");
     }
 
     @action.bound
     setGetAvailableSlotsAPIError(error) {
         this.getAvailableSlotsResponseError = error;
+        console.log(this.getAvailableSlotsResponseError, "error");
+
     }
 
 
@@ -148,6 +154,10 @@ class SlotsDashBoardStore {
 
     @action.bound
     getPreviousSlotsData() {
+
+        // const requestObj = {
+        //     "access_token": getAccessToken()
+        // };
 
         const promise = this.dashBoardAPIService.previousSlotsResponseAPI();
 
@@ -235,9 +245,7 @@ class SlotsDashBoardStore {
         });
 
         return counterOfBookingSlots;
-
     }
-
 
     @action.bound
     setGetResponseConfirmSlotStatus(status) {
@@ -247,6 +255,7 @@ class SlotsDashBoardStore {
     @action.bound
     setAPIResponseOfConfirmSlot(response) {
         this.getAvailableSlotsData();
+        this.getUpcomingSlotsData();
         alert('successfully allocated slot');
         this.bookedDateAndTime = {};
     }

@@ -6,7 +6,7 @@ const UpComingSlotsContainer = styled.div `
     ${tw `flex mt-10 mb-10`}`;
 
 const UpComomingSlotText = styled.span `
-    ${tw `w-1/5 mt-2`}
+    ${tw `w-1/5 mt-10`}
   font-size: 20px;
   font-weight: 600;
   text-align:center;
@@ -17,7 +17,7 @@ const UpComomingSlotText = styled.span `
   color:${colors.darkBlueGrey};`;
 
 const DatesAndSlotsDetails = styled.div `
-    ${tw `flex flex-col w-3/5`}
+    ${tw `flex flex-col m-6 w-3/5`}
     background-color:${colors.paleGrey}`;
 
 const TimeSlot = styled.span `${tw ``}

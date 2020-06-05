@@ -3,46 +3,40 @@ import tw from 'tailwind.macro';
 import { colors } from '../../themes/Colors'
 
 const LoginPageContainer = styled.div `
-    ${tw`flex justify-center items-center h-full `}
+    ${tw`flex justify-center items-center min-h-screen`}
     background-color:${colors.iceBlue}`
 
 const LoginForm = styled.form `
-   ${tw`flex flex-col p-10 bg-white`}
+   ${tw`flex flex-col justify-around bg-white`}
    border-radius: 8px;
+   border:2px solid ${colors.darkBlueGrey};
    background-color: ${colors.white};`
 
 const SigInText = styled.h2 `
-   ${tw``}
-   width: 214px;
-   height: 80px;
+   ${tw` m-auto my-4`}
    font-size: 32px;
    font-weight: normal;
    font-stretch: normal;
    font-style: normal;
    line-height: 1.25;
-   margin: 24px 161px 30px 161px;
    letter-spacing: normal;
-   text-align: center;
    color: ${colors.darkBlueGrey};
 `
 const SignInBtn = styled.button `
-   ${tw`flex justify-center   text-white focus:outline-none cursor-pointer`}
-   width: 320px;
+   ${tw`flex justify-center m-auto px-32 my-6 text-white focus:outline-none cursor-pointer`}
    height: 40px;
-   margin: 25px 108px 0px 108px;
    border-radius: 4px;
    background-color: ${colors.brightBlue};
 `
 const DontHaveAccount = styled.span `
-   width: 200px;
-   height: 24px;
+  ${tw `m-auto mb-4`}
    font-size: 14px;
    font-weight: normal;
    font-stretch: normal;
    font-style: normal;
    line-height: 1.71;
    letter-spacing: normal;
-   margin: 24px 168px 30px 168px;
+  
    color: ${colors.darkBlueGrey};`
 
 const SignupLink = styled.a `
@@ -50,10 +44,14 @@ const SignupLink = styled.a `
     color:${colors.brightBlue}`
 
 export {
-   LoginPageContainer,
-   LoginForm,
-   SigInText,
-   SignInBtn,
-   DontHaveAccount,
-   SignupLink
+    LoginPageContainer,
+    LoginForm,
+    SigInText,
+    SignInBtn,
+    DontHaveAccount,
+    SignupLink
 }
+
+
+//dont have account= width: 200px;
+//   height: 24px;

@@ -3,7 +3,7 @@ import { observable, action } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import LoginPage from '../components/LoginPage';
 import Strings from '../i18n/strings.json';
-import { getAccessToken } from '../utils/StorageUtils';
+import { getAccessToken } from '../../utils/StorageUtils';
 
 @inject('authenticationStore')
 @observer
@@ -27,43 +27,68 @@ class LoginRoute extends React.Component {
     }
 
     onClickLogin = async() => {
+        this.errroMessageUserName = this.errorMessagePassword = this.errorMessageLoginButton = "noError";
+
+        const { usernameInavalid, incorrectPassword, serverError } = Strings.login;
 
         if (this.userName != '' && this.password != '') {
 
-            this.errroMessageUserName = 'noError';
-            this.errorMessagePassword = 'noError';
-            const { userLogin, postCredentialsOfLogin } = this.props.authenticationStore;
-            //await postCredentialsOfLogin(this.userName, this.password);
+
+
+            const { userLogin } = this.props.authenticationStore;
             await userLogin(this.userName, this.password);
-            const { isAdmin, loginCredentialsError } = this.props.authenticationStore;
-            //alert(getAccessToken());
-            if (getAccessToken()) {
-                const { history } = this.props;
-                if (isAdmin) {
-                    history.push('/slot-booking/admin/issues/');
+
+            const { isAdmin, getUserLoginError } = this.props.authenticationStore;
+
+            if (getUserLoginError != null) {
+
+                const loginCredentialsError = getUserLoginError.split(" ");
+
+                if (loginCredentialsError.includes("username")) {
+                    this.errroMessageUserName = usernameInavalid;
+                    this.errorMessagePassword = "noError";
                 }
-                else {
-                    history.push('/slot-booking/dashBoard/');
+                else if (loginCredentialsError.includes('password')) {
+                    this.errroMessageUserName = "noError";
+                    this.errorMessagePassword = incorrectPassword;
                 }
             }
             else {
-                this.errorMessageLoginButton = Strings.login.serverError;
+
+                // this.errroMessageUserName = 'noError';
+                // this.errorMessagePassword = 'noError';
+
+                if (getAccessToken()) {
+
+                    const { history } = this.props;
+
+                    if (isAdmin) {
+                        history.push('/slot-booking/admin/issues/');
+                    }
+                    else {
+                        history.push('/slot-booking/dashBoard/');
+                    }
+                }
+                else {
+                    this.errorMessageLoginButton = serverError;
+                }
             }
+
 
         }
         else if (this.userName == '' && this.password == '') {
 
-            this.errroMessageUserName = Strings.login.usernameInavalid;
-            this.errorMessagePassword = Strings.login.incorrectPassword;
+            this.errroMessageUserName = usernameInavalid;
+            this.errorMessagePassword = incorrectPassword;
             this.errorMessageLoginButton = "noError";
         }
         else if (this.userName != '' && this.password == '') {
-            this.errorMessagePassword = Strings.login.incorrectPassword;
+            this.errorMessagePassword = incorrectPassword;
             this.errroMessageUserName = 'noError';
             this.errorMessageLoginButton = "noError";
         }
         else {
-            this.errroMessageUserName = Strings.login.usernameInavalid;
+            this.errroMessageUserName = usernameInavalid;
             this.errorMessagePassword = 'noError';
             this.errorMessageLoginButton = "noError";
         }

@@ -49,6 +49,7 @@ class SignUpPage extends React.Component {
                   value={ username }
                   type='text'
                   placeholder='username'
+                  borderValue={userNameError!="noError"}
                   
                />
                
@@ -64,7 +65,7 @@ class SignUpPage extends React.Component {
                   value={password}
                   type='password'
                   placeholder='password'
-                  
+                  borderValue={passwordError!="noError"}
                />
                
                <Typo12HKGroteskRegular 
@@ -79,7 +80,7 @@ class SignUpPage extends React.Component {
                   value={confirmPassword}
                   type='password'
                   placeholder='confirm password'
-                  
+                  borderValue={confirmPasswordError!="noError"}
                />
                
                <Typo12HKGroteskRegular 

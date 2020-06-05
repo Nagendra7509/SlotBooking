@@ -106,7 +106,7 @@ class AdminStore {
                     .catch(this.setGetPostNewWashingMachineAPIError);
             }
             else {
-                alert('enter washing machine number')
+                alert('please enter washing machine number')
             }
         }
     }
@@ -127,7 +127,7 @@ class AdminStore {
     @action.bound
     setGetPostNewWashingMachineAPIError(error) {
         this.getPostNewWashingMachineIdError = error;
-        alert("new washing machine is not added" + error);
+        alert("new washing machine is not added");
         this.getAdminResponse();
     }
 
@@ -135,12 +135,14 @@ class AdminStore {
 
     @action.bound
     onClickUpdateInWashingMachineCard(id) {
+        //console.log(this.adminResponse);
         this.updateMachineId = id;
         this.updateMachineStatus = this.adminResponse.filter(obj => obj.washingMachineId == id)[0].washingMachineStatus.toLowerCase();
         const requestObj = {
             "washing_machine_id": id,
-            "day": "Monday"
+            "day": "MONDAY"
         };
+        console.log(id, "id ---->store");
         const promise = this.adminService.getUpdateWashingMachineSlotsDetails(requestObj);
 
         return bindPromiseWithOnSuccess(promise)
@@ -152,16 +154,20 @@ class AdminStore {
     @action.bound
     setGetUpdateWashingMachineResponseAPIStatus(status) {
         this.getUpdateSlotsResponseStatus = status;
+        //console.log(this.getUpdateSlotsResponseStatus, "status");
     }
 
     @action.bound
     setUpdateWashingMachineAPIResponse(response) {
+        //console.log(response, "response");
         this.updateSlotsResponse = (new UpdateSlotsModel(response));
+
     }
 
     @action.bound
     setGetUpdateWashingMachineAPIError(error) {
         this.getUpdateSlotsResponseError = error;
+        //console.log(this.getUpdateSlotsResponseError, "error");
     }
 
     @action.bound
@@ -190,7 +196,7 @@ class AdminStore {
     @action.bound
     setGetPostWashingMachineStatusAPIError(error) {
         this.getPostStatusOfWashingMachineResponseError = error;
-        alert('failed status not updated' + error);
+        alert('failed status not updated');
     }
 
 
@@ -208,8 +214,10 @@ class AdminStore {
 
         if (startTime.length == 8 && endTime.length == 8) {
             const newSlot = { "start_time": startTime, "end_time": endTime }
-            const addTimeslot = [...this.updateSlotsResponse.timeSlots, new TimeSlots(newSlot)]
-            this.updateSlotsResponse.timeSlots = addTimeslot;
+            //const addTimeslot = [...this.updateSlotsResponse.timeSlots, new TimeSlots(newSlot)]
+            //this.updateSlotsResponse.timeSlots = addTimeslot;
+            //this.updateSlotsResponse.timeSlots.push(new TimeSlots(newSlot));
+            console.log(this.updateSlotsResponse);
 
         }
         else {
@@ -266,7 +274,7 @@ class AdminStore {
     @action.bound
     setGetPostUpdateSlotsAPIError(error) {
         this.getPostUpdateSlotsError = error;
-        alert("data not updated" + error);
+        alert("data not updated");
     }
 
 }

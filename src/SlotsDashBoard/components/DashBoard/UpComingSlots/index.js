@@ -52,7 +52,7 @@ class UpComingSlots extends React.Component {
         } = Strings.upComingSlots;
 
 
-        const { time_slot } = upComingSlotsDetails;
+        //const { time_slot } = upComingSlotsDetails;
 
         return <UpComingSlotsContainer>
 
@@ -62,14 +62,14 @@ class UpComingSlots extends React.Component {
                     <DatesAndSlotsDetails>
                     
                             <Dates>
-                                 {upComingSlotsDates.map(obj=><DateBtn 
+                                 {upComingSlotsDates && upComingSlotsDates.map(obj=><DateBtn 
                                                                 id={obj}
                                                                 onClick={this.onClickDateUpComingSlots} 
                                                                 click={obj==upComingSlotsCurrentDate} 
                                                                 key={obj}>{obj}
                                                             </DateBtn>)}
                                 </Dates>
-                        {upComingSlotsDetails.washingMachineId!="" && 
+                        {upComingSlotsDetails &&  upComingSlotsDetails.washingMachineId!="" && 
                             <DateAndSlots>
 
                                 
@@ -88,7 +88,7 @@ class UpComingSlots extends React.Component {
                                 </CancelBtnContainer>
 
                             </DateAndSlots>}
-                        {upComingSlotsDetails.washingMachineId=="" && 
+                        { upComingSlotsDetails===undefined && 
                         <NoBookingsContainer>
                             <NoBookingImg src={noBookingImg.noBookingAdress}/>
                             <NoBookingsYetText>{noBookingsYet}<NotSymbolImg src={notSymbol.notSymbolAdress}/></NoBookingsYetText>

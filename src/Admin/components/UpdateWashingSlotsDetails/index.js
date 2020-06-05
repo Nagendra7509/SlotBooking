@@ -42,7 +42,6 @@ class UpdateWashingSlotsDetails extends React.Component {
     constructor(props) {
         super(props);
         this.getUpdateSlotsData();
-
     }
 
     getUpdateSlotsData = async() => {
@@ -50,6 +49,7 @@ class UpdateWashingSlotsDetails extends React.Component {
         await getAdminResponse();
         const { history } = this.props;
         const machineId = history.location.pathname.split('/')
+        //alert(machineId[machineId.length - 1]);
         await onClickUpdateInWashingMachineCard(machineId[machineId.length - 1]);
     }
 

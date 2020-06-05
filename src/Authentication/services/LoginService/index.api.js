@@ -2,6 +2,7 @@ import { create } from 'apisauce'
 import { networkCallWithApisauce } from '../../utils/APIUtils'
 import { apiMethods } from '../../constants/APIConstants'
 import { endPoints } from '../endPoints'
+import { EnvironmentConstants } from "../../../Common/constants/environmentConstants";
 
 class LoginService {
 
@@ -9,7 +10,7 @@ class LoginService {
 
    constructor() {
       this.api = create({
-         baseURL: 'https://80db821aa62d.ngrok.io'
+         baseURL: EnvironmentConstants.SLOTS_BOOKING_BASE_URL
       })
    }
 
@@ -21,14 +22,6 @@ class LoginService {
       );
    }
 
-   // postCredentials = requestObj => {
-   //    return networkCallWithApisauce(
-   //       this.api,
-   //       '/api/slot_booking/user/login/v1/',
-   //       requestObj,
-   //       apiMethods.post
-   //    )
-   // }
 }
 
 export default LoginService;

@@ -10,9 +10,9 @@ class UpdateSlotsModel {
     @observable timeSlots;
 
     constructor(obj) {
-        this.washingMachineId = obj.washingMachine_id;
+        this.washingMachineId = obj.washing_machine_id;
         this.day = obj.day;
-        this.timeSlots = obj.time_slots.map(obj => (new TimeSlots(obj)));
+        this.timeSlots = obj.alloted_slots.map(obj => (new TimeSlots(obj)));
     }
 
 }

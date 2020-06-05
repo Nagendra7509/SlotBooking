@@ -1,9 +1,9 @@
 import AuthenticationStore from '../../Authentication/stores/AuthenticationStore'
 import SlotsDashBoardStore from '../../SlotsDashBoard/stores/SlotsDashBoardStore'
 import SignUpService from '../../Authentication/services/SignUpService/index.api';
-import DashBoardService from "../../SlotsDashBoard/services/DashBoardService/index.fixture";
+import DashBoardService from "../../SlotsDashBoard/services/DashBoardService/index.api";
 import LoginService from '../../Authentication/services/LoginService/index.api';
-import AdminService from "../../Admin/services/AdminServices/index.fixture";
+import AdminService from "../../Admin/services/AdminServices/index.api";
 import AdminStore from "../../Admin/stores/AdminStore";
 
 const loginService = new LoginService();

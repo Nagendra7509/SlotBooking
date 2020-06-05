@@ -4,7 +4,7 @@ import { observable } from "mobx";
 
 class AvailableSlotsModel {
     @observable date;
-    @observable timingSlots = [];
+    @observable timingSlots;
 
     constructor(obj) {
         this.date = obj.date;

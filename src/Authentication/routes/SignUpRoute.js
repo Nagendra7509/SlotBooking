@@ -2,7 +2,7 @@ import React from 'react'
 import { observable, action } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import SignUpPage from '../components/SignUpPage'
-import { clearUserSession } from "../utils/StorageUtils";
+import { clearUserSession } from "../../utils/StorageUtils";
 import Strings from "../i18n/strings.json";
 
 
@@ -34,30 +34,52 @@ class SignUpRoute extends React.Component {
 
 
    onClickSignUpBtn = async() => {
+      this.userNameError = this.passwordError = this.confirmPasswordError = "noError";
 
-      const { passwordMisMatch, enterPassword, enterUserName } = Strings.signUp;
+      const { passwordMisMatch, enterPassword, enterUserName, usernameAlreadyExits, passwordShouldBeGreaterThan8Characters } = Strings.signUp;
 
       if (this.userName != "" && this.password != "") {
-         if (this.password == this.confirmPassword) {
-            clearUserSession();
-
+         if (this.password === this.confirmPassword) {
             const { userSignUp } = this.props.authenticationStore;
 
             await userSignUp(this.userName, this.password);
 
-            //const { history } = this.props;
-            //history.replace('/slot-booking/login/');
+            const { getUserSignUpError } = this.props.authenticationStore;
+
+            if (getUserSignUpError != null) {
+               const signUpCredentialsError = getUserSignUpError.split(" ");
+
+               if (signUpCredentialsError.includes("username")) {
+                  this.userNameError = usernameAlreadyExits;
+                  this.passwordError = 'noError';
+                  this.confirmPasswordError = "noError";
+               }
+               else if (signUpCredentialsError.includes('password')) {
+                  this.userNameError = 'noError';
+                  this.passwordError = passwordShouldBeGreaterThan8Characters;
+                  this.confirmPasswordError = "noError";
+               }
+            }
+            else {
+               //this.userNameError = "noError";
+               //this.passwordError = "noError";
+               const { history } = this.props;
+               history.replace('/slot-booking/login/');
+            }
+            //this.confirmPasswordError = "noError";
+
          }
          else {
             this.confirmPasswordError = passwordMisMatch;
+            this.userNameError = 'noError';
+            this.passwordError = 'noError';
          }
-         this.userNameError = '';
-         this.passwordError = '';
+
       }
       else if (this.userName != "" && this.password == "") {
          this.passwordError = enterPassword;
-         this.userNameError = '';
-         this.confirmPasswordError = '';
+         this.userNameError = 'noError';
+         this.confirmPasswordError = 'noError';
       }
       else if (this.userName == "" && this.password != "") {
          this.userNameError = enterUserName;
@@ -65,7 +87,7 @@ class SignUpRoute extends React.Component {
       else {
          this.userNameError = enterUserName;
          this.passwordError = enterPassword;
-         this.confirmPassword = '';
+         this.confirmPasswordError = 'noError';
       }
 
    }

@@ -1,21 +1,22 @@
 import { create } from 'apisauce'
-import { networkCallWithApisauce } from '../../utils/APIUtils'
+import { networkCallWithApisauce } from '../../../utils/APIUtils'
 import { apiMethods } from '../../constants/APIConstants'
 import { endPoints } from '../endPoints'
+import { EnvironmentConstants } from "../../../Common/constants/environmentConstants";
 
 class DashBoardService {
     api
 
     constructor() {
         this.api = create({
-            baseURL: 'sg'
+            baseURL: EnvironmentConstants.SLOTS_BOOKING_BASE_URL
         })
     }
 
     availableSlotsResponseAPI = () => {
         return networkCallWithApisauce(
             this.api,
-            endPoints.DASHBOARD_END_POINT, {},
+            '/api/slot_booking/available/slots/v1/', {},
             apiMethods.get
         );
     }
@@ -23,7 +24,7 @@ class DashBoardService {
     upcomingSlotsResponseAPI = () => {
         return networkCallWithApisauce(
             this.api,
-            endPoints.DASHBOARD_END_POINT, {},
+            '/api/slot_booking/upcoming/slots/v1/', {},
             apiMethods.get
         );
     }
@@ -31,7 +32,7 @@ class DashBoardService {
     previousSlotsResponseAPI = () => {
         return networkCallWithApisauce(
             this.api,
-            endPoints.DASHBOARD_END_POINT, {},
+            '/api/slot_booking/previous/slots/v1/', {},
             apiMethods.get
         );
     }
@@ -39,7 +40,7 @@ class DashBoardService {
     postBookedSlot = (requestObj) => {
         return networkCallWithApisauce(
             this.api,
-            endPoints.DASHBOARD_END_POINT,
+            '/api/slot_booking/book/slot/v1/',
             requestObj,
             apiMethods.post
         );
@@ -56,3 +57,5 @@ class DashBoardService {
 }
 
 export default DashBoardService;
+
+//postBookedSlot
