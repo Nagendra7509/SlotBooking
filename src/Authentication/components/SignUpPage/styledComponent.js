@@ -11,6 +11,7 @@ const SignUpForm = styled.form `
    ${tw`flex flex-col justify-around bg-white`}
    border-radius: 8px;
    border:2px solid ${colors.darkBlueGrey};
+   box-shadow: 0 4px 8px 0 ${colors.darkBlueGrey};
    background-color: ${colors.white};`;
 
 const SignUpText = styled.h2 `
@@ -28,10 +29,32 @@ const SignUpBtn = styled.button `
    height: 40px;
    
    border-radius: 4px;
-   background-color: ${colors.brightBlue};
-`
+   background-color: ${colors.brightBlue};`
 
-export { SignUpPageContainer, SignUpForm, SignUpText, SignUpBtn }
+const AlreadyHaveAccount = styled.span `
+  ${tw `m-auto mb-4 mt-2`}
+   font-size: 14px;
+   font-weight: normal;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: 1.71;
+   letter-spacing: normal;
+   color: ${colors.darkBlueGrey};`
+
+const SignInLink = styled.a `
+    ${tw``}
+    color:${colors.brightBlue}`
+
+
+
+export {
+   SignUpPageContainer,
+   SignUpForm,
+   SignUpText,
+   SignUpBtn,
+   AlreadyHaveAccount,
+   SignInLink
+}
 
 
 

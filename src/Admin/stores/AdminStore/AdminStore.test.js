@@ -171,21 +171,21 @@ describe('adminStore Tests', () => {
 
     });
 
-    // it('should test onClickUpdateInWashingMachineCard success state', async() => {
+    it('should test onClickUpdateInWashingMachineCard success state', async() => {
 
-    //     const mockSuccessPromise = new Promise((resolve, reject) => {
-    //         resolve(adminResponse);
-    //     });
+        const mockSuccessPromise = new Promise((resolve, reject) => {
+            resolve(updateSlotsResponseData);
+        });
 
-    //     const mockAdminServiceAPI = jest.fn();
-    //     mockAdminServiceAPI.mockReturnValue(mockSuccessPromise);
-    //     adminServiceAPI.getUpdateWashingMachineSlotsDetails = mockAdminServiceAPI;
+        const mockAdminServiceAPI = jest.fn();
+        mockAdminServiceAPI.mockReturnValue(mockSuccessPromise);
+        adminServiceAPI.getUpdateWashingMachineSlotsDetails = mockAdminServiceAPI;
 
-    //     adminStore.adminResponse = adminResponse.washing_machines.map(obj => new AdminModel(obj));
-    //     await adminStore.onClickUpdateInWashingMachineCard("02");
-    //     expect(adminStore.getUpdateSlotsResponseStatus).toBe(API_SUCCESS);
+        adminStore.adminResponse = adminResponse.washing_machines.map(obj => new AdminModel(obj));
+        await adminStore.onClickUpdateInWashingMachineCard("02");
+        expect(adminStore.getUpdateSlotsResponseStatus).toBe(API_SUCCESS);
 
-    // });
+    });
 
     it('should test onClickUpdateInWashingMachineCard failure state', async() => {
 

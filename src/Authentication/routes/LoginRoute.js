@@ -52,6 +52,9 @@ class LoginRoute extends React.Component {
                     this.errroMessageUserName = "noError";
                     this.errorMessagePassword = incorrectPassword;
                 }
+                else {
+                    this.errorMessageLoginButton = serverError;
+                }
             }
             else {
 
@@ -69,9 +72,9 @@ class LoginRoute extends React.Component {
                         history.push('/slot-booking/dashBoard/');
                     }
                 }
-                else {
-                    this.errorMessageLoginButton = serverError;
-                }
+                // else {
+                //     this.errorMessageLoginButton = serverError;
+                // }
             }
 
 

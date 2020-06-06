@@ -92,7 +92,7 @@ class AuthenticationStore {
    @action.bound
    setUserSignUpAPIResponse(response) {
 
-      alert('sign up done successfully');
+      //alert('sign up done successfully');
       this.getUserSignUpError = null;
    }
 

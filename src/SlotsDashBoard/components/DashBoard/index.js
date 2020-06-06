@@ -73,7 +73,6 @@ class DashBoard extends React.Component {
         } = Strings.slotsDashBoard;
 
 
-
         if (availableSlotsDates.length == 0 && availableSlotsTimings.length == 0) {
             return <NoDataView />;
         }
@@ -98,13 +97,13 @@ class DashBoard extends React.Component {
                         </Legend>
                         
                         <TimeBtns>
-                        {availableSlotsResponse.length>0 && availableSlotsTimings.map(obj=>
+                        {availableSlotsTimings.map(obj=>
                                 <TimeBtn
                                     onClick={this.onClickTime}
                                     isClicked={obj.is_available}
                                     id={obj.start_time+"-"+obj.end_time}
                                     opacityValue={obj.is_available} 
-                                    key={obj.start_time}>
+                                    key={Math.random().toString()}>
                                     {obj.start_time} - {obj.end_time}
                                 </TimeBtn>)}
                         </TimeBtns>

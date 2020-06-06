@@ -11,7 +11,9 @@
         "passwordMisMatch": "Password Mismatch",
         "enterPassword": "Enter Password",
         "enterUserName": "Enter Username",
-        "passwordShouldBeGreaterThan8Characters": "password should be greater than 8 characters"
+        "passwordShouldBeGreaterThan8Characters": "password should be greater than 8 characters",
+        "alreadyHaveAnAccount": "Already have an account?",
+        "login": "Log in"
 
     },
     "login": {

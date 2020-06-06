@@ -3,12 +3,15 @@ import { observer } from 'mobx-react'
 import { Typo12HKGroteskSemiBoldSteel, Typo12HKGroteskRegular } from "../../../styleGuide/Typos";
 import { InputTag, IbHubsLogo } from '../../common/components'
 import { ibhubsLogo } from '../../assets'
-import Strings from '../../i18n/strings.json'
+import Strings from '../../i18n/strings.json';
+import { LOGIN_PATH } from "../../constants/routeConstants/RouteConstants";
 import {
    SignUpPageContainer,
    SignUpForm,
    SignUpText,
-   SignUpBtn
+   SignUpBtn,
+   AlreadyHaveAccount,
+   SignInLink
 }
 from './styledComponent'
 
@@ -94,6 +97,14 @@ class SignUpPage extends React.Component {
                   data-testid='sign-up-button'
                   >{Strings.signUp.signUp}
                </SignUpBtn>
+               
+               <AlreadyHaveAccount>
+                  {Strings.signUp.alreadyHaveAnAccount}
+                  <SignInLink
+                     href={LOGIN_PATH}
+                  >{' '}{Strings.signUp.login}
+                  </SignInLink>
+               </AlreadyHaveAccount>
                
             </SignUpForm>
             

@@ -10,6 +10,7 @@ const LoginForm = styled.form `
    ${tw`flex flex-col justify-around bg-white`}
    border-radius: 8px;
    border:2px solid ${colors.darkBlueGrey};
+   box-shadow: 0 4px 8px 0 ${colors.darkBlueGrey};
    background-color: ${colors.white};`
 
 const SigInText = styled.h2 `
@@ -20,23 +21,23 @@ const SigInText = styled.h2 `
    font-style: normal;
    line-height: 1.25;
    letter-spacing: normal;
-   color: ${colors.darkBlueGrey};
-`
+   color: ${colors.darkBlueGrey};`;
+
 const SignInBtn = styled.button `
-   ${tw`flex justify-center m-auto px-32 my-6 text-white focus:outline-none cursor-pointer`}
+   ${tw`flex justify-center m-auto px-32 my-4 text-white focus:outline-none cursor-pointer`}
    height: 40px;
    border-radius: 4px;
-   background-color: ${colors.brightBlue};
-`
+   background-color: ${colors.brightBlue};`
+
+
 const DontHaveAccount = styled.span `
-  ${tw `m-auto mb-4`}
+  ${tw `m-auto mb-4 mt-2`}
    font-size: 14px;
    font-weight: normal;
    font-stretch: normal;
    font-style: normal;
    line-height: 1.71;
    letter-spacing: normal;
-  
    color: ${colors.darkBlueGrey};`
 
 const SignupLink = styled.a `

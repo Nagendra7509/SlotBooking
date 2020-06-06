@@ -28,7 +28,7 @@ class AdminService {
             this.api,
             '/api/slot_booking/get/washing/machine/slots/v1/',
             requestObj,
-            apiMethods.get
+            apiMethods.post
         );
 
     }
@@ -54,7 +54,7 @@ class AdminService {
     postUpdateSlotsDetails = requestObj => {
         return networkCallWithApisauce(
             this.api,
-            '',
+            '/api/slot_booking/update/washing/machine/slots/v1/',
             requestObj,
             apiMethods.post
         );
