@@ -85,7 +85,7 @@ describe('AuthenticationStore test', () => {
     });
 
     it('should test userSignUp success state', async() => {
-        window.alert = jest.fn();
+        //window.alert = jest.fn();
 
         const mockSuccessPromise = new Promise((resolve, reject) => {
             resolve(200);
@@ -98,7 +98,7 @@ describe('AuthenticationStore test', () => {
         await authenticationStore.userSignUp();
         expect(authenticationStore.getUserSignUpStatus).toBe(API_SUCCESS);
 
-        expect(window.alert).toHaveBeenCalledWith('sign up done successfully');
+        //expect(window.alert).toHaveBeenCalledWith('sign up done successfully');
 
     });
 
