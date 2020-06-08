@@ -31,12 +31,14 @@ class DashBoard extends React.Component {
 
     componentDidMount() {
         this.doNetworkCall();
+        //console.log('componentDidMount');
     }
 
     doNetworkCall = () => {
-        this.props.slotsDashBoardStore.getAvailableSlotsData();
-        this.props.slotsDashBoardStore.getUpcomingSlotsData();
-        this.props.slotsDashBoardStore.getPreviousSlotsData();
+        const { getAvailableSlotsData, getUpcomingSlotsData, getPreviousSlotsData } = this.props.slotsDashBoardStore;
+        getAvailableSlotsData();
+        getUpcomingSlotsData();
+        getPreviousSlotsData();
     }
 
     onClickDateAvailableSlots = (event) => {
