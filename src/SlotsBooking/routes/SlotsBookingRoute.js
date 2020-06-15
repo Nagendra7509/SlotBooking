@@ -1,15 +1,12 @@
-import React from "react";
-import { observer, inject } from "mobx-react";
-import SlotsBookingHomePage from "../components/SlotsBookingHomePage";
+import React from 'react'
+import { observer, inject } from 'mobx-react'
+import SlotsBookingHomePage from '../components/SlotsBookingHomePage'
 
 @observer
 class SlotsBookingRoute extends React.Component {
-
-    render() {
-
-        return <SlotsBookingHomePage/>;
-
-    }
+   render() {
+      return <SlotsBookingHomePage />
+   }
 }
 
-export default SlotsBookingRoute;
+export default SlotsBookingRoute

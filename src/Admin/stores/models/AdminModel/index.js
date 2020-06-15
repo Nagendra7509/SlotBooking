@@ -1,17 +1,15 @@
-import React from "react";
+import React from 'react'
 
-import { observable } from "mobx";
-
+import { observable } from 'mobx'
 
 class AdminModel {
+   @observable washingMachineId
+   @observable washingMachineStatus
 
-    @observable washingMachineId
-    @observable washingMachineStatus
-
-    constructor(obj) {
-        this.washingMachineId = obj.washing_machine_id;
-        this.washingMachineStatus = obj.status;
-    }
+   constructor(obj) {
+      this.washingMachineId = obj.washing_machine_id
+      this.washingMachineStatus = obj.status
+   }
 }
 
-export default AdminModel;
+export default AdminModel

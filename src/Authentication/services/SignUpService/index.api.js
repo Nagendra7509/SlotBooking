@@ -1,11 +1,10 @@
 import { create } from 'apisauce'
 import { networkCallWithApisauce } from '../../utils/APIUtils'
 import { apiMethods } from '../../constants/APIConstants'
-import { endPoints } from '../endPoints';
-import { EnvironmentConstants } from "../../../Common/constants/environmentConstants";
+import { endPoints } from '../endPoints'
+import { EnvironmentConstants } from '../../../Common/constants/environmentConstants'
 
 class SignUpService {
-
    api
 
    constructor() {
@@ -20,8 +19,8 @@ class SignUpService {
          '/api/slot_booking/user/signup/v1/',
          requestObj,
          apiMethods.post
-      );
+      )
    }
 }
 
-export default SignUpService;
+export default SignUpService

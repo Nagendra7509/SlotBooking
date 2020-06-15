@@ -1,20 +1,19 @@
-import styled from '@emotion/styled';
-import tw from 'tailwind.macro';
-import { colors } from '../../../themes/Colors';
+import styled from '@emotion/styled'
+import tw from 'tailwind.macro'
+import { colors } from '../../../themes/Colors'
 
-const LogoutBtn = styled.button `
-    ${tw ` border-2 border-solid border-grey-200 px-4 py-2 `}
-    border-radius: 4px;
-  border: solid 1px ${colors.lightBlueGrey}`;
+const LogoutBtn = styled.button`
+   ${tw` border-2 border-solid border-grey-200 px-4 py-2 `}
+   border-radius: 4px;
+   border: solid 1px ${colors.lightBlueGrey};
+`
 
-const ProfileViewContainer = styled.div `
-    ${tw `flex justify-center mt-10`}`;
+const ProfileViewContainer = styled.div`
+   ${tw`flex justify-center mt-10`}
+`
 
-const ProfilePageAndNavBar = styled.div `
-    ${tw `flex flex-col`}`;
+const ProfilePageAndNavBar = styled.div`
+   ${tw`flex flex-col`}
+`
 
-export {
-    LogoutBtn,
-    ProfileViewContainer,
-    ProfilePageAndNavBar
-};
+export { LogoutBtn, ProfileViewContainer, ProfilePageAndNavBar }

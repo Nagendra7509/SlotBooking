@@ -15,5 +15,5 @@ export const colors = {
    black60: 'rgba(0, 0, 0, 0.6)',
    yellowOrange: '#ffb800',
    greenishTeal: '#2dca73',
-   steel60: "rgba(126, 133, 142, 0.6)",
+   steel60: 'rgba(126, 133, 142, 0.6)'
 }

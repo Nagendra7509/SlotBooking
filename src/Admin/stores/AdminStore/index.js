@@ -1,285 +1,301 @@
-import React from "react";
-import { observable, action } from "mobx";
+import React from 'react'
+import { observable, action } from 'mobx'
 import {
-    API_INITIAL,
-    API_FETCHING,
-    API_SUCCESS,
-    API_FAILED
-}
-from '@ib/api-constants';
-import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
-import { getUserDisplayableErrorMessage } from "../../../utils/APIUtils";
-import AdminModel from "../models/AdminModel";
-import UpdateSlotsModel from "../models/UpdateSlotsModel";
-import TimeSlots from "../models/UpdateSlotsModel/TimeSlots";
-
+   API_INITIAL,
+   API_FETCHING,
+   API_SUCCESS,
+   API_FAILED
+} from '@ib/api-constants'
+import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
+import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
+import AdminModel from '../models/AdminModel'
+import UpdateSlotsModel from '../models/UpdateSlotsModel'
+import TimeSlots from '../models/UpdateSlotsModel/TimeSlots'
 
 class AdminStore {
+   @observable getAdminResponseStatus
+   @observable getAdminResponseError
+   @observable adminResponse
+   @observable activeWashingMachines = []
+   @observable inActiveWashingMachines = []
+   @observable updateSlotsResponse = []
+   @observable getUpdateSlotsResponseStatus
+   @observable getUpdateSlotsResponseError
+   @observable getPostStatusOfWashingMachineResponseStatus
+   @observable getPostStatusOfWashingMachineResponseError
+   @observable getPostNewWashingMachineIdStatus
+   @observable getPostNewWashingMachineIdError
+   adminService
+   updateMachineId
+   washingMachineDetailsId
+   updateMachineStatus
+   @observable getPostUpdateSlotsStatus
+   @observable getPostUpdateSlotsError
 
-    @observable getAdminResponseStatus;
-    @observable getAdminResponseError;
-    @observable adminResponse;
-    @observable activeWashingMachines = [];
-    @observable inActiveWashingMachines = [];
-    @observable updateSlotsResponse = [];
-    @observable getUpdateSlotsResponseStatus;
-    @observable getUpdateSlotsResponseError;
-    @observable getPostStatusOfWashingMachineResponseStatus;
-    @observable getPostStatusOfWashingMachineResponseError;
-    @observable getPostNewWashingMachineIdStatus;
-    @observable getPostNewWashingMachineIdError;
-    adminService
-    updateMachineId
-    washingMachineDetailsId;
-    updateMachineStatus
-    @observable getPostUpdateSlotsStatus;
-    @observable getPostUpdateSlotsError;
+   constructor(adminService) {
+      this.init()
+      this.adminService = adminService
+   }
 
-    constructor(adminService) {
-        this.init();
-        this.adminService = adminService;
-    }
+   init = () => {
+      this.getAdminResponseStatus = API_INITIAL
+      this.getAdminResponseError = null
+      this.getUpdateSlotsResponseStatus = API_INITIAL
+      this.getUpdateSlotsResponseError = null
+      this.getPostStatusOfWashingMachineResponseStatus = API_INITIAL
+      this.getPostStatusOfWashingMachineResponseError = null
+      this.getPostNewWashingMachineIdStatus = API_INITIAL
+      this.getPostNewWashingMachineIdError = null
+      this.getPostUpdateSlotsStatus = API_INITIAL
+      this.getPostUpdateSlotsError = null
+      this.adminResponse = []
+      this.updateSlotsResponse = []
+      this.activeWashingMachines = []
+      this.inActiveWashingMachines = []
+   }
 
-    init = () => {
-        this.getAdminResponseStatus = API_INITIAL;
-        this.getAdminResponseError = null;
-        this.getUpdateSlotsResponseStatus = API_INITIAL;
-        this.getUpdateSlotsResponseError = null;
-        this.getPostStatusOfWashingMachineResponseStatus = API_INITIAL;
-        this.getPostStatusOfWashingMachineResponseError = null;
-        this.getPostNewWashingMachineIdStatus = API_INITIAL;
-        this.getPostNewWashingMachineIdError = null;
-        this.getPostUpdateSlotsStatus = API_INITIAL;
-        this.getPostUpdateSlotsError = null;
-        this.adminResponse = [];
-        this.updateSlotsResponse = [];
-        this.activeWashingMachines = [];
-        this.inActiveWashingMachines = [];
-    }
+   @action.bound
+   getAdminResponse() {
+      const promise = this.adminService.adminResponse()
 
-    @action.bound
-    getAdminResponse() {
+      return bindPromiseWithOnSuccess(promise)
+         .to(this.setGetAdminResponseAPIStatus, this.setAdminAPIResponse)
+         .catch(this.setGetAdminAPIError)
+   }
 
-        const promise = this.adminService.adminResponse();
+   @action.bound
+   setGetAdminResponseAPIStatus(status) {
+      this.getAdminResponseStatus = status
+   }
 
-        return bindPromiseWithOnSuccess(promise)
-            .to(this.setGetAdminResponseAPIStatus, this.setAdminAPIResponse)
-            .catch(this.setGetAdminAPIError);
-    }
+   @action.bound
+   setAdminAPIResponse(response) {
+      this.adminResponse = response.washing_machines.map(
+         obj => new AdminModel(obj)
+      )
 
-    @action.bound
-    setGetAdminResponseAPIStatus(status) {
-        this.getAdminResponseStatus = status;
-    }
+      this.activeWashingMachines = this.adminResponse.filter(
+         obj => obj.washingMachineStatus == 'ACTIVE'
+      )
 
-    @action.bound
-    setAdminAPIResponse(response) {
+      this.inActiveWashingMachines = this.adminResponse.filter(
+         obj => obj.washingMachineStatus == 'INACTIVE'
+      )
+   }
 
-        this.adminResponse = response.washing_machines.map(obj => new AdminModel(obj));
+   @action.bound
+   setGetAdminAPIError(error) {
+      this.getAdminResponseError = error
+   }
 
-        this.activeWashingMachines = this.adminResponse.filter(obj => obj.washingMachineStatus == "ACTIVE");
+   @action.bound
+   onClickNewWashingMachine(washingMachineNumber) {
+      //let washingMachineNumber = prompt("Enter WashingMachine Number");
+      let checkingNumberExistOrNot = this.adminResponse.filter(
+         obj => obj.washingMachineId === washingMachineNumber
+      )
 
-        this.inActiveWashingMachines = this.adminResponse.filter(obj => obj.washingMachineStatus == "INACTIVE");
-    }
-
-    @action.bound
-    setGetAdminAPIError(error) {
-        this.getAdminResponseError = error;
-    }
-
-    @action.bound
-    onClickNewWashingMachine(washingMachineNumber) {
-
-        //let washingMachineNumber = prompt("Enter WashingMachine Number");
-        let checkingNumberExistOrNot = this.adminResponse.filter(obj => obj.washingMachineId === washingMachineNumber);
-
-        if (checkingNumberExistOrNot.length == 1) {
-            alert('Already Exists Enter another number');
-        }
-        else {
-            if (washingMachineNumber) {
-                const requestObj = {
-                    "washing_machine_id": washingMachineNumber
-                };
-                const promise = this.adminService.postNewWashingMachineIdToAdd(requestObj);
-
-                return bindPromiseWithOnSuccess(promise)
-                    .to(this.setGetPostNewWashingMachineAPIStatus, this.setPostNewWashingMachineAPIResponse)
-                    .catch(this.setGetPostNewWashingMachineAPIError);
+      if (checkingNumberExistOrNot.length == 1) {
+         alert('Already Exists Enter another number')
+      } else {
+         if (washingMachineNumber) {
+            const requestObj = {
+               washing_machine_id: washingMachineNumber
             }
-            else {
-                alert('please enter washing machine number')
-            }
-        }
-    }
+            const promise = this.adminService.postNewWashingMachineIdToAdd(
+               requestObj
+            )
 
+            return bindPromiseWithOnSuccess(promise)
+               .to(
+                  this.setGetPostNewWashingMachineAPIStatus,
+                  this.setPostNewWashingMachineAPIResponse
+               )
+               .catch(this.setGetPostNewWashingMachineAPIError)
+         } else {
+            alert('please enter washing machine number')
+         }
+      }
+   }
 
-    @action.bound
-    setGetPostNewWashingMachineAPIStatus(status) {
-        this.getPostNewWashingMachineIdStatus = status;
-    }
+   @action.bound
+   setGetPostNewWashingMachineAPIStatus(status) {
+      this.getPostNewWashingMachineIdStatus = status
+   }
 
-    @action.bound
-    setPostNewWashingMachineAPIResponse(response) {
-        //alert("successfully added new Machine");
-        this.getAdminResponse();
-    }
+   @action.bound
+   setPostNewWashingMachineAPIResponse(response) {
+      //alert("successfully added new Machine");
+      this.getAdminResponse()
+   }
 
+   @action.bound
+   setGetPostNewWashingMachineAPIError(error) {
+      this.getPostNewWashingMachineIdError = error
+      //alert("new washing machine is not added");
+      this.getAdminResponse()
+   }
 
-    @action.bound
-    setGetPostNewWashingMachineAPIError(error) {
-        this.getPostNewWashingMachineIdError = error;
-        //alert("new washing machine is not added");
-        this.getAdminResponse();
-    }
+   @action.bound
+   onClickUpdateInWashingMachineCard(id) {
+      //alert('update click');
+      this.washingMachineDetailsId = id
+      //console.log(this.adminResponse);
+      this.updateMachineId = id
+      this.updateMachineStatus = this.adminResponse
+         .filter(obj => obj.washingMachineId == id)[0]
+         .washingMachineStatus.toLowerCase()
+      const requestObj = {
+         washing_machine_id: id,
+         day: 'MONDAY'
+      }
+      //console.log(requestObj, "id ---->store");
+      const promise = this.adminService.getUpdateWashingMachineSlotsDetails(
+         requestObj
+      )
 
+      return bindPromiseWithOnSuccess(promise)
+         .to(
+            this.setGetUpdateWashingMachineResponseAPIStatus,
+            this.setUpdateWashingMachineAPIResponse
+         )
+         .catch(this.setGetUpdateWashingMachineAPIError)
+   }
 
+   @action.bound
+   setGetUpdateWashingMachineResponseAPIStatus(status) {
+      this.getUpdateSlotsResponseStatus = status
+      console.log(this.getUpdateSlotsResponseStatus, 'status')
+   }
 
-    @action.bound
-    onClickUpdateInWashingMachineCard(id) {
-        //alert('update click');
-        this.washingMachineDetailsId = id;
-        //console.log(this.adminResponse);
-        this.updateMachineId = id;
-        this.updateMachineStatus = this.adminResponse.filter(obj => obj.washingMachineId == id)[0].washingMachineStatus.toLowerCase();
-        const requestObj = {
-            "washing_machine_id": id,
-            "day": "MONDAY"
-        };
-        //console.log(requestObj, "id ---->store");
-        const promise = this.adminService.getUpdateWashingMachineSlotsDetails(requestObj);
+   @action.bound
+   setUpdateWashingMachineAPIResponse(response) {
+      console.log(response, 'response')
+      this.updateSlotsResponse = new UpdateSlotsModel(response)
+   }
 
-        return bindPromiseWithOnSuccess(promise)
-            .to(this.setGetUpdateWashingMachineResponseAPIStatus, this.setUpdateWashingMachineAPIResponse)
-            .catch(this.setGetUpdateWashingMachineAPIError);
-    }
+   @action.bound
+   setGetUpdateWashingMachineAPIError(error) {
+      this.getUpdateSlotsResponseError = error
+      console.log(this.getUpdateSlotsResponseError, 'error')
+   }
 
+   @action.bound
+   onClickActiveOrInactiveStatus(id) {
+      const requestObj = {
+         washing_machine_id: id
+      }
+      const promise = this.adminService.postStatusToChange(requestObj)
 
-    @action.bound
-    setGetUpdateWashingMachineResponseAPIStatus(status) {
-        this.getUpdateSlotsResponseStatus = status;
-        console.log(this.getUpdateSlotsResponseStatus, "status");
-    }
+      return bindPromiseWithOnSuccess(promise)
+         .to(
+            this.setGetPostWashingMachineStatusResponseAPIStatus,
+            this.setPostWashingMachineStatusAPIResponse
+         )
+         .catch(this.setGetPostWashingMachineStatusAPIError)
+   }
 
-    @action.bound
-    setUpdateWashingMachineAPIResponse(response) {
-        console.log(response, "response");
-        this.updateSlotsResponse = (new UpdateSlotsModel(response));
+   @action.bound
+   setGetPostWashingMachineStatusResponseAPIStatus(status) {
+      this.getPostStatusOfWashingMachineResponseStatus = status
+   }
 
-    }
+   @action.bound
+   setPostWashingMachineStatusAPIResponse(response) {
+      //alert('success');
+      this.getAdminResponse()
+   }
 
-    @action.bound
-    setGetUpdateWashingMachineAPIError(error) {
-        this.getUpdateSlotsResponseError = error;
-        console.log(this.getUpdateSlotsResponseError, "error");
-    }
+   @action.bound
+   setGetPostWashingMachineStatusAPIError(error) {
+      this.getPostStatusOfWashingMachineResponseError = error
+      //alert('failed status not updated');
+   }
 
-    @action.bound
-    onClickActiveOrInactiveStatus(id) {
-        const requestObj = {
-            "washing_machine_id": id
-        };
-        const promise = this.adminService.postStatusToChange(requestObj);
+   @action.bound
+   onClickCloseBtn(id) {
+      const updateTimeSlots = this.updateSlotsResponse.timeSlots.filter(
+         obj => !(obj.id == id)
+      )
+      this.updateSlotsResponse.timeSlots = updateTimeSlots
+   }
 
-        return bindPromiseWithOnSuccess(promise)
-            .to(this.setGetPostWashingMachineStatusResponseAPIStatus, this.setPostWashingMachineStatusAPIResponse)
-            .catch(this.setGetPostWashingMachineStatusAPIError);
-    }
+   @action.bound
+   onClickAddNewSlot() {
+      let startTime = prompt('Enter startTime with the help of slots Table')
+      let endTime = prompt('Enter endTime with the help of slots Table')
 
-    @action.bound
-    setGetPostWashingMachineStatusResponseAPIStatus(status) {
-        this.getPostStatusOfWashingMachineResponseStatus = status;
-    }
+      //if (startTime.length == 8 && endTime.length == 8) {
+      const newSlot = { start_time: startTime, end_time: endTime }
+      this.updateSlotsResponse.timeSlots.push(new TimeSlots(newSlot))
 
-    @action.bound
-    setPostWashingMachineStatusAPIResponse(response) {
-        //alert('success');
-        this.getAdminResponse();
-    }
+      //}
+      // else {
+      //alert("Enter Valid Time Slot")
+      //}
+   }
 
-    @action.bound
-    setGetPostWashingMachineStatusAPIError(error) {
-        this.getPostStatusOfWashingMachineResponseError = error;
-        //alert('failed status not updated');
-    }
-
-
-
-    @action.bound
-    onClickCloseBtn(id) {
-        const updateTimeSlots = this.updateSlotsResponse.timeSlots.filter(obj => !(obj.id == id));
-        this.updateSlotsResponse.timeSlots = updateTimeSlots;
-    }
-
-    @action.bound
-    onClickAddNewSlot() {
-        let startTime = prompt("Enter startTime with the help of slots Table");
-        let endTime = prompt("Enter endTime with the help of slots Table");
-
-        //if (startTime.length == 8 && endTime.length == 8) {
-        const newSlot = { "start_time": startTime, "end_time": endTime }
-        this.updateSlotsResponse.timeSlots.push(new TimeSlots(newSlot));
-
-
-        //}
-        // else {
-        //alert("Enter Valid Time Slot")
-        //}
-    }
-
-
-    @action.bound
-    onChangeStartTimeInUpdateSlots(id, value) {
-        this.updateSlotsResponse.timeSlots = this.updateSlotsResponse.timeSlots.map(obj => {
+   @action.bound
+   onChangeStartTimeInUpdateSlots(id, value) {
+      this.updateSlotsResponse.timeSlots = this.updateSlotsResponse.timeSlots.map(
+         obj => {
             if (obj.id == id) {
-                obj.onChangeFromTime(value);
+               obj.onChangeFromTime(value)
             }
-            return obj;
-        });
-    }
+            return obj
+         }
+      )
+   }
 
-    @action.bound
-    onChangeEndTimeInUpdateSlots(id, value) {
-        this.updateSlotsResponse.timeSlots = this.updateSlotsResponse.timeSlots.map(obj => {
+   @action.bound
+   onChangeEndTimeInUpdateSlots(id, value) {
+      this.updateSlotsResponse.timeSlots = this.updateSlotsResponse.timeSlots.map(
+         obj => {
             if (obj.id == id) {
-                obj.onChangeToTime(value);
+               obj.onChangeToTime(value)
             }
-            return obj;
-        });
-    }
+            return obj
+         }
+      )
+   }
 
-    @action.bound
-    onClickUpdateBtn() {
-        const requestObj = {
-            "washing_machine_id": this.updateSlotsResponse.washingMachineId,
-            "day": this.updateSlotsResponse.day,
-            "time_slots": this.updateSlotsResponse.timeSlots.map(obj => ({ "start_time": obj.startTime, "end_time": obj.endTime }))
-        }
+   @action.bound
+   onClickUpdateBtn() {
+      const requestObj = {
+         washing_machine_id: this.updateSlotsResponse.washingMachineId,
+         day: this.updateSlotsResponse.day,
+         time_slots: this.updateSlotsResponse.timeSlots.map(obj => ({
+            start_time: obj.startTime,
+            end_time: obj.endTime
+         }))
+      }
 
-        const promise = this.adminService.postUpdateSlotsDetails(requestObj);
+      const promise = this.adminService.postUpdateSlotsDetails(requestObj)
 
-        return bindPromiseWithOnSuccess(promise)
-            .to(this.setGetPostUpdateSlotsResponseAPIStatus, this.setGetPostUpdateSlotsAPIResponse)
-            .catch(this.setGetPostUpdateSlotsAPIError);
-    }
+      return bindPromiseWithOnSuccess(promise)
+         .to(
+            this.setGetPostUpdateSlotsResponseAPIStatus,
+            this.setGetPostUpdateSlotsAPIResponse
+         )
+         .catch(this.setGetPostUpdateSlotsAPIError)
+   }
 
-    @action.bound
-    setGetPostUpdateSlotsResponseAPIStatus(status) {
-        this.getPostUpdateSlotsStatus = status;
-    }
+   @action.bound
+   setGetPostUpdateSlotsResponseAPIStatus(status) {
+      this.getPostUpdateSlotsStatus = status
+   }
 
-    @action.bound
-    setGetPostUpdateSlotsAPIResponse(response) {
-        //alert("successfully updated");
-    }
+   @action.bound
+   setGetPostUpdateSlotsAPIResponse(response) {
+      //alert("successfully updated");
+   }
 
-    @action.bound
-    setGetPostUpdateSlotsAPIError(error) {
-        this.getPostUpdateSlotsError = getUserDisplayableErrorMessage(error);
-        alert(this.getPostUpdateSlotsError);
-        this.onClickUpdateInWashingMachineCard(this.washingMachineDetailsId);
-    }
-
+   @action.bound
+   setGetPostUpdateSlotsAPIError(error) {
+      this.getPostUpdateSlotsError = getUserDisplayableErrorMessage(error)
+      alert(this.getPostUpdateSlotsError)
+      this.onClickUpdateInWashingMachineCard(this.washingMachineDetailsId)
+   }
 }
 
-export default AdminStore;
+export default AdminStore

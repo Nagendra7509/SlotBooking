@@ -1,73 +1,68 @@
-import React from "react";
-import { washingMachineUrls } from "../../../assets";
-import { activeAndInactive } from "../../../i18n/strings.json";
+import React from 'react'
+import { washingMachineUrls } from '../../../assets'
+import { activeAndInactive } from '../../../i18n/strings.json'
 import {
-    WashingMachineCardContainer,
-    WashingMachineImg,
-    WashingMachineDetails,
-    WashingMachineCardId,
-    UpdateAndStatus,
-    SelectTag,
-    Option,
-    Status
-}
-from "./styledComponents";
-
+   WashingMachineCardContainer,
+   WashingMachineImg,
+   WashingMachineDetails,
+   WashingMachineCardId,
+   UpdateAndStatus,
+   SelectTag,
+   Option,
+   Status
+} from './styledComponents'
 
 class WashingMachineCard extends React.Component {
+   render() {
+      const washingMachinesUrls = [...washingMachineUrls]
+      const {
+         washingMachineId,
+         washingMachineStatus,
+         onClickUpdate,
+         onClickActiveOrInactiveStatus
+      } = this.props
+      const {
+         washingMachineID,
+         updateSlots,
+         markAsInactive,
+         markAsActive,
+         allocatedSlots
+      } = activeAndInactive
 
-    render() {
+      return (
+         <WashingMachineCardContainer>
+            <WashingMachineImg
+               src={
+                  washingMachinesUrls[Math.floor(Math.random() * (5 + 0 + 1))]
+               }
+               alt={'WashingMachineImg'}
+            />
 
-        const washingMachinesUrls = [...washingMachineUrls];
-        const {
-            washingMachineId,
-            washingMachineStatus,
-            onClickUpdate,
-            onClickActiveOrInactiveStatus
-        } = this.props;
-        const {
-            washingMachineID,
-            updateSlots,
-            markAsInactive,
-            markAsActive,
-            allocatedSlots
-        } = activeAndInactive;
+            <WashingMachineDetails>
+               <WashingMachineCardId>
+                  {washingMachineID}
+                  {washingMachineId}
+               </WashingMachineCardId>
 
-        return (
+               <UpdateAndStatus>
+                  <SelectTag onClick={onClickUpdate} id={washingMachineId}>
+                     <Option value={updateSlots}>{updateSlots}</Option>
+                     <Option value={allocatedSlots}>{allocatedSlots}</Option>
+                  </SelectTag>
 
-            <WashingMachineCardContainer>
-            
-                <WashingMachineImg 
-                    src={washingMachinesUrls[Math.floor(Math.random() * (5 + 0 + 1))]} 
-                    alt={"WashingMachineImg"}
-                />  
-                
-                <WashingMachineDetails>
-                
-                    <WashingMachineCardId>{washingMachineID}{washingMachineId}</WashingMachineCardId>
-                    
-                    <UpdateAndStatus>
-                            <SelectTag onClick={onClickUpdate} id={washingMachineId}>
-                                <Option value={updateSlots}>{updateSlots}</Option>
-                                <Option value={allocatedSlots}>{allocatedSlots}</Option>
-                            </SelectTag>
-                            
-                            <Status
-                                id={washingMachineId}
-                                onClick={onClickActiveOrInactiveStatus}
-                                >{washingMachineStatus=="ACTIVE"?markAsInactive:markAsActive}
-                            </Status>
-                    </UpdateAndStatus>
-                
-                </WashingMachineDetails>
-            
-            </WashingMachineCardContainer>
-
-        );
-
-
-    }
+                  <Status
+                     id={washingMachineId}
+                     onClick={onClickActiveOrInactiveStatus}
+                  >
+                     {washingMachineStatus == 'ACTIVE'
+                        ? markAsInactive
+                        : markAsActive}
+                  </Status>
+               </UpdateAndStatus>
+            </WashingMachineDetails>
+         </WashingMachineCardContainer>
+      )
+   }
 }
 
-
-export default WashingMachineCard;
+export default WashingMachineCard

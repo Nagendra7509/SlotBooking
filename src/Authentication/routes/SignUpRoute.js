@@ -2,20 +2,18 @@ import React from 'react'
 import { observable, action } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import SignUpPage from '../components/SignUpPage'
-import { clearUserSession } from "../../utils/StorageUtils";
-import Strings from "../i18n/strings.json";
-
+import { clearUserSession } from '../../utils/StorageUtils'
+import Strings from '../i18n/strings.json'
 
 @inject('authenticationStore')
 @observer
 class SignUpRoute extends React.Component {
-
    @observable userName = ''
    @observable password = ''
-   @observable confirmPassword = '';
-   @observable userNameError = 'noError';
-   @observable passwordError = "noError";
-   @observable confirmPasswordError = 'noError';
+   @observable confirmPassword = ''
+   @observable userNameError = 'noError'
+   @observable passwordError = 'noError'
+   @observable confirmPasswordError = 'noError'
 
    @action.bound
    onChangeUserNameSignUp(event) {
@@ -32,64 +30,61 @@ class SignUpRoute extends React.Component {
       this.confirmPassword = event.target.value
    }
 
+   onClickSignUpBtn = async () => {
+      this.userNameError = this.passwordError = this.confirmPasswordError =
+         'noError'
 
-   onClickSignUpBtn = async() => {
-      this.userNameError = this.passwordError = this.confirmPasswordError = "noError";
+      const {
+         passwordMisMatch,
+         enterPassword,
+         enterUserName,
+         usernameAlreadyExits,
+         passwordShouldBeGreaterThan8Characters
+      } = Strings.signUp
 
-      const { passwordMisMatch, enterPassword, enterUserName, usernameAlreadyExits, passwordShouldBeGreaterThan8Characters } = Strings.signUp;
-
-      if (this.userName != "" && this.password != "") {
+      if (this.userName != '' && this.password != '') {
          if (this.password === this.confirmPassword) {
-            const { userSignUp } = this.props.authenticationStore;
+            const { userSignUp } = this.props.authenticationStore
 
-            await userSignUp(this.userName, this.password);
+            await userSignUp(this.userName, this.password)
 
-            const { getUserSignUpError } = this.props.authenticationStore;
+            const { getUserSignUpError } = this.props.authenticationStore
 
             if (getUserSignUpError != null) {
-               const signUpCredentialsError = getUserSignUpError.split(" ");
+               const signUpCredentialsError = getUserSignUpError.split(' ')
 
-               if (signUpCredentialsError.includes("username")) {
-                  this.userNameError = usernameAlreadyExits;
-                  this.passwordError = 'noError';
-                  this.confirmPasswordError = "noError";
+               if (signUpCredentialsError.includes('username')) {
+                  this.userNameError = usernameAlreadyExits
+                  this.passwordError = 'noError'
+                  this.confirmPasswordError = 'noError'
+               } else if (signUpCredentialsError.includes('password')) {
+                  this.userNameError = 'noError'
+                  this.passwordError = passwordShouldBeGreaterThan8Characters
+                  this.confirmPasswordError = 'noError'
                }
-               else if (signUpCredentialsError.includes('password')) {
-                  this.userNameError = 'noError';
-                  this.passwordError = passwordShouldBeGreaterThan8Characters;
-                  this.confirmPasswordError = "noError";
-               }
-            }
-            else {
+            } else {
                //this.userNameError = "noError";
                //this.passwordError = "noError";
-               const { history } = this.props;
-               history.replace('/slot-booking/login/');
+               const { history } = this.props
+               history.replace('/slot-booking/login/')
             }
             //this.confirmPasswordError = "noError";
-
+         } else {
+            this.confirmPasswordError = passwordMisMatch
+            this.userNameError = 'noError'
+            this.passwordError = 'noError'
          }
-         else {
-            this.confirmPasswordError = passwordMisMatch;
-            this.userNameError = 'noError';
-            this.passwordError = 'noError';
-         }
-
+      } else if (this.userName != '' && this.password == '') {
+         this.passwordError = enterPassword
+         this.userNameError = 'noError'
+         this.confirmPasswordError = 'noError'
+      } else if (this.userName == '' && this.password != '') {
+         this.userNameError = enterUserName
+      } else {
+         this.userNameError = enterUserName
+         this.passwordError = enterPassword
+         this.confirmPasswordError = 'noError'
       }
-      else if (this.userName != "" && this.password == "") {
-         this.passwordError = enterPassword;
-         this.userNameError = 'noError';
-         this.confirmPasswordError = 'noError';
-      }
-      else if (this.userName == "" && this.password != "") {
-         this.userNameError = enterUserName;
-      }
-      else {
-         this.userNameError = enterUserName;
-         this.passwordError = enterPassword;
-         this.confirmPasswordError = 'noError';
-      }
-
    }
 
    render() {
@@ -104,7 +99,7 @@ class SignUpRoute extends React.Component {
          userNameError,
          passwordError,
          confirmPasswordError
-      } = this;
+      } = this
 
       return (
          <SignUpPage
@@ -115,7 +110,6 @@ class SignUpRoute extends React.Component {
             onChangeConfirmPasswordSignUp={onChangeConfirmPasswordSignUp}
             onChangeUserNameSignUp={onChangeUserNameSignUp}
             onClickSignUpBtn={onClickSignUpBtn}
-            
             userNameError={userNameError}
             passwordError={passwordError}
             confirmPasswordError={confirmPasswordError}

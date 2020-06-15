@@ -1,8 +1,6 @@
-import styled from '@emotion/styled';
-import tw from 'tailwind.macro';
+import styled from '@emotion/styled'
+import tw from 'tailwind.macro'
 
-const IssuesPageContainer = styled.h1 ``;
+const IssuesPageContainer = styled.h1``
 
-export {
-    IssuesPageContainer
-}
+export { IssuesPageContainer }

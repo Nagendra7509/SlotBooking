@@ -1,7 +1,7 @@
 {
     "washing_machines": [{
             "washing_machine_id": "01",
-            "status": "ACTIVE"
+            "status": "INACTIVE"
         }, {
             "washing_machine_id": "02",
             "status": "ACTIVE"

@@ -1,16 +1,12 @@
-import React from "react";
-import { observer } from "mobx-react";
-import { IssuesPageContainer } from "./styledComponents";
+import React from 'react'
+import { observer } from 'mobx-react'
+import { IssuesPageContainer } from './styledComponents'
 
 @observer
 class IssuesPage extends React.Component {
-
-
-    render() {
-
-        return <IssuesPageContainer>IssuesPage</IssuesPageContainer>;
-    }
-
+   render() {
+      return <IssuesPageContainer>IssuesPage</IssuesPageContainer>
+   }
 }
 
-export default IssuesPage;
+export default IssuesPage
