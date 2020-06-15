@@ -4,11 +4,13 @@ import {
    API_FETCHING,
    API_SUCCESS,
    API_FAILED
-} from '@ib/api-constants'
+}
+from '@ib/api-constants'
 import { observable, action } from 'mobx'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { setAccessToken } from '../../../utils/StorageUtils'
+//import { setAccessToken } from '../../../utils/StorageUtils'
 import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
+import { setAccessToken } from '../../utils/StorageUtils'
 
 class AuthenticationStore {
    @observable getUserLoginStatus

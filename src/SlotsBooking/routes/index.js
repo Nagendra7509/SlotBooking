@@ -6,7 +6,8 @@ import {
    REPORTANISSUE_PAGE_PATH,
    PREVIOUS_SLOTS_PAGE_PATH,
    PROFILE_PAGE
-} from '../constants/routeConstants/RouteConstants'
+}
+from '../constants/routeConstants/RouteConstants'
 import { ProtectedRoute } from '../../Common/ProtectedRoute'
 import SlotsBookingRoute from './SlotsBookingRoute'
 import Requests from '../components/SlotsBookingHomePage/RequestsPage'

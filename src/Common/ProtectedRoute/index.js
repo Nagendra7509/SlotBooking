@@ -7,10 +7,12 @@ import { observer } from 'mobx-react'
 @observer
 class ProtectedRoute extends React.Component {
    render() {
-      const { path, component } = this.props
+      const { component: Component, ...otherProps } = this.props
+      console.log(getAccessToken(), "protectedRoute getAccessToken")
       if (getAccessToken()) {
-         return <Route path={path} component={component} />
-      } else {
+         return <Route component={Component} {...otherProps}/>
+      }
+      else {
          return <Redirect to={{ pathname: LOGIN_PATH }} />
       }
    }

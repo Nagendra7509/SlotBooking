@@ -58,14 +58,17 @@ class LoginRoute extends React.Component {
             if (getAccessToken()) {
 
                const { history } = this.props
-
+               console.log(getAccessToken(), "access_token");
+               console.log(isAdmin, "isAdmin");
                if (isAdmin) {
-                  alert('heloo');
+                  //alert('heloo');
                   history.push('/slot-booking/admin/issues/')
                }
                else {
 
-                  history.push('/slot-booking/dashBoard/')
+                  history.push('/slot-booking/dashBoard/');
+                  console.log(history);
+
                }
             }
             // else {
