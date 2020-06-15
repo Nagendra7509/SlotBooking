@@ -6,6 +6,7 @@ import NoDataView from "../../../Common/LoadingWrapper/NoDataView/index";
 import Strings from "../../i18n/strings.json";
 import { ColorLabels } from "../../common/components/";
 import { colors } from "../../themes/Colors";
+//import { getLoadingStatus } from "@ib/api-utils";
 import UpComingSlots from "./UpComingSlots";
 import {
     DashBoardContainer,
