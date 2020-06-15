@@ -5,7 +5,8 @@ import {
    API_FETCHING,
    API_SUCCESS,
    API_FAILED
-} from '@ib/api-constants'
+}
+from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
 import AdminModel from '../models/AdminModel'
@@ -97,7 +98,8 @@ class AdminStore {
 
       if (checkingNumberExistOrNot.length == 1) {
          alert('Already Exists Enter another number')
-      } else {
+      }
+      else {
          if (washingMachineNumber) {
             const requestObj = {
                washing_machine_id: washingMachineNumber
@@ -112,7 +114,8 @@ class AdminStore {
                   this.setPostNewWashingMachineAPIResponse
                )
                .catch(this.setGetPostNewWashingMachineAPIError)
-         } else {
+         }
+         else {
             alert('please enter washing machine number')
          }
       }
@@ -165,19 +168,19 @@ class AdminStore {
    @action.bound
    setGetUpdateWashingMachineResponseAPIStatus(status) {
       this.getUpdateSlotsResponseStatus = status
-      console.log(this.getUpdateSlotsResponseStatus, 'status')
+      //console.log(this.getUpdateSlotsResponseStatus, 'status')
    }
 
    @action.bound
    setUpdateWashingMachineAPIResponse(response) {
-      console.log(response, 'response')
+      //console.log(response, 'response')
       this.updateSlotsResponse = new UpdateSlotsModel(response)
    }
 
    @action.bound
    setGetUpdateWashingMachineAPIError(error) {
       this.getUpdateSlotsResponseError = error
-      console.log(this.getUpdateSlotsResponseError, 'error')
+      //console.log(this.getUpdateSlotsResponseError, 'error')
    }
 
    @action.bound

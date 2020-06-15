@@ -6,7 +6,8 @@ import {
    API_FETCHING,
    API_SUCCESS,
    API_FAILED
-} from '@ib/api-constants'
+}
+from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import AvailableSlotsModel from '../models/AvailableSlotsModel'
 import UpComingSlotDetails from '../models/UpComingSlotDetails'
@@ -90,7 +91,7 @@ class SlotsDashBoardStore {
    @action.bound
    setGetResponseAvailableSlotsAPIStatus(apiStatus) {
       this.getAvailableSlotsResponseStatus = apiStatus
-      console.log(this.getAvailableSlotsResponseStatus, 'status')
+      //console.log(this.getAvailableSlotsResponseStatus, 'status')
    }
 
    @action.bound
@@ -112,7 +113,7 @@ class SlotsDashBoardStore {
    @action.bound
    setGetAvailableSlotsAPIError(error) {
       this.getAvailableSlotsResponseError = error
-      console.log(this.getAvailableSlotsResponseError, 'error')
+      //console.log(this.getAvailableSlotsResponseError, 'error')
    }
 
    @action.bound
@@ -134,7 +135,7 @@ class SlotsDashBoardStore {
 
    @action.bound
    setAPIResponseUpcomingSlots(response) {
-      console.log(this.upcomingSlotsResponse, 'upcoming slots Response')
+      //console.log(this.upcomingSlotsResponse, 'upcoming slots Response')
       //upcoming slots
       this.upcomingSlotsResponse = response.upcoming_slots.map(
          obj => new UpComingSlotDetails(obj)
@@ -218,7 +219,8 @@ class SlotsDashBoardStore {
                this.setAPIResponseOfConfirmSlot
             )
             .catch(this.setGetAPIErrorOfConfirmSlot)
-      } else {
+      }
+      else {
          alert('please select the time slot')
       }
    }
