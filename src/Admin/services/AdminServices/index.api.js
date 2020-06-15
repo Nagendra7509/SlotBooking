@@ -16,14 +16,12 @@ class AdminService {
    adminResponse = () => {
       return networkCallWithApisauce(
          this.api,
-         '/api/slot_booking/get/washing/machine/details/v1/',
-         {},
+         '/api/slot_booking/get/washing/machine/details/v1/', {},
          apiMethods.get
       )
    }
 
    getUpdateWashingMachineSlotsDetails = requestObj => {
-      //console.log(requestObj, "api update");
       return networkCallWithApisauce(
          this.api,
          '/api/slot_booking/get/washing/machine/slots/v1/',
@@ -32,14 +30,14 @@ class AdminService {
       )
    }
 
-   postStatusToChange = requestObj => {
-      return networkCallWithApisauce(
-         this.api,
-         endPoints,
-         requestObj,
-         apiMethods.post
-      )
-   }
+   // postStatusToChange = requestObj => {
+   //    return networkCallWithApisauce(
+   //       this.api,
+   //       endPoints,
+   //       requestObj,
+   //       apiMethods.post
+   //    )
+   // }
 
    postNewWashingMachineIdToAdd = requestObj => {
       return networkCallWithApisauce(

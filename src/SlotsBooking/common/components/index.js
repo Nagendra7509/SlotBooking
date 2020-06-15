@@ -7,10 +7,8 @@ export const NavBarItem = props => (
    </NavItem>
 )
 
-export const TimeButton = props => (
-   <TimeBtn>
-      <Time>{props.children}</Time>
-   </TimeBtn>
-)
+export const TimeButton = props => (<TimeBtn>
+                                       <Time>{props.children}</Time>
+                                    </TimeBtn>)
 
 export const PreviousSlotsHeading = props => <Heading>{props.children}</Heading>

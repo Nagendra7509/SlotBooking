@@ -23,4 +23,4 @@ class SignUpService {
    }
 }
 
-export default SignUpService
+export default SignUpService;

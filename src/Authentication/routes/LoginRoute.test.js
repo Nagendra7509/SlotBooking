@@ -9,7 +9,8 @@ import {
    API_FETCHING,
    API_SUCCESS,
    API_INITIAL
-} from '@ib/api-constants'
+}
+from '@ib/api-constants'
 import { SLOTS_BOOKING_PATH } from '../../SlotsBooking/constants/routeConstants/RouteConstants'
 import { SIGN_UP_PATH } from '../constants/routeConstants/RouteConstants'
 import { LOGIN_PATH } from '../constants/routeConstants/RouteConstants'
@@ -87,7 +88,7 @@ describe('LoginRoute Tests', () => {
       waitFor(() => getByRole('button', { name: 'Login....' }))
    })
 
-   it('should render signInRoute success state', async () => {
+   it('should render signInRoute success state', async() => {
       const history = createMemoryHistory()
       const route = LOGIN_PATH
       history.push(route)
