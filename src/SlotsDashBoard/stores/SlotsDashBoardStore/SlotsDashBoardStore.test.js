@@ -5,8 +5,7 @@ import {
    API_FETCHING,
    API_SUCCESS,
    API_INITIAL
-}
-from '@ib/api-constants'
+} from '@ib/api-constants'
 
 import DashBoardService from '../../services/DashBoardService/index.api'
 import getSlotsResponse from '../../fixtures/getResponse.json'
@@ -68,7 +67,7 @@ describe('slotsDashBoardStore Tests', () => {
       )
    })
 
-   it('should test getAvailableSlotsData success state', async() => {
+   it('should test getAvailableSlotsData success state', async () => {
       const mockSuccessPromise = new Promise((resolve, reject) => {
          resolve(getSlotsResponse)
       })
@@ -83,7 +82,7 @@ describe('slotsDashBoardStore Tests', () => {
       )
    })
 
-   it('should test getAvailableSlotsData failure state', async() => {
+   it('should test getAvailableSlotsData failure state', async () => {
       const mockFailurePromise = new Promise((resolve, reject) => {
          reject(new Error('failure'))
       })
@@ -112,7 +111,7 @@ describe('slotsDashBoardStore Tests', () => {
       )
    })
 
-   it('should test UpComingSlotsData success state', async() => {
+   it('should test UpComingSlotsData success state', async () => {
       const mockSuccessPromise = new Promise((resolve, reject) => {
          resolve(getSlotsResponse)
       })
@@ -127,7 +126,7 @@ describe('slotsDashBoardStore Tests', () => {
       )
    })
 
-   it('should test upComingData failure state', async() => {
+   it('should test upComingData failure state', async () => {
       const mockFailurePromise = new Promise((resolve, reject) => {
          reject(new Error('failure'))
       })
@@ -156,7 +155,7 @@ describe('slotsDashBoardStore Tests', () => {
       )
    })
 
-   it('should test PreviousSlotsData success state', async() => {
+   it('should test PreviousSlotsData success state', async () => {
       const mockSuccessPromise = new Promise((resolve, reject) => {
          resolve(getSlotsResponse)
       })
@@ -171,7 +170,7 @@ describe('slotsDashBoardStore Tests', () => {
       )
    })
 
-   it('should test PreviousData failure state', async() => {
+   it('should test PreviousData failure state', async () => {
       const mockFailurePromise = new Promise((resolve, reject) => {
          reject(new Error('failure'))
       })
@@ -224,7 +223,7 @@ describe('slotsDashBoardStore Tests', () => {
       expect(window.alert.mock.calls.length).toBe(1)
    })
 
-   it('should test onClickConfirm availableSlots withSelecting time onSuccess', async() => {
+   it('should test onClickConfirm availableSlots withSelecting time onSuccess', async () => {
       slotsDashBoardStore.bookedDateAndTime = {
          date: '28-05-2020',
          start_time: '05:00 AM',
@@ -243,7 +242,7 @@ describe('slotsDashBoardStore Tests', () => {
       expect(slotsDashBoardStore.getConfirmSlotStatus).toBe(API_SUCCESS)
    })
 
-   it('should test onClickConfirm availableSlots withSelecting time onFailure', async() => {
+   it('should test onClickConfirm availableSlots withSelecting time onFailure', async () => {
       slotsDashBoardStore.bookedDateAndTime = {
          date: '28-05-2020',
          start_time: '05:00 AM',
@@ -275,7 +274,7 @@ describe('slotsDashBoardStore Tests', () => {
       expect(slotsDashBoardStore.upComingSlotsDetails).toBeDefined
    })
 
-   it('should test onClickCancelSlot success state', async() => {
+   it('should test onClickCancelSlot success state', async () => {
       const mockSuccessPromise = new Promise((resolve, reject) => {
          resolve(getSlotsResponse)
       })
@@ -288,7 +287,7 @@ describe('slotsDashBoardStore Tests', () => {
       expect(slotsDashBoardStore.getCancelSlotStatus).toBe(API_SUCCESS)
    })
 
-   it('should test onClickCancelSlot failure state', async() => {
+   it('should test onClickCancelSlot failure state', async () => {
       const mockFailurePromise = new Promise((resolve, reject) => {
          reject(new Error('failure'))
       })
@@ -308,5 +307,5 @@ describe('slotsDashBoardStore Tests', () => {
       ]
 
       expect(slotsDashBoardStore.countOfBookingSlotsPerDay).toBe(10)
-   });
+   })
 })

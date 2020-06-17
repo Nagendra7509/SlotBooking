@@ -11,11 +11,9 @@ class ProtectedRoute extends React.Component {
       const { component: Component, ...otherProps } = this.props
 
       if (getAccessToken()) {
-         return <Route component={Component} {...otherProps}/>
-      }
-      else {
+         return <Route component={Component} {...otherProps} />
+      } else {
          return <Redirect to={{ pathname: LOGIN_PATH }} />
-
       }
    }
 }

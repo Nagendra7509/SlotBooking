@@ -10,8 +10,7 @@ import {
    SelectTag,
    Option,
    Status
-}
-from './styledComponents'
+} from './styledComponents'
 
 class WashingMachineCard extends React.Component {
    render() {

@@ -1,15 +1,12 @@
-import React from "react";
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import React from 'react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 
-import NoDataView from ".";
+import NoDataView from '.'
 
 describe('NoDataView tests', () => {
+   it('should test NoDataView ', () => {
+      const { getByText } = render(<NoDataView />)
 
-    it('should test NoDataView ', () => {
-
-        const { getByText } = render(<NoDataView/>)
-
-        getByText("No data found!")
-    });
-
+      getByText('No data found!')
+   })
 })

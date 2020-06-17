@@ -22,8 +22,7 @@ import {
    TimeBtns,
    SlotsUnAvailable,
    AvailableSlots
-}
-from './styledComponent'
+} from './styledComponent'
 
 @inject('slotsDashBoardStore')
 @observer
@@ -178,8 +177,8 @@ class DashBoard extends React.Component {
                onClickCancelSlot={onClickCancelSlot}
             />
          </DashBoardContainer>
-      );
+      )
    }
 }
 
-export default DashBoard;
+export default DashBoard

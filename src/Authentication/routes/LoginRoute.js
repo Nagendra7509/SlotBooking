@@ -24,7 +24,7 @@ class LoginRoute extends React.Component {
       this.password = event.target.value
    }
 
-   onClickLogin = async() => {
+   onClickLogin = async () => {
       this.errroMessageUserName = this.errorMessagePassword = this.errorMessageLoginButton =
          'noError'
 
@@ -42,51 +42,41 @@ class LoginRoute extends React.Component {
             if (loginCredentialsError.includes('username')) {
                this.errroMessageUserName = usernameInavalid
                this.errorMessagePassword = 'noError'
-            }
-            else if (loginCredentialsError.includes('password')) {
+            } else if (loginCredentialsError.includes('password')) {
                this.errroMessageUserName = 'noError'
                this.errorMessagePassword = incorrectPassword
-            }
-            else {
+            } else {
                this.errorMessageLoginButton = serverError
             }
-         }
-         else {
+         } else {
             // this.errroMessageUserName = 'noError';
             // this.errorMessagePassword = 'noError';
 
             if (getAccessToken()) {
-
                const { history } = this.props
                //console.log(getAccessToken(), "access_token");
                //console.log(isAdmin, "isAdmin");
                if (isAdmin) {
                   //alert('heloo');
                   history.push('/slot-booking/admin/issues/')
-               }
-               else {
-
-                  history.push('/slot-booking/dashBoard/');
-                  console.log(history);
-
+               } else {
+                  history.push('/slot-booking/dashBoard/')
+                  console.log(history)
                }
             }
             // else {
             //     this.errorMessageLoginButton = serverError;
             // }
          }
-      }
-      else if (this.userName == '' && this.password == '') {
+      } else if (this.userName == '' && this.password == '') {
          this.errroMessageUserName = usernameInavalid
          this.errorMessagePassword = incorrectPassword
          this.errorMessageLoginButton = 'noError'
-      }
-      else if (this.userName != '' && this.password == '') {
+      } else if (this.userName != '' && this.password == '') {
          this.errorMessagePassword = incorrectPassword
          this.errroMessageUserName = 'noError'
          this.errorMessageLoginButton = 'noError'
-      }
-      else {
+      } else {
          this.errroMessageUserName = usernameInavalid
          this.errorMessagePassword = 'noError'
          this.errorMessageLoginButton = 'noError'

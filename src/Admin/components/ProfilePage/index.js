@@ -10,15 +10,14 @@ import {
    SideNavBarAndProfile,
    LogOutBtnContainer,
    LogOutBtn
-}
-from './styledComponents'
+} from './styledComponents'
 
 @observer
 class ProfilePage extends React.Component {
    onClickLogout = () => {
-      clearUserSession();
-      const { history } = this.props;
-      history.push(LOGIN_PATH);
+      clearUserSession()
+      const { history } = this.props
+      history.push(LOGIN_PATH)
    }
 
    render() {

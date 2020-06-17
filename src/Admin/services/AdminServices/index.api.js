@@ -16,7 +16,8 @@ class AdminService {
    adminResponse = () => {
       return networkCallWithApisauce(
          this.api,
-         '/api/slot_booking/get/washing/machine/details/v1/', {},
+         '/api/slot_booking/get/washing/machine/details/v1/',
+         {},
          apiMethods.get
       )
    }

@@ -6,13 +6,11 @@ import {
    API_FETCHING,
    API_SUCCESS,
    API_FAILED
-}
-from '@ib/api-constants'
+} from '@ib/api-constants'
 import {
    Typo12HKGroteskSemiBoldSteel,
    Typo12HKGroteskRegular
-}
-from '../../../styleGuide/Typos'
+} from '../../../styleGuide/Typos'
 import { InputTag, IbHubsLogo } from '../../common/components'
 import { SIGN_UP_PATH } from '../../constants/routeConstants/RouteConstants'
 import { ibhubsLogo } from '../../assets'
@@ -25,8 +23,7 @@ import {
    SignInBtn,
    DontHaveAccount,
    SignupLink
-}
-from './styledComponent'
+} from './styledComponent'
 
 @observer
 class LoginPage extends React.Component {

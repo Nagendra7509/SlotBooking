@@ -6,8 +6,7 @@ import {
    API_FETCHING,
    API_SUCCESS,
    API_FAILED
-}
-from '@ib/api-constants'
+} from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import AvailableSlotsModel from '../models/AvailableSlotsModel'
 import UpComingSlotDetails from '../models/UpComingSlotDetails'
@@ -219,8 +218,7 @@ class SlotsDashBoardStore {
                this.setAPIResponseOfConfirmSlot
             )
             .catch(this.setGetAPIErrorOfConfirmSlot)
-      }
-      else {
+      } else {
          alert('please select the time slot')
       }
    }

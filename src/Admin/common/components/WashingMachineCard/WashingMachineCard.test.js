@@ -1,23 +1,23 @@
-import React from "react";
+import React from 'react'
 
 /*global jest*/
 /*global expect*/
 
 import { render, fireEvent } from '@testing-library/react'
-import WashingMachineCard from ".";
-describe("WashingMachineCard tests", () => {
-    it('should test WashingMachineCard content', () => {
+import WashingMachineCard from '.'
+describe('WashingMachineCard tests', () => {
+   it('should test WashingMachineCard content', () => {
+      const washingMachineId = '01',
+         washingMachineStatus = 'ACTIVE'
 
-        const washingMachineId = "01",
-            washingMachineStatus = "ACTIVE";
+      const { getByText } = render(
+         <WashingMachineCard
+            washingMachineId={washingMachineId}
+            washingMachineStatus={washingMachineStatus}
+         />
+      )
+      getByText(`Washing Machine ID :${washingMachineId}`)
 
-        const { getByText } = render(<WashingMachineCard
-                                washingMachineId={washingMachineId} 
-                                washingMachineStatus={washingMachineStatus}
-                                    />);
-        getByText(`Washing Machine ID :${washingMachineId}`);
-
-        getByText('Mark As Inactive');
-    })
-
-});
+      getByText('Mark As Inactive')
+   })
+})
