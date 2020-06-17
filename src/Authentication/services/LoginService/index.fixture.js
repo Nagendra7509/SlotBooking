@@ -9,13 +9,6 @@ class LoginService {
       })
    }
 
-   postCredentials() {
-      return new Promise((resolve, reject) => {
-         setTimeout(() => {
-            resolve(200)
-         }, 1000)
-      })
-   }
 }
 
 export default LoginService

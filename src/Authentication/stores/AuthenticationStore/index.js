@@ -43,7 +43,7 @@ class AuthenticationStore {
          username: userName,
          password: password
       }
-      console.log(requestObj)
+      //console.log(requestObj)
       const userPromise = this.loginAPIService.loginAPI(requestObj)
       return bindPromiseWithOnSuccess(userPromise)
          .to(this.setGetUserLoginAPIStatus, this.setUserLoginAPIResponse)

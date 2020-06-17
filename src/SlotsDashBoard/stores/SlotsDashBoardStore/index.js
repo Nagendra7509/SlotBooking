@@ -296,3 +296,5 @@ class SlotsDashBoardStore {
 }
 
 export default SlotsDashBoardStore
+
+// postBookedSlot

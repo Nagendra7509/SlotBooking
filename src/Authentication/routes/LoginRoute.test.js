@@ -133,7 +133,7 @@ describe('LoginRoute Tests', () => {
          expect(
             queryByRole('button', { name: 'LOGIN' })
          ).not.toBeInTheDocument()
-
+      
          expect(getByTestId('location-display')).toHaveTextContent(
             SLOTS_BOOKING_PATH
          )

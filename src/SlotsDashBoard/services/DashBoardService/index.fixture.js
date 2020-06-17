@@ -38,7 +38,7 @@ class DashBoardService {
          setTimeout(() => {
             resolve(200)
          }, 1000)
-      })
+      });
    }
 }
 

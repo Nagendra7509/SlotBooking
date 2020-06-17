@@ -5,7 +5,8 @@ import {
    FailureViewContainer,
    FailureViewMessage,
    RetryButton
-} from './styledComponents'
+}
+from './styledComponents'
 
 @observer
 class FailureView extends React.Component {

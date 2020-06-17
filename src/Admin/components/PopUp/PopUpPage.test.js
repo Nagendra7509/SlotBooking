@@ -9,19 +9,19 @@ describe("PopUp tests", () => {
     it('should test PopUp content', () => {
         let popUp = new PopUp();
 
-        const { getByText, debug, getByRole } = render(<PopUp
+        const { getByText, debug, getByRole, getByPlaceholderText } = render(<PopUp
                                                 onChangeInput={()=>{}} 
                                                 onClickNewWashingMachine={()=>{}}
                                             />);
 
         getByText('Washing Machine ID');
-        getByRole('button', { name: 'ADD' });
-        // fireEvent.click(addButtonField);
-        // const mockFunction = jest.fn();
-        // mockFunction.mockReturnValue(1);
-        // popUp.onClickAddNewWashingMachine = mockFunction;
-        // //console.log(new PopUp);
-        // expect(popUp.onClickAddNewWashingMachine).toBeCalled();
+        const inputField = getByPlaceholderText('Enter Id')
+        const addButtonField = getByRole('button', { name: 'ADD' });
+        const washingMachineNumber = "123"
+        fireEvent.change(inputField, { target: { value: washingMachineNumber } })
+        fireEvent.click(addButtonField);
+
+
     })
 
 });

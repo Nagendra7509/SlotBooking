@@ -46,14 +46,14 @@ class DashBoardService {
       );
    }
 
-   postCancelSlot = requestObj => {
-      return networkCallWithApisauce(
-         this.api,
-         endPoints.DASHBOARD_END_POINT,
-         requestObj,
-         apiMethods.post
-      )
-   }
+   // postCancelSlot = requestObj => {
+   //    return networkCallWithApisauce(
+   //       this.api,
+   //       endPoints.DASHBOARD_END_POINT,
+   //       requestObj,
+   //       apiMethods.post
+   //    )
+   // }
 }
 
 export default DashBoardService

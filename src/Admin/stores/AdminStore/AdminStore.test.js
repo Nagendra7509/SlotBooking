@@ -279,15 +279,16 @@ describe('adminStore Tests', () => {
          updateSlotsResponseData
       )
       adminStore.onChangeStartTimeInUpdateSlots()
-      expect(adminStore.updateSlotsResponse).toBeDefined
+      expect(adminStore.updateSlotsResponse.timeSlots).toBeDefined
    })
 
-   it('should test onChangeStartTimeInUpdateSlots', () => {
+   it('should test onChangeEndTimeInUpdateSlots', () => {
       adminStore.updateSlotsResponse = new UpdateSlotsModel(
          updateSlotsResponseData
       )
-      adminStore.onChangeEndTimeInUpdateSlots()
-      expect(adminStore.updateSlotsResponse).toBeDefined
+      adminStore.onChangeEndTimeInUpdateSlots(0.9619404981906519);
+      expect(adminStore.updateSlotsResponse.timeSlots).toBeDefined;
+
    })
 
    it('should test onClickUpdateBtn fetching state', () => {
@@ -325,25 +326,25 @@ describe('adminStore Tests', () => {
    })
 
    // it('should test onClickUpdateBtn failure state', async() => {
-            //    window.alert = jest.fn()
-            //    adminStore.adminResponse = adminResponse.washing_machines.map(
-            //       obj => new AdminModel(obj)
-            //    )
-            //    adminStore.updateSlotsResponse = new UpdateSlotsModel(
-            //       updateSlotsResponseData
-            //    )
-   
-            //    const mockFailurePromise = new Promise((resolve, reject) => {
-            //       reject(new Error('failure'))
-            //    })
-   
-            //    const mockAdminServiceAPI = jest.fn()
-            //    mockAdminServiceAPI.mockReturnValue(mockFailurePromise)
-            //    adminServiceAPI.postUpdateSlotsDetails = mockAdminServiceAPI
-   
-            //    await adminStore.onClickUpdateBtn()
-            //    expect(adminStore.getPostUpdateSlotsStatus).toBe(API_FAILED)
-            //    expect(adminStore.getPostUpdateSlotsError).toBe('failure')
-            //    expect(window.alert).toHaveBeenCalledWith('data not updated')
-            // })
+   //    window.alert = jest.fn()
+   //    adminStore.adminResponse = adminResponse.washing_machines.map(
+   //       obj => new AdminModel(obj)
+   //    )
+   //    adminStore.updateSlotsResponse = new UpdateSlotsModel(
+   //       updateSlotsResponseData
+   //    )
+
+   //    const mockFailurePromise = new Promise((resolve, reject) => {
+   //       reject(new Error('failure'))
+   //    })
+
+   //    const mockAdminServiceAPI = jest.fn()
+   //    mockAdminServiceAPI.mockReturnValue(mockFailurePromise)
+   //    adminServiceAPI.postUpdateSlotsDetails = mockAdminServiceAPI
+
+   //    await adminStore.onClickUpdateBtn()
+   //    expect(adminStore.getPostUpdateSlotsStatus).toBe(API_FAILED)
+   //    expect(adminStore.getPostUpdateSlotsError).toBe('failure')
+   //    expect(window.alert).toHaveBeenCalledWith('data not updated')
+   // })
 })

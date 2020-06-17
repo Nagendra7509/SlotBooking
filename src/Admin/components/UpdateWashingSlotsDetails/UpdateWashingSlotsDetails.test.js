@@ -8,6 +8,8 @@ import AdminService from "../../services/AdminServices/index.api";
 import { render, fireEvent } from '@testing-library/react'
 import { Provider } from "mobx-react";
 import UpdateWashingSlotsDetails from ".";
+import getUpdateSlotsData from "../../fixtures/getUpdateSlotsResponse.json";
+import getAdminResponse from "../../fixtures/getAdminResponse.json";
 describe("UpdateWashingSlotsDetails tests", () => {
 
     let adminStore, adminService;
@@ -17,10 +19,15 @@ describe("UpdateWashingSlotsDetails tests", () => {
         adminStore = new AdminStore(adminService);
     })
 
+    //adminStore.setUpdateWashingMachineAPIResponse(getUpdateSlotsData);
 
-    it('should test UpdateWashingSlotsDetails content', () => {
 
-        const { getByText, debug } = render(
+    it('should test UpdateWashingSlotsDetails content', async() => {
+
+        await adminStore.setUpdateWashingMachineAPIResponse(getUpdateSlotsData);
+        await adminStore.setAdminAPIResponse(getAdminResponse);
+
+        const { getByText, debug, getByRole } = render(
             <Provider adminStore={adminStore}>
                                     <UpdateWashingSlotsDetails/>
                                     </Provider>);
@@ -29,9 +36,12 @@ describe("UpdateWashingSlotsDetails tests", () => {
         getByText('WASHING MACHINE');
         getByText('SETTINGS');
         getByText('Profile');
-        getByText("Washing Machine ID :");
-        getByText('+ Add Slots');
-        // debug();
+        getByText("Washing Machine ID : 01");
+        const addSlotField = getByRole('button', { name: '+ Add Slots' });
+        const updateButtonField = getByRole('button', { name: "Update" });
+        //fireEvent.click(addSlotField);
+        //fireEvent.click(updateButtonField);
+        //debug();
     })
 
 });

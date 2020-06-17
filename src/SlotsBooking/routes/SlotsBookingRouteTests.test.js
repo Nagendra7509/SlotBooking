@@ -16,5 +16,17 @@ describe('SlotsBooking Component Test cases', () => {
       slotsDashBoardStore = new SlotsDashBoardStore(dashBoardService)
    })
 
-   it('should test SlotsBooking NavItems', () => {})
+   it('should test SlotsBooking NavItems', () => {
+      const { debug, getByText } = render(<Provider slotsDashBoardStore={slotsDashBoardStore}><SlotsBookingRoute/></Provider>);
+      //debug();
+      getByText('Home');
+      getByText('Requests');
+      getByText('Report an Issue');
+      getByText('Previous Slots');
+      getByText('Profile');
+      getByText('Number of slots missed:0');
+      getByText('Available Slots');
+      getByText('Upcoming Slots')
+
+   })
 })

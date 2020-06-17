@@ -30,7 +30,8 @@ import {
    Footer,
    AddNewSlot,
    UpdateBtn
-} from './styledComponents'
+}
+from './styledComponents'
 
 @inject('adminStore')
 @observer
@@ -40,7 +41,7 @@ class UpdateWashingSlotsDetails extends React.Component {
       this.getUpdateSlotsData()
    }
 
-   getUpdateSlotsData = async () => {
+   getUpdateSlotsData = async() => {
       const {
          getAdminResponse,
          onClickUpdateInWashingMachineCard

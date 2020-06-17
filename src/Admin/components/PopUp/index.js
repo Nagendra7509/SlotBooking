@@ -11,7 +11,8 @@ import {
    InputTag,
    AddButton,
    PopUpDetails
-} from './styledComponents'
+}
+from './styledComponents'
 
 @observer
 class PopUp extends React.Component {
@@ -48,6 +49,7 @@ class PopUp extends React.Component {
                   <WashingMachineId>{washingMachineID}</WashingMachineId>
                   <InputTag
                      type='text'
+                     placeholder="Enter Id"
                      value={this.washingMachineNumber}
                      onChange={this.onChangeInput}
                   />

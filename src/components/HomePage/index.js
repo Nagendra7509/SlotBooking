@@ -7,7 +7,7 @@ function App() {
       <div className='App'>
          <header className='App-header'>
             <img src={logo} className='App-logo' alt='logo' />
-
+            <Link to='/page-1'>Page 1</Link>
             <Link to='/slot-booking/login/'>Slots Booking</Link>
          </header>
       </div>
@@ -27,4 +27,4 @@ export default App
 //             >
 //                Learn React
 //             </a>
-//             <Link to='/page-1'>Page 1</Link>
+//             

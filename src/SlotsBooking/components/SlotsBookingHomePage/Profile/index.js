@@ -8,13 +8,13 @@ import {
    LogoutBtn,
    ProfileViewContainer,
    ProfilePageAndNavBar
-} from './styledComponent'
+}
+from './styledComponent'
 
 @observer
 class Profile extends React.Component {
    onClickLogout = () => {
       clearUserSession()
-
       const { history } = this.props
       history.push(LOGIN_PATH)
    }
