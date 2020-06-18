@@ -16,8 +16,7 @@ class AdminService {
    adminResponse = () => {
       return networkCallWithApisauce(
          this.api,
-         '/api/slot_booking/get/washing/machine/details/v1/',
-         {},
+         '/api/slot_booking/get/washing/machine/details/v1/', {},
          apiMethods.get
       )
    }
@@ -31,14 +30,14 @@ class AdminService {
       )
    }
 
-   // postStatusToChange = requestObj => {
-   //    return networkCallWithApisauce(
-   //       this.api,
-   //       endPoints,
-   //       requestObj,
-   //       apiMethods.post
-   //    )
-   // }
+   postStatusToChange = requestObj => {
+      return networkCallWithApisauce(
+         this.api,
+         endPoints,
+         requestObj,
+         apiMethods.post
+      )
+   }
 
    postNewWashingMachineIdToAdd = requestObj => {
       return networkCallWithApisauce(

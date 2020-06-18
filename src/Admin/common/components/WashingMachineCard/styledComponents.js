@@ -2,39 +2,39 @@ import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { colors } from '../../../themes/Colors'
 
-const WashingMachineCardContainer = styled.div`
+const WashingMachineCardContainer = styled.div `
    ${tw`flex flex-col m-4 py-4 `}
    width:300px;
    border: 1px solid ${colors.lightBlueGrey};
 `
 
-const WashingMachineImg = styled.img`
+const WashingMachineImg = styled.img `
    ${tw`m-auto mb-4`}
    width:80%;
    object-fit: contain;
 `
 
-const WashingMachineDetails = styled.div`
+const WashingMachineDetails = styled.div `
    ${tw`flex flex-col`}
 `
 
-const WashingMachineCardId = styled.p`
+const WashingMachineCardId = styled.p `
    ${tw`mx-6 my-4`}
 `
 
-const UpdateAndStatus = styled.div`
+const UpdateAndStatus = styled.div `
    ${tw`flex justify-around items-center`}
 `
 
-const SelectTag = styled.select`
+const SelectTag = styled.select `
    ${tw`px-4 py-2`}
    background-color:white;
    border: 1px solid ${colors.lightBlueGrey};
 `
 
-const Option = styled.option``
+const Option = styled.option ``
 
-const Status = styled.p`
+const Status = styled.button `
    ${tw`cursor-pointer`}
    font-size: 14px;
    font-weight: normal;

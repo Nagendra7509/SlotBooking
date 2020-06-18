@@ -15,7 +15,8 @@ import {
    ActiveMachines,
    ActiveMachineCards,
    AddNewMachine
-} from './styledComponents'
+}
+from './styledComponents'
 
 @inject('adminStore')
 @observer
