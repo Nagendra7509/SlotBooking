@@ -13,8 +13,7 @@ import {
    PreviousSlotsTableData,
    PreviousSlotsTableRow,
    PreviousSlotsAndNavBar
-}
-from './styledComponent'
+} from './styledComponent'
 
 @inject('slotsDashBoardStore')
 @observer

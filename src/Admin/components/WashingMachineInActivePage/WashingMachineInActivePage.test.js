@@ -20,7 +20,13 @@ describe('WashingMachineInactive tests', () => {
    it('should test UpdateWashingSlotsDetails content', () => {
       adminStore.setAdminAPIResponse(getAdminResponse)
 
-      const { getByText, debug, queryAllByText, getAllByText, getByRole } = render(
+      const {
+         getByText,
+         debug,
+         queryAllByText,
+         getAllByText,
+         getByRole
+      } = render(
          <Provider adminStore={adminStore}>
             <WashingMachineInactive
                inActiveWashingMachines={adminStore.inActiveWashingMachines}
@@ -41,16 +47,18 @@ describe('WashingMachineInactive tests', () => {
       //queryAllByText('Allocated Slots')
       // queryAllByText('Mark As Active')
 
-      const updateField = getAllByText('Update Slots');
-      const allocatedField = getAllByText('Allocated Slots');
+      const updateField = getAllByText('Update Slots')
+      const allocatedField = getAllByText('Allocated Slots')
 
-      fireEvent.change(updateField[0]);
-      fireEvent.change(allocatedField[0]);
-      const markAsInActive = getAllByText("Mark As Active");
+      fireEvent.change(updateField[0])
+      fireEvent.change(allocatedField[0])
+      const markAsInActive = getAllByText('Mark As Active')
 
-      fireEvent.click(markAsInActive[0]);
-      const addMachineBtnField = getByRole('button', { name: '+ Add New Machine' })
-      fireEvent.click(addMachineBtnField);
+      fireEvent.click(markAsInActive[0])
+      const addMachineBtnField = getByRole('button', {
+         name: '+ Add New Machine'
+      })
+      fireEvent.click(addMachineBtnField)
 
       // debug();
    })

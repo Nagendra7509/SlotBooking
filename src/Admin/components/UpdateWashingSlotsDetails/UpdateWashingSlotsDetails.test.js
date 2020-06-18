@@ -20,7 +20,7 @@ describe('UpdateWashingSlotsDetails tests', () => {
 
    //adminStore.setUpdateWashingMachineAPIResponse(getUpdateSlotsData);
 
-   it('should test UpdateWashingSlotsDetails content', async() => {
+   it('should test UpdateWashingSlotsDetails content', async () => {
       await adminStore.setUpdateWashingMachineAPIResponse(getUpdateSlotsData)
       await adminStore.setAdminAPIResponse(getAdminResponse)
 
@@ -36,11 +36,11 @@ describe('UpdateWashingSlotsDetails tests', () => {
       getByText('Profile')
       getByText('Washing Machine ID : 01')
       const addSlotField = getByRole('button', { name: '+ Add Slots' })
-      const updateButtonField = getByRole('button', { name: 'Update' });
+      const updateButtonField = getByRole('button', { name: 'Update' })
       // const optionField = getByRole('option', { name: ' AM' });
       //console.log(optionField);
 
-      fireEvent.click(addSlotField);
+      fireEvent.click(addSlotField)
       // fireEvent.click(updateButtonField);
       //fireEvent.change(usernameField, { target: { value: username } })
       // debug();

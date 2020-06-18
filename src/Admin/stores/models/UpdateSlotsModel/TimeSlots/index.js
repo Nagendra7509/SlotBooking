@@ -15,13 +15,13 @@ class TimeSlots {
    onChangeFromTime = value => {
       const timeSuffix = this.startTime.slice(-2)
       this.startTime = this.startTime.replace(timeSuffix, value)
-      console.log(this.startTime, "timeSlots MOdel", timeSuffix, value);
+      console.log(this.startTime, 'timeSlots MOdel', timeSuffix, value)
    }
 
    onChangeToTime = value => {
       const timeSuffix = this.endTime.slice(-2)
       this.endTime = this.endTime.replace(timeSuffix, value)
-      console.log(this.endTime, "timeSlots Model TOTime", timeSuffix, value);
+      console.log(this.endTime, 'timeSlots Model TOTime', timeSuffix, value)
    }
 }
 

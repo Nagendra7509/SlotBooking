@@ -8,8 +8,7 @@ import {
    LogoutBtn,
    ProfileViewContainer,
    ProfilePageAndNavBar
-}
-from './styledComponent'
+} from './styledComponent'
 
 @observer
 class Profile extends React.Component {
