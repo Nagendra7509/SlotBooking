@@ -61,7 +61,7 @@ class LoginRoute extends React.Component {
                   history.push('/slot-booking/admin/issues/')
                } else {
                   history.push('/slot-booking/dashBoard/')
-                  console.log(history)
+                  //console.log(history)
                }
             }
             // else {
