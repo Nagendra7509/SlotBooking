@@ -16,8 +16,7 @@ class DashBoardService {
    availableSlotsResponseAPI = () => {
       return networkCallWithApisauce(
          this.api,
-         '/api/slot_booking/available/slots/v1/',
-         {},
+         '/api/slot_booking/available/slots/v1/', {},
          apiMethods.get
       )
    }
@@ -25,8 +24,7 @@ class DashBoardService {
    upcomingSlotsResponseAPI = () => {
       return networkCallWithApisauce(
          this.api,
-         '/api/slot_booking/upcoming/slots/v1/',
-         {},
+         '/api/slot_booking/upcoming/slots/v1/', {},
          apiMethods.get
       )
    }
@@ -34,8 +32,7 @@ class DashBoardService {
    previousSlotsResponseAPI = () => {
       return networkCallWithApisauce(
          this.api,
-         '/api/slot_booking/previous/slots/v1/',
-         {},
+         '/api/slot_booking/previous/slots/v1/', {},
          apiMethods.get
       )
    }
@@ -49,14 +46,14 @@ class DashBoardService {
       )
    }
 
-   // postCancelSlot = requestObj => {
-   //    return networkCallWithApisauce(
-   //       this.api,
-   //       endPoints.DASHBOARD_END_POINT,
-   //       requestObj,
-   //       apiMethods.post
-   //    )
-   // }
+   postCancelSlot = requestObj => {
+      return networkCallWithApisauce(
+         this.api,
+         endPoints.DASHBOARD_END_POINT,
+         requestObj,
+         apiMethods.post
+      )
+   }
 }
 
 export default DashBoardService

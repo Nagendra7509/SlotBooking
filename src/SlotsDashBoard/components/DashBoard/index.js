@@ -1,5 +1,5 @@
 import React from 'react'
-import { observable } from 'mobx'
+import { observable, action } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import LoadingWrapperWithFailure from '../../../Common/LoadingWrapper/LoadingWrapperWithFailure/index'
 import NoDataView from '../../../Common/LoadingWrapper/NoDataView/index'
@@ -22,7 +22,8 @@ import {
    TimeBtns,
    SlotsUnAvailable,
    AvailableSlots
-} from './styledComponent'
+}
+from './styledComponent'
 
 @inject('slotsDashBoardStore')
 @observer
@@ -32,15 +33,15 @@ class DashBoard extends React.Component {
       //console.log('componentDidMount');
    }
 
-   doNetworkCall = () => {
+   doNetworkCall = async() => {
       const {
          getAvailableSlotsData,
          getUpcomingSlotsData,
          getPreviousSlotsData
       } = this.props.slotsDashBoardStore
-      getAvailableSlotsData()
-      getUpcomingSlotsData()
-      getPreviousSlotsData()
+      await getAvailableSlotsData()
+      await getUpcomingSlotsData()
+      await getPreviousSlotsData()
    }
 
    onClickDateAvailableSlots = event => {
@@ -155,6 +156,9 @@ class DashBoard extends React.Component {
          onClickDateUpComingSlots,
          onClickCancelSlot
       } = this.props.slotsDashBoardStore
+
+      // console.log(getAvailableSlotsResponseStatus, getAvailableSlotsResponseError, "status")
+      // console.log(getAvailableSlotsResponseStatus, getAvailableSlotsResponseError, "DashBoard component");
 
       return (
          <DashBoardContainer>

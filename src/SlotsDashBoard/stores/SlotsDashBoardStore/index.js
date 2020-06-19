@@ -6,7 +6,8 @@ import {
    API_FETCHING,
    API_SUCCESS,
    API_FAILED
-} from '@ib/api-constants'
+}
+from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import AvailableSlotsModel from '../models/AvailableSlotsModel'
 import UpComingSlotDetails from '../models/UpComingSlotDetails'
@@ -103,10 +104,13 @@ class SlotsDashBoardStore {
       this.availableSlotsDates = this.availableSlotsResponse.map(
          obj => obj.date
       )
+
       this.currentDate = this.availableSlotsDates[0]
+
       this.availableSlotsTimings = this.availableSlotsResponse.find(
          obj => obj.date == this.currentDate
       ).timingSlots
+
    }
 
    @action.bound
@@ -218,7 +222,8 @@ class SlotsDashBoardStore {
                this.setAPIResponseOfConfirmSlot
             )
             .catch(this.setGetAPIErrorOfConfirmSlot)
-      } else {
+      }
+      else {
          alert('please select the time slot')
       }
    }
