@@ -17,11 +17,25 @@ import {
    SignInLink
 } from './styledComponent'
 
+
+type SignUpPageProps={
+         userName?:string,
+         password?:string,
+         confirmPassword?:string,
+         onChangePasswordSignUp?: (event:React.ChangeEvent<HTMLInputElement>)=>void,
+         onChangeConfirmPasswordSignUp?: (event:React.ChangeEvent<HTMLInputElement>)=>void,
+         onChangeUserNameSignUp?: (event:React.ChangeEvent<HTMLInputElement>)=>void,
+         onClickSignUpBtn?:(event:React.MouseEvent<HTMLButtonElement>)=>void,
+         userNameError?:string,
+         passwordError?:string,
+         confirmPasswordError?:string
+}
+
 @observer
-class SignUpPage extends React.Component {
+class SignUpPage extends React.Component<SignUpPageProps> {
    render() {
       const {
-         username,
+         userName,
          password,
          confirmPassword,
          onChangePasswordSignUp,
@@ -46,7 +60,7 @@ class SignUpPage extends React.Component {
 
                <InputTag
                   onChange={onChangeUserNameSignUp}
-                  value={username}
+                  value={userName}
                   type='text'
                   placeholder='username'
                   borderValue={userNameError != 'noError'}

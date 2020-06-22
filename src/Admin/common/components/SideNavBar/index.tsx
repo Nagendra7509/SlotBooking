@@ -6,14 +6,18 @@ import {
    ADMIN_PAGE_SETTINGS,
    ADMIN_PAGE_WASHINGMACHINE_ACTIVE
 } from '../../../constants/routeConstants/RouteConstants'
-import { SideNavItem } from '../'
+import { SideNavItem } from '..'
 import { SideNavBarContainer } from './styledComponent'
 
+type SideNavBarProps={
+   path:string
+}
+
 @observer
-class SideNavBar extends React.Component {
+class SideNavBar extends React.Component<SideNavBarProps> {
    render() {
       const { issues, washingMachine, settings } = sideNav
-      const { path } = this.props
+      const { path } = this.props;
 
       return (
          <SideNavBarContainer>

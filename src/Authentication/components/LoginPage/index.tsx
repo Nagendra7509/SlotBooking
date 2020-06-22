@@ -25,8 +25,22 @@ import {
    SignupLink
 } from './styledComponent'
 
+type LoginPageProps={
+   isAdmin?:boolean,
+   userName?:string,
+   password?:string,
+   onChangeUserNameLogin?: (event:React.ChangeEvent<HTMLInputElement>)=>void,
+   onChangePasswordLogin?:(event:React.ChangeEvent<HTMLInputElement>)=>void,
+   onClickLogin?:(event:React.MouseEvent<HTMLButtonElement>)=>void,
+   errroMessageUserName?:string,
+   errorMessagePassword?:string,
+   errorMessageLoginButton?:string,
+   getUserLoginStatus?:number
+
+}
+
 @observer
-class LoginPage extends React.Component {
+class LoginPage extends React.Component<LoginPageProps> {
    render() {
       if (getAccessToken()) {
          const { isAdmin } = this.props
@@ -39,7 +53,7 @@ class LoginPage extends React.Component {
       }
 
       const {
-         username,
+         userName,
          password,
          onChangeUserNameLogin,
          onChangePasswordLogin,
@@ -63,7 +77,7 @@ class LoginPage extends React.Component {
 
                <InputTag
                   onChange={onChangeUserNameLogin}
-                  value={username}
+                  value={userName}
                   type='text'
                   placeholder='username'
                   borderValue={errroMessageUserName != 'noError'}
@@ -123,5 +137,3 @@ class LoginPage extends React.Component {
 }
 
 export default LoginPage
-//LOGIN_PATH
-//https://a2ae96eb5eb34fdda2eb65989640e7b0.vfs.cloud9.ap-southeast-1.amazonaws.com/slot-booking/sign-up/#/slot-booking/sign-up/

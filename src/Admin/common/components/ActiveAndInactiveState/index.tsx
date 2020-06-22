@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { observer } from 'mobx-react'
-import { Status } from '../'
+import { Status } from '..'
 import { activeAndInactive } from '../../../i18n/strings.json'
 import {
    ADMIN_PAGE_WASHINGMACHINE_ACTIVE,
@@ -10,13 +10,17 @@ import {
 import {
    ActiveAndInactiveContainer,
    ActiveAndInactiveBar
-} from './styledComponents.js'
+} from './styledComponents'
+ 
+type ActiveAndInactiveStateProps={
+   path:string
+}
 
 @observer
-class ActiveAndInactiveState extends React.Component {
+class ActiveAndInactiveState extends React.Component<ActiveAndInactiveStateProps> {
    render() {
       const { active, inActive } = activeAndInactive
-      const { path } = this.props
+      const { path } = this.props;
 
       return (
          <ActiveAndInactiveContainer>

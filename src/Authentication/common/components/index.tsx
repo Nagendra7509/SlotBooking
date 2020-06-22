@@ -1,5 +1,10 @@
 import React from 'react'
-import { InputField, IbHubsLogoImg } from './styledComponent'
+import { InputField, IbHubsLogoImg } from './styledComponents'
+
+
+
+
+
 
 export const InputTag = props => (
    <InputField

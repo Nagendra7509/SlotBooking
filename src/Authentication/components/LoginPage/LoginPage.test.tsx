@@ -19,20 +19,22 @@ const LocationDisplay = withRouter(({ location }) => (
    <div data-testid='location-display'>{location.pathname}</div>
 ))
 
+
+
 describe('LoginPage testCases', () => {
    it('should render typed username', () => {
       const username = 'test-user'
       const { getByPlaceholderText } = render(
-         <LoginPage username={username} onChangeUsername={() => {}} />
+         <LoginPage userName={username}  />
       )
       const userNameField = getByPlaceholderText('username')
-      expect(userNameField.value).toBe(username)
+      expect(userNameField.value ).toBe(username)
    })
 
    it('should render typed password', () => {
       const password = 'test-user'
       const { getByPlaceholderText } = render(
-         <LoginPage password={password} onChangePassword={() => {}} />
+         <LoginPage password={password}/>
       )
       const passwordField = getByPlaceholderText('password')
       expect(passwordField.value).toBe(password)

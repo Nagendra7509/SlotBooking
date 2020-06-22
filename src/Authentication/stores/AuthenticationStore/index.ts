@@ -29,11 +29,11 @@ class AuthenticationStore {
    }
 
    init() {
-      this.getUserSignUpStatus = API_INITIAL;
-      this.getUserSignUpError = null;
-      this.getUserLoginStatus = API_INITIAL;
-      this.getUserLoginError = null;
-      this.isAdmin=false;
+      this.getUserSignUpStatus = API_INITIAL
+      this.getUserSignUpError = null
+      this.getUserLoginStatus = API_INITIAL
+      this.getUserLoginError = null
+      this.isAdmin = undefined;
    }
 
    @action.bound

@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+import {History} from "history";
 import { clearUserSession } from '../../../utils/StorageUtils'
 import { LOGIN_PATH } from '../../../Authentication/constants/routeConstants/RouteConstants'
 import TopNavBar from '../../common/components/TopNavBar'
@@ -12,8 +13,12 @@ import {
    LogOutBtn
 } from './styledComponents'
 
+type ProfilePageProps={
+   history:History
+}
+
 @observer
-class ProfilePage extends React.Component {
+class ProfilePage extends React.Component<ProfilePageProps> {
    onClickLogout = () => {
       clearUserSession()
       const { history } = this.props

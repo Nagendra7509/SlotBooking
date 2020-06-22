@@ -5,14 +5,18 @@ import SideNavBar from '../../common/components/SideNavBar'
 import IssuesPage from '../IssuesPage'
 import { ADMIN_PAGE_PATH_ISSUES } from '../../constants/routeConstants/RouteConstants'
 import { AdminHomePageContainer, SideNavBarAndIssues } from './styledComponents'
+import AdminStore from "../../stores/AdminStore";
+import { type } from "os"
 
-
-
+type AdminPageProps={
+   adminStore:AdminStore,
+   path:string
+}
 
 @inject('adminStore')
 
 @observer
-class AdminPage extends React.Component {
+class AdminPage extends React.Component <AdminPageProps>{
    componentDidMount() {
       this.requestForAdminResponse()
    }

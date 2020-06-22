@@ -8,7 +8,7 @@ describe('SignUpPage testCases', () => {
    it('should render typed username', () => {
       const username = 'test-user'
       const { getByPlaceholderText } = render(
-         <SignUpPage username={username} onChangeUsername={() => {}} />
+         <SignUpPage userName={username} />
       )
       const userNameField = getByPlaceholderText('username')
       expect(userNameField.value).toBe(username)
@@ -17,7 +17,7 @@ describe('SignUpPage testCases', () => {
    it('should render typed password', () => {
       const password = 'test-user'
       const { getByPlaceholderText } = render(
-         <SignUpPage password={password} onChangePassword={() => {}} />
+         <SignUpPage password={password} />
       )
       const passwordField = getByPlaceholderText('password')
       expect(passwordField.value).toBe(password)
@@ -28,7 +28,7 @@ describe('SignUpPage testCases', () => {
       const { getByPlaceholderText } = render(
          <SignUpPage
             confirmPassword={confirmPassword}
-            onChangeConfirmPassword={() => {}}
+            
          />
       )
       const confirmPasswordField = getByPlaceholderText('confirm password')

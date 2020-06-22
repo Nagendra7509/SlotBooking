@@ -1,13 +1,15 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
+import {History} from "history";
 import { observable } from 'mobx'
+import { Typo14WhiteHKGroteskSemiBold } from '../../../styleGuide/Typos'
 import SideNavBar from '../../common/components/SideNavBar'
 import TopNavBar from '../../common/components/TopNavBar'
 import ActiveAndInactiveState from '../../common/components/ActiveAndInactiveState'
 import { ADMIN_PAGE_WASHINGMACHINE_ACTIVE } from '../../constants/routeConstants/RouteConstants'
 import WashingMachineCard from '../../common/components/WashingMachineCard'
 import { activeAndInactive } from '../../i18n/strings.json'
-import { Typo14WhiteHKGroteskSemiBold } from '../../../styleGuide/Typos'
+import AdminStore from "../../stores/AdminStore"
 import PopUp from '../PopUp'
 import {
    WashingMachineActiveContainer,
@@ -17,9 +19,16 @@ import {
    AddNewMachine
 } from './styledComponents'
 
+type WashingMachineActiveProps={
+   adminStore:AdminStore,
+   history:History,
+   onClickAddMachine:()=>void,
+   onClickNewWashingMachine:(washingMachineNumber:string)=>void
+}
+
 @inject('adminStore')
 @observer
-class WashingMachineActive extends React.Component {
+class WashingMachineActive extends React.Component <WashingMachineActiveProps>{
    @observable isClickedAddNewMachine = false
 
    componentDidMount() {
@@ -45,7 +54,7 @@ class WashingMachineActive extends React.Component {
       onClickActiveOrInactiveStatus(event.target.id)
    }
 
-   onClickAddMachine = () => {
+   onClickAddWashingMachine = () => {
       this.isClickedAddNewMachine = !this.isClickedAddNewMachine
    }
 
@@ -68,7 +77,7 @@ class WashingMachineActive extends React.Component {
 
                   <AddNewMachine>
                      <Typo14WhiteHKGroteskSemiBold
-                        onClick={this.onClickAddMachine}
+                        onClick={this.onClickAddWashingMachine}
                      >
                         + {activeAndInactive.addNewMachine}
                      </Typo14WhiteHKGroteskSemiBold>
@@ -91,7 +100,7 @@ class WashingMachineActive extends React.Component {
                </ActiveMachines>
                {this.isClickedAddNewMachine && (
                   <PopUp
-                     onClickAddMachine={this.onClickAddMachine}
+                     onClickAddMachine={this.onClickAddWashingMachine}
                      onClickNewWashingMachine={onClickNewWashingMachine}
                   />
                )}

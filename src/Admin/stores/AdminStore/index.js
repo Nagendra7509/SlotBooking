@@ -18,7 +18,7 @@ class AdminStore {
    @observable adminResponse
    @observable activeWashingMachines = []
    @observable inActiveWashingMachines = []
-   @observable updateSlotsResponse = []
+   @observable updateSlotsResponse = {}
    @observable getUpdateSlotsResponseStatus
    @observable getUpdateSlotsResponseError
    @observable getPostStatusOfWashingMachineResponseStatus
@@ -49,7 +49,7 @@ class AdminStore {
       this.getPostUpdateSlotsStatus = API_INITIAL
       this.getPostUpdateSlotsError = null
       this.adminResponse = []
-      this.updateSlotsResponse = []
+      this.updateSlotsResponse = {}
       this.activeWashingMachines = []
       this.inActiveWashingMachines = []
    }

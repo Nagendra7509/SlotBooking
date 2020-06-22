@@ -1,18 +1,13 @@
-import React from "react";
+import React from 'react'
 
-import { ColorLabels } from ".";
+import { ColorLabels } from '.'
 
-describe("ColorLabels tests", () => {
-
-    it('should test ColorLabels', () => {
-
-        const props = {
-            colorValue: "white",
-            children: "Hello"
-        }
-        expect(ColorLabels(props)).toBeDefined;
-
-
-    })
-
-});
+describe('ColorLabels tests', () => {
+   it('should test ColorLabels', () => {
+      const props = {
+         colorValue: 'white',
+         children: 'Hello'
+      }
+      expect(ColorLabels(props)).toBeDefined
+   })
+})

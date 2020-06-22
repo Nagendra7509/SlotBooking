@@ -19,8 +19,7 @@ import {
    NotSymbolImg,
    NoBookingsYetText,
    TimeSlot
-}
-from './styledComponent'
+} from './styledComponent'
 
 @observer
 class UpComingSlots extends React.Component {

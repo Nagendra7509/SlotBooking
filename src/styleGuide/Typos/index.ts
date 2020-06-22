@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { colors } from '../../Admin/themes/Colors.js'
+import { boolean } from "@storybook/addon-knobs"
 
 const Typo32DarkBlueGreyRubikRegular = styled.div`
    ${tw``}
@@ -64,6 +65,9 @@ const Typo12HKGroteskSemiBoldSteel = styled.label`
    margin: 10px 80px 2px 80px;
    color: #7e858e;
 `
+type Typo12HKGroteskRegularProps={
+   visibilityValue:boolean
+}
 
 const Typo12HKGroteskRegular = styled.span`
    font-size: 12px;
@@ -73,7 +77,7 @@ const Typo12HKGroteskRegular = styled.span`
    margin: auto;
    line-height: 1.33;
    letter-spacing: normal;
-   visibility: ${props => (props.visibilityValue ? 'visible' : 'hidden')};
+   visibility: ${(props:Typo12HKGroteskRegularProps) => (props.visibilityValue? 'visible' : 'hidden')};
    color: #ff0b37;
 `
 
@@ -98,8 +102,3 @@ export {
    Typo12HKGroteskRegular,
    Typo14WhiteHKGroteskSemiBold
 }
-//Typo12HKGroteskRegular
-//margin: 0px 304px 0px 108px;
-//
-
-//Typo12HKGroteskSemiBoldSteel

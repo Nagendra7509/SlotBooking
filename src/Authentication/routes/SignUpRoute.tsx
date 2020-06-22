@@ -1,13 +1,22 @@
 import React from 'react'
 import { observable, action } from 'mobx'
+import {History} from "history"
 import { observer, inject } from 'mobx-react'
 import SignUpPage from '../components/SignUpPage'
 import { clearUserSession } from '../../utils/StorageUtils'
 import Strings from '../i18n/strings.json'
+import AuthenticationStore from "../stores/AuthenticationStore";
+
+
+type SignUpRouteProps={
+   authenticationStore:AuthenticationStore,
+   history:History
+
+}
 
 @inject('authenticationStore')
 @observer
-class SignUpRoute extends React.Component {
+class SignUpRoute extends React.Component <SignUpRouteProps>{
    @observable userName = ''
    @observable password = ''
    @observable confirmPassword = ''
@@ -16,17 +25,17 @@ class SignUpRoute extends React.Component {
    @observable confirmPasswordError = 'noError'
 
    @action.bound
-   onChangeUserNameSignUp(event) {
+   onChangeUserNameSignUp(event:React.ChangeEvent<HTMLInputElement>) {
       this.userName = event.target.value
    }
 
    @action.bound
-   onChangePasswordSignUp(event) {
+   onChangePasswordSignUp(event:React.ChangeEvent<HTMLInputElement>) {
       this.password = event.target.value
    }
 
    @action.bound
-   onChangeConfirmPasswordSignUp(event) {
+   onChangeConfirmPasswordSignUp(event:React.ChangeEvent<HTMLInputElement>) {
       this.confirmPassword = event.target.value
    }
 

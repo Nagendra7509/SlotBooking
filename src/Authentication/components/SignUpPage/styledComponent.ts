@@ -2,11 +2,11 @@ import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { colors } from '../../themes/Colors'
 
-const LoginPageContainer = styled.div`
-    ${tw`flex justify-center items-center min-h-screen`}
+const SignUpPageContainer = styled.div`
+    ${tw`flex justify-center items-center  min-h-screen`}
     background-color:${colors.iceBlue}`
 
-const LoginForm = styled.form`
+const SignUpForm = styled.form`
    ${tw`flex flex-col justify-around bg-white`}
    border-radius: 8px;
    border: 2px solid ${colors.darkBlueGrey};
@@ -14,8 +14,8 @@ const LoginForm = styled.form`
    background-color: ${colors.white};
 `
 
-const SigInText = styled.h2`
-   ${tw` m-auto my-4`}
+const SignUpText = styled.h2`
+   ${tw`m-auto my-4`}
    font-size: 32px;
    font-weight: normal;
    font-stretch: normal;
@@ -24,15 +24,15 @@ const SigInText = styled.h2`
    letter-spacing: normal;
    color: ${colors.darkBlueGrey};
 `
-
-const SignInBtn = styled.button`
-   ${tw`flex justify-center m-auto px-32 my-4 text-white focus:outline-none cursor-pointer`}
+const SignUpBtn = styled.button`
+   ${tw`flex justify-center m-auto px-32 my-6 text-white focus:outline-none cursor-pointer`}
    height: 40px;
+
    border-radius: 4px;
    background-color: ${colors.brightBlue};
 `
 
-const DontHaveAccount = styled.span`
+const AlreadyHaveAccount = styled.span`
    ${tw`m-auto mb-4 mt-2`}
    font-size: 14px;
    font-weight: normal;
@@ -43,18 +43,15 @@ const DontHaveAccount = styled.span`
    color: ${colors.darkBlueGrey};
 `
 
-const SignupLink = styled.a`
+const SignInLink = styled.a`
     ${tw``}
     color:${colors.brightBlue}`
 
 export {
-   LoginPageContainer,
-   LoginForm,
-   SigInText,
-   SignInBtn,
-   DontHaveAccount,
-   SignupLink
+   SignUpPageContainer,
+   SignUpForm,
+   SignUpText,
+   SignUpBtn,
+   AlreadyHaveAccount,
+   SignInLink
 }
-
-//dont have account= width: 200px;
-//   height: 24px;

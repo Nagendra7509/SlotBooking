@@ -22,8 +22,7 @@ import {
    TimeBtns,
    SlotsUnAvailable,
    AvailableSlots
-}
-from './styledComponent'
+} from './styledComponent'
 
 @inject('slotsDashBoardStore')
 @observer
@@ -33,7 +32,7 @@ class DashBoard extends React.Component {
       //console.log('componentDidMount');
    }
 
-   doNetworkCall = async() => {
+   doNetworkCall = async () => {
       const {
          getAvailableSlotsData,
          getUpcomingSlotsData,

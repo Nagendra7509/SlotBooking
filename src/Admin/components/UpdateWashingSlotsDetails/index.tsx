@@ -1,8 +1,11 @@
 import React from 'react'
+import {History} from "history";
 import { observer, inject } from 'mobx-react'
+
 import SideNavBar from '../../common/components/SideNavBar'
 import TopNavBar from '../../common/components/TopNavBar'
 import { updateSlots } from '../../i18n/strings.json'
+import AdminStore from "../../stores/AdminStore";
 import {
    UpDateSlotContainer,
    SideNavBarAndSlotsDetails,
@@ -32,9 +35,16 @@ import {
    UpdateBtn
 } from './styledComponents'
 
+type UpdateWashingSlotsDetailsProps={
+   adminStore:AdminStore,
+   history:History
+
+
+}
+
 @inject('adminStore')
 @observer
-class UpdateWashingSlotsDetails extends React.Component {
+class UpdateWashingSlotsDetails extends React.Component <UpdateWashingSlotsDetailsProps>{
    constructor(props) {
       super(props)
       this.getUpdateSlotsData()
@@ -95,10 +105,10 @@ class UpdateWashingSlotsDetails extends React.Component {
 
       return (
          <UpDateSlotContainer>
-            <TopNavBar />
+            <TopNavBar path={""}/>
 
             <SideNavBarAndSlotsDetails>
-               <SideNavBar />
+               <SideNavBar path={""}/>
                <SlotDetailsContainer>
                   <Header>
                      <WashingMachineId>

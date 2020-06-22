@@ -12,7 +12,17 @@ import {
    Status
 } from './styledComponents'
 
-class WashingMachineCard extends React.Component {
+type WashingMachineCardProps={
+   washingMachineId:string,
+   washingMachineStatus:string,
+   onClickUpdate:(event:React.MouseEvent<HTMLSelectElement>)=>void,
+   onClickActiveOrInactiveStatus:(event:React.MouseEvent<HTMLButtonElement>)=>void
+
+}
+
+
+
+class WashingMachineCard extends React.Component<WashingMachineCardProps> {
    render() {
       const washingMachinesUrls = [...washingMachineUrls]
       const {

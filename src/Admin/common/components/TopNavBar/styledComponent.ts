@@ -18,6 +18,11 @@ const NavItem = styled.img`
    object-fit: contain;
 `
 
+type ProfileProp={
+   path:string,
+   href:string
+}
+
 const Profile = styled.a`
    ${tw`px-4`}
    font-size: 18px;
@@ -26,7 +31,7 @@ const Profile = styled.a`
    font-style: normal;
    line-height: 1.33;
    letter-spacing: normal;
-   color: ${props => (props.href === props.path ? 'black' : colors.steel60)};
+   color: ${(props:ProfileProp):string => ((props.href) === (props.path) ? 'black' : colors.steel60)};
 `
 
 export { NavBarContainer, IbHubsLogo, NavItems, NavItem, Profile }

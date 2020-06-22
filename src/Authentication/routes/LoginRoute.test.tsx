@@ -10,11 +10,12 @@ import {
    API_SUCCESS,
    API_INITIAL
 } from '@ib/api-constants'
+import { SLOTS_BOOKING_PATH } from '../../SlotsBooking/constants/routeConstants/RouteConstants'
 import { SIGN_UP_PATH } from '../constants/routeConstants/RouteConstants'
 import { LOGIN_PATH } from '../constants/routeConstants/RouteConstants'
-import SignUpService from '../services/SignUpService/index.api'
+import LoginAPI from '../services/LoginService/index.fixture'
 import AuthenticationStore from '../stores/AuthenticationStore/index'
-import SignUpRoute from './SignUpRoute.js'
+import LoginRoute from './LoginRoute.jsx'
 
 /*global jest*/
 /*global expect*/
@@ -27,11 +28,11 @@ const LocationDisplay = withRouter(({ location }) => (
    <div data-testid='location-display'>{location.pathname}</div>
 ))
 
-describe('SignUp Tests', () => {
+describe('LoginRoute Tests', () => {
    let authAPI, authenticationStore
 
    beforeEach(() => {
-      authAPI = new SignUpService()
+      authAPI = new LoginAPI()
       authenticationStore = new AuthenticationStore(authAPI)
    })
 
@@ -42,34 +43,34 @@ describe('SignUp Tests', () => {
    it('should render username empty error message', () => {
       const { getByText, getByRole } = render(
          <Router history={createMemoryHistory()}>
-            <SignUpRoute authenticationStore={authenticationStore} />
+            <LoginRoute authenticationStore={authenticationStore} />
          </Router>
       )
-      const loginButton = getByRole('button', { name: 'SIGNUP' })
+      const loginButton = getByRole('button', { name: 'LOGIN' })
       fireEvent.click(loginButton)
-      getByText(/Enter Username/i)
+      getByText(/Incorrect userName/i)
    })
 
    it('should render password empty error message', () => {
       const { getByText, getByRole, getByPlaceholderText } = render(
          <Router history={createMemoryHistory()}>
-            <SignUpRoute authenticationStore={authenticationStore} />
+            <LoginRoute authenticationStore={authenticationStore} />
          </Router>
       )
 
       const username = 'test-user'
       const userNameField = getByPlaceholderText('username')
-      const loginButton = getByRole('button', { name: 'SIGNUP' })
+      const loginButton = getByRole('button', { name: 'LOGIN' })
 
       fireEvent.change(userNameField, { target: { value: username } })
       fireEvent.click(loginButton)
-      getByText(/Enter Password/i)
+      getByText(/Incorrect password/i)
    })
 
-   it('should submit sign-up on press enter', () => {
+   it('should submit sign-in on press enter', () => {
       const { getByRole, getByPlaceholderText } = render(
          <Router history={createMemoryHistory()}>
-            <SignUpRoute authenticationStore={authenticationStore} />
+            <LoginRoute authenticationStore={authenticationStore} />
          </Router>
       )
 
@@ -77,18 +78,18 @@ describe('SignUp Tests', () => {
       const password = 'test-password'
       const userNameField = getByPlaceholderText('username')
       const passwordField = getByPlaceholderText('password')
-      const loginButton = getByRole('button', { name: 'SIGNUP' })
+      const loginButton = getByRole('button', { name: 'LOGIN' })
 
       fireEvent.change(userNameField, { target: { value: username } })
       fireEvent.change(passwordField, { target: { value: password } })
       fireEvent.keyPress(loginButton, { key: 'Enter', code: 'Enter' })
 
-      waitFor(() => getByRole('button', { name: 'SIGNUP' }))
+      waitFor(() => getByRole('button', { name: 'Login....' }))
    })
 
-   it('should render signUpRoute success state', async () => {
+   it('should render signInRoute success state', async () => {
       const history = createMemoryHistory()
-      const route = SIGN_UP_PATH
+      const route = LOGIN_PATH
       history.push(route)
 
       const {
@@ -99,10 +100,10 @@ describe('SignUp Tests', () => {
       } = render(
          <Provider authenticationStore={authenticationStore}>
             <Router history={history}>
-               <Route path={SIGN_UP_PATH}>
-                  <SignUpRoute />
-               </Route>
                <Route path={LOGIN_PATH}>
+                  <LoginRoute />
+               </Route>
+               <Route path={SLOTS_BOOKING_PATH}>
                   <LocationDisplay />
                </Route>
             </Router>
@@ -114,7 +115,14 @@ describe('SignUp Tests', () => {
 
       const usernameField = getByPlaceholderText('username')
       const passwordField = getByPlaceholderText('password')
-      const loginButton = getByRole('button', { name: 'SIGNUP' })
+      const loginButton = getByRole('button', { name: 'LOGIN' })
+
+      const mockSuccessPromise = new Promise(function(resolve, reject) {
+         resolve('resolve')
+      })
+      const mockSignInAPI = jest.fn()
+      mockSignInAPI.mockReturnValue(mockSuccessPromise)
+      authAPI.loginAPI = mockSignInAPI
 
       fireEvent.change(usernameField, { target: { value: username } })
       fireEvent.change(passwordField, { target: { value: password } })
@@ -122,10 +130,42 @@ describe('SignUp Tests', () => {
 
       waitFor(() => {
          expect(
-            queryByRole('button', { name: 'SIGNUP' })
+            queryByRole('button', { name: 'LOGIN' })
          ).not.toBeInTheDocument()
 
-         expect(getByTestId('location-display')).toHaveTextContent(LOGIN_PATH)
+         expect(getByTestId('location-display')).toHaveTextContent(
+            SLOTS_BOOKING_PATH
+         )
+      })
+   })
+
+   it('should render signInRoute failure state', () => {
+      const { getByText, getByPlaceholderText, getByRole } = render(
+         <Router history={createMemoryHistory()}>
+            <LoginRoute authenticationStore={authenticationStore} />
+         </Router>
+      )
+
+      const username = 'test-user'
+      const password = 'test-password'
+
+      const usernameField = getByPlaceholderText('username')
+      const passwordField = getByPlaceholderText('password')
+      const loginButton = getByRole('button', { name: 'LOGIN' })
+
+      const mockFailurePromise = new Promise(function(resolve, reject) {
+         reject(new Error('error'))
+      }).catch(() => {})
+      const mockSignInAPI = jest.fn()
+      mockSignInAPI.mockReturnValue(mockFailurePromise)
+      authAPI.loginAPI = mockSignInAPI
+
+      fireEvent.change(usernameField, { target: { value: username } })
+      fireEvent.change(passwordField, { target: { value: password } })
+      fireEvent.click(loginButton)
+      authenticationStore.userLogin()
+      waitFor(() => {
+         getByText('server Error') //need to add server error when it failure
       })
    })
 })
