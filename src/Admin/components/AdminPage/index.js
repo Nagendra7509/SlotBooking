@@ -6,7 +6,11 @@ import IssuesPage from '../IssuesPage'
 import { ADMIN_PAGE_PATH_ISSUES } from '../../constants/routeConstants/RouteConstants'
 import { AdminHomePageContainer, SideNavBarAndIssues } from './styledComponents'
 
+
+
+
 @inject('adminStore')
+
 @observer
 class AdminPage extends React.Component {
    componentDidMount() {
