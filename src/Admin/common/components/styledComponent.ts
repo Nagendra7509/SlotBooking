@@ -7,7 +7,6 @@ type NavItemProps={
    href:string
 }
 
-
 const NavItem = styled.a`
    ${tw`p-6`}
    font-size: 12px;

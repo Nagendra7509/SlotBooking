@@ -11,26 +11,36 @@ import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
 import AdminModel from '../models/AdminModel'
 import UpdateSlotsModel from '../models/UpdateSlotsModel'
 import TimeSlots from '../models/UpdateSlotsModel/TimeSlots'
+import AdminService from "../../services/AdminServices/index.fixture"
+
+
+type AdminModelProps={
+   
+      washing_machine_id:string,
+      status:string
+   
+}
+
 
 class AdminStore {
-   @observable getAdminResponseStatus
-   @observable getAdminResponseError
-   @observable adminResponse
-   @observable activeWashingMachines = []
-   @observable inActiveWashingMachines = []
-   @observable updateSlotsResponse = {}
-   @observable getUpdateSlotsResponseStatus
-   @observable getUpdateSlotsResponseError
-   @observable getPostStatusOfWashingMachineResponseStatus
-   @observable getPostStatusOfWashingMachineResponseError
-   @observable getPostNewWashingMachineIdStatus
-   @observable getPostNewWashingMachineIdError
-   adminService
-   updateMachineId
-   washingMachineDetailsId
-   updateMachineStatus
-   @observable getPostUpdateSlotsStatus
-   @observable getPostUpdateSlotsError
+   @observable getAdminResponseStatus!:number
+   @observable getAdminResponseError!:null | string
+   @observable adminResponse!:Array<AdminModel>
+   @observable activeWashingMachines!:Array<AdminModel>
+   @observable inActiveWashingMachines !:Array<AdminModel>
+   @observable updateSlotsResponse!:UpdateSlotsModel
+   @observable getUpdateSlotsResponseStatus!:number
+   @observable getUpdateSlotsResponseError!:null | string
+   @observable getPostStatusOfWashingMachineResponseStatus!:number
+   @observable getPostStatusOfWashingMachineResponseError!:null | string
+   @observable getPostNewWashingMachineIdStatus!:number
+   @observable getPostNewWashingMachineIdError!:null | string
+   adminService:AdminService
+   updateMachineId!:string
+   washingMachineDetailsId!:string
+   updateMachineStatus!:string
+   @observable getPostUpdateSlotsStatus!:number
+   @observable getPostUpdateSlotsError!:null | string
 
    constructor(adminService) {
       this.init()
@@ -49,7 +59,6 @@ class AdminStore {
       this.getPostUpdateSlotsStatus = API_INITIAL
       this.getPostUpdateSlotsError = null
       this.adminResponse = []
-      this.updateSlotsResponse = {}
       this.activeWashingMachines = []
       this.inActiveWashingMachines = []
    }
@@ -64,14 +73,14 @@ class AdminStore {
    }
 
    @action.bound
-   setGetAdminResponseAPIStatus(status) {
+   setGetAdminResponseAPIStatus(status:number) {
       this.getAdminResponseStatus = status
    }
 
    @action.bound
    setAdminAPIResponse(response) {
       this.adminResponse = response.washing_machines.map(
-         obj => new AdminModel(obj)
+         (obj:AdminModelProps)=> new AdminModel(obj)
       )
 
       this.activeWashingMachines = this.adminResponse.filter(
@@ -171,7 +180,8 @@ class AdminStore {
    @action.bound
    setUpdateWashingMachineAPIResponse(response) {
       //console.log(response, 'response')
-      this.updateSlotsResponse = new UpdateSlotsModel(response)
+      this.updateSlotsResponse = new UpdateSlotsModel(response);
+      console.log(this.updateSlotsResponse,"update Response 1234");
    }
 
    @action.bound
@@ -215,15 +225,15 @@ class AdminStore {
    @action.bound
    onClickCloseBtn(id) {
       const updateTimeSlots = this.updateSlotsResponse.timeSlots.filter(
-         obj => !(obj.id == id)
+         obj=> !(obj.id == id)
       )
       this.updateSlotsResponse.timeSlots = updateTimeSlots
    }
 
    @action.bound
    onClickAddNewSlot() {
-      let startTime = prompt('Enter startTime with the help of slots Table')
-      let endTime = prompt('Enter endTime with the help of slots Table')
+      let startTime = prompt('Enter startTime with the help of slots Table') as string
+      let endTime = prompt('Enter endTime with the help of slots Table') as string
 
       //if (startTime.length == 8 && endTime.length == 8) {
       const newSlot = { start_time: startTime, end_time: endTime }

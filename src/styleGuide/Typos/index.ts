@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
-import { colors } from '../../Admin/themes/Colors.js'
+import { colors } from '../../Admin/themes/Colors'
 import { boolean } from "@storybook/addon-knobs"
 
 const Typo32DarkBlueGreyRubikRegular = styled.div`

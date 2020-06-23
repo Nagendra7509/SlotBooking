@@ -4,7 +4,7 @@ import React from 'react'
 /*global expect*/
 
 import { render, fireEvent } from '@testing-library/react'
-import adminResponse from '../../fixtures/getAdminResponse'
+import adminResponse from '../../fixtures/getAdminResponse.json'
 
 import AdminService from './index.fixture'
 describe('AdminService tests', () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import AdminStore from '../../stores/AdminStore'
 import AdminService from '../../services/AdminServices/index.api'
-import getAdminResponse from '../../fixtures/getAdminResponse'
+import getAdminResponse from '../../fixtures/getAdminResponse.json'
 
 /*global jest*/
 /*global expect*/

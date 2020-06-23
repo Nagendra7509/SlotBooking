@@ -1,6 +1,20 @@
 import adminResponse from '../../fixtures/getAdminResponse.json'
 import updateSlotsResponse from '../../fixtures/getUpdateSlotsResponse.json'
 
+type UpdateSlotsRequestObj = {
+   washing_machine_id: string,
+   day: string
+}
+
+type UpdateSlotsResponseObj = {
+
+   "washing_machine_id": string,
+   "day": string,
+   "alloted_slots": Array<{ "start_time": string, "end_time": string }>
+}
+
+
+
 class AdminService {
    adminResponse = () => {
       return new Promise((resolve, reject) => {
@@ -10,7 +24,7 @@ class AdminService {
       })
    }
 
-   getUpdateWashingMachineSlotsDetails = requestObj => {
+   getUpdateWashingMachineSlotsDetails = (requestObj: UpdateSlotsRequestObj):Promise<UpdateSlotsResponseObj>=> {
       return new Promise((resolve, reject) => {
          setTimeout(() => {
             resolve(updateSlotsResponse)

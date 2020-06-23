@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
+import {History} from "history";
 import { observable } from 'mobx'
 import { Typo14WhiteHKGroteskSemiBold } from '../../../styleGuide/Typos'
 import SideNavBar from '../../common/components/SideNavBar'
@@ -8,6 +9,7 @@ import ActiveAndInactiveState from '../../common/components/ActiveAndInactiveSta
 import { ADMIN_PAGE_WASHINGMACHINE_INACTIVE } from '../../constants/routeConstants/RouteConstants'
 import WashingMachineCard from '../../common/components/WashingMachineCard'
 import { activeAndInactive } from '../../i18n/strings.json'
+import AdminStore from "../../stores/AdminStore"
 import PopUp from '../PopUp'
 import {
    WashingMachineInActiveContainer,
@@ -17,9 +19,19 @@ import {
    AddNewMachine
 } from './styledComponents'
 
+
+type WashingMachineInactiveProps={
+   adminStore:AdminStore,
+   history:History,
+   // onClickNewWashingMachine:(washingMachineNumber:string)=>void,
+   // inActiveWashingMachines:Array<object>s
+   
+
+}
+
 @inject('adminStore')
 @observer
-class WashingMachineInactive extends React.Component {
+class WashingMachineInactive extends React.Component <WashingMachineInactiveProps>{
    @observable isClickedAddNewMachine = false
 
    componentDidMount() {
@@ -43,7 +55,7 @@ class WashingMachineInactive extends React.Component {
       onClickActiveOrInactiveStatus(event.target.id)
    }
 
-   onClickAddMachine = () => {
+   onClickAddWashingMachine = () => {
       this.isClickedAddNewMachine = !this.isClickedAddNewMachine
    }
 
@@ -66,7 +78,7 @@ class WashingMachineInactive extends React.Component {
 
                   <AddNewMachine>
                      <Typo14WhiteHKGroteskSemiBold
-                        onClick={this.onClickAddMachine}
+                        onClick={this.onClickAddWashingMachine}
                      >
                         + {activeAndInactive.addNewMachine}
                      </Typo14WhiteHKGroteskSemiBold>
@@ -89,7 +101,7 @@ class WashingMachineInactive extends React.Component {
                </InActiveMachines>
                {this.isClickedAddNewMachine && (
                   <PopUp
-                     onClickAddMachine={this.onClickAddMachine}
+                     onClickAddMachine={this.onClickAddWashingMachine}
                      onClickNewWashingMachine={onClickNewWashingMachine}
                   />
                )}

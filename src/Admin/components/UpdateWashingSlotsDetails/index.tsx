@@ -140,7 +140,7 @@ class UpdateWashingSlotsDetails extends React.Component <UpdateWashingSlotsDetai
                               <FromTimeContainer>
                                  <FromTime>{obj.startTime}</FromTime>
                                  <SelectTag
-                                    id={obj.id}
+                                    id={obj.id.toString()}
                                     onChange={
                                        this.onChangeStartTimeInUpdateSlots
                                     }
@@ -153,7 +153,7 @@ class UpdateWashingSlotsDetails extends React.Component <UpdateWashingSlotsDetai
                               <ToContainer>
                                  <ToTime>{obj.endTime}</ToTime>
                                  <SelectTag
-                                    id={obj.id}
+                                    id={obj.id.toString()}
                                     onChange={this.onChangeEndTimeInUpdateSlots}
                                  >
                                     <Option hidden={true}></Option>
@@ -163,7 +163,7 @@ class UpdateWashingSlotsDetails extends React.Component <UpdateWashingSlotsDetai
                               </ToContainer>
 
                               <CloseImgBtn
-                                 id={obj.id}
+                                 id={obj.id.toString()}
                                  onClick={this.onClickCloseBtn}
                                  src={closeImgUrl}
                                  alt={'close'}

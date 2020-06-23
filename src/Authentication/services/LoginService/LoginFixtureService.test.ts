@@ -4,7 +4,7 @@ import React from 'react'
 /*global expect*/
 
 import { render, fireEvent } from '@testing-library/react'
-import loginResponse from '../../fixtures/getLoginResponse'
+import loginResponse from '../../fixtures/getLoginResponse.json'
 
 import LoginService from './index.fixture'
 describe('LoginService tests', () => {

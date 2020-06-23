@@ -26,7 +26,7 @@ import {
 } from './styledComponent'
 
 type LoginPageProps={
-   isAdmin?:boolean,
+   isAdmin?:boolean | undefined,
    userName?:string,
    password?:string,
    onChangeUserNameLogin?: (event:React.ChangeEvent<HTMLInputElement>)=>void,
