@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { getAccessToken } from '../../Authentication/utils/StorageUtils'
+import { getAccessToken } from '../../utils/StorageUtils'
 import { LOGIN_PATH } from '../../Authentication/constants/routeConstants/RouteConstants'
 import { observer } from 'mobx-react'
 //import LoginRoute from "../../Authentication/routes/LoginRoute";

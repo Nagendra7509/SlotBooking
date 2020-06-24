@@ -1,28 +1,12 @@
 import React from 'react'
-import {
-   API_INITIAL,
-   API_FETCHING,
-   API_SUCCESS,
-   API_FAILED
-} from '@ib/api-constants'
+import { API_INITIAL } from '@ib/api-constants'
 import { observable, action } from 'mobx'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 //import { setAccessToken } from '../../../utils/StorageUtils'
-import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
-import { setAccessToken } from '../../utils/StorageUtils'
+import { getFormattedErrorDescription } from '../../../utils/APIUtils'
+import { setAccessToken } from '../../../utils/StorageUtils'
 import AuthService from '../../services/AuthService/index.api'
-import SignUpService from '../../services/SignUpService/index.api'
-
-type setUserLoginAPIResponseProps = {
-   access_token: string
-   refresh_token: string
-   is_admin: boolean
-}
-
-type requestObjProps = {
-   username: string
-   password: string
-}
+import { RequestObject, GetLoginResponse } from '../types'
 
 class AuthenticationStore {
    @observable getUserLoginStatus!: number
@@ -31,11 +15,11 @@ class AuthenticationStore {
    @observable getUserSignUpStatus!: number
    @observable getUserSignUpError!: null | string
 
-   @observable isAdmin: undefined | boolean
+   @observable isAdmin!: boolean
    @observable loginCredentialsError!: string
    @observable signUpCredentialError!: string
 
-   constructor(authService) {
+   constructor(authService: AuthService) {
       this.init()
       this.authService = authService
    }
@@ -47,12 +31,12 @@ class AuthenticationStore {
       this.getUserLoginError = null
       this.loginCredentialsError = ''
       this.signUpCredentialError = ''
-      this.isAdmin = undefined
+      this.isAdmin = false
    }
 
    @action.bound
    userLogin(userName: string, password: string) {
-      const requestObj: requestObjProps = {
+      const requestObj: RequestObject = {
          username: userName,
          password: password
       }
@@ -69,8 +53,8 @@ class AuthenticationStore {
    }
 
    @action.bound
-   setUserLoginAPIResponse(response: setUserLoginAPIResponseProps) {
-      console.log(response, 'response')
+   setUserLoginAPIResponse(response) {
+      //console.log(response, 'response')
       setAccessToken(response.access_token)
       this.isAdmin = response.is_admin
       this.getUserLoginError = null
@@ -79,12 +63,12 @@ class AuthenticationStore {
    @action.bound
    setGetUserLoginAPIError(error: object) {
       console.log(error, 'response')
-      this.getUserLoginError = getUserDisplayableErrorMessage(error)
+      this.getUserLoginError = getFormattedErrorDescription(error)
    }
 
    @action.bound
    userSignUp(userName: string, password: string) {
-      const requestObj: requestObjProps = {
+      const requestObj: RequestObject = {
          username: userName,
          password: password
       }
@@ -108,7 +92,7 @@ class AuthenticationStore {
 
    @action.bound
    setGetUserSignUpAPIError(error: object) {
-      this.getUserSignUpError = getUserDisplayableErrorMessage(error)
+      this.getUserSignUpError = getFormattedErrorDescription(error)
       // console.log(this.getUserSignUpError);
    }
 }

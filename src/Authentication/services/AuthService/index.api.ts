@@ -1,16 +1,13 @@
 import { create } from 'apisauce'
-import { networkCallWithApisauce } from '../../utils/APIUtils'
+import { networkCallWithApisauce } from '../../../utils/APIUtils'
 import { apiMethods } from '../../constants/APIConstants'
-import { endPoints } from '../endPoints'
+//import { endPoints } from '../endPoints'
 import { EnvironmentConstants } from '../../../Common/constants/environmentConstants'
+import { AuthService } from './index'
+//import { GetLoginResponse } from '../../stores/types'
 
-type requestObjProps = {
-   username: string
-   password: string
-}
-
-class AuthService {
-   api
+class AuthServiceAPI implements AuthService {
+   api: Record<string, any>
 
    constructor() {
       this.api = create({
@@ -18,7 +15,7 @@ class AuthService {
       })
    }
 
-   loginAPI = (requestObj: requestObjProps): Promise<any> => {
+   loginAPI = requestObj => {
       return networkCallWithApisauce(
          this.api,
          '/api/slot_booking/user/login/v1/',
@@ -27,7 +24,7 @@ class AuthService {
       )
    }
 
-   signUpAPI = (requestObj: requestObjProps): Promise<any> => {
+   signUpAPI = requestObj => {
       return networkCallWithApisauce(
          this.api,
          '/api/slot_booking/user/signup/v1/',
@@ -37,4 +34,4 @@ class AuthService {
    }
 }
 
-export default AuthService
+export default AuthServiceAPI

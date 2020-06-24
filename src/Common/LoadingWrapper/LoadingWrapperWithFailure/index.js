@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 
 import { API_FETCHING, API_SUCCESS, API_FAILED } from '@ib/api-constants'
 
-import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
+import { getFormattedErrorDescription } from '../../../utils/APIUtils'
 
 import LoadingView from './LoadingView'
 import FailureView from './FailureView'
@@ -17,7 +17,7 @@ class LoadingWrapperWithFailure extends React.Component {
          onRetryClick,
          apiError
       } = this.props
-      const errorMessage = getUserDisplayableErrorMessage(apiError)
+      const errorMessage = getFormattedErrorDescription(apiError)
 
       switch (apiStatus) {
          case API_FETCHING:

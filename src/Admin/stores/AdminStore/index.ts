@@ -2,7 +2,7 @@ import React from 'react'
 import { observable, action } from 'mobx'
 import { API_INITIAL } from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
+import { getFormattedErrorDescription } from '../../../utils/APIUtils'
 import AdminModel from '../models/AdminModel'
 import UpdateSlotsModel from '../models/UpdateSlotsModel'
 import TimeSlots from '../models/UpdateSlotsModel/TimeSlots'
@@ -295,7 +295,7 @@ class AdminStore {
 
    @action.bound
    setGetPostUpdateSlotsAPIError(error) {
-      this.getPostUpdateSlotsError = getUserDisplayableErrorMessage(error)
+      this.getPostUpdateSlotsError = getFormattedErrorDescription(error)
       alert(this.getPostUpdateSlotsError)
       this.onClickUpdateInWashingMachineCard(this.washingMachineDetailsId)
    }

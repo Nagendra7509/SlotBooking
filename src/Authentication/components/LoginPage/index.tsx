@@ -1,12 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { Redirect } from 'react-router-dom'
-import {
-   API_INITIAL,
-   API_FETCHING,
-   API_SUCCESS,
-   API_FAILED
-} from '@ib/api-constants'
+import { API_FETCHING } from '@ib/api-constants'
 import {
    Typo12HKGroteskSemiBoldSteel,
    Typo12HKGroteskRegular
@@ -15,7 +10,7 @@ import { InputTag, IbHubsLogo } from '../../common/components'
 import { SIGN_UP_PATH } from '../../constants/routeConstants/RouteConstants'
 import { ibhubsLogo } from '../../assets'
 import Strings from '../../i18n/strings.json'
-import { getAccessToken } from '../../utils/StorageUtils'
+import { getAccessToken } from '../../../utils/StorageUtils'
 import {
    LoginPageContainer,
    LoginForm,
@@ -25,18 +20,17 @@ import {
    SignupLink
 } from './styledComponent'
 
-type LoginPageProps={
-   isAdmin?:boolean | undefined,
-   userName?:string,
-   password?:string,
-   onChangeUserNameLogin?: (event:React.ChangeEvent<HTMLInputElement>)=>void,
-   onChangePasswordLogin?:(event:React.ChangeEvent<HTMLInputElement>)=>void,
-   onClickLogin?:(event:React.MouseEvent<HTMLButtonElement>)=>void,
-   errroMessageUserName?:string,
-   errorMessagePassword?:string,
-   errorMessageLoginButton?:string,
-   getUserLoginStatus?:number
-
+type LoginPageProps = {
+   isAdmin?: boolean | undefined
+   userName?: string
+   password?: string
+   onChangeUserNameLogin?: (event: React.ChangeEvent<HTMLInputElement>) => void
+   onChangePasswordLogin?: (event: React.ChangeEvent<HTMLInputElement>) => void
+   onClickLogin?: (event: React.MouseEvent<HTMLButtonElement>) => void
+   errroMessageUserName?: string
+   errorMessagePassword?: string
+   errorMessageLoginButton?: string
+   getUserLoginStatus?: number
 }
 
 @observer
@@ -44,10 +38,10 @@ class LoginPage extends React.Component<LoginPageProps> {
    render() {
       if (getAccessToken()) {
          const { isAdmin } = this.props
-         if (isAdmin && isAdmin != undefined) {
+         if (isAdmin && isAdmin !== undefined) {
             return <Redirect to={{ pathname: '/slot-booking/admin/issues/' }} />
          }
-         if (!isAdmin && isAdmin != undefined) {
+         if (!isAdmin && isAdmin !== undefined) {
             return <Redirect to={{ pathname: '/slot-booking/dashBoard/' }} />
          }
       }
@@ -80,11 +74,11 @@ class LoginPage extends React.Component<LoginPageProps> {
                   value={userName}
                   type='text'
                   placeholder='username'
-                  borderValue={errroMessageUserName != 'noError'}
+                  borderValue={errroMessageUserName !== 'noError'}
                />
 
                <Typo12HKGroteskRegular
-                  visibilityValue={errroMessageUserName != 'noError'}
+                  visibilityValue={errroMessageUserName !== 'noError'}
                >
                   {errroMessageUserName}
                </Typo12HKGroteskRegular>
@@ -98,11 +92,11 @@ class LoginPage extends React.Component<LoginPageProps> {
                   value={password}
                   type='password'
                   placeholder='password'
-                  borderValue={errorMessagePassword != 'noError'}
+                  borderValue={errorMessagePassword !== 'noError'}
                />
 
                <Typo12HKGroteskRegular
-                  visibilityValue={errorMessagePassword != 'noError'}
+                  visibilityValue={errorMessagePassword !== 'noError'}
                >
                   {errorMessagePassword}
                </Typo12HKGroteskRegular>
@@ -112,13 +106,13 @@ class LoginPage extends React.Component<LoginPageProps> {
                   onClick={onClickLogin}
                   data-testid='sign-up-button'
                >
-                  {getUserLoginStatus == API_FETCHING
+                  {getUserLoginStatus === API_FETCHING
                      ? Strings.login.loginLoading
                      : Strings.login.login}
                </SignInBtn>
 
                <Typo12HKGroteskRegular
-                  visibilityValue={errorMessageLoginButton != 'noError'}
+                  visibilityValue={errorMessageLoginButton !== 'noError'}
                >
                   {errorMessageLoginButton}
                </Typo12HKGroteskRegular>
