@@ -1,11 +1,11 @@
 import React from 'react'
-import {History} from "history";
+import { History } from 'history'
 import { observer, inject } from 'mobx-react'
 
 import SideNavBar from '../../common/components/SideNavBar'
 import TopNavBar from '../../common/components/TopNavBar'
 import { updateSlots } from '../../i18n/strings.json'
-import AdminStore from "../../stores/AdminStore";
+import AdminStore from '../../stores/AdminStore'
 import {
    UpDateSlotContainer,
    SideNavBarAndSlotsDetails,
@@ -35,16 +35,16 @@ import {
    UpdateBtn
 } from './styledComponents'
 
-type UpdateWashingSlotsDetailsProps={
-   adminStore:AdminStore,
-   history:History
-
-
+type UpdateWashingSlotsDetailsProps = {
+   adminStore: AdminStore
+   history: History
 }
 
 @inject('adminStore')
 @observer
-class UpdateWashingSlotsDetails extends React.Component <UpdateWashingSlotsDetailsProps>{
+class UpdateWashingSlotsDetails extends React.Component<
+   UpdateWashingSlotsDetailsProps
+> {
    constructor(props) {
       super(props)
       this.getUpdateSlotsData()
@@ -104,84 +104,94 @@ class UpdateWashingSlotsDetails extends React.Component <UpdateWashingSlotsDetai
          'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/7da0927e-32b7-480f-a4bc-e513c0df41dd.svg'
 
       return (
-         <UpDateSlotContainer>
-            <TopNavBar path={""}/>
+         <div>
+            {updateSlotsResponse && (
+               <UpDateSlotContainer>
+                  <TopNavBar path={''} />
 
-            <SideNavBarAndSlotsDetails>
-               <SideNavBar path={""}/>
-               <SlotDetailsContainer>
-                  <Header>
-                     <WashingMachineId>
-                        {washingMachineID}{' '}
-                        {updateSlotsResponse.washingMachineId}
-                     </WashingMachineId>
+                  <SideNavBarAndSlotsDetails>
+                     <SideNavBar path={''} />
+                     <SlotDetailsContainer>
+                        <Header>
+                           <WashingMachineId>
+                              {washingMachineID}{' '}
+                              {updateSlotsResponse.washingMachineId}
+                           </WashingMachineId>
 
-                     <DayContainer>
-                        <ArrowBtn>{'<'}</ArrowBtn>
-                        <Day>{updateSlotsResponse.day}</Day>
-                        <ArrowBtn>{'>'}</ArrowBtn>
-                     </DayContainer>
-                  </Header>
-                  <UpdateSlotsTable>
-                     {updateSlotsResponse.timeSlots && (
-                        <TableTitles>
-                           <SlotsHeading>{slots}</SlotsHeading>
-                           <FromHeading>{from}</FromHeading>
-                           <ToHeading>{to}</ToHeading>
-                           <Delete>Delete</Delete>
-                        </TableTitles>
-                     )}
-                     {updateSlotsResponse.timeSlots &&
-                        updateSlotsResponse.timeSlots.map((obj, index) => (
-                           <SlotDetails key={obj.id}>
-                              <SlotNumber>
-                                 {slot} {index + 1}
-                              </SlotNumber>
-                              <FromTimeContainer>
-                                 <FromTime>{obj.startTime}</FromTime>
-                                 <SelectTag
-                                    id={obj.id.toString()}
-                                    onChange={
-                                       this.onChangeStartTimeInUpdateSlots
-                                    }
-                                 >
-                                    <Option hidden={true}></Option>
-                                    <Option value={am}>{am}</Option>
-                                    <Option value={pm}>{pm}</Option>
-                                 </SelectTag>
-                              </FromTimeContainer>
-                              <ToContainer>
-                                 <ToTime>{obj.endTime}</ToTime>
-                                 <SelectTag
-                                    id={obj.id.toString()}
-                                    onChange={this.onChangeEndTimeInUpdateSlots}
-                                 >
-                                    <Option hidden={true}></Option>
-                                    <Option value={am}>{am}</Option>
-                                    <Option value={pm}>{pm}</Option>
-                                 </SelectTag>
-                              </ToContainer>
+                           <DayContainer>
+                              <ArrowBtn>{'<'}</ArrowBtn>
+                              <Day>{updateSlotsResponse.day}</Day>
+                              <ArrowBtn>{'>'}</ArrowBtn>
+                           </DayContainer>
+                        </Header>
+                        <UpdateSlotsTable>
+                           {updateSlotsResponse.timeSlots && (
+                              <TableTitles>
+                                 <SlotsHeading>{slots}</SlotsHeading>
+                                 <FromHeading>{from}</FromHeading>
+                                 <ToHeading>{to}</ToHeading>
+                                 <Delete>Delete</Delete>
+                              </TableTitles>
+                           )}
+                           {updateSlotsResponse.timeSlots &&
+                              updateSlotsResponse.timeSlots.map(
+                                 (obj, index) => (
+                                    <SlotDetails key={obj.id}>
+                                       <SlotNumber>
+                                          {slot} {index + 1}
+                                       </SlotNumber>
+                                       <FromTimeContainer>
+                                          <FromTime>{obj.startTime}</FromTime>
+                                          <SelectTag
+                                             id={obj.id.toString()}
+                                             onChange={
+                                                this
+                                                   .onChangeStartTimeInUpdateSlots
+                                             }
+                                          >
+                                             <Option hidden={true}></Option>
+                                             <Option value={am}>{am}</Option>
+                                             <Option value={pm}>{pm}</Option>
+                                          </SelectTag>
+                                       </FromTimeContainer>
+                                       <ToContainer>
+                                          <ToTime>{obj.endTime}</ToTime>
+                                          <SelectTag
+                                             id={obj.id.toString()}
+                                             onChange={
+                                                this
+                                                   .onChangeEndTimeInUpdateSlots
+                                             }
+                                          >
+                                             <Option hidden={true}></Option>
+                                             <Option value={am}>{am}</Option>
+                                             <Option value={pm}>{pm}</Option>
+                                          </SelectTag>
+                                       </ToContainer>
 
-                              <CloseImgBtn
-                                 id={obj.id.toString()}
-                                 onClick={this.onClickCloseBtn}
-                                 src={closeImgUrl}
-                                 alt={'close'}
-                              />
-                           </SlotDetails>
-                        ))}
-                  </UpdateSlotsTable>
-                  <Footer>
-                     <AddNewSlot onClick={this.onClickAddNewSlot}>
-                        {addSlots}
-                     </AddNewSlot>
-                     <UpdateBtn onClick={this.onClickUpdateBtn}>
-                        {update}
-                     </UpdateBtn>
-                  </Footer>
-               </SlotDetailsContainer>
-            </SideNavBarAndSlotsDetails>
-         </UpDateSlotContainer>
+                                       <CloseImgBtn
+                                          id={obj.id.toString()}
+                                          onClick={this.onClickCloseBtn}
+                                          src={closeImgUrl}
+                                          alt={'close'}
+                                       />
+                                    </SlotDetails>
+                                 )
+                              )}
+                        </UpdateSlotsTable>
+                        <Footer>
+                           <AddNewSlot onClick={this.onClickAddNewSlot}>
+                              {addSlots}
+                           </AddNewSlot>
+                           <UpdateBtn onClick={this.onClickUpdateBtn}>
+                              {update}
+                           </UpdateBtn>
+                        </Footer>
+                     </SlotDetailsContainer>
+                  </SideNavBarAndSlotsDetails>
+               </UpDateSlotContainer>
+            )}
+         </div>
       )
    }
 }
