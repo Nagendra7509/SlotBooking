@@ -1,34 +1,30 @@
 import React from 'react'
 import { observable, action } from 'mobx'
-import {History} from "history";
+import { History } from 'history'
 import { observer, inject } from 'mobx-react'
 import LoginPage from '../components/LoginPage'
 import Strings from '../i18n/strings.json'
 import { getAccessToken } from '../../utils/StorageUtils'
-import AuthenticationStore from "../stores/AuthenticationStore";
+import AuthenticationStore from '../stores/AuthenticationStore'
 
-type LoginRouteProps={
-         authenticationStore:AuthenticationStore,
-         history:History,
-         userName?:string,
-         password?:string,
-         isAdmin?:boolean,
-         onChangeUserNameLogin?: (event:React.ChangeEvent<HTMLInputElement>) => void,
-         onChangePasswordLogin?:(event:React.ChangeEvent<HTMLInputElement>)=>void,
-         onClickLogin?:(event:React.MouseEvent<HTMLButtonElement>)=>void,
-         errroMessageUserName?:string,
-         errorMessagePassword?:string,
-         errorMessageLoginButton?:string,
-         getUserLoginStatus?:number
-   
-   }
-
-
-
+type LoginRouteProps = {
+   authenticationStore: AuthenticationStore
+   history: History
+   userName?: string
+   password?: string
+   isAdmin?: boolean
+   onChangeUserNameLogin?: (event: React.ChangeEvent<HTMLInputElement>) => void
+   onChangePasswordLogin?: (event: React.ChangeEvent<HTMLInputElement>) => void
+   onClickLogin?: (event: React.MouseEvent<HTMLButtonElement>) => void
+   errroMessageUserName?: string
+   errorMessagePassword?: string
+   errorMessageLoginButton?: string
+   getUserLoginStatus?: number
+}
 
 @inject('authenticationStore')
 @observer
-class LoginRoute extends React.Component <LoginRouteProps>{
+class LoginRoute extends React.Component<LoginRouteProps> {
    @observable userName = ''
    @observable password = ''
    @observable errroMessageUserName = 'noError'
@@ -36,12 +32,12 @@ class LoginRoute extends React.Component <LoginRouteProps>{
    @observable errorMessageLoginButton = 'noError'
 
    @action.bound
-   onChangeUserNameLogin(event:React.ChangeEvent<HTMLInputElement>) {
+   onChangeUserNameLogin(event: React.ChangeEvent<HTMLInputElement>) {
       this.userName = event.target.value
    }
 
    @action.bound
-   onChangePasswordLogin(event:React.ChangeEvent<HTMLInputElement>) {
+   onChangePasswordLogin(event: React.ChangeEvent<HTMLInputElement>) {
       this.password = event.target.value
    }
 
@@ -78,10 +74,9 @@ class LoginRoute extends React.Component <LoginRouteProps>{
                //console.log(getAccessToken(), "access_token");
                //console.log(isAdmin, "isAdmin");
                if (isAdmin) {
-                  
-               //  history.push('/slot-booking/admin/issues/')
+                  //  history.push('/slot-booking/admin/issues/')
                } else {
-               //   history.push('/slot-booking/dashBoard/')
+                  //   history.push('/slot-booking/dashBoard/')
                   //console.log(history)
                }
             }

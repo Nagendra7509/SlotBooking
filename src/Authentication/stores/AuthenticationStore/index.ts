@@ -10,36 +10,34 @@ import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 //import { setAccessToken } from '../../../utils/StorageUtils'
 import { getUserDisplayableErrorMessage } from '../../../utils/APIUtils'
 import { setAccessToken } from '../../utils/StorageUtils'
-import LoginService from "../../services/LoginService/index.api";
-import SignUpService from "../../services/SignUpService/index.api"
+import AuthService from '../../services/AuthService/index.api'
+import SignUpService from '../../services/SignUpService/index.api'
 
-type setUserLoginAPIResponseProps={
-   access_token:string,
-   refresh_token:string,
-   is_admin:boolean
+type setUserLoginAPIResponseProps = {
+   access_token: string
+   refresh_token: string
+   is_admin: boolean
 }
 
-type requestObjProps={
-   username:string,
-   password:string
+type requestObjProps = {
+   username: string
+   password: string
 }
-
 
 class AuthenticationStore {
-   @observable getUserLoginStatus!:number
-   @observable getUserLoginError!:null | string
-   loginAPIService:LoginService
-   @observable getUserSignUpStatus!:number
-   @observable getUserSignUpError!:null | string
-   signUpAPIService:SignUpService
-   @observable isAdmin:undefined | boolean
-   @observable loginCredentialsError!:string
-   @observable signUpCredentialError!:string
+   @observable getUserLoginStatus!: number
+   @observable getUserLoginError!: null | string
+   authService: AuthService
+   @observable getUserSignUpStatus!: number
+   @observable getUserSignUpError!: null | string
 
-   constructor(loginAPIService:LoginService, signUpAPIService:SignUpService) {
+   @observable isAdmin: undefined | boolean
+   @observable loginCredentialsError!: string
+   @observable signUpCredentialError!: string
+
+   constructor(authService) {
       this.init()
-      this.loginAPIService = loginAPIService
-      this.signUpAPIService = signUpAPIService
+      this.authService = authService
    }
 
    init() {
@@ -47,49 +45,50 @@ class AuthenticationStore {
       this.getUserSignUpError = null
       this.getUserLoginStatus = API_INITIAL
       this.getUserLoginError = null
-      this.loginCredentialsError='';
-      this.signUpCredentialError='';
-      this.isAdmin=undefined;
+      this.loginCredentialsError = ''
+      this.signUpCredentialError = ''
+      this.isAdmin = undefined
    }
 
    @action.bound
-   userLogin(userName:string, password:string) {
-      const requestObj:requestObjProps= {
+   userLogin(userName: string, password: string) {
+      const requestObj: requestObjProps = {
          username: userName,
          password: password
       }
-      
-      const userPromise = this.loginAPIService.loginAPI(requestObj)
+
+      const userPromise = this.authService.loginAPI(requestObj)
       return bindPromiseWithOnSuccess(userPromise)
          .to(this.setGetUserLoginAPIStatus, this.setUserLoginAPIResponse)
          .catch(this.setGetUserLoginAPIError)
    }
 
    @action.bound
-   setGetUserLoginAPIStatus(apiStatus:number) {
+   setGetUserLoginAPIStatus(apiStatus: number) {
       this.getUserLoginStatus = apiStatus
    }
 
    @action.bound
-   setUserLoginAPIResponse(response:setUserLoginAPIResponseProps) {
+   setUserLoginAPIResponse(response: setUserLoginAPIResponseProps) {
+      console.log(response, 'response')
       setAccessToken(response.access_token)
       this.isAdmin = response.is_admin
       this.getUserLoginError = null
    }
 
    @action.bound
-   setGetUserLoginAPIError(error:object) {
+   setGetUserLoginAPIError(error: object) {
+      console.log(error, 'response')
       this.getUserLoginError = getUserDisplayableErrorMessage(error)
-      
    }
 
    @action.bound
-   userSignUp(userName:string, password:string) {
-      const requestObj:requestObjProps = {
+   userSignUp(userName: string, password: string) {
+      const requestObj: requestObjProps = {
          username: userName,
          password: password
       }
-      const userPromise = this.signUpAPIService.signUpAPI(requestObj)
+      const userPromise = this.authService.signUpAPI(requestObj)
 
       return bindPromiseWithOnSuccess(userPromise)
          .to(this.setGetUserSignUpAPIStatus, this.setUserSignUpAPIResponse)
@@ -97,7 +96,7 @@ class AuthenticationStore {
    }
 
    @action.bound
-   setGetUserSignUpAPIStatus(apiStatus:number) {
+   setGetUserSignUpAPIStatus(apiStatus: number) {
       this.getUserSignUpStatus = apiStatus
    }
 
@@ -108,7 +107,7 @@ class AuthenticationStore {
    }
 
    @action.bound
-   setGetUserSignUpAPIError(error:object) {
+   setGetUserSignUpAPIError(error: object) {
       this.getUserSignUpError = getUserDisplayableErrorMessage(error)
       // console.log(this.getUserSignUpError);
    }

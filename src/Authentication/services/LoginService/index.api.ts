@@ -4,12 +4,10 @@ import { apiMethods } from '../../constants/APIConstants'
 import { endPoints } from '../endPoints'
 import { EnvironmentConstants } from '../../../Common/constants/environmentConstants'
 
-type requestObjProps={
-   username:string,
-   password:string
+type requestObjProps = {
+   username: string
+   password: string
 }
-
-
 
 class LoginService {
    api
@@ -20,7 +18,7 @@ class LoginService {
       })
    }
 
-   loginAPI = (requestObj:requestObjProps):Promise<any> => {
+   loginAPI = (requestObj: requestObjProps): Promise<any> => {
       return networkCallWithApisauce(
          this.api,
          '/api/slot_booking/user/login/v1/',
