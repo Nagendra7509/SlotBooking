@@ -20,17 +20,17 @@ import {
    SignupLink
 } from './styledComponent'
 
-type LoginPageProps = {
-   isAdmin?: boolean | undefined
-   userName?: string
-   password?: string
-   onChangeUserNameLogin?: (event: React.ChangeEvent<HTMLInputElement>) => void
-   onChangePasswordLogin?: (event: React.ChangeEvent<HTMLInputElement>) => void
-   onClickLogin?: (event: React.MouseEvent<HTMLButtonElement>) => void
-   errroMessageUserName?: string
-   errorMessagePassword?: string
-   errorMessageLoginButton?: string
-   getUserLoginStatus?: number
+interface LoginPageProps {
+   isAdmin: boolean
+   userName: string
+   password: string
+   onChangeUserNameLogin: (event: React.ChangeEvent<HTMLInputElement>) => void
+   onChangePasswordLogin: (event: React.ChangeEvent<HTMLInputElement>) => void
+   onClickLogin: (event: React.MouseEvent<HTMLButtonElement>) => void
+   errroMessageUserName: string
+   errorMessagePassword: string
+   errorMessageLoginButton: string
+   getUserLoginStatus: number
 }
 
 @observer

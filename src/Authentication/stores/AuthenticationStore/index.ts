@@ -48,21 +48,22 @@ class AuthenticationStore {
    }
 
    @action.bound
-   setGetUserLoginAPIStatus(apiStatus: number) {
+   setGetUserLoginAPIStatus(apiStatus) {
       this.getUserLoginStatus = apiStatus
    }
 
    @action.bound
-   setUserLoginAPIResponse(response) {
+   setUserLoginAPIResponse(response: GetLoginResponse | null) {
       //console.log(response, 'response')
-      setAccessToken(response.access_token)
-      this.isAdmin = response.is_admin
+      const { access_token, is_admin } = response as GetLoginResponse
+      setAccessToken(access_token)
+      this.isAdmin = is_admin
       this.getUserLoginError = null
    }
 
    @action.bound
    setGetUserLoginAPIError(error: object) {
-      console.log(error, 'response')
+      //console.log(error, 'response')
       this.getUserLoginError = getFormattedErrorDescription(error)
    }
 
@@ -80,7 +81,7 @@ class AuthenticationStore {
    }
 
    @action.bound
-   setGetUserSignUpAPIStatus(apiStatus: number) {
+   setGetUserSignUpAPIStatus(apiStatus) {
       this.getUserSignUpStatus = apiStatus
    }
 

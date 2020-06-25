@@ -1,22 +1,23 @@
 import React from 'react'
 import { observable, action } from 'mobx'
-import {History} from "history"
+import { History } from 'history'
 import { observer, inject } from 'mobx-react'
+
 import SignUpPage from '../components/SignUpPage'
-import { clearUserSession } from '../../utils/StorageUtils'
 import Strings from '../i18n/strings.json'
-import AuthenticationStore from "../stores/AuthenticationStore";
+import AuthenticationStore from '../stores/AuthenticationStore'
 
+interface SignUpRouteProps {
+   history: History
+}
 
-type SignUpRouteProps={
-   authenticationStore:AuthenticationStore,
-   history:History
-
+interface InjectedProps extends SignUpRouteProps {
+   authenticationStore: AuthenticationStore
 }
 
 @inject('authenticationStore')
 @observer
-class SignUpRoute extends React.Component <SignUpRouteProps>{
+class SignUpRoute extends React.Component<SignUpRouteProps> {
    @observable userName = ''
    @observable password = ''
    @observable confirmPassword = ''
@@ -24,18 +25,28 @@ class SignUpRoute extends React.Component <SignUpRouteProps>{
    @observable passwordError = 'noError'
    @observable confirmPasswordError = 'noError'
 
-   @action.bound
-   onChangeUserNameSignUp(event:React.ChangeEvent<HTMLInputElement>) {
+   getInjectedProps = (): InjectedProps => this.props as InjectedProps
+
+   getAuthenticationStore = () => {
+      return this.getInjectedProps().authenticationStore
+   }
+
+   @action
+   onChangeUserNameSignUp: React.ChangeEventHandler<
+      HTMLInputElement
+   > = event => {
       this.userName = event.target.value
    }
 
    @action.bound
-   onChangePasswordSignUp(event:React.ChangeEvent<HTMLInputElement>) {
+   onChangePasswordSignUp(event: React.ChangeEvent<HTMLInputElement>) {
       this.password = event.target.value
    }
 
-   @action.bound
-   onChangeConfirmPasswordSignUp(event:React.ChangeEvent<HTMLInputElement>) {
+   @action
+   onChangeConfirmPasswordSignUp: React.ChangeEventHandler<
+      HTMLInputElement
+   > = event => {
       this.confirmPassword = event.target.value
    }
 
@@ -51,13 +62,13 @@ class SignUpRoute extends React.Component <SignUpRouteProps>{
          passwordShouldBeGreaterThan8Characters
       } = Strings.signUp
 
-      if (this.userName != '' && this.password != '') {
+      if (this.userName !== '' && this.password !== '') {
          if (this.password === this.confirmPassword) {
-            const { userSignUp } = this.props.authenticationStore
+            const { userSignUp } = this.getAuthenticationStore()
 
             await userSignUp(this.userName, this.password)
 
-            const { getUserSignUpError } = this.props.authenticationStore
+            const { getUserSignUpError } = this.getAuthenticationStore()
 
             if (getUserSignUpError != null) {
                const signUpCredentialsError = getUserSignUpError.split(' ')
@@ -72,22 +83,19 @@ class SignUpRoute extends React.Component <SignUpRouteProps>{
                   this.confirmPasswordError = 'noError'
                }
             } else {
-               //this.userNameError = "noError";
-               //this.passwordError = "noError";
                const { history } = this.props
                history.replace('/slot-booking/login/')
             }
-            //this.confirmPasswordError = "noError";
          } else {
             this.confirmPasswordError = passwordMisMatch
             this.userNameError = 'noError'
             this.passwordError = 'noError'
          }
-      } else if (this.userName != '' && this.password == '') {
+      } else if (this.userName !== '' && this.password === '') {
          this.passwordError = enterPassword
          this.userNameError = 'noError'
          this.confirmPasswordError = 'noError'
-      } else if (this.userName == '' && this.password != '') {
+      } else if (this.userName === '' && this.password !== '') {
          this.userNameError = enterUserName
       } else {
          this.userNameError = enterUserName

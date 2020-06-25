@@ -17,18 +17,19 @@ import {
    SignInLink
 } from './styledComponent'
 
-
-type SignUpPageProps={
-         userName?:string,
-         password?:string,
-         confirmPassword?:string,
-         onChangePasswordSignUp?: (event:React.ChangeEvent<HTMLInputElement>)=>void,
-         onChangeConfirmPasswordSignUp?: (event:React.ChangeEvent<HTMLInputElement>)=>void,
-         onChangeUserNameSignUp?: (event:React.ChangeEvent<HTMLInputElement>)=>void,
-         onClickSignUpBtn?:(event:React.MouseEvent<HTMLButtonElement>)=>void,
-         userNameError?:string,
-         passwordError?:string,
-         confirmPasswordError?:string
+type SignUpPageProps = {
+   userName?: string
+   password?: string
+   confirmPassword?: string
+   onChangePasswordSignUp?: (event: React.ChangeEvent<HTMLInputElement>) => void
+   onChangeConfirmPasswordSignUp?: (
+      event: React.ChangeEvent<HTMLInputElement>
+   ) => void
+   onChangeUserNameSignUp?: (event: React.ChangeEvent<HTMLInputElement>) => void
+   onClickSignUpBtn?: (event: React.MouseEvent<HTMLButtonElement>) => void
+   userNameError?: string
+   passwordError?: string
+   confirmPasswordError?: string
 }
 
 @observer
@@ -63,11 +64,11 @@ class SignUpPage extends React.Component<SignUpPageProps> {
                   value={userName}
                   type='text'
                   placeholder='username'
-                  borderValue={userNameError != 'noError'}
+                  borderValue={userNameError !== 'noError'}
                />
 
                <Typo12HKGroteskRegular
-                  visibilityValue={userNameError != 'noError'}
+                  visibilityValue={userNameError !== 'noError'}
                >
                   {userNameError}
                </Typo12HKGroteskRegular>
@@ -81,11 +82,11 @@ class SignUpPage extends React.Component<SignUpPageProps> {
                   value={password}
                   type='password'
                   placeholder='password'
-                  borderValue={passwordError != 'noError'}
+                  borderValue={passwordError !== 'noError'}
                />
 
                <Typo12HKGroteskRegular
-                  visibilityValue={passwordError != 'noError'}
+                  visibilityValue={passwordError !== 'noError'}
                >
                   {passwordError}
                </Typo12HKGroteskRegular>
@@ -99,11 +100,11 @@ class SignUpPage extends React.Component<SignUpPageProps> {
                   value={confirmPassword}
                   type='password'
                   placeholder='confirm password'
-                  borderValue={confirmPasswordError != 'noError'}
+                  borderValue={confirmPasswordError !== 'noError'}
                />
 
                <Typo12HKGroteskRegular
-                  visibilityValue={confirmPasswordError != 'noError'}
+                  visibilityValue={confirmPasswordError !== 'noError'}
                >
                   {confirmPasswordError}
                </Typo12HKGroteskRegular>

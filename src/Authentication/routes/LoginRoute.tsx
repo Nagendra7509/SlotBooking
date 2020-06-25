@@ -7,29 +7,28 @@ import Strings from '../i18n/strings.json'
 import { getAccessToken } from '../../utils/StorageUtils'
 import AuthenticationStore from '../stores/AuthenticationStore'
 
-type LoginRouteProps = {
-   authenticationStore: AuthenticationStore
+interface LoginRouteProps {
    history: History
-   userName?: string
-   password?: string
-   isAdmin?: boolean
-   onChangeUserNameLogin?: (event: React.ChangeEvent<HTMLInputElement>) => void
-   onChangePasswordLogin?: (event: React.ChangeEvent<HTMLInputElement>) => void
-   onClickLogin?: (event: React.MouseEvent<HTMLButtonElement>) => void
-   errroMessageUserName?: string
-   errorMessagePassword?: string
-   errorMessageLoginButton?: string
-   getUserLoginStatus?: number
+}
+
+interface InjectedProps extends LoginRouteProps {
+   authenticationStore: AuthenticationStore
 }
 
 @inject('authenticationStore')
 @observer
 class LoginRoute extends React.Component<LoginRouteProps> {
-   @observable userName = ''
-   @observable password = ''
-   @observable errroMessageUserName = 'noError'
-   @observable errorMessagePassword = 'noError'
-   @observable errorMessageLoginButton = 'noError'
+   @observable userName: string = ''
+   @observable password: string = ''
+   @observable errroMessageUserName: string = 'noError'
+   @observable errorMessagePassword: string = 'noError'
+   @observable errorMessageLoginButton: string = 'noError'
+
+   getInjectedProps = (): InjectedProps => this.props as InjectedProps
+
+   getAuthenticationStore = () => {
+      return this.getInjectedProps().authenticationStore
+   }
 
    @action.bound
    onChangeUserNameLogin(event: React.ChangeEvent<HTMLInputElement>) {
@@ -47,11 +46,11 @@ class LoginRoute extends React.Component<LoginRouteProps> {
 
       const { usernameInavalid, incorrectPassword, serverError } = Strings.login
 
-      if (this.userName != '' && this.password != '') {
-         const { userLogin } = this.props.authenticationStore
+      if (this.userName !== '' && this.password !== '') {
+         const { userLogin } = this.getAuthenticationStore()
          await userLogin(this.userName, this.password)
 
-         const { isAdmin, getUserLoginError } = this.props.authenticationStore
+         const { isAdmin, getUserLoginError } = this.getAuthenticationStore()
 
          if (getUserLoginError != null) {
             const loginCredentialsError = getUserLoginError.split(' ')
@@ -66,29 +65,21 @@ class LoginRoute extends React.Component<LoginRouteProps> {
                this.errorMessageLoginButton = serverError
             }
          } else {
-            // this.errroMessageUserName = 'noError';
-            // this.errorMessagePassword = 'noError';
-
             if (getAccessToken()) {
                const { history } = this.props
-               //console.log(getAccessToken(), "access_token");
-               //console.log(isAdmin, "isAdmin");
+
                if (isAdmin) {
-                  //  history.push('/slot-booking/admin/issues/')
+                  history.push('/slot-booking/admin/issues/')
                } else {
-                  //   history.push('/slot-booking/dashBoard/')
-                  //console.log(history)
+                  history.push('/slot-booking/dashBoard/')
                }
             }
-            // else {
-            //     this.errorMessageLoginButton = serverError;
-            // }
          }
-      } else if (this.userName == '' && this.password == '') {
+      } else if (this.userName === '' && this.password === '') {
          this.errroMessageUserName = usernameInavalid
          this.errorMessagePassword = incorrectPassword
          this.errorMessageLoginButton = 'noError'
-      } else if (this.userName != '' && this.password == '') {
+      } else if (this.userName !== '' && this.password === '') {
          this.errorMessagePassword = incorrectPassword
          this.errroMessageUserName = 'noError'
          this.errorMessageLoginButton = 'noError'
@@ -111,7 +102,7 @@ class LoginRoute extends React.Component<LoginRouteProps> {
          errorMessageLoginButton
       } = this
 
-      const { getUserLoginStatus, isAdmin } = this.props.authenticationStore
+      const { getUserLoginStatus, isAdmin } = this.getAuthenticationStore()
 
       return (
          <LoginPage
