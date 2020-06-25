@@ -69,9 +69,9 @@ class LoginRoute extends React.Component<LoginRouteProps> {
                const { history } = this.props
 
                if (isAdmin) {
-                  history.push('/slot-booking/admin/issues/')
+                  history.replace('/slot-booking/admin/issues/')
                } else {
-                  history.push('/slot-booking/dashBoard/')
+                  history.replace('/slot-booking/dashBoard/')
                }
             }
          }

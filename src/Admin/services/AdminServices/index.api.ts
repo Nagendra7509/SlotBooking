@@ -3,9 +3,10 @@ import { networkCallWithApisauce } from '../../../utils/APIUtils'
 import { apiMethods } from '../../../constants/APIConstants'
 import { endPoints } from '../endPoints'
 import { EnvironmentConstants } from '../../../Common/constants/environmentConstants'
+import AdminService from '.'
 
-class AdminService {
-   api
+class AdminAPIService implements AdminService {
+   api: Record<string, any>
 
    constructor() {
       this.api = create({
@@ -59,4 +60,4 @@ class AdminService {
    }
 }
 
-export default AdminService
+export default AdminAPIService

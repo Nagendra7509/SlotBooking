@@ -1,60 +1,27 @@
 import adminResponse from '../../fixtures/getAdminResponse.json'
 import updateSlotsResponse from '../../fixtures/getUpdateSlotsResponse.json'
-
-type UpdateSlotsRequestObj = {
-   washing_machine_id: string,
-   day: string
-}
-
-type UpdateSlotsResponseObj = {
-
-   "washing_machine_id": string,
-   "day": string,
-   "alloted_slots": Array<{ "start_time": string, "end_time": string }>
-}
-
-
-
-class AdminService {
+import { resolveWithTimeout } from '../../../utils/TestUtils'
+import AdminService from '.'
+class AdminAPIService implements AdminService {
    adminResponse = () => {
-      return new Promise((resolve, reject) => {
-         setTimeout(() => {
-            resolve(adminResponse)
-         }, 1000)
-      })
+      return resolveWithTimeout(adminResponse)
    }
 
-   getUpdateWashingMachineSlotsDetails = (requestObj: UpdateSlotsRequestObj):Promise<UpdateSlotsResponseObj>=> {
-      return new Promise((resolve, reject) => {
-         setTimeout(() => {
-            resolve(updateSlotsResponse)
-         }, 1000)
-      })
+   getUpdateWashingMachineSlotsDetails = requestObj => {
+      return resolveWithTimeout(updateSlotsResponse)
    }
 
    postStatusToChange = requestObj => {
-      return new Promise((resolve, reject) => {
-         setTimeout(() => {
-            resolve(200)
-         }, 1000)
-      })
+      return resolveWithTimeout(200)
    }
 
    postNewWashingMachineIdToAdd = requestObj => {
-      return new Promise((resolve, reject) => {
-         setTimeout(() => {
-            resolve(200)
-         }, 1000)
-      })
+      return resolveWithTimeout(200)
    }
 
    postUpdateSlotsDetails = requestObj => {
-      return new Promise((resolve, reject) => {
-         setTimeout(() => {
-            resolve(200)
-         }, 1000)
-      })
+      return resolveWithTimeout(200)
    }
 }
 
-export default AdminService
+export default AdminAPIService

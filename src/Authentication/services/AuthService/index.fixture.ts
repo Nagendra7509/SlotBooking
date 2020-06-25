@@ -1,20 +1,12 @@
 import usersResponse from '../../fixtures/getLoginResponse.json'
-
+import { resolveWithTimeout } from '../../../utils/TestUtils'
 class AuthServiceAPI {
    loginAPI() {
-      return new Promise((resolve, reject) => {
-         setTimeout(() => {
-            resolve(usersResponse)
-         }, 1000)
-      })
+      return resolveWithTimeout(usersResponse)
    }
 
    signUpAPI = requestObj => {
-      return new Promise((resolve, reject) => {
-         setTimeout(() => {
-            resolve(200)
-         }, 1000)
-      })
+      return resolveWithTimeout(200)
    }
 }
 

@@ -8,7 +8,7 @@ export const networkCallWithApisauce = async (
    requestObject,
    type = apiMethods.post
 ) => {
-   let response:null | object | undefined= null
+   let response: null | object | undefined = null
    try {
       response = await getData(api, url, requestObject, type)
    } catch (error) {

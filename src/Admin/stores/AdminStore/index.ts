@@ -7,11 +7,14 @@ import AdminModel from '../models/AdminModel'
 import UpdateSlotsModel from '../models/UpdateSlotsModel'
 import TimeSlots from '../models/UpdateSlotsModel/TimeSlots'
 import AdminService from '../../services/AdminServices/index.fixture'
-
-type AdminModelProps = {
-   washing_machine_id: string
-   status: string
-}
+import {
+   APIGetAdminResponseTypes,
+   APIGetUpdateSlotsResponseTypes,
+   UpdateSlotsRequestObjectTypes,
+   NewWashingMachineRequestObjectTypes,
+   StatusChangeRequestObjectTypes,
+   PostUpdateSlotsRequestObjectTypes
+} from '../types'
 
 class AdminStore {
    @observable getAdminResponseStatus!: number
@@ -33,7 +36,7 @@ class AdminStore {
    @observable getPostUpdateSlotsStatus!: number
    @observable getPostUpdateSlotsError!: null | string
 
-   constructor(adminService) {
+   constructor(adminService: AdminService) {
       this.init()
       this.adminService = adminService
    }
@@ -64,22 +67,22 @@ class AdminStore {
    }
 
    @action.bound
-   setGetAdminResponseAPIStatus(status: number) {
+   setGetAdminResponseAPIStatus(status) {
       this.getAdminResponseStatus = status
    }
 
    @action.bound
-   setAdminAPIResponse(response) {
-      this.adminResponse = response.washing_machines.map(
-         (obj: AdminModelProps) => new AdminModel(obj)
+   setAdminAPIResponse(response: APIGetAdminResponseTypes | null) {
+      this.adminResponse = (response as APIGetAdminResponseTypes).washing_machines.map(
+         obj => new AdminModel(obj)
       )
 
       this.activeWashingMachines = this.adminResponse.filter(
-         obj => obj.washingMachineStatus == 'ACTIVE'
+         obj => obj.washingMachineStatus === 'ACTIVE'
       )
 
       this.inActiveWashingMachines = this.adminResponse.filter(
-         obj => obj.washingMachineStatus == 'INACTIVE'
+         obj => obj.washingMachineStatus === 'INACTIVE'
       )
    }
 
@@ -89,17 +92,16 @@ class AdminStore {
    }
 
    @action.bound
-   onClickNewWashingMachine(washingMachineNumber) {
-      //let washingMachineNumber = prompt("Enter WashingMachine Number");
+   onClickNewWashingMachine(washingMachineNumber: string) {
       let checkingNumberExistOrNot = this.adminResponse.filter(
          obj => obj.washingMachineId === washingMachineNumber
       )
 
-      if (checkingNumberExistOrNot.length == 1) {
+      if (checkingNumberExistOrNot.length === 1) {
          alert('Already Exists Enter another number')
       } else {
          if (washingMachineNumber) {
-            const requestObj = {
+            const requestObj: NewWashingMachineRequestObjectTypes = {
                washing_machine_id: washingMachineNumber
             }
             const promise = this.adminService.postNewWashingMachineIdToAdd(
@@ -132,24 +134,23 @@ class AdminStore {
    @action.bound
    setGetPostNewWashingMachineAPIError(error) {
       this.getPostNewWashingMachineIdError = error
-      //alert("new washing machine is not added");
+
       this.getAdminResponse()
    }
 
    @action.bound
-   onClickUpdateInWashingMachineCard(id) {
-      //alert('update click');
+   onClickUpdateInWashingMachineCard(id: string) {
       this.washingMachineDetailsId = id
-      //console.log(this.adminResponse);
+
       this.updateMachineId = id
       this.updateMachineStatus = this.adminResponse
-         .filter(obj => obj.washingMachineId == id)[0]
+         .filter(obj => obj.washingMachineId === id)[0]
          .washingMachineStatus.toLowerCase()
-      const requestObj = {
+      const requestObj: UpdateSlotsRequestObjectTypes = {
          washing_machine_id: id,
          day: 'MONDAY'
       }
-      //console.log(requestObj, "id ---->store");
+
       const promise = this.adminService.getUpdateWashingMachineSlotsDetails(
          requestObj
       )
@@ -165,25 +166,25 @@ class AdminStore {
    @action.bound
    setGetUpdateWashingMachineResponseAPIStatus(status) {
       this.getUpdateSlotsResponseStatus = status
-      //console.log(this.getUpdateSlotsResponseStatus, 'status')
    }
 
    @action.bound
-   setUpdateWashingMachineAPIResponse(response) {
-      //console.log(response, 'response')
-      this.updateSlotsResponse = new UpdateSlotsModel(response)
-      console.log(this.updateSlotsResponse, 'update Response 1234')
+   setUpdateWashingMachineAPIResponse(
+      response: APIGetUpdateSlotsResponseTypes | null
+   ) {
+      this.updateSlotsResponse = new UpdateSlotsModel(
+         response as APIGetUpdateSlotsResponseTypes
+      )
    }
 
    @action.bound
    setGetUpdateWashingMachineAPIError(error) {
       this.getUpdateSlotsResponseError = error
-      //console.log(this.getUpdateSlotsResponseError, 'error')
    }
 
    @action.bound
-   onClickActiveOrInactiveStatus(id) {
-      const requestObj = {
+   onClickActiveOrInactiveStatus(id: string) {
+      const requestObj: StatusChangeRequestObjectTypes = {
          washing_machine_id: id
       }
       const promise = this.adminService.postStatusToChange(requestObj)
@@ -214,9 +215,9 @@ class AdminStore {
    }
 
    @action.bound
-   onClickCloseBtn(id) {
+   onClickCloseBtn(id: string) {
       const updateTimeSlots = this.updateSlotsResponse.timeSlots.filter(
-         obj => !(obj.id == id)
+         obj => !(obj.id === id)
       )
       this.updateSlotsResponse.timeSlots = updateTimeSlots
    }
@@ -239,10 +240,10 @@ class AdminStore {
    }
 
    @action.bound
-   onChangeStartTimeInUpdateSlots(id, value) {
+   onChangeStartTimeInUpdateSlots(id: string, value: string) {
       this.updateSlotsResponse.timeSlots = this.updateSlotsResponse.timeSlots.map(
          obj => {
-            if (obj.id == id) {
+            if (obj.id === id) {
                obj.onChangeFromTime(value)
             }
             return obj
@@ -251,10 +252,10 @@ class AdminStore {
    }
 
    @action.bound
-   onChangeEndTimeInUpdateSlots(id, value) {
+   onChangeEndTimeInUpdateSlots(id: string, value: string) {
       this.updateSlotsResponse.timeSlots = this.updateSlotsResponse.timeSlots.map(
          obj => {
-            if (obj.id == id) {
+            if (obj.id === id) {
                obj.onChangeToTime(value)
             }
             return obj
@@ -264,7 +265,7 @@ class AdminStore {
 
    @action.bound
    onClickUpdateBtn() {
-      const requestObj = {
+      const requestObj: PostUpdateSlotsRequestObjectTypes = {
          washing_machine_id: this.updateSlotsResponse.washingMachineId,
          day: this.updateSlotsResponse.day,
          time_slots: this.updateSlotsResponse.timeSlots.map(obj => ({
@@ -296,7 +297,7 @@ class AdminStore {
    @action.bound
    setGetPostUpdateSlotsAPIError(error) {
       this.getPostUpdateSlotsError = getFormattedErrorDescription(error)
-      alert(this.getPostUpdateSlotsError)
+
       this.onClickUpdateInWashingMachineCard(this.washingMachineDetailsId)
    }
 }

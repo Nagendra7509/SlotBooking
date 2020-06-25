@@ -38,6 +38,7 @@ class LoginPage extends React.Component<LoginPageProps> {
    render() {
       if (getAccessToken()) {
          const { isAdmin } = this.props
+
          if (isAdmin && isAdmin !== undefined) {
             return <Redirect to={{ pathname: '/slot-booking/admin/issues/' }} />
          }

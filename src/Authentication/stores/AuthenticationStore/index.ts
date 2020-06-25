@@ -54,7 +54,6 @@ class AuthenticationStore {
 
    @action.bound
    setUserLoginAPIResponse(response: GetLoginResponse | null) {
-      //console.log(response, 'response')
       const { access_token, is_admin } = response as GetLoginResponse
       setAccessToken(access_token)
       this.isAdmin = is_admin
@@ -63,7 +62,6 @@ class AuthenticationStore {
 
    @action.bound
    setGetUserLoginAPIError(error: object) {
-      //console.log(error, 'response')
       this.getUserLoginError = getFormattedErrorDescription(error)
    }
 
@@ -87,14 +85,12 @@ class AuthenticationStore {
 
    @action.bound
    setUserSignUpAPIResponse(response) {
-      //alert('sign up done successfully');
       this.getUserSignUpError = null
    }
 
    @action.bound
    setGetUserSignUpAPIError(error: object) {
       this.getUserSignUpError = getFormattedErrorDescription(error)
-      // console.log(this.getUserSignUpError);
    }
 }
 
