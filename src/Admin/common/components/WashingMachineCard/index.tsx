@@ -12,15 +12,14 @@ import {
    Status
 } from './styledComponents'
 
-type WashingMachineCardProps={
-   washingMachineId:string,
-   washingMachineStatus:string,
-   onClickUpdate:(event:React.MouseEvent<HTMLSelectElement>)=>void,
-   onClickActiveOrInactiveStatus:(event:React.MouseEvent<HTMLButtonElement>)=>void
-
+interface WashingMachineCardProps {
+   washingMachineId: string
+   washingMachineStatus: string
+   onClickUpdate: (event: React.MouseEvent<HTMLSelectElement>) => void
+   onClickActiveOrInactiveStatus: (
+      event: React.MouseEvent<HTMLButtonElement>
+   ) => void
 }
-
-
 
 class WashingMachineCard extends React.Component<WashingMachineCardProps> {
    render() {
@@ -64,7 +63,7 @@ class WashingMachineCard extends React.Component<WashingMachineCardProps> {
                      id={washingMachineId}
                      onClick={onClickActiveOrInactiveStatus}
                   >
-                     {washingMachineStatus == 'ACTIVE'
+                     {washingMachineStatus === 'ACTIVE'
                         ? markAsInactive
                         : markAsActive}
                   </Status>

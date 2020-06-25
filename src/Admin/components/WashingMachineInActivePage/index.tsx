@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import {History} from "history";
+import { History } from 'history'
 import { observable } from 'mobx'
 import { Typo14WhiteHKGroteskSemiBold } from '../../../styleGuide/Typos'
 import SideNavBar from '../../common/components/SideNavBar'
@@ -9,7 +9,7 @@ import ActiveAndInactiveState from '../../common/components/ActiveAndInactiveSta
 import { ADMIN_PAGE_WASHINGMACHINE_INACTIVE } from '../../constants/routeConstants/RouteConstants'
 import WashingMachineCard from '../../common/components/WashingMachineCard'
 import { activeAndInactive } from '../../i18n/strings.json'
-import AdminStore from "../../stores/AdminStore"
+import AdminStore from '../../stores/AdminStore'
 import PopUp from '../PopUp'
 import {
    WashingMachineInActiveContainer,
@@ -19,30 +19,38 @@ import {
    AddNewMachine
 } from './styledComponents'
 
+interface WashingMachineInactiveProps {
+   history: History
+}
 
-type WashingMachineInactiveProps={
-   adminStore:AdminStore,
-   history:History,
-   // onClickNewWashingMachine:(washingMachineNumber:string)=>void,
-   // inActiveWashingMachines:Array<object>s
-   
-
+interface InjectedProps extends WashingMachineInactiveProps {
+   adminStore: AdminStore
 }
 
 @inject('adminStore')
 @observer
-class WashingMachineInactive extends React.Component <WashingMachineInactiveProps>{
+class WashingMachineInactive extends React.Component<
+   WashingMachineInactiveProps
+> {
    @observable isClickedAddNewMachine = false
 
    componentDidMount() {
-      this.props.adminStore.getAdminResponse()
+      this.requestForAdminResponse()
    }
 
+   getInjectedProps = (): InjectedProps => this.props as InjectedProps
+
+   getAdminStore = () => this.getInjectedProps().adminStore
+
+   requestForAdminResponse = () => {
+      const { getAdminResponse } = this.getAdminStore()
+      getAdminResponse()
+   }
    onClickUpdate = event => {
-      const { onClickUpdateInWashingMachineCard } = this.props.adminStore
+      const { onClickUpdateInWashingMachineCard } = this.getAdminStore()
       onClickUpdateInWashingMachineCard(event.target.id)
 
-      const { updateMachineId, updateMachineStatus } = this.props.adminStore
+      const { updateMachineId, updateMachineStatus } = this.getAdminStore()
 
       const { history } = this.props
       history.push(
@@ -51,7 +59,7 @@ class WashingMachineInactive extends React.Component <WashingMachineInactiveProp
    }
 
    onClickActiveOrInactiveStatus = event => {
-      const { onClickActiveOrInactiveStatus } = this.props.adminStore
+      const { onClickActiveOrInactiveStatus } = this.getAdminStore()
       onClickActiveOrInactiveStatus(event.target.id)
    }
 
@@ -63,7 +71,7 @@ class WashingMachineInactive extends React.Component <WashingMachineInactiveProp
       const {
          inActiveWashingMachines,
          onClickNewWashingMachine
-      } = this.props.adminStore
+      } = this.getAdminStore()
 
       return (
          <WashingMachineInActiveContainer>

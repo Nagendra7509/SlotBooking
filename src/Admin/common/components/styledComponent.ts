@@ -2,10 +2,12 @@ import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { colors } from '../../themes/Colors'
 
-type NavItemProps={
-   path:string,
-   href:string
+interface NavItemProps {
+   path: string
+   href: string
 }
+
+interface StatusItemProps extends NavItemProps {}
 
 const NavItem = styled.a`
    ${tw`p-6`}
@@ -16,14 +18,9 @@ const NavItem = styled.a`
    line-height: 1.33;
    letter-spacing: 0.12px;
    border-bottom: 1px solid ${colors.lightBlueGrey};
-   color: ${(props:NavItemProps):string =>
+   color: ${(props: NavItemProps): string =>
       props.path === props.href ? colors.brightBlue : colors.darkBlueGrey};
 `
-
-type StatusItemProps={
-   path:string,
-   href:string
-}
 
 const StatusItem = styled.a`
    ${tw`px-4 py-2 `}
@@ -34,7 +31,7 @@ const StatusItem = styled.a`
    border: 1px solid ${colors.lightBlueGrey};
    line-height: 1.71;
    letter-spacing: normal;
-   color: ${(props:StatusItemProps):string =>
+   color: ${(props: StatusItemProps): string =>
       props.path === props.href ? colors.white : colors.darkBlueGrey};
    background-color: ${props =>
       props.path === props.href ? colors.brightBlue : colors.white};

@@ -10,18 +10,13 @@ import {
    Profile
 } from './styledComponent'
 
-type TopNavBarProps={
-   path:string
+type TopNavBarProps = {
+   path: string
 }
 
 class TopNavBar extends React.Component<TopNavBarProps> {
-   
-   
-   
    render() {
       const { path } = this.props
-
-      
 
       return (
          <NavBarContainer>

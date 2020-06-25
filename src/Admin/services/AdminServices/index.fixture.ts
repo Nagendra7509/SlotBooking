@@ -12,15 +12,15 @@ class AdminAPIService implements AdminService {
    }
 
    postStatusToChange = requestObj => {
-      return resolveWithTimeout(200)
+      return resolveWithTimeout({})
    }
 
    postNewWashingMachineIdToAdd = requestObj => {
-      return resolveWithTimeout(200)
+      return resolveWithTimeout({})
    }
 
    postUpdateSlotsDetails = requestObj => {
-      return resolveWithTimeout(200)
+      return resolveWithTimeout({})
    }
 }
 

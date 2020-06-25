@@ -11,16 +11,18 @@ import {
    ActiveAndInactiveContainer,
    ActiveAndInactiveBar
 } from './styledComponents'
- 
-type ActiveAndInactiveStateProps={
-   path:string
+
+type ActiveAndInactiveStateProps = {
+   path: string
 }
 
 @observer
-class ActiveAndInactiveState extends React.Component<ActiveAndInactiveStateProps> {
+class ActiveAndInactiveState extends React.Component<
+   ActiveAndInactiveStateProps
+> {
    render() {
       const { active, inActive } = activeAndInactive
-      const { path } = this.props;
+      const { path } = this.props
 
       return (
          <ActiveAndInactiveContainer>

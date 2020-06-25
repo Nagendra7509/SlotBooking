@@ -9,15 +9,15 @@ import {
 import { SideNavItem } from '..'
 import { SideNavBarContainer } from './styledComponent'
 
-type SideNavBarProps={
-   path:string
+type SideNavBarProps = {
+   path: string
 }
 
 @observer
 class SideNavBar extends React.Component<SideNavBarProps> {
    render() {
       const { issues, washingMachine, settings } = sideNav
-      const { path } = this.props;
+      const { path } = this.props
 
       return (
          <SideNavBarContainer>

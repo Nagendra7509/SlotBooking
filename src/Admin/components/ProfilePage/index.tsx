@@ -13,7 +13,7 @@ import {
    LogOutBtn
 } from './styledComponents'
 
-type ProfilePageProps = {
+interface ProfilePageProps {
    history: History
 }
 

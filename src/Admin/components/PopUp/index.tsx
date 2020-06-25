@@ -13,17 +13,16 @@ import {
    PopUpDetails
 } from './styledComponents'
 
-type PopUpProps={
-   
-       onClickAddMachine:()=>void,
-       onClickNewWashingMachine:(washingMachineNumber:string)=>void
+interface PopUpProps {
+   onClickAddMachine: () => void
+   onClickNewWashingMachine: (washingMachineNumber: string) => void
 }
 
 @observer
 class PopUp extends React.Component<PopUpProps> {
-   @observable washingMachineNumber:string = ''
+   @observable washingMachineNumber: string = ''
 
-   onChangeInput = (event:React.ChangeEvent<HTMLInputElement>):void => {
+   onChangeInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
       this.washingMachineNumber = event.target.value
    }
 
