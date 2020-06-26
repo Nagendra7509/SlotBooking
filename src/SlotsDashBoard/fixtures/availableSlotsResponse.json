@@ -1,0 +1,224 @@
+{
+   "available_slots": [
+      {
+         "date": "25-05-2020",
+         "time_slots": [
+            {
+               "start_time": "05:00 AM",
+               "end_time": "06:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "06:00 AM",
+               "end_time": "07:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "07:00 AM",
+               "end_time": "08:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "09:00 AM",
+               "end_time": "10:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "03:00 PM",
+               "end_time": "04:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "05:00 PM",
+               "end_time": "06:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "07:30 PM",
+               "end_time": "08:30 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "09:00 PM",
+               "end_time": "10:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "10:15 AM",
+               "end_time": "12:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "10:00 AM",
+               "end_time": "11:00 AM",
+               "is_available": false
+            }
+         ]
+      },
+      {
+         "date": "26-05-2020",
+         "time_slots": [
+            {
+               "start_time": "05:00 AM",
+               "end_time": "06:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "06:00 AM",
+               "end_time": "07:00 AM",
+               "is_available": true
+            },
+            {
+               "start_time": "07:00 AM",
+               "end_time": "08:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "09:00 AM",
+               "end_time": "10:00 AM",
+               "is_available": true
+            },
+            {
+               "start_time": "03:00 PM",
+               "end_time": "04:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "05:00 PM",
+               "end_time": "06:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "07:30 PM",
+               "end_time": "08:30 PM",
+               "is_available": true
+            },
+            {
+               "start_time": "09:00 PM",
+               "end_time": "10:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "10:15 AM",
+               "end_time": "12:00 PM",
+               "is_available": true
+            },
+            {
+               "start_time": "10:00 AM",
+               "end_time": "11:00 AM",
+               "is_available": false
+            }
+         ]
+      },
+      {
+         "date": "27-05-2020",
+         "time_slots": [
+            {
+               "start_time": "05:00 AM",
+               "end_time": "06:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "06:00 AM",
+               "end_time": "07:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "07:00 AM",
+               "end_time": "08:00 AM",
+               "is_available": true
+            },
+            {
+               "start_time": "09:00 AM",
+               "end_time": "10:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "03:00 PM",
+               "end_time": "04:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "05:00 PM",
+               "end_time": "06:00 PM",
+               "is_available": true
+            },
+            {
+               "start_time": "07:30 PM",
+               "end_time": "08:30 PM",
+               "is_available": true
+            },
+            {
+               "start_time": "09:00 PM",
+               "end_time": "10:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "10:15 AM",
+               "end_time": "12:00 PM",
+               "is_available": true
+            },
+            {
+               "start_time": "10:00 AM",
+               "end_time": "11:00 AM",
+               "is_available": false
+            }
+         ]
+      },
+      {
+         "date": "28-05-2020",
+         "time_slots": [
+            {
+               "start_time": "05:00 AM",
+               "end_time": "06:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "06:00 AM",
+               "end_time": "07:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "07:00 AM",
+               "end_time": "08:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "09:00 AM",
+               "end_time": "10:00 AM",
+               "is_available": false
+            },
+            {
+               "start_time": "03:00 PM",
+               "end_time": "04:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "05:00 PM",
+               "end_time": "06:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "07:30 PM",
+               "end_time": "08:30 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "09:00 PM",
+               "end_time": "10:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "10:15 AM",
+               "end_time": "12:00 PM",
+               "is_available": false
+            },
+            {
+               "start_time": "10:00 AM",
+               "end_time": "11:00 AM",
+               "is_available": false
+            }
+         ]
+      }
+   ]
+}

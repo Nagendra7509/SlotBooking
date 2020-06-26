@@ -1,9 +1,9 @@
-import React from 'react'
 import { observable } from 'mobx'
+import { AvailableSlotsTimeSlotsObjectTypes } from '../../types'
 
 class AvailableSlotsModel {
-   @observable date
-   @observable timingSlots
+   @observable date: string
+   @observable timingSlots: Array<AvailableSlotsTimeSlotsObjectTypes>
 
    constructor(obj) {
       this.date = obj.date

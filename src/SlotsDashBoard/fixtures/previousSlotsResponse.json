@@ -1,0 +1,28 @@
+{
+   "previous_slots": [
+      {
+         "date": "01-05-2020",
+         "time_slot": {
+            "start_time": "05:00 PM",
+            "end_time": "06:00 PM"
+         },
+         "washing_machine_id": "washing machine 2"
+      },
+      {
+         "date": "08-05-2020",
+         "time_slot": {
+            "start_time": "09:00 AM",
+            "end_time": "10:00 AM"
+         },
+         "washing_machine_id": "washing machine 7"
+      },
+      {
+         "date": "15-05-2020",
+         "time_slot": {
+            "start_time": "10:00 AM",
+            "end_time": "11:00 AM"
+         },
+         "washing_machine_id": "washing machine 9"
+      }
+   ]
+}

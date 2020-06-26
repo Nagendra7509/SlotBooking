@@ -2,8 +2,8 @@ import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { colors } from '../../themes/Colors'
 
-type InputFieldProps={
-   borderValue:boolean
+type InputFieldProps = {
+   borderValue: boolean
 }
 
 const InputField = styled.input`
@@ -14,7 +14,8 @@ const InputField = styled.input`
    border-radius: 2px;
    background-color: white;
    border: 1px solid
-      ${(props:InputFieldProps) => (props.borderValue ? colors.neonRed : '#7e858e')};
+      ${(props: InputFieldProps) =>
+         props.borderValue ? colors.neonRed : '#7e858e'};
 `
 
 const IbHubsLogoImg = styled.img`
@@ -22,4 +23,3 @@ const IbHubsLogoImg = styled.img`
 `
 
 export { InputField, IbHubsLogoImg }
-

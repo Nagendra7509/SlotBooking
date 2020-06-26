@@ -1,48 +1,49 @@
-import React from 'react'
-
 import { observable, action, computed } from 'mobx'
-import {
-   API_INITIAL,
-   API_FETCHING,
-   API_SUCCESS,
-   API_FAILED
-} from '@ib/api-constants'
+import { API_INITIAL } from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
+import DashBoardAPIService from '../../services/DashBoardService/index.fixture'
 import AvailableSlotsModel from '../models/AvailableSlotsModel'
 import UpComingSlotDetails from '../models/UpComingSlotDetails'
 import PreviousSlotsModel from '../models/PreviousSlotsModel'
-import { getAccessToken } from '../../../Authentication/utils/StorageUtils'
+import {
+   AvailableSlotsTimeSlotsObjectTypes,
+   BookedSlotsObjectTypes,
+   UpComingSlotsDetailsObjectTypes,
+   APIavailableSlotsResponseObjectTypes,
+   APIupcomingSlotsResponseObjectTypes,
+   APIpreviousSlotsResponseObjectTypes
+} from '../types'
 
 class SlotsDashBoardStore {
-   @observable getAvailableSlotsResponseStatus
-   @observable getAvailableSlotsResponseError
+   @observable getAvailableSlotsResponseStatus!: number
+   @observable getAvailableSlotsResponseError!: Error | null
 
-   @observable getUpcomingSlotsResponseStatus
-   @observable getUpcomingSlotsResponseError
+   @observable getUpcomingSlotsResponseStatus!: number
+   @observable getUpcomingSlotsResponseError!: Error | null
 
-   @observable getPreviousSlotsResponseStatus
-   @observable getPreviousSlotsResponseError
+   @observable getPreviousSlotsResponseStatus!: number
+   @observable getPreviousSlotsResponseError!: Error | null
 
-   dashBoardAPIService
-   @observable availableSlotsDates
-   @observable previousSlots
-   @observable currentDate
-   @observable availableSlotsResponse
+   dashBoardAPIService: DashBoardAPIService
+   @observable availableSlotsDates!: Array<string>
+   @observable previousSlots!: Array<PreviousSlotsModel>
+   @observable currentDate!: string
+   @observable availableSlotsResponse!: Array<AvailableSlotsModel>
 
-   @observable availableSlotsTimings
-   @observable bookedDateAndTime
-   @observable upcomingSlotsResponse
-   @observable upComingSlotsCurrentDate
-   @observable upComingSlotsDetails = []
-   @observable upComingSlotsDates
+   @observable availableSlotsTimings!: Array<AvailableSlotsTimeSlotsObjectTypes>
+   @observable bookedDateAndTime!: object | BookedSlotsObjectTypes
+   @observable upcomingSlotsResponse!: Array<UpComingSlotDetails>
+   @observable upComingSlotsCurrentDate!: string
+   @observable upComingSlotsDetails!: UpComingSlotsDetailsObjectTypes | object
+   @observable upComingSlotsDates!: Array<string>
 
-   @observable getConfirmSlotStatus
-   @observable getConfirmSlotError
+   @observable getConfirmSlotStatus!: number
+   @observable getConfirmSlotError!: Error | null
 
-   @observable getCancelSlotStatus
-   @observable getCancelSlotError
+   @observable getCancelSlotStatus!: number
+   @observable getCancelSlotError!: Error | null
 
-   constructor(dashBoardAPIService) {
+   constructor(dashBoardAPIService: DashBoardAPIService) {
       this.init()
       this.dashBoardAPIService = dashBoardAPIService
    }
@@ -90,25 +91,27 @@ class SlotsDashBoardStore {
    @action.bound
    setGetResponseAvailableSlotsAPIStatus(apiStatus) {
       this.getAvailableSlotsResponseStatus = apiStatus
-      //console.log(this.getAvailableSlotsResponseStatus, 'status')
    }
 
    @action.bound
-   setAPIResponseAvailableSlots(response) {
+   setAPIResponseAvailableSlots(
+      response: APIavailableSlotsResponseObjectTypes | null
+   ) {
       //available slots
-      this.availableSlotsResponse = response.available_slots.map(
-         obj => new AvailableSlotsModel(obj)
-      )
-
+      response &&
+         (this.availableSlotsResponse = response.available_slots.map(
+            obj => new AvailableSlotsModel(obj)
+         ))
       this.availableSlotsDates = this.availableSlotsResponse.map(
          obj => obj.date
       )
 
       this.currentDate = this.availableSlotsDates[0]
-
-      this.availableSlotsTimings = this.availableSlotsResponse.find(
-         obj => obj.date == this.currentDate
-      ).timingSlots
+      const availableSlotsTimings = this.availableSlotsResponse.find(
+         obj => obj.date === this.currentDate
+      )
+      availableSlotsTimings &&
+         (this.availableSlotsTimings = availableSlotsTimings.timingSlots)
    }
 
    @action.bound
@@ -135,17 +138,24 @@ class SlotsDashBoardStore {
    }
 
    @action.bound
-   setAPIResponseUpcomingSlots(response) {
+   setAPIResponseUpcomingSlots(
+      response: APIupcomingSlotsResponseObjectTypes | null
+   ) {
       //console.log(this.upcomingSlotsResponse, 'upcoming slots Response')
       //upcoming slots
-      this.upcomingSlotsResponse = response.upcoming_slots.map(
-         obj => new UpComingSlotDetails(obj)
-      )
+      response &&
+         (this.upcomingSlotsResponse = response.upcoming_slots.map(
+            obj => new UpComingSlotDetails(obj)
+         ))
+
       this.upComingSlotsDates = this.upcomingSlotsResponse.map(obj => obj.date)
       this.upComingSlotsCurrentDate = this.upComingSlotsDates[0]
-      this.upComingSlotsDetails = this.upcomingSlotsResponse.find(
-         obj => obj.date == this.upComingSlotsCurrentDate
+
+      const upComingSlotDetails = this.upcomingSlotsResponse.find(
+         obj => obj.date === this.upComingSlotsCurrentDate
       )
+
+      upComingSlotDetails && (this.upComingSlotsDetails = upComingSlotDetails)
    }
 
    @action.bound
@@ -175,11 +185,14 @@ class SlotsDashBoardStore {
    }
 
    @action.bound
-   setAPIResponsePreviousSlots(response) {
+   setAPIResponsePreviousSlots(
+      response: APIpreviousSlotsResponseObjectTypes | null
+   ) {
       //previous slots
-      this.previousSlots = response.previous_slots.map(
-         obj => new PreviousSlotsModel(obj)
-      )
+      response &&
+         (this.previousSlots = response.previous_slots.map(
+            obj => new PreviousSlotsModel(obj)
+         ))
    }
 
    @action.bound
@@ -188,16 +201,19 @@ class SlotsDashBoardStore {
    }
 
    @action.bound
-   onClickDateAvailableSlots(date) {
+   onClickDateAvailableSlots(date: string) {
       this.currentDate = date
       //this.availableSlotsTimings = this.slotsResponse.find(obj => obj.date == this.currentDate).timing_slots;
-      this.availableSlotsTimings = this.availableSlotsResponse.find(
-         obj => obj.date == this.currentDate
-      ).timingSlots
+      const availableSlotsTimings = this.availableSlotsResponse.find(
+         obj => obj.date === this.currentDate
+      )
+
+      availableSlotsTimings &&
+         (this.availableSlotsTimings = availableSlotsTimings.timingSlots)
    }
 
    @action.bound
-   onClickTime(time) {
+   onClickTime(time: string) {
       const timeDivision = time.split('-')
       this.bookedDateAndTime = {
          date: this.currentDate,
@@ -208,10 +224,10 @@ class SlotsDashBoardStore {
 
    @action.bound
    onClickConfirm() {
-      if (this.bookedDateAndTime.date) {
-         //console.log(this.bookedDateAndTime);
+      const bookedDateAndTime = this.bookedDateAndTime as BookedSlotsObjectTypes
+      if (bookedDateAndTime.date) {
          const promise = this.dashBoardAPIService.postBookedSlot(
-            this.bookedDateAndTime
+            bookedDateAndTime
          )
 
          return bindPromiseWithOnSuccess(promise)
@@ -226,11 +242,12 @@ class SlotsDashBoardStore {
    }
 
    @action.bound
-   onClickDateUpComingSlots(date) {
+   onClickDateUpComingSlots(date: string) {
       this.upComingSlotsCurrentDate = date
-      this.upComingSlotsDetails = this.upcomingSlotsResponse.find(
-         obj => obj.date == this.upComingSlotsCurrentDate
+      const upComingSlotsDetails = this.upcomingSlotsResponse.find(
+         obj => obj.date === this.upComingSlotsCurrentDate
       )
+      upComingSlotsDetails && (this.upComingSlotsDetails = upComingSlotsDetails)
    }
 
    @action.bound
@@ -249,7 +266,7 @@ class SlotsDashBoardStore {
 
    @computed get countOfBookingSlotsPerDay() {
       let counterOfBookingSlots = 0
-      this.availableSlotsTimings.map(obj => {
+      this.availableSlotsTimings.forEach(obj => {
          if (!obj.is_available) {
             counterOfBookingSlots++
          }
@@ -296,5 +313,3 @@ class SlotsDashBoardStore {
 }
 
 export default SlotsDashBoardStore
-
-// postBookedSlot

@@ -1,12 +1,10 @@
-import React from 'react'
-
 import { observable } from 'mobx'
 
 class PreviousSlotsModel {
-   @observable date
-   @observable startTime
-   @observable endTime
-   @observable washingMachineId
+   @observable date: string
+   @observable startTime: string
+   @observable endTime: string
+   @observable washingMachineId: string
 
    constructor(obj) {
       this.date = obj.date

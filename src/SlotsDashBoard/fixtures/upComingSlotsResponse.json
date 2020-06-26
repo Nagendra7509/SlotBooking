@@ -1,0 +1,12 @@
+{
+   "upcoming_slots": [
+      {
+         "date": "25-05-2020",
+         "washing_machine_id": "7",
+         "time_slot": {
+            "start_time": "10:00 AM",
+            "end_time": "11:00 AM"
+         }
+      }
+   ]
+}

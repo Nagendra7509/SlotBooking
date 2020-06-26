@@ -3,9 +3,10 @@ import { networkCallWithApisauce } from '../../../utils/APIUtils'
 import { apiMethods } from '../../constants/APIConstants'
 import { endPoints } from '../endPoints'
 import { EnvironmentConstants } from '../../../Common/constants/environmentConstants'
+import DashBoardService from './index'
 
-class DashBoardService {
-   api
+class DashBoardServiceAPI implements DashBoardService {
+   api: Record<string, any>
 
    constructor() {
       this.api = create({
@@ -59,6 +60,6 @@ class DashBoardService {
    }
 }
 
-export default DashBoardService
+export default DashBoardServiceAPI
 
 //postBookedSlot

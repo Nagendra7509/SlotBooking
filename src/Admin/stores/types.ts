@@ -1,16 +1,14 @@
-export interface UpdateSlotsRequestObjectTypes {
-   washing_machine_id: string
-   day: string
-}
-
 export interface StatusChangeRequestObjectTypes {
    washing_machine_id: string
 }
 
-export interface NewWashingMachineRequestObjectTypes {
-   washing_machine_id: string
-}
+export interface NewWashingMachineRequestObjectTypes
+   extends StatusChangeRequestObjectTypes {}
 
+export interface UpdateSlotsRequestObjectTypes
+   extends StatusChangeRequestObjectTypes {
+   day: string
+}
 export interface TimeSlotsObjectTypes {
    start_time: string
    end_time: string

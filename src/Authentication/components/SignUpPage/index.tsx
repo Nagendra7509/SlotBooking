@@ -18,18 +18,18 @@ import {
 } from './styledComponent'
 
 type SignUpPageProps = {
-   userName?: string
-   password?: string
-   confirmPassword?: string
-   onChangePasswordSignUp?: (event: React.ChangeEvent<HTMLInputElement>) => void
-   onChangeConfirmPasswordSignUp?: (
+   userName: string
+   password: string
+   confirmPassword: string
+   onChangePasswordSignUp: (event: React.ChangeEvent<HTMLInputElement>) => void
+   onChangeConfirmPasswordSignUp: (
       event: React.ChangeEvent<HTMLInputElement>
    ) => void
-   onChangeUserNameSignUp?: (event: React.ChangeEvent<HTMLInputElement>) => void
-   onClickSignUpBtn?: (event: React.MouseEvent<HTMLButtonElement>) => void
-   userNameError?: string
-   passwordError?: string
-   confirmPasswordError?: string
+   onChangeUserNameSignUp: (event: React.ChangeEvent<HTMLInputElement>) => void
+   onClickSignUpBtn: (event: React.MouseEvent<HTMLButtonElement>) => void
+   userNameError: string
+   passwordError: string
+   confirmPasswordError: string
 }
 
 @observer
