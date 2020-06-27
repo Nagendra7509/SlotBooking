@@ -11,6 +11,7 @@ import { SIGN_UP_PATH } from '../../constants/routeConstants/RouteConstants'
 import { ibhubsLogo } from '../../assets'
 import Strings from '../../i18n/strings.json'
 import { getAccessToken } from '../../../utils/StorageUtils'
+
 import {
    LoginPageContainer,
    LoginForm,
@@ -63,13 +64,10 @@ class LoginPage extends React.Component<LoginPageProps> {
          <LoginPageContainer>
             <LoginForm>
                <IbHubsLogo src={ibhubsLogo.logoAdress} alt='ibhubsLogo' />
-
                <SigInText>{Strings.login.hiTherePleaseSignIn}</SigInText>
-
                <Typo12HKGroteskSemiBoldSteel>
                   {Strings.login.userName}
                </Typo12HKGroteskSemiBoldSteel>
-
                <InputTag
                   onChange={onChangeUserNameLogin}
                   value={userName}
@@ -77,17 +75,14 @@ class LoginPage extends React.Component<LoginPageProps> {
                   placeholder='username'
                   borderValue={errroMessageUserName !== 'noError'}
                />
-
                <Typo12HKGroteskRegular
                   visibilityValue={errroMessageUserName !== 'noError'}
                >
                   {errroMessageUserName}
                </Typo12HKGroteskRegular>
-
                <Typo12HKGroteskSemiBoldSteel>
                   {Strings.login.password}
                </Typo12HKGroteskSemiBoldSteel>
-
                <InputTag
                   onChange={onChangePasswordLogin}
                   value={password}
@@ -95,13 +90,11 @@ class LoginPage extends React.Component<LoginPageProps> {
                   placeholder='password'
                   borderValue={errorMessagePassword !== 'noError'}
                />
-
                <Typo12HKGroteskRegular
                   visibilityValue={errorMessagePassword !== 'noError'}
                >
                   {errorMessagePassword}
                </Typo12HKGroteskRegular>
-
                <SignInBtn
                   type='button'
                   onClick={onClickLogin}
@@ -111,13 +104,11 @@ class LoginPage extends React.Component<LoginPageProps> {
                      ? Strings.login.loginLoading
                      : Strings.login.login}
                </SignInBtn>
-
                <Typo12HKGroteskRegular
                   visibilityValue={errorMessageLoginButton !== 'noError'}
                >
                   {errorMessageLoginButton}
                </Typo12HKGroteskRegular>
-
                <DontHaveAccount>
                   {Strings.login.donotHaveAnAccount}
                   <SignupLink href={SIGN_UP_PATH}>

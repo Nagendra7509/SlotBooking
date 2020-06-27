@@ -2,7 +2,8 @@ import { create } from 'apisauce'
 import { networkCallWithApisauce } from '../../../utils/APIUtils'
 import { apiMethods } from '../../../constants/APIConstants'
 import { endPoints } from '../endPoints'
-import { EnvironmentConstants } from '../../../Common/constants/environmentConstants'
+import Config from '../../../Common/constants/environmentConstants'
+
 import AdminService from '.'
 
 class AdminAPIService implements AdminService {
@@ -10,7 +11,7 @@ class AdminAPIService implements AdminService {
 
    constructor() {
       this.api = create({
-         baseURL: EnvironmentConstants.SLOTS_BOOKING_BASE_URL
+         baseURL: Config.BASE_URL
       })
    }
 

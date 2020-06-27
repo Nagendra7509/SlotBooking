@@ -2,7 +2,7 @@ import { create } from 'apisauce'
 import { networkCallWithApisauce } from '../../utils/APIUtils'
 import { apiMethods } from '../../constants/APIConstants'
 import { endPoints } from '../endPoints'
-import { EnvironmentConstants } from '../../../Common/constants/environmentConstants'
+import Config from '../../../Common/constants/environmentConstants'
 
 type requestObjProps = {
    username: string
@@ -14,7 +14,7 @@ class LoginService {
 
    constructor() {
       this.api = create({
-         baseURL: EnvironmentConstants.SLOTS_BOOKING_BASE_URL
+         baseURL: Config.BASE_URL
       })
    }
 
