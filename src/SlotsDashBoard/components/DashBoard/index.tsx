@@ -4,10 +4,11 @@ import { observer, inject } from 'mobx-react'
 import LoadingWrapperWithFailure from '../../../Common/LoadingWrapper/LoadingWrapperWithFailure/index'
 import NoDataView from '../../../Common/LoadingWrapper/NoDataView/index'
 import Strings from '../../i18n/strings.json'
-import { ColorLabels } from '../../common/components/'
+import { ColorLabels } from '../../common/components'
 import { colors } from '../../themes/Colors'
-//import { getLoadingStatus } from "@ib/api-utils";
+import SlotsDashBoardStore from '../../stores/SlotsDashBoardStore'
 import UpComingSlots from './UpComingSlots'
+
 import {
    DashBoardContainer,
    AvailableSlotsText,
@@ -24,51 +25,58 @@ import {
    AvailableSlots
 } from './styledComponent'
 
+interface DashBoardProps {}
+
+interface InjectedProps extends DashBoardProps {
+   slotsDashBoardStore: SlotsDashBoardStore
+}
+
 @inject('slotsDashBoardStore')
 @observer
-class DashBoard extends React.Component {
+class DashBoard extends React.Component<DashBoardProps> {
    componentDidMount() {
       this.doNetworkCall()
-      //console.log('componentDidMount');
    }
+
+   getInjectedProps = (): InjectedProps => this.props as InjectedProps
+
+   getSlotsDashBoardStore = () => this.getInjectedProps().slotsDashBoardStore
 
    doNetworkCall = async () => {
       const {
          getAvailableSlotsData,
          getUpcomingSlotsData,
          getPreviousSlotsData
-      } = this.props.slotsDashBoardStore
+      } = this.getSlotsDashBoardStore()
       await getAvailableSlotsData()
       await getUpcomingSlotsData()
       await getPreviousSlotsData()
    }
 
    onClickDateAvailableSlots = event => {
-      const { onClickDateAvailableSlots } = this.props.slotsDashBoardStore
+      const { onClickDateAvailableSlots } = this.getSlotsDashBoardStore()
       onClickDateAvailableSlots(event.target.id)
    }
 
    onClickTime = event => {
-      const { onClickTime } = this.props.slotsDashBoardStore
+      const { onClickTime } = this.getSlotsDashBoardStore()
       onClickTime(event.target.id)
    }
 
    onClickConfirm = () => {
-      const { onClickConfirm } = this.props.slotsDashBoardStore
+      const { onClickConfirm } = this.getSlotsDashBoardStore()
       onClickConfirm()
    }
 
    renderSuccessUI = observer(() => {
       const {
          availableSlotsDates,
-         availableSlotsTimings
-      } = this.props.slotsDashBoardStore
-      const {
+         availableSlotsTimings,
          previousSlots,
          currentDate,
          availableSlotsResponse,
          countOfBookingSlotsPerDay
-      } = this.props.slotsDashBoardStore
+      } = this.getSlotsDashBoardStore()
 
       const {
          selected,
@@ -118,7 +126,6 @@ class DashBoard extends React.Component {
                   {availableSlotsTimings.map(obj => (
                      <TimeBtn
                         onClick={this.onClickTime}
-                        isClicked={obj.is_available}
                         id={obj.start_time + '-' + obj.end_time}
                         opacityValue={obj.is_available}
                         key={Math.random().toString()}
@@ -154,10 +161,7 @@ class DashBoard extends React.Component {
          upComingSlotsDetails,
          onClickDateUpComingSlots,
          onClickCancelSlot
-      } = this.props.slotsDashBoardStore
-
-      // console.log(getAvailableSlotsResponseStatus, getAvailableSlotsResponseError, "status")
-      // console.log(getAvailableSlotsResponseStatus, getAvailableSlotsResponseError, "DashBoard component");
+      } = this.getSlotsDashBoardStore()
 
       return (
          <DashBoardContainer>
@@ -185,3 +189,5 @@ class DashBoard extends React.Component {
 }
 
 export default DashBoard
+
+//isClicked={obj.is_available}

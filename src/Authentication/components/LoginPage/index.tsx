@@ -20,6 +20,9 @@ import {
    DontHaveAccount,
    SignupLink
 } from './styledComponent'
+import { Recoverable } from 'repl'
+import { mockComponent } from 'react-dom/test-utils'
+import { clearObserving } from 'mobx/lib/internal'
 
 interface LoginPageProps {
    isAdmin: boolean

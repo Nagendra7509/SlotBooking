@@ -141,7 +141,6 @@ class SlotsDashBoardStore {
    setAPIResponseUpcomingSlots(
       response: APIupcomingSlotsResponseObjectTypes | null
    ) {
-      //console.log(this.upcomingSlotsResponse, 'upcoming slots Response')
       //upcoming slots
       response &&
          (this.upcomingSlotsResponse = response.upcoming_slots.map(

@@ -1,5 +1,6 @@
 import usersResponse from '../../fixtures/getLoginResponse.json'
 import { resolveWithTimeout } from '../../../utils/TestUtils'
+
 class AuthServiceAPI {
    loginAPI() {
       return resolveWithTimeout(usersResponse)

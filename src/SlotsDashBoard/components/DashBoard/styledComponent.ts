@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { colors } from '../../themes/Colors'
+import { boolean } from '@storybook/addon-knobs'
 
 const DashBoardContainer = styled.div`
    ${tw``}
@@ -19,8 +20,10 @@ const AvailableSlotsText = styled.span`
 `
 
 const Dates = styled.div``
-
-const DateBtn = styled.button`
+interface DateBtnProps {
+   click: boolean
+}
+const DateBtn = styled.button<DateBtnProps>`
    ${tw`rounded m-2 p-2 focus:outline-none`}
    border-radius: 4px;
    box-shadow: 0 8px 16px 0 rgba(23, 31, 70, 0.08);
@@ -31,7 +34,11 @@ const SlotTimings = styled.div`
     ${tw` p-10 relative`}
     background-color:${colors.paleGrey}`
 
-const TimeBtn = styled.button`
+interface TimeBtnProps {
+   opacityValue: boolean
+}
+
+const TimeBtn = styled.button<TimeBtnProps>`
    ${tw`m-2 p-2 rounded hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:shadow-outline focus:border-gray-300`}
    font-size: 16px;
    font-weight: 500;
@@ -82,7 +89,6 @@ const SlotsUnAvailable = styled.div`
 
    color: white;
 `
-
 export {
    DashBoardContainer,
    AvailableSlotsText,
@@ -98,5 +104,3 @@ export {
    SlotsUnAvailable,
    AvailableSlots
 }
-
-//visibility:${props=>props.visibilityValue?"visible":"hidden"};

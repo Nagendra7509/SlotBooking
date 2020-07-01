@@ -52,7 +52,7 @@ class UpComingSlots extends React.Component {
 
       return (
          <UpComingSlotsContainer>
-            <UpComomingSlotText>{upComingSlots}</UpComomingSlotText>
+            <UpComomingSlotText>{upComingSlots} </UpComomingSlotText>
             <DatesAndSlotsDetails>
                <Dates>
                   {upComingSlotsDates &&

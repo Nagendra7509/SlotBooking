@@ -25,7 +25,7 @@ const SignUpText = styled.h2`
    color: ${colors.darkBlueGrey};
 `
 const SignUpBtn = styled.button`
-   ${tw`flex justify-center m-auto px-32 my-6 text-white focus:outline-none cursor-pointer`}
+   ${tw`flex justify-center m-auto px-32 py-2 my-6 text-white focus:outline-none cursor-pointer`}
    height: 40px;
 
    border-radius: 4px;
