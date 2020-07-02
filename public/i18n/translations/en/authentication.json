@@ -1,0 +1,30 @@
+{
+   "userName": "USER NAME",
+   "password": "PASSWORD",
+   "noError": "noError",
+   "signUp": {
+      "hiTherePleaseSignUp": "Hi there, please sign up",
+
+      "weak": "Weak",
+      "strong": "Strong",
+      "confirmPassword": "CONFIRM PASSWORD",
+      "signUp": "SIGNUP",
+      "usernameAlreadyExits": "username already exits",
+      "passwordMisMatch": "Password Mismatch",
+      "enterPassword": "Enter Password",
+      "enterUserName": "Enter Username",
+      "passwordShouldBeGreaterThan8Characters": "password should be greater than 8 characters",
+      "alreadyHaveAnAccount": "Already have an account?",
+      "login": "Log in"
+   },
+   "login": {
+      "hiTherePleaseSignIn": "Hi there, please sign in",
+      "login": "LOGIN",
+      "usernameInvalid": "Incorrect userName",
+      "incorrectPassword": "Incorrect password",
+      "donotHaveAnAccount": "Don’t have an account?",
+      "serverError": "server Error",
+      "signUp": "Signup",
+      "loginLoading": "Login...."
+   }
+}

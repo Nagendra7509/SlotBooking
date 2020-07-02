@@ -1,0 +1,29 @@
+{
+   "userName": "వినియోగదారు పేరు",
+   "password": "గుర్తింపు అక్షరము",
+   "noError": "noError",
+   "signUp": {
+      "hiTherePleaseSignUp": "హాయ్, దయచేసి సైన్ అప్ చేయండి",
+      "weak": "బలహీనమైన",
+      "strong": "బలమైన",
+      "confirmPassword": "పాస్వర్డ్ను నిర్ధారించండి",
+      "signUp": "చేరడం",
+      "usernameAlreadyExits": "వినియోగదారు పేరు ఇప్పటికే ఉంది",
+      "passwordMisMatch": "పాస్వర్డ్ సరిపోలలేదు ",
+      "enterPassword": "రహస్య సంకేతం తెలపండి ",
+      "enterUserName": "వినియోగదారు పేరును నమోదు చేయండి",
+      "passwordShouldBeGreaterThan8Characters": "పాస్వర్డ్ 8 అక్షరాల కంటే ఎక్కువగా ఉండాలి",
+      "alreadyHaveAnAccount": "ఖాతా కలిగి ఉన్నారా?",
+      "login": "ప్రవేశించండి"
+   },
+   "login": {
+      "hiTherePleaseSignIn": "హాయ్, దయచేసి సైన్ ఇన్ చేయండి",
+      "login": "ప్రవేశించండి",
+      "usernameInvalid": "తప్పు వినియోగదారు పేరు",
+      "incorrectPassword": "సరికాని పాస్వర్డ్",
+      "donotHaveAnAccount": "ఖాతా లేదా?",
+      "serverError": "సర్వర్ లోపం",
+      "signUp": "చేరడం",
+      "loginLoading": "లాగిన్ అవుతోంది ...."
+   }
+}

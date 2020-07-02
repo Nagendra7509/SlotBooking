@@ -2,12 +2,13 @@ import React from 'react'
 import { observable, action } from 'mobx'
 import { History } from 'history'
 import { observer, inject } from 'mobx-react'
+import { withTranslation, WithTranslation } from 'react-i18next'
 
 import SignUpPage from '../components/SignUpPage'
 import Strings from '../i18n/strings.json'
 import AuthenticationStore from '../stores/AuthenticationStore'
 
-interface SignUpRouteProps {
+interface SignUpRouteProps extends WithTranslation {
    history: History
 }
 
@@ -21,9 +22,9 @@ class SignUpRoute extends React.Component<SignUpRouteProps> {
    @observable userName = ''
    @observable password = ''
    @observable confirmPassword = ''
-   @observable userNameError = 'noError'
-   @observable passwordError = 'noError'
-   @observable confirmPasswordError = 'noError'
+   @observable userNameError = this.props.t(`authentication:noError`)
+   @observable passwordError = this.props.t(`authentication:noError`)
+   @observable confirmPasswordError = this.props.t(`authentication:noError`)
 
    getInjectedProps = (): InjectedProps => this.props as InjectedProps
 
@@ -51,16 +52,18 @@ class SignUpRoute extends React.Component<SignUpRouteProps> {
    }
 
    onClickSignUpBtn = async () => {
-      this.userNameError = this.passwordError = this.confirmPasswordError =
-         'noError'
+      const { t } = this.props
+      this.userNameError = this.passwordError = this.confirmPasswordError = t(
+         `authentication:noError`
+      )
 
-      const {
-         passwordMisMatch,
-         enterPassword,
-         enterUserName,
-         usernameAlreadyExits,
-         passwordShouldBeGreaterThan8Characters
-      } = Strings.signUp
+      // const {
+      //    passwordMisMatch,
+      //    enterPassword,
+      //    enterUserName,
+      //    usernameAlreadyExits,
+      //    passwordShouldBeGreaterThan8Characters
+      // } = Strings.signUp
 
       if (this.userName !== '' && this.password !== '') {
          if (this.password === this.confirmPassword) {
@@ -74,33 +77,39 @@ class SignUpRoute extends React.Component<SignUpRouteProps> {
                const signUpCredentialsError = getUserSignUpError.split(' ')
 
                if (signUpCredentialsError.includes('username')) {
-                  this.userNameError = usernameAlreadyExits
-                  this.passwordError = 'noError'
-                  this.confirmPasswordError = 'noError'
+                  this.userNameError = t(
+                     `authentication:signUp.usernameAlreadyExits`
+                  )
+                  this.passwordError = t(`authentication:noError`)
+                  this.confirmPasswordError = t(`authentication:noError`)
                } else if (signUpCredentialsError.includes('password')) {
-                  this.userNameError = 'noError'
-                  this.passwordError = passwordShouldBeGreaterThan8Characters
-                  this.confirmPasswordError = 'noError'
+                  this.userNameError = t(`authentication:noError`)
+                  this.passwordError = t(
+                     `authentication:signUp.passwordShouldBeGreaterThan8Characters`
+                  )
+                  this.confirmPasswordError = t(`authentication:noError`)
                }
             } else {
                const { history } = this.props
                history.replace('/slot-booking/login/')
             }
          } else {
-            this.confirmPasswordError = passwordMisMatch
-            this.userNameError = 'noError'
-            this.passwordError = 'noError'
+            this.confirmPasswordError = t(
+               `authentication:signUp.passwordMisMatch`
+            )
+            this.userNameError = t(`authentication:noError`)
+            this.passwordError = t(`authentication:noError`)
          }
       } else if (this.userName !== '' && this.password === '') {
-         this.passwordError = enterPassword
-         this.userNameError = 'noError'
-         this.confirmPasswordError = 'noError'
+         this.passwordError = t(`authentication:signUp.enterPassword`)
+         this.userNameError = t(`authentication:noError`)
+         this.confirmPasswordError = t(`authentication:noError`)
       } else if (this.userName === '' && this.password !== '') {
-         this.userNameError = enterUserName
+         this.userNameError = t(`authentication:signUp.enterUserName`)
       } else {
-         this.userNameError = enterUserName
-         this.passwordError = enterPassword
-         this.confirmPasswordError = 'noError'
+         this.userNameError = t(`authentication:signUp.enterUserName`)
+         this.passwordError = t(`authentication:signUp.enterPassword`)
+         this.confirmPasswordError = t(`authentication:noError`)
       }
    }
 
@@ -135,4 +144,4 @@ class SignUpRoute extends React.Component<SignUpRouteProps> {
    }
 }
 
-export default SignUpRoute
+export default withTranslation('translation', {})(SignUpRoute)

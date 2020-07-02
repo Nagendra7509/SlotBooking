@@ -1,0 +1,30 @@
+{
+   "userName": "उपयोगकर्ता नाम",
+   "password": "कुंजिका",
+   "noError": "noError",
+   "signUp": {
+      "hiTherePleaseSignUp": "हाय, कृपया साइन अप करें",
+
+      "weak": "कमज़ोर",
+      "strong": "बलवान",
+      "confirmPassword": "पासवर्ड की पुष्टि कीजिये",
+      "signUp": "साइन अप करें",
+      "usernameAlreadyExits": "उपयोगकर्ता नाम पहले से ही बाहर है",
+      "passwordMisMatch": "पासवर्ड का मेल नहीं हुआ",
+      "enterPassword": "पास वर्ड दर्ज करें",
+      "enterUserName": "उपयोगकर्ता नाम दर्ज करें",
+      "passwordShouldBeGreaterThan8Characters": "पासवर्ड 8 अक्षरों से अधिक होना चाहिए",
+      "alreadyHaveAnAccount": "क्या आपके पास पहले से एक खाता मौजूद है?",
+      "login": "लॉग इन करें"
+   },
+   "login": {
+      "hiTherePleaseSignIn": "नमस्ते वहाँ, कृपया साइन इन करें",
+      "login": "लॉग इन करें",
+      "usernameInvalid": "ग़लत उपयोगकर्ता नाम",
+      "incorrectPassword": "गलत पासवर्ड",
+      "donotHaveAnAccount": "क्या आपका खाता नहीं है?",
+      "serverError": "सर्वर त्रुटि",
+      "signUp": "साइन अप करें",
+      "loginLoading": "प्रवेश किया...."
+   }
+}

@@ -1,9 +1,11 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+import { withTranslation, WithTranslation } from 'react-i18next'
 import {
    Typo12HKGroteskSemiBoldSteel,
    Typo12HKGroteskRegular
 } from '../../../styleGuide/Typos'
+import LanguageChange from '../../../Common/components/ChangeLanguage'
 import { InputTag, IbHubsLogo } from '../../common/components'
 import { ibhubsLogo } from '../../assets'
 import Strings from '../../i18n/strings.json'
@@ -17,7 +19,7 @@ import {
    SignInLink
 } from './styledComponent'
 
-type SignUpPageProps = {
+interface SignUpPageProps extends WithTranslation {
    userName: string
    password: string
    confirmPassword: string
@@ -45,66 +47,78 @@ class SignUpPage extends React.Component<SignUpPageProps> {
          onClickSignUpBtn,
          userNameError,
          passwordError,
-         confirmPasswordError
+         confirmPasswordError,
+         t
       } = this.props
 
       return (
          <SignUpPageContainer>
+            <LanguageChange />
             <SignUpForm>
                <IbHubsLogo src={ibhubsLogo.logoAdress} alt='ibhubsLogo' />
 
-               <SignUpText>{Strings.signUp.hiTherePleaseSignUp}</SignUpText>
+               <SignUpText>
+                  {t(`authentication:signUp.hiTherePleaseSignUp`)}
+               </SignUpText>
 
                <Typo12HKGroteskSemiBoldSteel>
-                  {Strings.signUp.userName}
+                  {t(`authentication:userName`)}
                </Typo12HKGroteskSemiBoldSteel>
 
                <InputTag
                   onChange={onChangeUserNameSignUp}
                   value={userName}
                   type='text'
-                  placeholder='username'
-                  borderValue={userNameError !== 'noError'}
+                  placeholder={t(`authentication:userName`)}
+                  borderValue={userNameError !== t('authentication:noError')}
                />
 
                <Typo12HKGroteskRegular
-                  visibilityValue={userNameError !== 'noError'}
+                  visibilityValue={
+                     userNameError !== t('authentication:noError')
+                  }
                >
                   {userNameError}
                </Typo12HKGroteskRegular>
 
                <Typo12HKGroteskSemiBoldSteel>
-                  {Strings.signUp.password}
+                  {t(`authentication:password`)}
                </Typo12HKGroteskSemiBoldSteel>
 
                <InputTag
                   onChange={onChangePasswordSignUp}
                   value={password}
                   type='password'
-                  placeholder='password'
-                  borderValue={passwordError !== 'noError'}
+                  placeholder={t(`authentication:password`)}
+                  borderValue={passwordError !== t('authentication:noError')}
                />
 
                <Typo12HKGroteskRegular
-                  visibilityValue={passwordError !== 'noError'}
+                  visibilityValue={
+                     passwordError !== t('authentication:noError')
+                  }
                >
                   {passwordError}
                </Typo12HKGroteskRegular>
 
                <Typo12HKGroteskSemiBoldSteel>
-                  {Strings.signUp.confirmPassword}
+                  {t(`authentication:signUp.confirmPassword`)}
                </Typo12HKGroteskSemiBoldSteel>
 
                <InputTag
                   onChange={onChangeConfirmPasswordSignUp}
                   value={confirmPassword}
                   type='password'
-                  placeholder='confirm password'
-                  borderValue={confirmPasswordError !== 'noError'}
+                  placeholder={t(`authentication:signUp.confirmPassword`)}
+                  borderValue={
+                     confirmPasswordError !== t('authentication:noError')
+                  }
                />
 
                <Typo12HKGroteskRegular
-                  visibilityValue={confirmPasswordError !== 'noError'}
+                  visibilityValue={
+                     confirmPasswordError !== t('authentication:noError')
+                  }
                >
                   {confirmPasswordError}
                </Typo12HKGroteskRegular>
@@ -114,14 +128,14 @@ class SignUpPage extends React.Component<SignUpPageProps> {
                   onClick={onClickSignUpBtn}
                   data-testid='sign-up-button'
                >
-                  {Strings.signUp.signUp}
+                  {t(`authentication:signUp.signUp`)}
                </SignUpBtn>
 
                <AlreadyHaveAccount>
-                  {Strings.signUp.alreadyHaveAnAccount}
+                  {t(`authentication:signUp.alreadyHaveAnAccount`)}
                   <SignInLink href={LOGIN_PATH}>
                      {' '}
-                     {Strings.signUp.login}
+                     {t(`authentication:signUp.login`)}
                   </SignInLink>
                </AlreadyHaveAccount>
             </SignUpForm>
@@ -130,4 +144,4 @@ class SignUpPage extends React.Component<SignUpPageProps> {
    }
 }
 
-export default SignUpPage
+export default withTranslation('translation', {})(SignUpPage)

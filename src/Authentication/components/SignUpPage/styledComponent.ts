@@ -3,7 +3,7 @@ import tw from 'tailwind.macro'
 import { colors } from '../../themes/Colors'
 
 const SignUpPageContainer = styled.div`
-    ${tw`flex justify-center items-center  min-h-screen`}
+    ${tw`flex flex-col justify-center items-center  min-h-screen`}
     background-color:${colors.iceBlue}`
 
 const SignUpForm = styled.form`

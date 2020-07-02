@@ -1,0 +1,10 @@
+{
+   "failureScreen": {
+      "retry": "మళ్ళీ ప్రయత్నించు",
+      "somethingWentWrong": "ఎక్కడో తేడ జరిగింది"
+   },
+   "telugu": "తెలుగు",
+   "english": "English",
+   "hindi": "हिन्दी",
+   "tamil": "தமிழ்"
+}

@@ -1,0 +1,30 @@
+{
+   "userName": "பயனர் பெயர்",
+   "password": "கடவுச்சொல்",
+   "noError": "noError",
+   "signUp": {
+      "hiTherePleaseSignUp": "ஹாய், தயவுசெய்து பதிவு செய்க",
+
+      "weak": "பலவீனமான",
+      "strong": "வலுவான",
+      "confirmPassword": "கடவுச்சொல்லை உறுதிப்படுத்தவும்",
+      "signUp": "சிக்னப்",
+      "usernameAlreadyExits": "பயனர்பெயர் ஏற்கனவே வெளியேறுகிறது",
+      "passwordMisMatch": "கடவுச்சொல் பொருந்தவில்லை",
+      "enterPassword": "கடவுச்சொல்லை உள்ளிடவும்",
+      "enterUserName": "பயனர்பெயரை உள்ளிடவும்",
+      "passwordShouldBeGreaterThan8Characters": "கடவுச்சொல் 8 எழுத்துகளுக்கு மேல் இருக்க வேண்டும்",
+      "alreadyHaveAnAccount": "ஏற்கனவே ஒரு கணக்கு உள்ளதா?",
+      "login": "உள்நுழைய"
+   },
+   "login": {
+      "hiTherePleaseSignIn": "ஹாய், தயவுசெய்து உள்நுழைக",
+      "login": "உள்நுழைய",
+      "usernameInvalid": "தவறான பயனர் பெயர்",
+      "incorrectPassword": "தவறான கடவுச்சொல்",
+      "donotHaveAnAccount": "கணக்கு இல்லையா?",
+      "serverError": "சேவையக பிழை",
+      "signUp": "பதிவுபெறுதல்",
+      "loginLoading": "உள்நுழைய...."
+   }
+}

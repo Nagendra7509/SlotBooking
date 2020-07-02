@@ -2,16 +2,17 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { Redirect } from 'react-router-dom'
 import { API_FETCHING } from '@ib/api-constants'
+import { withTranslation, WithTranslation } from 'react-i18next'
 import {
    Typo12HKGroteskSemiBoldSteel,
    Typo12HKGroteskRegular
 } from '../../../styleGuide/Typos'
+import LanguageChange from '../../../Common/components/ChangeLanguage'
 import { InputTag, IbHubsLogo } from '../../common/components'
 import { SIGN_UP_PATH } from '../../constants/routeConstants/RouteConstants'
 import { ibhubsLogo } from '../../assets'
 import Strings from '../../i18n/strings.json'
 import { getAccessToken } from '../../../utils/StorageUtils'
-
 import {
    LoginPageContainer,
    LoginForm,
@@ -20,11 +21,8 @@ import {
    DontHaveAccount,
    SignupLink
 } from './styledComponent'
-import { Recoverable } from 'repl'
-import { mockComponent } from 'react-dom/test-utils'
-import { clearObserving } from 'mobx/lib/internal'
 
-interface LoginPageProps {
+interface LoginPageProps extends WithTranslation {
    isAdmin: boolean
    userName: string
    password: string
@@ -60,41 +58,53 @@ class LoginPage extends React.Component<LoginPageProps> {
          errroMessageUserName,
          errorMessagePassword,
          errorMessageLoginButton,
-         getUserLoginStatus
+         getUserLoginStatus,
+         t
       } = this.props
 
       return (
          <LoginPageContainer>
+            <LanguageChange />
             <LoginForm>
                <IbHubsLogo src={ibhubsLogo.logoAdress} alt='ibhubsLogo' />
-               <SigInText>{Strings.login.hiTherePleaseSignIn}</SigInText>
+               <SigInText>
+                  {t(`authentication:login.hiTherePleaseSignIn`)}
+               </SigInText>
                <Typo12HKGroteskSemiBoldSteel>
-                  {Strings.login.userName}
+                  {t(`authentication:userName`)}
                </Typo12HKGroteskSemiBoldSteel>
                <InputTag
                   onChange={onChangeUserNameLogin}
                   value={userName}
                   type='text'
-                  placeholder='username'
-                  borderValue={errroMessageUserName !== 'noError'}
+                  placeholder={t(`authentication:userName`)}
+                  borderValue={
+                     errroMessageUserName !== t('authentication:noError')
+                  }
                />
                <Typo12HKGroteskRegular
-                  visibilityValue={errroMessageUserName !== 'noError'}
+                  visibilityValue={
+                     errroMessageUserName !== t('authentication:noError')
+                  }
                >
                   {errroMessageUserName}
                </Typo12HKGroteskRegular>
                <Typo12HKGroteskSemiBoldSteel>
-                  {Strings.login.password}
+                  {t(`authentication:password`)}
                </Typo12HKGroteskSemiBoldSteel>
                <InputTag
                   onChange={onChangePasswordLogin}
                   value={password}
                   type='password'
-                  placeholder='password'
-                  borderValue={errorMessagePassword !== 'noError'}
+                  placeholder={t(`authentication:password`)}
+                  borderValue={
+                     errorMessagePassword !== t('authentication:noError')
+                  }
                />
                <Typo12HKGroteskRegular
-                  visibilityValue={errorMessagePassword !== 'noError'}
+                  visibilityValue={
+                     errorMessagePassword !== t('authentication:noError')
+                  }
                >
                   {errorMessagePassword}
                </Typo12HKGroteskRegular>
@@ -104,19 +114,21 @@ class LoginPage extends React.Component<LoginPageProps> {
                   data-testid='sign-up-button'
                >
                   {getUserLoginStatus === API_FETCHING
-                     ? Strings.login.loginLoading
-                     : Strings.login.login}
+                     ? t(`authentication:login.loginLoading`)
+                     : t(`authentication:login.login`)}
                </SignInBtn>
                <Typo12HKGroteskRegular
-                  visibilityValue={errorMessageLoginButton !== 'noError'}
+                  visibilityValue={
+                     errorMessageLoginButton !== t('authentication:noError')
+                  }
                >
                   {errorMessageLoginButton}
                </Typo12HKGroteskRegular>
                <DontHaveAccount>
-                  {Strings.login.donotHaveAnAccount}
+                  {t(`authentication:login.donotHaveAnAccount`)}
                   <SignupLink href={SIGN_UP_PATH}>
                      {' '}
-                     {Strings.login.signUp}
+                     {t(`authentication:login.signUp`)}
                   </SignupLink>
                </DontHaveAccount>
             </LoginForm>
@@ -125,4 +137,4 @@ class LoginPage extends React.Component<LoginPageProps> {
    }
 }
 
-export default LoginPage
+export default withTranslation('translation', {})(LoginPage)

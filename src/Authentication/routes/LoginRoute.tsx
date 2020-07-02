@@ -2,12 +2,13 @@ import React from 'react'
 import { observable, action } from 'mobx'
 import { History } from 'history'
 import { observer, inject } from 'mobx-react'
+import { withTranslation, WithTranslation } from 'react-i18next'
 import LoginPage from '../components/LoginPage'
 import Strings from '../i18n/strings.json'
 import { getAccessToken } from '../../utils/StorageUtils'
 import AuthenticationStore from '../stores/AuthenticationStore'
 
-interface LoginRouteProps {
+interface LoginRouteProps extends WithTranslation {
    history: History
 }
 
@@ -20,9 +21,15 @@ interface InjectedProps extends LoginRouteProps {
 class LoginRoute extends React.Component<LoginRouteProps> {
    @observable userName: string = ''
    @observable password: string = ''
-   @observable errroMessageUserName: string = 'noError'
-   @observable errorMessagePassword: string = 'noError'
-   @observable errorMessageLoginButton: string = 'noError'
+   @observable errroMessageUserName: string = this.props.t(
+      `authentication:noError`
+   )
+   @observable errorMessagePassword: string = this.props.t(
+      `authentication:noError`
+   )
+   @observable errorMessageLoginButton: string = this.props.t(
+      `authentication:noError`
+   )
 
    getInjectedProps = (): InjectedProps => this.props as InjectedProps
 
@@ -41,10 +48,12 @@ class LoginRoute extends React.Component<LoginRouteProps> {
    }
 
    onClickLogin = async () => {
-      this.errroMessageUserName = this.errorMessagePassword = this.errorMessageLoginButton =
-         'noError'
+      const { t } = this.props
+      this.errroMessageUserName = this.errorMessagePassword = this.errorMessageLoginButton = t(
+         `authentication:noError`
+      )
 
-      const { usernameInavalid, incorrectPassword, serverError } = Strings.login
+      //const { usernameInavalid, incorrectPassword, serverError } = Strings.login
 
       if (this.userName !== '' && this.password !== '') {
          const { userLogin } = this.getAuthenticationStore()
@@ -56,13 +65,19 @@ class LoginRoute extends React.Component<LoginRouteProps> {
             const loginCredentialsError = getUserLoginError.split(' ')
 
             if (loginCredentialsError.includes('username')) {
-               this.errroMessageUserName = usernameInavalid
-               this.errorMessagePassword = 'noError'
+               this.errroMessageUserName = t(
+                  `authentication:login.usernameInvalid`
+               )
+               this.errorMessagePassword = t(`authentication:noError`)
             } else if (loginCredentialsError.includes('password')) {
-               this.errroMessageUserName = 'noError'
-               this.errorMessagePassword = incorrectPassword
+               this.errroMessageUserName = t(`authentication:noError`)
+               this.errorMessagePassword = t(
+                  `authentication:login.incorrectPassword`
+               )
             } else {
-               this.errorMessageLoginButton = serverError
+               this.errorMessageLoginButton = t(
+                  `authentication:login.serverError`
+               )
             }
          } else {
             if (getAccessToken()) {
@@ -76,17 +91,17 @@ class LoginRoute extends React.Component<LoginRouteProps> {
             }
          }
       } else if (this.userName === '' && this.password === '') {
-         this.errroMessageUserName = usernameInavalid
-         this.errorMessagePassword = incorrectPassword
-         this.errorMessageLoginButton = 'noError'
+         this.errroMessageUserName = t(`authentication:login.usernameInvalid`)
+         this.errorMessagePassword = t(`authentication:login.incorrectPassword`)
+         this.errorMessageLoginButton = t(`authentication:noError`)
       } else if (this.userName !== '' && this.password === '') {
-         this.errorMessagePassword = incorrectPassword
-         this.errroMessageUserName = 'noError'
-         this.errorMessageLoginButton = 'noError'
+         this.errorMessagePassword = t(`authentication:login.incorrectPassword`)
+         this.errroMessageUserName = t(`authentication:noError`)
+         this.errorMessageLoginButton = t(`authentication:noError`)
       } else {
-         this.errroMessageUserName = usernameInavalid
-         this.errorMessagePassword = 'noError'
-         this.errorMessageLoginButton = 'noError'
+         this.errroMessageUserName = t(`authentication:login.usernameInvalid`)
+         this.errorMessagePassword = t(`authentication:noError`)
+         this.errorMessageLoginButton = t(`authentication:noError`)
       }
    }
 
@@ -121,4 +136,4 @@ class LoginRoute extends React.Component<LoginRouteProps> {
    }
 }
 
-export default LoginRoute
+export default withTranslation('translation', {})(LoginRoute)
