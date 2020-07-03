@@ -8,6 +8,7 @@ import TopNavBar from '../../common/components/TopNavBar'
 import ActiveAndInactiveState from '../../common/components/ActiveAndInactiveState'
 import { ADMIN_PAGE_WASHINGMACHINE_ACTIVE } from '../../constants/routeConstants/RouteConstants'
 import WashingMachineCard from '../../common/components/WashingMachineCard'
+
 import { activeAndInactive } from '../../i18n/strings.json'
 import AdminStore from '../../stores/AdminStore'
 import PopUp from '../PopUp'
@@ -18,6 +19,8 @@ import {
    ActiveMachineCards,
    AddNewMachine
 } from './styledComponents'
+import { ImageTag } from '../../../Common/components/LazyLoading/styledComponents'
+import LazyLoading from '../../../Common/components/LazyLoading'
 
 interface WashingMachineActiveProps {
    history: History
@@ -65,6 +68,17 @@ class WashingMachineActive extends React.Component<WashingMachineActiveProps> {
       this.isClickedAddNewMachine = !this.isClickedAddNewMachine
    }
 
+   getImages = () => {
+      return Array(100)
+         .fill(0)
+         .map((v, index) => {
+            return {
+               id: index,
+               src: `https://loremflickr.com/320/240?random=${index}`
+            }
+         })
+   }
+
    render() {
       const {
          activeWashingMachines,
@@ -104,6 +118,9 @@ class WashingMachineActive extends React.Component<WashingMachineActiveProps> {
                            />
                         ))}
                   </ActiveMachineCards>
+                  {this.getImages().map(value => (
+                     <LazyLoading key={value.id} src={value.src} />
+                  ))}
                </ActiveMachines>
                {this.isClickedAddNewMachine && (
                   <PopUp

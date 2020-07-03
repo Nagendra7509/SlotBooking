@@ -18,13 +18,18 @@ const ActiveMachines = styled.div`
 `
 
 const ActiveMachineCards = styled.div`
-   ${tw`flex flex-wrap justify-around`}
+   ${tw`flex flex-col justify-around`}
 `
+
+//flex-wrap
+
+const ImageTag = styled.img``
 
 export {
    AddNewMachine,
    WashingMachineActiveContainer,
    SideNavBarAndActiveMachines,
    ActiveMachines,
-   ActiveMachineCards
+   ActiveMachineCards,
+   ImageTag
 }

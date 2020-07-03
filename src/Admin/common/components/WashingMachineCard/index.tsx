@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { lazy } from 'react'
+import LazyLoad from 'react-lazy-load'
+
 import { washingMachineUrls } from '../../../assets'
 import { activeAndInactive } from '../../../i18n/strings.json'
 import {
@@ -44,7 +46,9 @@ class WashingMachineCard extends React.Component<WashingMachineCardProps> {
                src={
                   washingMachinesUrls[Math.floor(Math.random() * (5 + 0 + 1))]
                }
-               alt={'WashingMachineImg'}
+               alt='WashingMachineImg'
+               loading='lazy'
+               className='lazy'
             />
 
             <WashingMachineDetails>
